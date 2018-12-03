@@ -1,0 +1,87 @@
+﻿@model Spedicija.Korisnik
+
+<style>
+.boxhead a {
+    text-decoration: none;
+}
+</style>
+<link href="~/Content/sweetAlert/sweetalert.css" rel="stylesheet" />
+<script src="~/Content/sweetAlert/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        if ("@ViewBag.Message" == "OK")
+            swal("Upit je uspješno poslat", "Uskoro ćemo Vas kontaktirati sa konkretnim odgovorima", "success");
+        else if ("@ViewBag.Message" == "OKNALOG")
+            swal("Nalog je uspješno kreiran", "Hvala što koristite naše usluge", "success");
+
+    });
+
+</script>
+
+<link href="~/Content/css/font-awesome-animation.min.css" rel="stylesheet" />
+<section class="section-account">
+		<div class="img-backdrop" style="background-image: url('../Images/jbg3.jpg');     height: 400px">
+		</div>
+		<div class="spacer" style="height:332px">
+          </div>
+		<div class="card contain-sm style-transparent">
+			<div class="card-body">
+                <div class="row">
+                    <div class="boxhead" style="width:700px; margin:0 auto;">
+                      <a href="/KorisnikUpit/Create" ><i class="text-warning fa fa-4x fa-envelope faa-shake animated"></i><span class="text-lg text-bold text-primary"> &nbsp &nbsp Pošaljite nam upit o cijeni prevoza</span></a>
+                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                      <a href="/KorisnikNalog/Create" ><i class="text-info fa fa-4x fa-files-o faa-tada animated"></i><span class="text-lg text-bold text-primary"> &nbsp &nbsp Popunite nalog za utovar robe</span></a>
+		            </div>
+                </div>
+				<div class="row">
+					<div class="col-sm-12">
+						<br>
+						<span class="text-lg text-bold text-primary">GMTEL LOGISTICS</span>
+						<br><br>
+						@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form", role = "form" })) {
+                            @Html.ValidationSummary(true)
+
+          
+                            @Html.Hidden("URL", ViewBag.ReturnUrl as object)   
+          
+							<div class="form-group floating-label">
+								 @Html.TextBoxFor(model => model.KorisnickoIme , new { @class = "form-control"  })
+                                 @Html.ValidationMessageFor(model => model.KorisnickoIme, "", new { @class="text-danger" })
+								<label for="username">Korisničko Ime</label>
+
+							</div>
+							<div class="form-group floating-label">
+								 @Html.PasswordFor(model => model.Lozinka, new { @class = "form-control"  })
+                                 @Html.ValidationMessageFor(model => model.Lozinka)
+								<label for="password">Lozinka</label>
+								<p class="help-block"><a href="#">Zaboravljena lozinka?</a></p>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-xs-6 text-left">
+									<div class="checkbox checkbox-inline checkbox-styled">
+                                        
+										<label>
+											<input type="checkbox" name="Zapamti"/>
+                                            <span>Zapamti me</span>
+										</label>
+									</div>
+								</div><!--end .col -->
+								<div class="col-xs-6 text-right">
+									<button class="btn btn-primary btn-raised" type="submit">Login</button>
+
+
+
+								</div><!--end .col -->
+							</div><!--end .row -->
+          
+                                 @Html.AntiForgeryToken()
+                            }
+					</div><!--end .col -->
+				</div><!--end .row -->
+			</div><!--end .card-body -->
+		</div><!--end .card -->
+	</section>

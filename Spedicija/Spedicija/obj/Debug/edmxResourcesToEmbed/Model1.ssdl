@@ -1,0 +1,1372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="uvhszjiy_spedicijaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AndroidTask">
+    <Key>
+      <PropertyRef Name="IdTask" />
+    </Key>
+    <Property Name="IdTask" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdDnevnik" Type="int" Nullable="false" />
+    <Property Name="DatumZapisa" Type="datetime" Nullable="false" />
+    <Property Name="VozacPregled" Type="bit" Nullable="false" />
+    <Property Name="AdminPregled" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AppPodesavanja">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vrsta" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Vrijednost" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DnevnicaDetail">
+    <Key>
+      <PropertyRef Name="IdDnevnicaDetail" />
+    </Key>
+    <Property Name="IdDnevnicaDetail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdVozacDnevnica" Type="int" Nullable="false" />
+    <Property Name="Dnevnica" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Nocenje" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="OstaliTroskovi" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Napomena" Type="nvarchar" MaxLength="100" />
+    <Property Name="Ukupno" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Isplaceno" Type="bit" Nullable="false" />
+    <Property Name="Datum" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DnevnikCarina">
+    <Key>
+      <PropertyRef Name="IdCarina" />
+    </Key>
+    <Property Name="IdCarina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UvoznaCarina" Type="nvarchar" MaxLength="200" />
+    <Property Name="IzvoznaCarina" Type="nvarchar" MaxLength="200" />
+    <Property Name="IdDnevnik" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DnevnikIstovar">
+    <Key>
+      <PropertyRef Name="IdIstovar" />
+    </Key>
+    <Property Name="IdIstovar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdDnevnik" Type="int" Nullable="false" />
+    <Property Name="Firma" Type="nvarchar" MaxLength="500" />
+    <Property Name="Adresa" Type="nvarchar" MaxLength="500" />
+    <Property Name="Mjesto" Type="nvarchar" MaxLength="500" />
+    <Property Name="PTT" Type="nvarchar" MaxLength="50" />
+    <Property Name="Drzava" Type="nvarchar" MaxLength="500" />
+    <Property Name="Kontakt" Type="nvarchar" MaxLength="500" />
+    <Property Name="DatumIstovara" Type="date" />
+    <Property Name="KolicinaRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DnevnikPrevoza">
+    <Key>
+      <PropertyRef Name="IdDnevnik" />
+    </Key>
+    <Property Name="IdDnevnik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DatumDnevnika" Type="date" />
+    <Property Name="IdNarucioca" Type="int" />
+    <Property Name="BrojNaloga" Type="nvarchar" MaxLength="500" />
+    <Property Name="UtovarAdresa" Type="nvarchar" MaxLength="500" />
+    <Property Name="UtovarFirma" Type="nvarchar" MaxLength="500" />
+    <Property Name="UtovarGrad" Type="nvarchar" MaxLength="500" />
+    <Property Name="DatumUtovara" Type="datetime" />
+    <Property Name="IstovarAdresa" Type="nvarchar" MaxLength="500" />
+    <Property Name="IstovarFirma" Type="nvarchar" MaxLength="500" />
+    <Property Name="IstovarGrad" Type="nvarchar" MaxLength="500" />
+    <Property Name="DatumIstovara" Type="datetime" />
+    <Property Name="KolicinaRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="CijenaPrevoza" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IdValuta" Type="int" />
+    <Property Name="ValutaPlacanja" Type="int" />
+    <Property Name="UvoznaSpedicija" Type="nvarchar" MaxLength="500" />
+    <Property Name="IzvoznaSpedicija" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdVozilo" Type="int" />
+    <Property Name="IdVozac" Type="int" />
+    <Property Name="DrugiPrevoznik" Type="bit" />
+    <Property Name="IdSubjekt" Type="int" />
+    <Property Name="BrojNalogaPrevoznika" Type="nvarchar" MaxLength="500" />
+    <Property Name="CijenaPrevozaPrevoznika" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IdValutaPrevoznika" Type="int" />
+    <Property Name="BrojFakture" Type="nvarchar" MaxLength="500" />
+    <Property Name="DatumSlanjaFakture" Type="date" />
+    <Property Name="DatumZapisa" Type="datetime" />
+    <Property Name="ZapisAktivan" Type="bit" />
+    <Property Name="SerijskiBroj" Type="nvarchar" MaxLength="50" />
+    <Property Name="VrstaRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="RegistracijaVozilaPrevoznika" Type="nvarchar" MaxLength="100" />
+    <Property Name="VozacPrevoznika" Type="nvarchar" MaxLength="100" />
+    <Property Name="KontaktOsobaPrevoznika" Type="nvarchar" MaxLength="100" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Napomena" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdPrikljucnoVozilo" Type="int" />
+    <Property Name="Uvoznik" Type="nvarchar" MaxLength="500" />
+    <Property Name="Izvoznik" Type="nvarchar" MaxLength="500" />
+    <Property Name="ValutaPlacanjaPrevoznika" Type="int" />
+    <Property Name="SaPDV" Type="bit" />
+    <Property Name="UtovarKontakt" Type="nvarchar" MaxLength="500" />
+    <Property Name="IstovarKontakt" Type="nvarchar" MaxLength="500" />
+    <Property Name="GostPristup" Type="nvarchar" MaxLength="50" />
+    <Property Name="Uplaceno" Type="bit" />
+    <Property Name="KompletanUtovar" Type="bit" />
+    <Property Name="InternaNapomena" Type="nvarchar" MaxLength="4000" />
+    <Property Name="TezinaRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="PrevoznikIstovarAdresa" Type="nvarchar" MaxLength="500" />
+    <Property Name="PrevoznikIstovarFirma" Type="nvarchar" MaxLength="500" />
+    <Property Name="PrevoznikIstovarGrad" Type="nvarchar" MaxLength="500" />
+    <Property Name="PrevoznikIstovarPTT" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrevoznikIstovarDrzava" Type="nvarchar" MaxLength="100" />
+    <Property Name="IznosPDV" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UtovarPTT" Type="nvarchar" MaxLength="50" />
+    <Property Name="UtovarDrzava" Type="nvarchar" MaxLength="100" />
+    <Property Name="IstovarPTT" Type="nvarchar" MaxLength="50" />
+    <Property Name="IstovarDrzava" Type="nvarchar" MaxLength="100" />
+    <Property Name="DimenzijeRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="PrevoznikUtovarFirma" Type="nvarchar" MaxLength="500" />
+    <Property Name="PrevoznikUtovarAdresa" Type="nvarchar" MaxLength="500" />
+    <Property Name="PrevoznikUtovarGrad" Type="nvarchar" MaxLength="200" />
+    <Property Name="PrevoznikUtovarPTT" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrevoznikUtovarDrzava" Type="nvarchar" MaxLength="100" />
+    <Property Name="IstovarKolicinaRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="ReferentniBrojUtovara" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdDnevnikParent" Type="int" />
+    <Property Name="LONG" Type="nvarchar" MaxLength="20" />
+    <Property Name="LAT" Type="nvarchar" MaxLength="20" />
+    <Property Name="DrugiPrevoznikStatus" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdPonuda" Type="int" />
+    <Property Name="idStatusDetaljni" Type="int" />
+    <Property Name="StatusDetaljniOpis" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="DnevnikUtovar">
+    <Key>
+      <PropertyRef Name="IdUtovar" />
+    </Key>
+    <Property Name="IdUtovar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdDnevnik" Type="int" Nullable="false" />
+    <Property Name="Firma" Type="nvarchar" MaxLength="500" />
+    <Property Name="Adresa" Type="nvarchar" MaxLength="500" />
+    <Property Name="Mjesto" Type="nvarchar" MaxLength="500" />
+    <Property Name="PTT" Type="nvarchar" MaxLength="50" />
+    <Property Name="Drzava" Type="nvarchar" MaxLength="500" />
+    <Property Name="Kontakt" Type="nvarchar" MaxLength="500" />
+    <Property Name="DatmUtovara" Type="date" />
+    <Property Name="KolicinaRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="VrstaRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="TezinaRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="DimenzijeRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="ReferentniBrojUtovara" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="DnevnikUvoznikIzvoznik">
+    <Key>
+      <PropertyRef Name="IdUvoznikIzvoznik" />
+    </Key>
+    <Property Name="IdUvoznikIzvoznik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Uvoznik" Type="nvarchar" MaxLength="500" />
+    <Property Name="Izvoznik" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdDnevnik" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DnevnikValute">
+    <Key>
+      <PropertyRef Name="IdDnevnikValute" />
+    </Key>
+    <Property Name="IdDnevnikValute" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdDnevnik" Type="int" Nullable="false" />
+    <Property Name="DatumAktivnosti" Type="datetime" Nullable="false" />
+    <Property Name="Aktivnost" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Detalji" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Dokument">
+    <Key>
+      <PropertyRef Name="IdDokument" />
+    </Key>
+    <Property Name="IdDokument" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tip" Type="nvarchar" MaxLength="100" />
+    <Property Name="Putanja" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdDnevnik" Type="int" />
+    <Property Name="Velicina" Type="nvarchar" MaxLength="500" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdVozac" Type="int" />
+    <Property Name="IdVozilo" Type="int" />
+  </EntityType>
+  <EntityType Name="Drzava">
+    <Key>
+      <PropertyRef Name="IdDrzava" />
+    </Key>
+    <Property Name="IdDrzava" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="50" />
+    <Property Name="ISO" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Grad">
+    <Key>
+      <PropertyRef Name="IdGrad" />
+    </Key>
+    <Property Name="IdGrad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Drzava" Type="nvarchar" MaxLength="50" />
+    <Property Name="ISO" Type="nvarchar" MaxLength="50" />
+    <Property Name="Grad" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="IDnevnikPrevozaVozac">
+    <Key>
+      <PropertyRef Name="IdIDnevnikPrevozaVozac" />
+    </Key>
+    <Property Name="IdIDnevnikPrevozaVozac" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DatumOd" Type="date" Nullable="false" />
+    <Property Name="DatumDo" Type="date" Nullable="false" />
+    <Property Name="DatumZapisa" Type="datetime" Nullable="false" />
+    <Property Name="IdVozac" Type="int" Nullable="false" />
+    <Property Name="IdDnevnik" Type="int" Nullable="false" />
+    <Property Name="IdVozilo" Type="int" />
+  </EntityType>
+  <EntityType Name="IzracunDnevnik">
+    <Key>
+      <PropertyRef Name="IdIzracunDnevnik" />
+    </Key>
+    <Property Name="IdIzracunDnevnik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdIzracunZarada" Type="int" Nullable="false" />
+    <Property Name="IdDnevnik" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IzracunTrosak">
+    <Key>
+      <PropertyRef Name="IdIzracunTrosak" />
+    </Key>
+    <Property Name="IdIzracunTrosak" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DodatniTrosak" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IznosTroskova" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="IdIzracunZarada" Type="int" Nullable="false" />
+    <Property Name="Postotak" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IzracunZarada">
+    <Key>
+      <PropertyRef Name="IdIzracunZarada" />
+    </Key>
+    <Property Name="IdIzracunZarada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="DatumZapisa" Type="date" Nullable="false" />
+    <Property Name="ZapisAktivan" Type="bit" />
+  </EntityType>
+  <EntityType Name="Korisnik">
+    <Key>
+      <PropertyRef Name="IdKorisnik" />
+    </Key>
+    <Property Name="IdKorisnik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KorisnickoIme" Type="nvarchar" MaxLength="50" />
+    <Property Name="Lozinka" Type="nvarchar" MaxLength="50" />
+    <Property Name="DatumKreiranja" Type="datetime" />
+    <Property Name="PoslednjaPrijava" Type="datetime" />
+    <Property Name="IPAdresa" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZapisAktivan" Type="bit" />
+    <Property Name="Role" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Ime" Type="nvarchar" MaxLength="150" />
+    <Property Name="Token" Type="nvarchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="KorisnikNalog">
+    <Key>
+      <PropertyRef Name="idKorisnikNalog" />
+    </Key>
+    <Property Name="idKorisnikNalog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="500" />
+    <Property Name="Adresa" Type="nvarchar" MaxLength="500" />
+    <Property Name="Grad" Type="nvarchar" MaxLength="500" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="KontaktOsoba" Type="nvarchar" MaxLength="500" />
+    <Property Name="Timocom" Type="nvarchar" MaxLength="50" />
+    <Property Name="PIB" Type="nvarchar" MaxLength="50" />
+    <Property Name="Izvoznik" Type="nvarchar" MaxLength="500" />
+    <Property Name="IzvoznikKontaktOsoba" Type="nvarchar" MaxLength="500" />
+    <Property Name="MjestoUtovara" Type="nvarchar" MaxLength="500" />
+    <Property Name="DatumUtovara" Type="date" />
+    <Property Name="ReferentniBrojUtovara" Type="nvarchar" MaxLength="500" />
+    <Property Name="VrstaRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="VrijednostRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="BrutoTezina" Type="nvarchar" MaxLength="500" />
+    <Property Name="IzvoznaCarina" Type="nvarchar" MaxLength="500" />
+    <Property Name="Uvoznik" Type="nvarchar" MaxLength="500" />
+    <Property Name="UvoznikKontaktOsoba" Type="nvarchar" MaxLength="500" />
+    <Property Name="MjestoIstovara" Type="nvarchar" MaxLength="500" />
+    <Property Name="DatumIstovara" Type="date" />
+    <Property Name="UvoznaCarina" Type="nvarchar" MaxLength="500" />
+    <Property Name="DatumZahtjeva" Type="datetime" Nullable="false" />
+    <Property Name="IdSubjekt" Type="int" />
+    <Property Name="PTT" Type="nvarchar" MaxLength="50" />
+    <Property Name="Drzava" Type="nvarchar" MaxLength="50" />
+    <Property Name="JIB" Type="nvarchar" MaxLength="50" />
+    <Property Name="FirmaUtovar" Type="nvarchar" MaxLength="500" />
+    <Property Name="FirmaIStovar" Type="nvarchar" MaxLength="500" />
+    <Property Name="PTT1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Grad1" Type="nvarchar" MaxLength="100" />
+    <Property Name="Drzava1" Type="nvarchar" MaxLength="100" />
+    <Property Name="Dimenzije" Type="nvarchar" MaxLength="500" />
+    <Property Name="PTT2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Grad2" Type="nvarchar" MaxLength="100" />
+    <Property Name="Drzava2" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="KorisnikNalogIstovar">
+    <Key>
+      <PropertyRef Name="IdIstovar" />
+    </Key>
+    <Property Name="IdIstovar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdKorisnikNalog" Type="int" Nullable="false" />
+    <Property Name="Firma" Type="nvarchar" MaxLength="200" />
+    <Property Name="Adresa" Type="nvarchar" MaxLength="200" />
+    <Property Name="Mjesto" Type="nvarchar" MaxLength="200" />
+    <Property Name="PTT" Type="nvarchar" MaxLength="50" />
+    <Property Name="Drzava" Type="nvarchar" MaxLength="100" />
+    <Property Name="Kontakt" Type="nvarchar" MaxLength="200" />
+    <Property Name="DatumIstovara" Type="date" />
+    <Property Name="KolicinaRobe" Type="nvarchar" MaxLength="200" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="UvoznaCarina" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="KorisnikNalogUtovar">
+    <Key>
+      <PropertyRef Name="IdUtovar" />
+    </Key>
+    <Property Name="IdUtovar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdKorisnikNalog" Type="int" Nullable="false" />
+    <Property Name="Firma" Type="nvarchar" MaxLength="200" />
+    <Property Name="Adresa" Type="nvarchar" MaxLength="200" />
+    <Property Name="Mjesto" Type="nvarchar" MaxLength="200" />
+    <Property Name="PTT" Type="nvarchar" MaxLength="50" />
+    <Property Name="Drzava" Type="nvarchar" MaxLength="100" />
+    <Property Name="Kontakt" Type="nvarchar" MaxLength="500" />
+    <Property Name="DatmUtovara" Type="date" />
+    <Property Name="KolicinaRobe" Type="nvarchar" MaxLength="200" />
+    <Property Name="VrstaRobe" Type="nvarchar" MaxLength="100" />
+    <Property Name="TezinaRobe" Type="nvarchar" MaxLength="200" />
+    <Property Name="DimenzijeRobe" Type="nvarchar" MaxLength="200" />
+    <Property Name="ReferentniBrojUtovara" Type="nvarchar" MaxLength="50" />
+    <Property Name="IzvoznaCarina" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="KorisnikUpit">
+    <Key>
+      <PropertyRef Name="IdKorisnikUpit" />
+    </Key>
+    <Property Name="IdKorisnikUpit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Utovar" Type="nvarchar" MaxLength="500" />
+    <Property Name="Istovar" Type="nvarchar" MaxLength="500" />
+    <Property Name="KolicinaRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="VrijednostRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="VrstaRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="DatumUtovara" Type="date" />
+    <Property Name="DatumIstovara" Type="date" />
+    <Property Name="ImeKorisnika" Type="nvarchar" MaxLength="500" />
+    <Property Name="Email" Type="nvarchar" MaxLength="500" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="500" />
+    <Property Name="Napomena" Type="nvarchar" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="IdLog" />
+    </Key>
+    <Property Name="IdLog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tabela" Type="nvarchar" MaxLength="50" />
+    <Property Name="PK" Type="int" />
+    <Property Name="IdKorisnik" Type="int" />
+    <Property Name="Aktivnost" Type="nvarchar" MaxLength="50" />
+    <Property Name="Datum" Type="datetime" />
+    <Property Name="IPAdresa" Type="nvarchar" MaxLength="50" />
+    <Property Name="StaraVrijednost" Type="nvarchar" MaxLength="4000" />
+    <Property Name="NovaVrijednost" Type="nvarchar" MaxLength="4000" />
+    <Property Name="KorisnickoIme" Type="nvarchar" MaxLength="100" />
+    <Property Name="StatusPromjene" Type="nvarchar" MaxLength="100" />
+    <Property Name="Pregledano" Type="bit" />
+  </EntityType>
+  <EntityType Name="NalogZaUtovar">
+    <Key>
+      <PropertyRef Name="IdNalog" />
+    </Key>
+    <Property Name="IdNalog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BrojNaloga" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdSubjekt" Type="int" />
+    <Property Name="Izvoznik" Type="nvarchar" MaxLength="500" />
+    <Property Name="Napomena" Type="nvarchar" MaxLength="500" />
+    <Property Name="VrstaRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="BrutoTezina" Type="nvarchar" MaxLength="500" />
+    <Property Name="IzvoznaCarina" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdDnevnik" Type="int" />
+  </EntityType>
+  <EntityType Name="Notes">
+    <Key>
+      <PropertyRef Name="IdNotes" />
+    </Key>
+    <Property Name="IdNotes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Datum" Type="date" Nullable="false" />
+    <Property Name="Tekst" Type="nvarchar" MaxLength="4000" />
+    <Property Name="Korisnik" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Ponuda">
+    <Key>
+      <PropertyRef Name="IdDnevnik" />
+    </Key>
+    <Property Name="IdDnevnik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DatumDnevnika" Type="date" />
+    <Property Name="IdNarucioca" Type="int" />
+    <Property Name="BrojNaloga" Type="nvarchar" MaxLength="500" />
+    <Property Name="UtovarAdresa" Type="nvarchar" MaxLength="500" />
+    <Property Name="UtovarFirma" Type="nvarchar" MaxLength="500" />
+    <Property Name="UtovarGrad" Type="nvarchar" MaxLength="500" />
+    <Property Name="DatumUtovara" Type="datetime" />
+    <Property Name="IstovarAdresa" Type="nvarchar" MaxLength="500" />
+    <Property Name="IstovarFirma" Type="nvarchar" MaxLength="500" />
+    <Property Name="IstovarGrad" Type="nvarchar" MaxLength="500" />
+    <Property Name="DatumIstovara" Type="datetime" />
+    <Property Name="KolicinaRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="CijenaPrevoza" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IdValuta" Type="int" />
+    <Property Name="ValutaPlacanja" Type="int" />
+    <Property Name="UvoznaSpedicija" Type="nvarchar" MaxLength="500" />
+    <Property Name="IzvoznaSpedicija" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdVozilo" Type="int" />
+    <Property Name="IdVozac" Type="int" />
+    <Property Name="DrugiPrevoznik" Type="bit" />
+    <Property Name="IdSubjekt" Type="int" />
+    <Property Name="BrojNalogaPrevoznika" Type="nvarchar" MaxLength="500" />
+    <Property Name="CijenaPrevozaPrevoznika" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IdValutaPrevoznika" Type="int" />
+    <Property Name="BrojFakture" Type="nvarchar" MaxLength="500" />
+    <Property Name="DatumSlanjaFakture" Type="date" />
+    <Property Name="DatumZapisa" Type="datetime" />
+    <Property Name="ZapisAktivan" Type="bit" />
+    <Property Name="SerijskiBroj" Type="nvarchar" MaxLength="50" />
+    <Property Name="VrstaRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="RegistracijaVozilaPrevoznika" Type="nvarchar" MaxLength="100" />
+    <Property Name="VozacPrevoznika" Type="nvarchar" MaxLength="100" />
+    <Property Name="KontaktOsobaPrevoznika" Type="nvarchar" MaxLength="100" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Napomena" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdPrikljucnoVozilo" Type="int" />
+    <Property Name="Uvoznik" Type="nvarchar" MaxLength="500" />
+    <Property Name="Izvoznik" Type="nvarchar" MaxLength="500" />
+    <Property Name="ValutaPlacanjaPrevoznika" Type="int" />
+    <Property Name="SaPDV" Type="bit" />
+    <Property Name="UtovarKontakt" Type="nvarchar" MaxLength="500" />
+    <Property Name="IstovarKontakt" Type="nvarchar" MaxLength="500" />
+    <Property Name="GostPristup" Type="nvarchar" MaxLength="50" />
+    <Property Name="Uplaceno" Type="bit" />
+    <Property Name="KompletanUtovar" Type="bit" />
+    <Property Name="InternaNapomena" Type="nvarchar" MaxLength="4000" />
+    <Property Name="TezinaRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="PrevoznikIstovarAdresa" Type="nvarchar" MaxLength="500" />
+    <Property Name="PrevoznikIstovarFirma" Type="nvarchar" MaxLength="500" />
+    <Property Name="PrevoznikIstovarGrad" Type="nvarchar" MaxLength="500" />
+    <Property Name="PrevoznikIstovarPTT" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrevoznikIstovarDrzava" Type="nvarchar" MaxLength="100" />
+    <Property Name="IznosPDV" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UtovarPTT" Type="nvarchar" MaxLength="50" />
+    <Property Name="UtovarDrzava" Type="nvarchar" MaxLength="100" />
+    <Property Name="IstovarPTT" Type="nvarchar" MaxLength="50" />
+    <Property Name="IstovarDrzava" Type="nvarchar" MaxLength="100" />
+    <Property Name="DimenzijeRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="PrevoznikUtovarFirma" Type="nvarchar" MaxLength="500" />
+    <Property Name="PrevoznikUtovarAdresa" Type="nvarchar" MaxLength="500" />
+    <Property Name="PrevoznikUtovarGrad" Type="nvarchar" MaxLength="200" />
+    <Property Name="PrevoznikUtovarPTT" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrevoznikUtovarDrzava" Type="nvarchar" MaxLength="100" />
+    <Property Name="IstovarKolicinaRobe" Type="nvarchar" MaxLength="500" />
+    <Property Name="ReferentniBrojUtovara" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdDnevnikParent" Type="int" />
+    <Property Name="LONG" Type="nvarchar" MaxLength="20" />
+    <Property Name="LAT" Type="nvarchar" MaxLength="20" />
+    <Property Name="DrugiPrevoznikStatus" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PonudaUsloviPrevoza">
+    <Key>
+      <PropertyRef Name="IdPodudaUslovi" />
+    </Key>
+    <Property Name="IdPodudaUslovi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdPonuda" Type="int" Nullable="false" />
+    <Property Name="IdUsloviPrevoza" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RedoslijedUtovarIstovar">
+    <Key>
+      <PropertyRef Name="IdRedoslijed" />
+    </Key>
+    <Property Name="IdRedoslijed" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdDnevnik" Type="int" Nullable="false" />
+    <Property Name="IdDodatniUtovar" Type="int" />
+    <Property Name="IdDodatniIstovar" Type="int" />
+    <Property Name="Aktivnost" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="RedniBroj" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StatusPrevoza">
+    <Key>
+      <PropertyRef Name="IdStatusPrevoza" />
+    </Key>
+    <Property Name="IdStatusPrevoza" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NazivStatusa" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Aktivan" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StatusRobe">
+    <Key>
+      <PropertyRef Name="IdStatusRobe" />
+    </Key>
+    <Property Name="IdStatusRobe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subjekt">
+    <Key>
+      <PropertyRef Name="IdSubjekt" />
+    </Key>
+    <Property Name="IdSubjekt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="100" />
+    <Property Name="Adresa" Type="nvarchar" MaxLength="100" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="500" />
+    <Property Name="KontaktOsoba" Type="nvarchar" MaxLength="100" />
+    <Property Name="Timocom" Type="nvarchar" MaxLength="50" />
+    <Property Name="DatumKreiranja" Type="date" />
+    <Property Name="DatumZapisa" Type="datetime" />
+    <Property Name="ZapisAktivan" Type="bit" Nullable="false" />
+    <Property Name="Opis" Type="nvarchar" MaxLength="500" />
+    <Property Name="Grad" Type="nvarchar" MaxLength="200" />
+    <Property Name="PIB" Type="nvarchar" MaxLength="50" />
+    <Property Name="PTT" Type="nvarchar" MaxLength="30" />
+    <Property Name="JIB" Type="nvarchar" MaxLength="50" />
+    <Property Name="Drzava" Type="nvarchar" MaxLength="50" />
+    <Property Name="RedniBroj" Type="int" />
+  </EntityType>
+  <EntityType Name="TipUsluge">
+    <Key>
+      <PropertyRef Name="IdTipUsluge" />
+    </Key>
+    <Property Name="IdTipUsluge" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Troskovi">
+    <Key>
+      <PropertyRef Name="IdTroskovi" />
+    </Key>
+    <Property Name="IdTroskovi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdDnevnik" Type="int" />
+    <Property Name="Iznos" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IdValuta" Type="int" />
+    <Property Name="Vrsta" Type="nvarchar" MaxLength="50" />
+    <Property Name="StvarniTrosak" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="UsloviPrevoza">
+    <Key>
+      <PropertyRef Name="IdUslov" />
+    </Key>
+    <Property Name="IdUslov" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tekst" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Aktivan" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Valuta">
+    <Key>
+      <PropertyRef Name="IdValuta" />
+    </Key>
+    <Property Name="IdValuta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NazivValute" Type="nvarchar" MaxLength="50" />
+    <Property Name="OznakaValute" Type="nvarchar" MaxLength="50" />
+    <Property Name="UKM" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="DatumZapisa" Type="datetime" />
+  </EntityType>
+  <EntityType Name="VozacDnevnica">
+    <Key>
+      <PropertyRef Name="IdVozacDnevnica" />
+    </Key>
+    <Property Name="IdVozacDnevnica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdVozac" Type="int" Nullable="false" />
+    <Property Name="Mjesec" Type="int" Nullable="false" />
+    <Property Name="Godina" Type="int" Nullable="false" />
+    <Property Name="Plata" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IdValuta" Type="int" />
+  </EntityType>
+  <EntityType Name="Vozaci">
+    <Key>
+      <PropertyRef Name="IdVozac" />
+    </Key>
+    <Property Name="IdVozac" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImeVozaca" Type="nvarchar" MaxLength="100" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="100" />
+    <Property Name="Adresa" Type="nvarchar" MaxLength="100" />
+    <Property Name="BrojPasosa" Type="nvarchar" MaxLength="50" />
+    <Property Name="JMBG" Type="nvarchar" MaxLength="50" />
+    <Property Name="BrojLK" Type="nvarchar" MaxLength="50" />
+    <Property Name="BrojVozackeDozvole" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdSubjekt" Type="int" />
+    <Property Name="ZapisAktivan" Type="bit" />
+    <Property Name="ZiroRacun" Type="nvarchar" MaxLength="25" />
+    <Property Name="Napomene" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="VozacTroskovi">
+    <Key>
+      <PropertyRef Name="IdCozacTroskovi" />
+    </Key>
+    <Property Name="IdCozacTroskovi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Iznos" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="IdValuta" Type="int" Nullable="false" />
+    <Property Name="Tip" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="IdVrstaTroska" Type="int" />
+    <Property Name="OdobrenoZaduzenje" Type="bit" Nullable="false" />
+    <Property Name="PrihvacenRashod" Type="bit" />
+    <Property Name="RazmjenjenoMjenjacnica" Type="bit" />
+    <Property Name="Datum" Type="datetime" Nullable="false" />
+    <Property Name="Napomena" Type="nvarchar" MaxLength="500" />
+    <Property Name="Aktivno" Type="bit" Nullable="false" />
+    <Property Name="IdVozac" Type="int" Nullable="false" />
+    <Property Name="Zakljucano" Type="bit" />
+    <Property Name="Kartica" Type="bit" />
+  </EntityType>
+  <EntityType Name="VozacUser">
+    <Key>
+      <PropertyRef Name="IdVozacUser" />
+    </Key>
+    <Property Name="IdVozacUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdVozac" Type="int" Nullable="false" />
+    <Property Name="IdUser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VozacVrstaTroskova">
+    <Key>
+      <PropertyRef Name="IdVrstaTroska" />
+    </Key>
+    <Property Name="IdVrstaTroska" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vozilo">
+    <Key>
+      <PropertyRef Name="IdVozilo" />
+    </Key>
+    <Property Name="IdVozilo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TipVozila" Type="nvarchar" MaxLength="100" />
+    <Property Name="RegistarskiBroj" Type="nvarchar" MaxLength="50" />
+    <Property Name="DodatniPodaci" Type="nvarchar" MaxLength="500" />
+    <Property Name="DatumZapisa" Type="datetime" />
+    <Property Name="ZapisAktivan" Type="bit" Nullable="false" />
+    <Property Name="VrstaVozila" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_Dnebvni_StatusRobe">
+    <End Role="StatusRobe" Type="Self.StatusRobe" Multiplicity="0..1" />
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusRobe">
+        <PropertyRef Name="IdStatusRobe" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="idStatusDetaljni" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dnevnica_Detail">
+    <End Role="VozacDnevnica" Type="Self.VozacDnevnica" Multiplicity="1" />
+    <End Role="DnevnicaDetail" Type="Self.DnevnicaDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VozacDnevnica">
+        <PropertyRef Name="IdVozacDnevnica" />
+      </Principal>
+      <Dependent Role="DnevnicaDetail">
+        <PropertyRef Name="IdVozacDnevnica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DnevnicaValuta">
+    <End Role="Valuta" Type="Self.Valuta" Multiplicity="0..1" />
+    <End Role="VozacDnevnica" Type="Self.VozacDnevnica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Valuta">
+        <PropertyRef Name="IdValuta" />
+      </Principal>
+      <Dependent Role="VozacDnevnica">
+        <PropertyRef Name="IdValuta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dnevnik">
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="0..1" />
+    <End Role="Troskovi" Type="Self.Troskovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="Troskovi">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DNEVNIK_CARINA">
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="1" />
+    <End Role="DnevnikCarina" Type="Self.DnevnikCarina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="DnevnikCarina">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dnevnik_ISTOVAR">
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="1" />
+    <End Role="DnevnikIstovar" Type="Self.DnevnikIstovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="DnevnikIstovar">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dnevnik_Nalog">
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="0..1" />
+    <End Role="NalogZaUtovar" Type="Self.NalogZaUtovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="NalogZaUtovar">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dnevnik_POnuda">
+    <End Role="Ponuda" Type="Self.Ponuda" Multiplicity="0..1" />
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ponuda">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="IdPonuda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dnevnik_Redoslijed">
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="1" />
+    <End Role="RedoslijedUtovarIstovar" Type="Self.RedoslijedUtovarIstovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="RedoslijedUtovarIstovar">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dnevnik_UTOVAR">
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="1" />
+    <End Role="DnevnikUtovar" Type="Self.DnevnikUtovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="DnevnikUtovar">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dnevnik_Zarada">
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="1" />
+    <End Role="IzracunDnevnik" Type="Self.IzracunDnevnik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="IzracunDnevnik">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dnevnik1">
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="0..1" />
+    <End Role="Dokument" Type="Self.Dokument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="Dokument">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DnevnikIstovarRedosled">
+    <End Role="DnevnikIstovar" Type="Self.DnevnikIstovar" Multiplicity="0..1" />
+    <End Role="RedoslijedUtovarIstovar" Type="Self.RedoslijedUtovarIstovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikIstovar">
+        <PropertyRef Name="IdIstovar" />
+      </Principal>
+      <Dependent Role="RedoslijedUtovarIstovar">
+        <PropertyRef Name="IdDodatniIstovar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DnevnikUI">
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="1" />
+    <End Role="DnevnikUvoznikIzvoznik" Type="Self.DnevnikUvoznikIzvoznik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="DnevnikUvoznikIzvoznik">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DnevnikUtovarRedosled">
+    <End Role="DnevnikUtovar" Type="Self.DnevnikUtovar" Multiplicity="0..1" />
+    <End Role="RedoslijedUtovarIstovar" Type="Self.RedoslijedUtovarIstovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikUtovar">
+        <PropertyRef Name="IdUtovar" />
+      </Principal>
+      <Dependent Role="RedoslijedUtovarIstovar">
+        <PropertyRef Name="IdDodatniUtovar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DnevnikValute_Dnevnik">
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="1" />
+    <End Role="DnevnikValute" Type="Self.DnevnikValute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="DnevnikValute">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DrugiPrevoznik">
+    <End Role="Subjekt" Type="Self.Subjekt" Multiplicity="0..1" />
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjekt">
+        <PropertyRef Name="IdSubjekt" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="IdSubjekt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IDnevnik_Dnevnik">
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="1" />
+    <End Role="IDnevnikPrevozaVozac" Type="Self.IDnevnikPrevozaVozac" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="IDnevnikPrevozaVozac">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IDnevnik_Vozac">
+    <End Role="Vozaci" Type="Self.Vozaci" Multiplicity="1" />
+    <End Role="IDnevnikPrevozaVozac" Type="Self.IDnevnikPrevozaVozac" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozaci">
+        <PropertyRef Name="IdVozac" />
+      </Principal>
+      <Dependent Role="IDnevnikPrevozaVozac">
+        <PropertyRef Name="IdVozac" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IDnevnik_Vozilo">
+    <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="0..1" />
+    <End Role="IDnevnikPrevozaVozac" Type="Self.IDnevnikPrevozaVozac" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozilo">
+        <PropertyRef Name="IdVozilo" />
+      </Principal>
+      <Dependent Role="IDnevnikPrevozaVozac">
+        <PropertyRef Name="IdVozilo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Korisnik">
+    <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="0..1" />
+    <End Role="Log" Type="Self.Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnik">
+        <PropertyRef Name="IdKorisnik" />
+      </Principal>
+      <Dependent Role="Log">
+        <PropertyRef Name="IdKorisnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NALOG_ISTOVAR">
+    <End Role="KorisnikNalog" Type="Self.KorisnikNalog" Multiplicity="1" />
+    <End Role="KorisnikNalogIstovar" Type="Self.KorisnikNalogIstovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KorisnikNalog">
+        <PropertyRef Name="idKorisnikNalog" />
+      </Principal>
+      <Dependent Role="KorisnikNalogIstovar">
+        <PropertyRef Name="IdKorisnikNalog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NalogIStovar">
+    <End Role="KorisnikNalog" Type="Self.KorisnikNalog" Multiplicity="1" />
+    <End Role="KorisnikNalogUtovar" Type="Self.KorisnikNalogUtovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KorisnikNalog">
+        <PropertyRef Name="idKorisnikNalog" />
+      </Principal>
+      <Dependent Role="KorisnikNalogUtovar">
+        <PropertyRef Name="IdKorisnikNalog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Narucioc">
+    <End Role="Subjekt" Type="Self.Subjekt" Multiplicity="0..1" />
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjekt">
+        <PropertyRef Name="IdSubjekt" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="IdNarucioca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ponuda_subjekt">
+    <End Role="Subjekt" Type="Self.Subjekt" Multiplicity="0..1" />
+    <End Role="Ponuda" Type="Self.Ponuda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjekt">
+        <PropertyRef Name="IdSubjekt" />
+      </Principal>
+      <Dependent Role="Ponuda">
+        <PropertyRef Name="IdNarucioca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ponuda_Uslov">
+    <End Role="Ponuda" Type="Self.Ponuda" Multiplicity="1" />
+    <End Role="PonudaUsloviPrevoza" Type="Self.PonudaUsloviPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ponuda">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="PonudaUsloviPrevoza">
+        <PropertyRef Name="IdPonuda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ponuda_Uslov2">
+    <End Role="UsloviPrevoza" Type="Self.UsloviPrevoza" Multiplicity="1" />
+    <End Role="PonudaUsloviPrevoza" Type="Self.PonudaUsloviPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UsloviPrevoza">
+        <PropertyRef Name="IdUslov" />
+      </Principal>
+      <Dependent Role="PonudaUsloviPrevoza">
+        <PropertyRef Name="IdUsloviPrevoza" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ponuda_valuta">
+    <End Role="Valuta" Type="Self.Valuta" Multiplicity="0..1" />
+    <End Role="Ponuda" Type="Self.Ponuda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Valuta">
+        <PropertyRef Name="IdValuta" />
+      </Principal>
+      <Dependent Role="Ponuda">
+        <PropertyRef Name="IdValuta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PrikljucnoVozilo">
+    <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="0..1" />
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozilo">
+        <PropertyRef Name="IdVozilo" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="IdPrikljucnoVozilo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subjekt">
+    <End Role="Subjekt" Type="Self.Subjekt" Multiplicity="0..1" />
+    <End Role="Vozaci" Type="Self.Vozaci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjekt">
+        <PropertyRef Name="IdSubjekt" />
+      </Principal>
+      <Dependent Role="Vozaci">
+        <PropertyRef Name="IdSubjekt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subjekt_Nalog">
+    <End Role="Subjekt" Type="Self.Subjekt" Multiplicity="0..1" />
+    <End Role="NalogZaUtovar" Type="Self.NalogZaUtovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjekt">
+        <PropertyRef Name="IdSubjekt" />
+      </Principal>
+      <Dependent Role="NalogZaUtovar">
+        <PropertyRef Name="IdSubjekt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskDnevnik">
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="1" />
+    <End Role="AndroidTask" Type="Self.AndroidTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="AndroidTask">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Valuta">
+    <End Role="Valuta" Type="Self.Valuta" Multiplicity="0..1" />
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Valuta">
+        <PropertyRef Name="IdValuta" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="IdValuta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Valuta1">
+    <End Role="Valuta" Type="Self.Valuta" Multiplicity="0..1" />
+    <End Role="Troskovi" Type="Self.Troskovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Valuta">
+        <PropertyRef Name="IdValuta" />
+      </Principal>
+      <Dependent Role="Troskovi">
+        <PropertyRef Name="IdValuta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ValutaPrevoznika">
+    <End Role="Valuta" Type="Self.Valuta" Multiplicity="0..1" />
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Valuta">
+        <PropertyRef Name="IdValuta" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="IdValutaPrevoznika" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vozac">
+    <End Role="Vozaci" Type="Self.Vozaci" Multiplicity="0..1" />
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozaci">
+        <PropertyRef Name="IdVozac" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="IdVozac" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VozacDnevnica">
+    <End Role="Vozaci" Type="Self.Vozaci" Multiplicity="1" />
+    <End Role="VozacDnevnica" Type="Self.VozacDnevnica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozaci">
+        <PropertyRef Name="IdVozac" />
+      </Principal>
+      <Dependent Role="VozacDnevnica">
+        <PropertyRef Name="IdVozac" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VozacTroskoviValuta">
+    <End Role="Valuta" Type="Self.Valuta" Multiplicity="1" />
+    <End Role="VozacTroskovi" Type="Self.VozacTroskovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Valuta">
+        <PropertyRef Name="IdValuta" />
+      </Principal>
+      <Dependent Role="VozacTroskovi">
+        <PropertyRef Name="IdValuta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VozacTroskoviVrstaTroska">
+    <End Role="VozacVrstaTroskova" Type="Self.VozacVrstaTroskova" Multiplicity="0..1" />
+    <End Role="VozacTroskovi" Type="Self.VozacTroskovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VozacVrstaTroskova">
+        <PropertyRef Name="IdVrstaTroska" />
+      </Principal>
+      <Dependent Role="VozacTroskovi">
+        <PropertyRef Name="IdVrstaTroska" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vozilo">
+    <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="0..1" />
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozilo">
+        <PropertyRef Name="IdVozilo" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="IdVozilo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zarada_Trosak">
+    <End Role="IzracunZarada" Type="Self.IzracunZarada" Multiplicity="1" />
+    <End Role="IzracunTrosak" Type="Self.IzracunTrosak" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IzracunZarada">
+        <PropertyRef Name="IdIzracunZarada" />
+      </Principal>
+      <Dependent Role="IzracunTrosak">
+        <PropertyRef Name="IdIzracunZarada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ZaradaDnevnik">
+    <End Role="IzracunZarada" Type="Self.IzracunZarada" Multiplicity="1" />
+    <End Role="IzracunDnevnik" Type="Self.IzracunDnevnik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IzracunZarada">
+        <PropertyRef Name="IdIzracunZarada" />
+      </Principal>
+      <Dependent Role="IzracunDnevnik">
+        <PropertyRef Name="IdIzracunZarada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="spVratiPodatkeZaNalog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdNalog" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VratiDnevnikCarinaPoIdDnevnik" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdDnevnik" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VratiDnevnikIStovarPoIdDnevnik" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdDnevnik" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VratiDnevnikPoId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdDnevnik" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VratiDnevnikUIPoIdDnevnik" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdDnevnik" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VratiDnevnikUtovarPoIdDnevnik" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdDnevnik" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VratiTroskovePoIdDnevnik" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdDnevnik" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="uvhszjiy_spedicijaModelStoreContainer">
+    <EntitySet Name="AndroidTask" EntityType="Self.AndroidTask" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppPodesavanja" EntityType="Self.AppPodesavanja" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DnevnicaDetail" EntityType="Self.DnevnicaDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DnevnikCarina" EntityType="Self.DnevnikCarina" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DnevnikIstovar" EntityType="Self.DnevnikIstovar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DnevnikPrevoza" EntityType="Self.DnevnikPrevoza" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DnevnikUtovar" EntityType="Self.DnevnikUtovar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DnevnikUvoznikIzvoznik" EntityType="Self.DnevnikUvoznikIzvoznik" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DnevnikValute" EntityType="Self.DnevnikValute" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dokument" EntityType="Self.Dokument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Drzava" EntityType="Self.Drzava" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Grad" EntityType="Self.Grad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IDnevnikPrevozaVozac" EntityType="Self.IDnevnikPrevozaVozac" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IzracunDnevnik" EntityType="Self.IzracunDnevnik" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IzracunTrosak" EntityType="Self.IzracunTrosak" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IzracunZarada" EntityType="Self.IzracunZarada" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Korisnik" EntityType="Self.Korisnik" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KorisnikNalog" EntityType="Self.KorisnikNalog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KorisnikNalogIstovar" EntityType="Self.KorisnikNalogIstovar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KorisnikNalogUtovar" EntityType="Self.KorisnikNalogUtovar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KorisnikUpit" EntityType="Self.KorisnikUpit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NalogZaUtovar" EntityType="Self.NalogZaUtovar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notes" EntityType="Self.Notes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ponuda" EntityType="Self.Ponuda" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PonudaUsloviPrevoza" EntityType="Self.PonudaUsloviPrevoza" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RedoslijedUtovarIstovar" EntityType="Self.RedoslijedUtovarIstovar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StatusPrevoza" EntityType="Self.StatusPrevoza" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StatusRobe" EntityType="Self.StatusRobe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subjekt" EntityType="Self.Subjekt" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipUsluge" EntityType="Self.TipUsluge" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Troskovi" EntityType="Self.Troskovi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsloviPrevoza" EntityType="Self.UsloviPrevoza" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Valuta" EntityType="Self.Valuta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VozacDnevnica" EntityType="Self.VozacDnevnica" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vozaci" EntityType="Self.Vozaci" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VozacTroskovi" EntityType="Self.VozacTroskovi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VozacUser" EntityType="Self.VozacUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VozacVrstaTroskova" EntityType="Self.VozacVrstaTroskova" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vozilo" EntityType="Self.Vozilo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Dnebvni_StatusRobe" Association="Self.FK_Dnebvni_StatusRobe">
+      <End Role="StatusRobe" EntitySet="StatusRobe" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dnevnica_Detail" Association="Self.FK_Dnevnica_Detail">
+      <End Role="VozacDnevnica" EntitySet="VozacDnevnica" />
+      <End Role="DnevnicaDetail" EntitySet="DnevnicaDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DnevnicaValuta" Association="Self.FK_DnevnicaValuta">
+      <End Role="Valuta" EntitySet="Valuta" />
+      <End Role="VozacDnevnica" EntitySet="VozacDnevnica" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dnevnik" Association="Self.FK_Dnevnik">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="Troskovi" EntitySet="Troskovi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DNEVNIK_CARINA" Association="Self.FK_DNEVNIK_CARINA">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="DnevnikCarina" EntitySet="DnevnikCarina" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dnevnik_ISTOVAR" Association="Self.FK_Dnevnik_ISTOVAR">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="DnevnikIstovar" EntitySet="DnevnikIstovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dnevnik_Nalog" Association="Self.FK_Dnevnik_Nalog">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="NalogZaUtovar" EntitySet="NalogZaUtovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dnevnik_POnuda" Association="Self.FK_Dnevnik_POnuda">
+      <End Role="Ponuda" EntitySet="Ponuda" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dnevnik_Redoslijed" Association="Self.FK_Dnevnik_Redoslijed">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="RedoslijedUtovarIstovar" EntitySet="RedoslijedUtovarIstovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dnevnik_UTOVAR" Association="Self.FK_Dnevnik_UTOVAR">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="DnevnikUtovar" EntitySet="DnevnikUtovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dnevnik_Zarada" Association="Self.FK_Dnevnik_Zarada">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="IzracunDnevnik" EntitySet="IzracunDnevnik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dnevnik1" Association="Self.FK_Dnevnik1">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="Dokument" EntitySet="Dokument" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DnevnikIstovarRedosled" Association="Self.FK_DnevnikIstovarRedosled">
+      <End Role="DnevnikIstovar" EntitySet="DnevnikIstovar" />
+      <End Role="RedoslijedUtovarIstovar" EntitySet="RedoslijedUtovarIstovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DnevnikUI" Association="Self.FK_DnevnikUI">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="DnevnikUvoznikIzvoznik" EntitySet="DnevnikUvoznikIzvoznik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DnevnikUtovarRedosled" Association="Self.FK_DnevnikUtovarRedosled">
+      <End Role="DnevnikUtovar" EntitySet="DnevnikUtovar" />
+      <End Role="RedoslijedUtovarIstovar" EntitySet="RedoslijedUtovarIstovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DnevnikValute_Dnevnik" Association="Self.FK_DnevnikValute_Dnevnik">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="DnevnikValute" EntitySet="DnevnikValute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DrugiPrevoznik" Association="Self.FK_DrugiPrevoznik">
+      <End Role="Subjekt" EntitySet="Subjekt" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IDnevnik_Dnevnik" Association="Self.FK_IDnevnik_Dnevnik">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="IDnevnikPrevozaVozac" EntitySet="IDnevnikPrevozaVozac" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IDnevnik_Vozac" Association="Self.FK_IDnevnik_Vozac">
+      <End Role="Vozaci" EntitySet="Vozaci" />
+      <End Role="IDnevnikPrevozaVozac" EntitySet="IDnevnikPrevozaVozac" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IDnevnik_Vozilo" Association="Self.FK_IDnevnik_Vozilo">
+      <End Role="Vozilo" EntitySet="Vozilo" />
+      <End Role="IDnevnikPrevozaVozac" EntitySet="IDnevnikPrevozaVozac" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Korisnik" Association="Self.FK_Korisnik">
+      <End Role="Korisnik" EntitySet="Korisnik" />
+      <End Role="Log" EntitySet="Log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NALOG_ISTOVAR" Association="Self.FK_NALOG_ISTOVAR">
+      <End Role="KorisnikNalog" EntitySet="KorisnikNalog" />
+      <End Role="KorisnikNalogIstovar" EntitySet="KorisnikNalogIstovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NalogIStovar" Association="Self.FK_NalogIStovar">
+      <End Role="KorisnikNalog" EntitySet="KorisnikNalog" />
+      <End Role="KorisnikNalogUtovar" EntitySet="KorisnikNalogUtovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Narucioc" Association="Self.FK_Narucioc">
+      <End Role="Subjekt" EntitySet="Subjekt" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ponuda_subjekt" Association="Self.FK_ponuda_subjekt">
+      <End Role="Subjekt" EntitySet="Subjekt" />
+      <End Role="Ponuda" EntitySet="Ponuda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ponuda_Uslov" Association="Self.FK_Ponuda_Uslov">
+      <End Role="Ponuda" EntitySet="Ponuda" />
+      <End Role="PonudaUsloviPrevoza" EntitySet="PonudaUsloviPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ponuda_Uslov2" Association="Self.FK_Ponuda_Uslov2">
+      <End Role="UsloviPrevoza" EntitySet="UsloviPrevoza" />
+      <End Role="PonudaUsloviPrevoza" EntitySet="PonudaUsloviPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ponuda_valuta" Association="Self.FK_ponuda_valuta">
+      <End Role="Valuta" EntitySet="Valuta" />
+      <End Role="Ponuda" EntitySet="Ponuda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PrikljucnoVozilo" Association="Self.FK_PrikljucnoVozilo">
+      <End Role="Vozilo" EntitySet="Vozilo" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subjekt" Association="Self.FK_Subjekt">
+      <End Role="Subjekt" EntitySet="Subjekt" />
+      <End Role="Vozaci" EntitySet="Vozaci" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subjekt_Nalog" Association="Self.FK_Subjekt_Nalog">
+      <End Role="Subjekt" EntitySet="Subjekt" />
+      <End Role="NalogZaUtovar" EntitySet="NalogZaUtovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskDnevnik" Association="Self.FK_TaskDnevnik">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="AndroidTask" EntitySet="AndroidTask" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Valuta" Association="Self.FK_Valuta">
+      <End Role="Valuta" EntitySet="Valuta" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Valuta1" Association="Self.FK_Valuta1">
+      <End Role="Valuta" EntitySet="Valuta" />
+      <End Role="Troskovi" EntitySet="Troskovi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ValutaPrevoznika" Association="Self.FK_ValutaPrevoznika">
+      <End Role="Valuta" EntitySet="Valuta" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vozac" Association="Self.FK_Vozac">
+      <End Role="Vozaci" EntitySet="Vozaci" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VozacDnevnica" Association="Self.FK_VozacDnevnica">
+      <End Role="Vozaci" EntitySet="Vozaci" />
+      <End Role="VozacDnevnica" EntitySet="VozacDnevnica" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VozacTroskoviValuta" Association="Self.FK_VozacTroskoviValuta">
+      <End Role="Valuta" EntitySet="Valuta" />
+      <End Role="VozacTroskovi" EntitySet="VozacTroskovi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VozacTroskoviVrstaTroska" Association="Self.FK_VozacTroskoviVrstaTroska">
+      <End Role="VozacVrstaTroskova" EntitySet="VozacVrstaTroskova" />
+      <End Role="VozacTroskovi" EntitySet="VozacTroskovi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vozilo" Association="Self.FK_Vozilo">
+      <End Role="Vozilo" EntitySet="Vozilo" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zarada_Trosak" Association="Self.FK_Zarada_Trosak">
+      <End Role="IzracunZarada" EntitySet="IzracunZarada" />
+      <End Role="IzracunTrosak" EntitySet="IzracunTrosak" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ZaradaDnevnik" Association="Self.FK_ZaradaDnevnik">
+      <End Role="IzracunZarada" EntitySet="IzracunZarada" />
+      <End Role="IzracunDnevnik" EntitySet="IzracunDnevnik" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,429 @@
+﻿@model Spedicija.Subjekt
+
+@{
+    ViewBag.Title = "Card";
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+       
+        $('#UlStranke').html("");
+        var items = "";
+        $.getJSON('/Subjekt/Search?' + 'searchString=' + '@ViewBag.contactSearch', function (data) {
+            $.each(data, function (i, subjekt) {
+                items += "<li class='hidden-xs'><a href='/Subjekt/Card/" + subjekt.IdSubjekt + "' style='padding: 2px;'><img class='img-circle img-responsive pull-left width-1' src='/Content/images/company.png' alt=''>"
+                items += "<span class='text-medium'>" + subjekt.Naziv + "</span><br><span class='opacity-50'><span class='glyphicon glyphicon-user text-sm'></span> &nbsp;" + subjekt.KontaktOsoba + "</span></a>"
+            });
+
+            $('#UlStranke').append(items);
+
+        });
+
+    });
+
+    $(function () {
+        $('#SearchBtn').on('submit', function (e) {
+        e.preventDefault();
+        $('#UlStranke').html("");
+        var items = "";
+        $.getJSON('/Subjekt/Search?' + 'searchString=' + $('#SearchText').val(), function (data) {
+                $.each(data, function (i, stranke) {
+                    items += "<li class='hidden-xs'><a href='/Subjekt/Card/" + stranke.IdSubjekt + "' style='padding: 2px;'><img class='img-circle img-responsive pull-left width-1' src='/Content/images/company.png' alt=''>"
+                    items += "<span class='text-medium'>" + stranke.Naziv + "</span><br><span class='opacity-50'><span class='glyphicon glyphicon-user text-sm'></span> &nbsp;" + stranke.KontaktOsoba + "</span></a>"
+                   });
+        
+                $('#UlStranke').append(items);
+
+            });
+        
+       
+    });
+    });
+
+</script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCQBrlBT4GBGTFQsC4Ud5KeHOKCEa2o2ZY"></script>
+<script type="text/javascript">
+    var geocoder;
+    var map;
+    var address = "@Model.Adresa, @Model.Grad";
+    function initialize() {
+        geocoder = new google.maps.Geocoder();
+        //   var latlng = new google.maps.LatLng(-34.397, 150.644);
+        var myOptions = {
+            zoom: 16,
+            //  center: latlng,
+            mapTypeControl: true,
+            mapTypeControlOptions: { style: google.maps.MapTypeControlStyle.DROPDOWN_MENU },
+            navigationControl: true,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+        if (geocoder) {
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+                        map.setCenter(results[0].geometry.location);
+
+                        var infowindow = new google.maps.InfoWindow(
+                            {
+                                content: '<b>' + address + '</b>',
+                                size: new google.maps.Size(150, 50)
+                            });
+
+                        var marker = new google.maps.Marker({
+                            position: results[0].geometry.location,
+                            map: map,
+                            title: address
+                        });
+                        google.maps.event.addListener(marker, 'click', function () {
+                            infowindow.open(map, marker);
+                        });
+
+                    }
+                    /*else {
+                        alert("No results found");
+                    }*/
+                } /*else {
+                    alert("Geocode was not successful for the following reason: " + status);
+                }
+                */
+            });
+        }
+
+    }
+
+    $(document).ready(function () {
+        initialize();
+    });
+
+    //window.onload = function () { initialize(); }
+    //$(window).bind('load', function () { alert("Jupi"); });
+</script>
+
+<section>
+
+		<div class="section-body">
+			<div class="card">
+
+				<!-- BEGIN CONTACT DETAILS HEADER -->
+				<div class="card-head style-primary">
+					<div class="tools pull-left">
+						<form class="navbar-search expanded" role="search" target="#" id="SearchBtn">
+							<div class="form-group">
+								<input type="text" id="SearchText" class="form-control" name="contactSearch" placeholder="Pretraga korisnika" value="@ViewBag.contactSearch">
+							</div>
+							<button type="submit" id="btnSubmit" class="btn btn-icon-toggle ink-reaction"><i class="fa fa-search"></i></button>
+						</form>
+                        
+					</div><!--end .tools -->
+					<div class="tools">
+						<a class="btn btn-flat hidden-xs" href="@Url.Action("Index","Subjekt")"><span class="glyphicon glyphicon-arrow-left"></span> Nazad Na Listu</a>
+					</div><!--end .tools -->
+
+
+				</div><!--end .card-head -->
+				<!-- END CONTACT DETAILS HEADER -->
+
+				<!-- BEGIN CONTACT DETAILS -->
+				<div class="card-tiles">
+					<div class="hbox-md col-md-12">
+						<div class="hbox-column col-md-8">
+							<div class="row">
+
+								<!-- BEGIN CONTACTS NAV -->
+								<div class="col-sm-5 col-md-4 col-lg-3" style="padding: 2px;">
+									<ul class="nav nav-pills nav-stacked" id="UlStranke">
+										<li class="hidden-xs"><small>Rezultati pretrage</small></li>
+										<li class="hidden-xs focus">
+											<a href="#" style="padding: 0px;">
+												<img class="img-circle img-responsive pull-left width-1" src="~/Content/images/company.png" alt="">
+												<span class="text-medium">@Model.Naziv</span><br>
+												<span class="opacity-50">
+													<span class="glyphicon glyphicon-user text-sm"></span> &nbsp;@Model.KontaktOsoba
+												</span>
+											</a>
+										</li>
+									</ul>
+								</div><!--end .col -->
+								<!-- END CONTACTS NAV -->
+
+								<!-- BEGIN CONTACTS MAIN CONTENT -->
+								<div class="col-sm-7 col-md-8 col-lg-9">
+									<div class="margin-bottom-xxl">
+										<div class="pull-left width-3 clearfix hidden-xs">
+											<img class="img-circle size-2" src="~/Content/images/company.png" alt="">
+										</div>
+                                         <a href="@Url.Action("Delete","Subjekt", new { id = Model.IdSubjekt })" title="Obriši @Model.Naziv" class="btn ink-reaction btn-icon-toggle pull-right text-danger"><span class="fa fa-fw fa-trash fa-2x"></span></a>
+                                         <a href="@Url.Action("Edit","Subjekt", new { id = Model.IdSubjekt })" title="Izmjenite podatke za @Model.Naziv" class="btn ink-reaction btn-icon-toggle pull-right text-info"><span class="fa fa-fw fa-edit fa-2x"></span></a>
+										<h1 class="text-light no-margin">@Model.Naziv</h1>
+										<h5>
+											@Model.KontaktOsoba
+										</h5>
+										&nbsp;&nbsp;
+										
+									</div><!--end .margin-bottom-xxl -->
+									<ul class="nav nav-tabs" data-toggle="tabs">
+										<li class="active"><a href="#narucioc">Naručioc usluga</a></li>
+										<li><a href="#prevoznik">Prevoznik</a></li>
+										
+									</ul>
+
+									<div class="tab-content">
+
+										<!-- BEGIN CONTACTS NOTES -->
+										<div class="tab-pane active" id="narucioc">
+											<hr class="no-margin">
+											<ul class="timeline collapse-md">
+                                                
+
+                                                @{
+                                                    int i = 0;
+                                                    foreach (var item in Model.DnevnikPrevoza1.OrderByDescending(k => k.DatumDnevnika)) 
+                                                  {
+
+                                                      i++;
+                                                  if ((i % 2) == 0)
+                                                  {
+                                                     
+                                                    
+                                                  
+                                                      <li class="timeline-inverted">
+                                                     <div class="timeline-circ"></div> 
+                                                          <div class="timeline-entry">
+                                                   
+														<div class="card style-default-light">
+															<div class="card-body small-padding">
+																<div class="list-comments">
+                                                                    <div class="comment-avatar text-success" style="margin:0px">
+                                                                        <a href="/DnevnikPrevoza/Details/@item.IdDnevnik" title="Otvori Dnevnik"><i class="fa fa-truck" style="margin:0px"></i></a></div>
+                                                                    <div class="card-body" style="padding:0px">
+									                                <h4 class="comment-title">Nalog: @item.SerijskiBroj </h4>
+                                                                    <small>   Datum: @(item.DatumDnevnika.HasValue ? item.DatumDnevnika.Value.ToShortDateString() : "")</small><br>
+                                                                    <small>@item.UtovarGrad - @item.IstovarGrad</small><br>
+									                                <small>  Cijena: @item.CijenaPrevoza @item.Valuta.OznakaValute</small>
+								                                    </div>
+																   
+															    </div>
+
+
+															</div>
+														</div>
+                                                       
+                                                          </div>
+
+
+												</li>
+                                     
+                                                    }
+                                                    else
+                                                    {
+                                                     <li class="">
+													<div class="timeline-circ"></div>
+													<div class="timeline-entry">
+                                                    
+                                                  
+														<div class="card style-default-light">
+															<div class="card-body small-padding">
+																<div class="list-comments">
+                                                                    <div class="comment-avatar text-success" style="margin:0px">
+                                                                        <a href="/DnevnikPrevoza/Details/@item.IdDnevnik" title="Otvori Dnevnik"><i class="fa fa-truck" style="margin:0px"></i></a></div>
+                                                                    <div class="card-body" style="padding:0px">
+									                               <h4 class="comment-title">Nalog: @item.SerijskiBroj </h4>
+                                                                    <small>   Datum: @(item.DatumDnevnika.HasValue ? item.DatumDnevnika.Value.ToShortDateString() : "")</small><br>
+                                                                    <small> @item.UtovarGrad - @item.IstovarGrad</small><br>
+									                                <small>  Cijena: @item.CijenaPrevoza @item.Valuta.OznakaValute</small>
+								                                    </div>
+																   
+															    </div>
+
+
+															</div>
+														</div>
+                                                       
+
+													</div>                                                 
+
+												</li>
+                                                    }
+                                                    
+                                                    
+                                                    }
+                                                }
+												
+                                                   
+										
+											</ul><!--end .timeline -->
+											
+                                           
+                             
+											
+											<!--end .list-results -->
+										</div><!--end #notes -->
+										<!-- END CONTACTS NOTES -->
+
+										<!-- BEGIN CONTACTS ACTIVITY -->
+										<div class="tab-pane" id="prevoznik">
+                                            <hr class="no-margin">
+											<ul class="timeline collapse-md">
+                                                
+
+                                                @{
+                                                    int j = 0;
+                                                  foreach (var item in Model.DnevnikPrevoza.OrderByDescending(k=> k.DatumDnevnika)) 
+                                                  {
+
+                                                      j++;
+                                                  if ((j % 2) == 0)
+                                                  {
+                                                     
+                                                    
+                                                  
+                                                      <li class="timeline-inverted">
+                                                     <div class="timeline-circ"></div> 
+                                                          <div class="timeline-entry">
+                                                   
+														<div class="card style-default-light">
+															<div class="card-body small-padding">
+																<div class="list-comments">
+                                                                    <div class="comment-avatar text-warning" style="margin:0px">
+                                                                        <a href="/DnevnikPrevoza/Details/@item.IdDnevnik" title="Otvori Dnevnik"><i class="fa fa-truck" style="margin:0px"></i></a></div>
+                                                                    <div class="card-body" style="padding:0px">
+									                                <h4 class="comment-title">Nalog: @item.SerijskiBroj </h4>
+                                                                    <small>   Datum: @(item.DatumDnevnika.HasValue ? item.DatumDnevnika.Value.ToShortDateString() : "")</small><br>
+                                                                    <small>  @item.UtovarGrad - @item.IstovarGrad</small><br>
+									                                <small>  Cijena: @item.CijenaPrevoza @item.Valuta.OznakaValute</small><br>
+                                                                    <small>  Cijena Prevoznika: @(item.CijenaPrevozaPrevoznika.HasValue ? ""+item.CijenaPrevozaPrevoznika : "")  @(item.Valuta1 == null ? "" : ""+item.Valuta1.OznakaValute) </small>
+								                                    </div>
+																   
+															    </div>
+
+
+															</div>
+														</div>
+                                                       
+                                                          </div>
+
+
+												</li>
+                                     
+                                                    }
+                                                    else
+                                                    {
+                                                     <li class="">
+													<div class="timeline-circ"></div>
+													<div class="timeline-entry">
+                                                    
+                                                  
+														<div class="card style-default-light">
+															<div class="card-body small-padding">
+																<div class="list-comments">
+                                                                    <div class="comment-avatar text-warning" style="margin:0px">
+                                                                        <a href="/DnevnikPrevoza/Details/@item.IdDnevnik" title="Otvori Dnevnik"><i class="fa fa-truck" style="margin:0px"></i></a></div>
+                                                                    <div class="card-body" style="padding:0px">
+									                               <h4 class="comment-title">Nalog: @item.SerijskiBroj </h4>
+                                                                    <small>   Datum: @(item.DatumDnevnika.HasValue ?  item.DatumDnevnika.Value.ToShortDateString() : "" ) </small><br>
+                                                                    <small> @item.UtovarGrad - @item.IstovarGrad</small><br>
+									                                <small>  Cijena: @item.CijenaPrevoza @item.Valuta.OznakaValute</small><br>
+                                                                     <small>  Cijena Prevoznika: @(item.CijenaPrevozaPrevoznika.HasValue ? ""+item.CijenaPrevozaPrevoznika : "")  @(item.Valuta1 == null ? "" : ""+item.Valuta1.OznakaValute) </small>
+								                                    </div>
+																   
+															    </div>
+
+
+															</div>
+														</div>
+                                                       
+
+													</div>                                                 
+
+												</li>
+                                                    }
+                                                    
+                                                    
+                                                    }
+                                                }
+												
+                                                   
+										
+											</ul><!--end .timeline -->
+										</div><!--end #activity -->
+										<!-- END CONTACTS ACTIVITY -->
+
+										<!-- BEGIN CONTACTS DETAILS -->
+									
+										<!-- END CONTACTS DETAILS -->
+
+									</div><!--end .tab-content -->
+								</div><!--end .col -->
+								<!-- END CONTACTS MAIN CONTENT -->
+
+							</div><!--end .row -->
+						</div><!--end .hbox-column -->
+
+						<!-- BEGIN CONTACTS COMMON DETAILS -->
+						<div class="hbox-column col-md-4 style-default-light">
+							<div class="row">
+								<div class="col-xs-12">
+									<h4>Osnovne informacije</h4>
+									<br>
+									<dl class="dl-horizontal dl-icon">
+										<dt><span class="fa fa-2x fa-building fa-lg opacity-50"></span></dt>
+										<dd>
+											<span class="opacity-50">Firma</span><br>
+											<span class="text-medium">@Model.Naziv</span><br>
+                                            <span class="opacity-50">JIB</span>  &nbsp; <span class="text-medium">@Model.JIB</span><br>
+                                            <span class="opacity-50">PIB</span>  &nbsp; <span class="text-medium">@Model.PIB</span>
+										</dd>
+										<dt><span class="fa fa-2x fa-user fa-lg opacity-50"></span></dt>
+										<dd>
+											<span class="opacity-50">Kontakt Osoba</span><br>
+											<span class="text-medium">@Model.KontaktOsoba</span>
+										</dd>
+									</dl><!--end .dl-horizontal -->
+									<br>
+									<h4>Kontakt</h4>
+									<br>
+									<dl class="dl-horizontal dl-icon">
+										<dt><span class="fa fa-2x fa-mobile fa-lg opacity-50"></span></dt>
+										<dd>
+											<span class="opacity-50">Telefon</span><br>
+                                            <span class="opacity-50">poslovni</span>  &nbsp; <span class="text-medium">@Model.Telefon</span><br>
+                                            <span class="opacity-50">timocom</span>   &nbsp; <span class="text-medium">@Model.Timocom</span>
+										</dd>
+										<dt><span class="fa fa-2x fa-envelope-square fa-lg opacity-50"></span></dt>
+										<dd>
+											<span class="opacity-50">Email</span><br>
+											<a class="text-medium" href="#">@Model.Email</a>
+										</dd>
+										<dt><span class="fa fa-2x fa-location-arrow fa-lg opacity-50"></span></dt>
+										<dd>
+											<span class="opacity-50">Adresa</span><br>
+											<span class="text-medium">
+												@Model.Adresa , @Model.PTT @Model.Grad , @Model.Drzava
+											</span>
+										</dd>
+                                        <dd class="full-width">
+                                        <div id="map-canvas" class="border-white border-xl height-8" style="position: relative; overflow: hidden;">
+
+										</div>
+                                            </dd>
+									</dl><!--end .dl-horizontal -->
+								</div><!--end .col -->
+							</div><!--end .row -->
+						</div><!--end .hbox-column -->
+						<!-- END CONTACTS COMMON DETAILS -->
+
+					</div><!--end .hbox-md -->
+				</div><!--end .card-tiles -->
+				<!-- END CONTACT DETAILS -->
+
+			</div><!--end .card -->
+		</div><!--end .section-body -->
+	</section>
+
+
+
+

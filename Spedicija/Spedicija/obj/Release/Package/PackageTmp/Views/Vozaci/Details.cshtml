@@ -1,0 +1,586 @@
+﻿@model Spedicija.Vozaci
+
+@{
+    ViewBag.Title = "Details";
+}
+<style>
+tfoot {
+    display: table-header-group;
+}
+
+</style>
+<script src="~/Content/js/DataTables.js"></script>
+<link href="~/Content/css/jquery-dataTables.css" rel="stylesheet" />
+<script src="~/Content/js/dataTables.responsive.js"></script>
+<link href="~/Content/css/dataTables.responsive.css" rel="stylesheet" />
+<script src="~/Content/js/jquery.dataTables.columnFilter.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+      
+        var detaljiLinkObj;
+
+        var DataTable = $('#TbDnevnice').DataTable({
+            "language": {
+                "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Serbian.json"
+
+            },
+            "order": [[1, "desc"], [0, "desc"]],
+            "fnServerParams": function (aoData) {
+                aoData.push({ "name": "IdVozac", "value": "@Model.IdVozac" });
+            },
+            "bServerSide": true,
+            "responsive": true,
+            "sAjaxSource": "/VozacDnevnica/IndexAjax",
+            "bProcessing": true,
+            "columnDefs": [
+            {
+                "targets": -1,
+                "orderable": false,
+                "data": null,
+                "className": 'text-right no-padding',
+               "render": function (data, type, row) {
+                   return "<a href='/VozacDnevnica/Details/" + row[4] + "' title='Detalji' class='btn btn-flat ink-reaction btn-default'><i class='md md-details'></i></a>" +
+                          "<a href='/VozacDnevnica/Edit/" + row[4] + "' title='Izmjeni' class='btn btn-flat ink-reaction btn-default'><i class='md md-edit'></i></a>" +
+                           "<a href='/VozacDnevnica/Delete/"  + row[4] + "' title='Izbriši' class='btn btn-flat ink-reaction btn-default'><i class='md md-delete'></i></a>";
+					
+                }
+            }]
+
+        });
+
+        $('#TbDnevnice').dataTable().columnFilter({
+            aoColumns: [
+							{ type: "text" },
+								{ type: "text" } ,
+								{ type: "text" } ,
+								{ type: "text" } ,
+								null                    
+            ]
+        });
+
+        $("#btn-vozacdnevnica").on('click', function (e) {
+            e.preventDefault();
+
+            $("#modal").modal('show');
+
+        });
+
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        var detaljiLinkObj;
+
+        var DataTable = $('#Voznje').DataTable({
+            "language": {
+                "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Serbian.json"
+
+            },
+            "order": [[2, "desc"], [3, "desc"]],
+            "fnServerParams": function (aoData) {
+                aoData.push({ "name": "IdVozac", "value": "@Model.IdVozac" });
+            },
+            "bServerSide": true,
+            "responsive": true,
+            "sAjaxSource": "/Vozaci/PrevoziVozaca",
+            "bProcessing": true,
+            "columnDefs": [
+            {
+                "targets": -1,
+                "orderable": false,
+                "data": null,
+                "className": 'text-right no-padding',
+                "render": function (data, type, row) {
+                    return "<a href='/DnevnikPrevoza/Details/" + row[5] + "' title='Detalji' class='btn btn-flat ink-reaction btn-default'><i class='md md-details'></i></a>";
+                          
+                }
+            }]
+
+        });
+
+        $('#Voznje').dataTable().columnFilter({
+            aoColumns: [
+							{ type: "text" },
+								{ type: "text" },
+								{ type: "text" },
+								{ type: "text" },
+                                { type: "text" },
+								null
+            ]
+        });
+
+       
+
+    });
+</script>
+
+<link href="~/Content/css/datepicker.css" rel="stylesheet" />
+<script src="~/Content/js/datepicker.js"></script>
+<script src="~/Content/js/bootstrap-datepicker.sr-latin.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $('.datum').datepicker({
+            language: 'sr-latin',
+            setDate: new Date(),
+            autoclose: true,
+            format: "mm.yyyy",
+            viewMode: "months",
+            minViewMode: "months"
+        });
+
+        $('.datum-godina').datepicker({
+            language: 'sr-latin',
+            autoclose: true,
+            format: "yyyy",
+            viewMode: "years",
+            minViewMode: "years"
+        });
+
+    });
+
+
+</script> 
+
+<script src="~/Content/js/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/Content/js/jquery-validation/dist/localization/messages_sr_lat.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var validator = $(".form").validate({
+            rules: {
+
+                mjesec: {
+                    "required": true,
+                    remote: {
+                        url: "/VozacDnevnica/MjesecPostoji", //?jibdodaj=" + $('#jibdodaj').val(),
+                        data: { 'IdVozac': '@Model.IdVozac' },
+                        async: false,
+                        type: "post"
+                    }
+                }
+
+            },
+            messages: {
+                mjesec: {
+                    remote: "Već postoje dnevnice za ovaj mjesec"
+                }
+            }
+        });
+
+        $('submit').on('click', function (e) {
+            e.preventDefault();
+
+            if (!($(".form").valid())) {
+                validator.focusInvalid();
+            }
+            else $(".form").submit();
+
+
+        });
+    });
+</script> 
+
+
+<script src="~/Content/js/dropzone.js"></script>
+<link href="~/Content/css/dropzone.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    Dropzone.options.myAwesomeDropzone = {
+        paramName: "file", // The name that will be used to transfer the file
+        maxFilesize: 10, // MB
+        uploadMultiple: true,
+        acceptedFiles: ".xls, .xlsx, .doc, .docx, .pdf, .img, .png. .gif, .tif",
+        complete: function (data) {
+
+            var res = JSON.parse(data.xhr.responseText);
+            window.location.href = "/Vozaci/Details/@Model.IdVozac";
+       },
+        init: function () {
+            this.on("sending", function (file, xhr, data) {
+                data.append("IdVozac", "@Model.IdVozac");
+            });
+        }
+    };
+
+
+</script>
+
+
+<div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            @using (Html.BeginForm("Create", "VozacDnevnica", FormMethod.Get, new { @class = "form", @role = "form" }))
+            {
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Izaberite mjesec i godinu za unos podataka</h3>
+            </div>
+          
+
+            <div class="modal-body ">
+                <br/>
+              
+                   <div class="row">
+                       <div class="form-group floating-label col-lg-6 col-lg-offset-3">
+                        <input type="text" id="mjesec" class="form-control input-lg datum" name="mjesec"  />
+                        <label for="mjesec" style="padding-left: 12px;">Mjesec</label>
+                    </div>
+
+                       @Html.Hidden("id", Model.IdVozac)
+                   </div>
+                 
+                <br/>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel" class="btn" data-dismiss="modal" aria-hidden="true">Odustani</button>
+                <input type="submit" id="ok-dodaj" name="Potvrdi" class="btn btn-primary" />
+            </div>
+             }
+        </div>
+        </div>
+    </div>
+
+
+<section>       
+<div class="container-fluid"> 
+    <div class="row">
+        <div class="col-lg-6">
+    <div class="section-body ">
+          
+        <div class="card card-bordered style-primary">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-list"></i>&nbsp Detalji Vozača</header>
+			</div>
+            <div class="card-body style-default-bright">
+
+			<ul class="list divider-full-bleed">
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-3"><div class="tile-icon">@Html.DisplayNameFor(model => model.ImeVozaca)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-9"><div class="tile-text text-bold">@Html.DisplayFor(model => model.ImeVozaca)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-3"><div class="tile-icon">@Html.DisplayNameFor(model => model.Telefon)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-9"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Telefon)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-3"><div class="tile-icon">@Html.DisplayNameFor(model => model.Adresa)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-9"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Adresa)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-3"><div class="tile-icon">@Html.DisplayNameFor(model => model.BrojPasosa)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-9"><div class="tile-text text-bold">@Html.DisplayFor(model => model.BrojPasosa)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-3"><div class="tile-icon">@Html.DisplayNameFor(model => model.JMBG)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-9"><div class="tile-text text-bold">@Html.DisplayFor(model => model.JMBG)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-3"><div class="tile-icon">@Html.DisplayNameFor(model => model.BrojLK)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-9"><div class="tile-text text-bold">@Html.DisplayFor(model => model.BrojLK)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-3"><div class="tile-icon">@Html.DisplayNameFor(model => model.BrojVozackeDozvole)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-9"><div class="tile-text text-bold">@Html.DisplayFor(model => model.BrojVozackeDozvole)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-3"><div class="tile-icon">@Html.DisplayNameFor(model => model.Subjekt.Naziv)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-9"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Subjekt.Naziv)</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-3"><div class="tile-icon">@Html.DisplayNameFor(model => model.ZiroRacun)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-9"><div class="tile-text text-bold">@Html.DisplayFor(model => model.ZiroRacun)</div></div>
+						</div>
+		</div>
+	</li>
+
+                <li class="tile">
+                    <div class="ink-reaction">
+                        <div class="row">
+                            <div class="col-md-3"><div class="tile-icon">Korisničko Ime</div><!-- <i class="fa fa-inbox"></i> --> </div>
+                            <div class="col-md-9"><div class="tile-text text-bold"> @ViewBag.KorisnickoIme </div></div>
+                        </div>
+                    </div>
+                </li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-3"><div class="tile-icon">@Html.DisplayNameFor(model => model.ZapisAktivan)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-9"><div class="tile-text text-bold"> @if (Model.ZapisAktivan ?? false) { <span>DA</span> } else {  <span>NE</span> }  </div></div>
+						</div>
+		</div>
+	</li>
+
+                <li class="tile">
+                    <div class="ink-reaction">
+                        <div class="row">
+                            <div class="col-md-3"><div class="tile-icon">Napomene </div><!-- <i class="fa fa-inbox"></i> --> </div>
+                            <div class="col-md-9"><div class="tile-text text-bold"> @Html.DisplayFor(model => model.Napomene) </div></div>
+                        </div>
+                    </div>
+                </li>
+
+</ul>
+            </div>
+
+          <div class="card-actionbar style-default-bright">
+				<div class="card-actionbar-row">	
+										    @Html.ActionLink("IZMJENI", "Edit", new {  id=Model.IdVozac } , new { @class = "btn btn-flat btn-primary ink-reaction"  }) 
+					    @Html.ActionLink("NAZAD NA LISTU", "Index", null, new { @class = "btn btn-flat btn-primary ink-reaction"  })
+									</div>
+			</div>
+            </div>
+        </div>
+
+     <div class="section-body ">
+          
+        <div class="card card-bordered style-primary">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-paperclip"></i>&nbsp Skenirani Dokumenti</header>
+			</div>
+            <div class="card-body style-default-bright">
+                 @ViewBag.Error @using (Html.BeginForm("UploadFile", "Vozaci", FormMethod.Post, new { @class = "dropzone dz-clickable", id = "myAwesomeDropzone", enctype = "multipart/form-data" }))
+                                {
+            
+            <div class="dz-message">
+              <h3>Prevucite dokumenta ovdje ili kliknite za odabir</h3>
+              <em>maksimalna veličina dokumenta je 10MB</em>
+            </div>
+
+                                }
+                </div>
+
+
+            <div class="card-body style-default-bright">
+                    <div class="row">
+                    @foreach (var item in ViewBag.Dokumenti as List<Spedicija.Dokument>)
+                    {
+                        <div class="col-md-6">
+                       <div class="card card-type-pricing card-outlined style-primary">
+					    	<div class="card-body text-center" style="padding: 0px;">
+                                <a title="Obriši Fajl" href="/Vozaci/DeleteDokument/@item.IdDokument" class="pull-right btn btn-flat ink-reaction btn-default"><i class='md md-delete'></i></a>
+					    		<h2 class="text-light" style="margin: 5px 5px 10px 5px; height: 52px; overflow: hidden;">@item.Naziv </h2>
+					    		<div class="price">
+                                    @if (item.Putanja.EndsWith(".xls") || item.Putanja.EndsWith(".xlsx"))
+                                    {
+					    			<a title="Preuzmi fajl" href="/Dokumenti/@item.Naziv" target="_blank"><img class="img-responsive width-2" src="/Content/images/Exel.png" alt="" style="margin: 0 auto;"></a>  
+                                    }
+                                     @if (item.Putanja.EndsWith(".doc") || item.Putanja.EndsWith(".docx"))
+                                     {
+					    			<a title="Preuzmi fajl" href="/Dokumenti/@item.Naziv" target="_blank"><img class="img-responsive width-2" src="/Content/images/Word.png" alt="" style="margin: 0 auto;"></a>
+                                     }
+                                     @if (item.Putanja.EndsWith(".pdf"))
+                                     {
+					    			<a title="Preuzmi fajl" href="/Dokumenti/@item.Naziv" target="_blank"><img class="img-responsive width-2" src="/Content/images/Pdf.png" alt="" style="margin: 0 auto;"></a>
+                                     }
+                                        </div>
+					    		<br>
+					    	</div><!--end .card-body -->
+					    	<div class="card-body no-padding">
+					    		<ul class="list-unstyled text-left">
+					    			<li style="border-top: 1px solid #e5e6e6;"><div class="row"><div class="col-md-4">Tip </div><div class="col-md-8"> @item.Tip</div>  </div></li>
+					    			<li style="border-top: 1px solid #e5e6e6;"><div class="row"><div class="col-md-4">Veličina</div><div class="col-md-8">@item.Velicina kb</div></div></li>
+
+					    		</ul>
+					    	</div><!--end .card-body -->
+					    </div><!--end .card --> 
+                            </div>
+                    }
+                    </div>
+                    </div>
+
+   
+            </div>
+        </div>
+
+    </div>
+
+
+        <div class ="col-lg-6">
+
+        <div class="section-body ">
+          
+        <div class="card card-bordered style-primary">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-list"></i>&nbsp Prevozi</header>
+			</div>
+            <div class="card-body style-default-bright">
+                <table id="Voznje" class="table  table-hover responsiv">
+                    
+                        <thead><tr>
+                        <th>Od</th>
+                        <th>Do</th>
+                        <th>Utovar</th>
+                        <th>Istovar</th>
+                        <th>Vozilo</th>
+                        <th></th>
+                        </tr></thead>
+                    <tfoot>
+                        <tr>
+                        <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            </tr>
+                    </tfoot>
+                     <tbody class="table-hover">
+                                          </tbody>
+
+
+                    </table>
+            </div>
+
+            </div>
+            </div>
+
+
+
+                    <div class="section-body ">
+          
+        <div class="card card-bordered style-primary">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-eur"></i>&nbsp Dnevnice</header>
+			</div>
+            <div class="card-body style-default-bright">
+                     @Html.ActionLink("DODAJ NOVI ZAPIS ", "Create", "VozacDnevnica", new { id = Model.IdVozac }, new { @class = "btn btn-flat btn-primary ink-reaction", id = "btn-vozacdnevnica" })
+             
+                
+
+                <table id="TbDnevnice" class="table table-hover responsive">
+                        <thead>
+                           <tr>
+                        	<th> Mjesec</th>
+                        	<th> Godina</th>
+                        	<th> Plata</th>
+                        	<th >Dnevnice</th>
+                               <th></th>
+                           </tr>
+                              </thead>
+                              <tfoot>
+                               <tr>
+                        	     <th></th>
+                        	     <th></th>
+                        	     <th></th>
+                        		<th></th>
+                                   <th style="width: 20%;"></th>
+                                                        </tr>
+                                                        </tfoot>
+                                    <tbody class="table-hover">
+                                          </tbody>
+                        
+                        </table>
+                </div>
+
+            </div>
+            </div>
+
+
+      
+
+        </div>
+
+
+
+    </div>
+
+
+        </div>
+    </section>
+
+

@@ -1,0 +1,187 @@
+﻿@model IEnumerable<Spedicija.Vozaci>
+
+@{
+    ViewBag.Title = "Index";
+
+
+
+
+}
+
+
+
+
+   
+
+<style>
+tfoot {
+    display: table-header-group;
+}
+.modal-lg {
+    width: 1100px;
+}
+</style>
+
+<link href="~/Content/css/datepicker.css" rel="stylesheet" />
+<script src="~/Content/js/datepicker.js"></script>
+<script src="~/Content/js/bootstrap-datepicker.sr-latin.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+
+        $('.datum').datepicker({
+            language: 'sr-latin',
+        format: "yyyy-mm-dd",
+        todayBtn: "linked",
+        autoclose: true,
+        todayHighlight: true,
+        toggleActive: true
+    });
+      
+
+    });
+</script> 
+
+<script src="~/Content/js/DataTables.js"></script>
+<link href="~/Content/css/jquery-dataTables.css" rel="stylesheet" />
+<script src="~/Content/js/dataTables.responsive.js"></script>
+<link href="~/Content/css/dataTables.responsive.css" rel="stylesheet" />
+<script src="~/Content/js/jquery.dataTables.columnFilter.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+      
+        var detaljiLinkObj;
+
+        var DataTable = $('.table').DataTable({
+            "language": {
+                "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Serbian.json"
+
+            },
+            "pageLength": 100,
+            "order": [[10, "asc"], [0, "desc"]],
+            "bServerSide": true,
+            "responsive": true,
+            "sAjaxSource": "Vozaci/IndexAjax",
+            "bProcessing": true,
+            "columnDefs": [
+            {
+                "targets": -1,
+                "orderable": false,
+                "data": null,
+                "className": 'text-right',
+               "render": function (data, type, row) {
+                    return "<a href='Vozaci/Details/" + row[0] + "' title='Detalji' class='btn btn-flat ink-reaction btn-default'><i class='md md-details'></i></a>" +
+						   "<a href='Vozaci/Edit/" + row[0] + "' title='Izmjeni' class='btn btn-flat ink-reaction btn-default'><i class='md md-edit'></i></a>" +
+                           "<a href='VozacTroskovi/TroskoviVozaca/" + row[0] + "' title='Troškovi' class='btn btn-flat ink-reaction btn-default'><i class='md md-attach-money'></i></a>" +
+                           "<a href='Vozaci/Delete/"  + row[0] + "' title='Izbriši' class='btn btn-flat ink-reaction btn-default'><i class='md md-delete'></i></a>";
+					
+                }
+            },
+                        {
+                            "targets": -2,
+                            "orderable": true,
+                            "data": null,
+                            "render": function (data, type, row) {
+                                if (row[10] == "DA") return "<p class='text-success text-bold'> DA </p>";
+                                else return "<p class='text-danger text-bold'> NE </p>";
+
+                            }
+                        }
+
+
+
+            ]
+
+        });
+
+        $('.table').dataTable().columnFilter({
+            aoColumns: [
+								{ type: "text" } ,
+								{ type: "text" } ,
+								{ type: "text" } ,
+								{ type: "text" } ,
+								{ type: "text" } ,
+								{ type: "text" } ,
+								{ type: "text" } ,
+								{ type: "text" } ,
+								{ type: "text" },
+                                { type: "text" },
+                                 { type: "text" },
+								null                    
+            ]
+        });
+
+
+    });
+</script>
+
+
+
+<section>        
+    <div class="section-body ">
+           
+        <div class="card card-bordered style-primary">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-list"></i>&nbsp Pregled Svih</header>
+			</div>
+            <div class="card-body style-default-bright">
+			 @Html.ActionLink("KREIRAJ", "Create", null, new { @class = "btn btn-flat btn-primary ink-reaction" })
+			<br/>
+
+
+<table class="table table-hover responsive">
+<thead>
+                                <tr>
+                                   								        <th> @Html.DisplayNameFor(model => model.IdVozac)</th>
+																        <th> @Html.DisplayNameFor(model => model.ImeVozaca)</th>
+																        <th> @Html.DisplayNameFor(model => model.Telefon)</th>
+																        <th> @Html.DisplayNameFor(model => model.Adresa)</th>
+																        <th> @Html.DisplayNameFor(model => model.BrojPasosa)</th>
+																        <th> @Html.DisplayNameFor(model => model.JMBG)</th>
+																        <th> @Html.DisplayNameFor(model => model.BrojLK)</th>
+																        <th> @Html.DisplayNameFor(model => model.BrojVozackeDozvole)</th>
+																        <th> @Html.DisplayNameFor(model => model.Subjekt.Naziv)</th>
+                                                                        <th> @Html.DisplayNameFor(model => model.Napomene)</th>
+                                                                        <th>Aktivan</th>
+																 <th></th>
+
+                                </tr>
+                                </thead>
+                             <tfoot>
+                                <tr>
+                                    								        <th></th>
+																        <th></th>
+																        <th></th>
+																        <th></th>
+																        <th></th>
+																        <th></th>
+																        <th></th>
+																        <th></th>
+																        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+								                                    <th></th>
+                                </tr>
+                                </tfoot>
+            <tbody class="table-hover">
+                  </tbody>
+
+</table>
+
+
+       </div>
+        </div>
+        </div>
+    </section>
+
+
+

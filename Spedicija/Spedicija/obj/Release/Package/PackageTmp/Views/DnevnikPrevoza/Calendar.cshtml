@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Calendar";
+}
+
+
+<link href="~/Content/js/fullcalendar-3.1.0/fullcalendar.css" rel="stylesheet" />
+<script src="~/Content/js/fullcalendar-3.1.0/fullcalendar.min.js"></script>
+<script src="~/Content/js/fullcalendar-3.1.0/locale-all.js"></script>
+<script src="~/Content/js/fullcalendar-3.1.0/locale/sr.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay,listMonth'
+                },
+                defaultDate: date,
+                locale: 'sr',
+                buttonIcons: false, // show the prev/next text
+                weekNumbers: true,
+                navLinks: true, // can click day/week names to navigate views
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events:
+                    {
+                        url: '/DnevnikPrevoza/AjaxCalendar'
+                    },
+                eventDrop: function (event, delta, revertFunc) {
+
+                 //   alert(event.title + " je prebačen na " + event.start.format());
+/*
+                    if (!confirm("Da li ste sigurni da želite promjeniti vrijeme zakazivanja obaveze?")) {
+                        revertFunc();
+                    }
+                    else {
+                        
+                        $.post("/PredmetObaveza/AjaxEdit?IdPredmetObaveza=" + event.id + "&datum=" + event.start.format(), function (data) {
+
+                            if (data != 1)
+                            alert("Došlo je do greške!");
+                        });
+
+                    }
+*/
+                }
+                  
+            });
+
+    });
+</script>
+
+<section>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+	<div id="calendar"></div>
+        </div>
+        </div>
+</div>
+
+
+
+</section>

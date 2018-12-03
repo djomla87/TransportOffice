@@ -1,0 +1,579 @@
+﻿@model IEnumerable<Spedicija.DnevnikPrevoza>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<style>
+    /*
+    tfoot {
+        display: table-header-group;
+    }
+    */
+    .modal-lg {
+        width: 1100px;
+    }
+
+    table.dataTable tbody th, table.dataTable tbody td {
+        padding: 1px 1px;
+        font-size: 12px;
+    }
+</style>
+
+<style>
+    tfoot {
+        display: table-header-group;
+    }
+
+</style>
+<link href="~/Content/css/datepicker.css" rel="stylesheet" />
+<script src="~/Content/js/datepicker.js"></script>
+<script src="~/Content/js/bootstrap-datepicker.sr-latin.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+
+        $('.datum').datepicker({
+            language: 'sr-latin',
+        format: "yyyy-mm-dd",
+        todayBtn: "linked",
+        autoclose: true,
+        todayHighlight: true,
+        toggleActive: true
+    });
+
+
+    });
+</script>
+
+<script src="~/Content/js/DataTables.js"></script>
+<link href="~/Content/css/jquery-dataTables.css" rel="stylesheet" />
+<script src="~/Content/js/dataTables.responsive.js"></script>
+<link href="~/Content/css/dataTables.responsive.css" rel="stylesheet" />
+<script src="~/Content/js/jquery.dataTables.columnFilter.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        var detaljiLinkObj;
+
+        var DataTable = $('.table').DataTable({
+            "language": {
+                "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Serbian.json"
+
+            },
+            "order": [[0, "desc"]],
+            "pageLength": 100,
+            "bServerSide": true,
+            "responsive": true,
+            "sAjaxSource": "/DnevnikPrevoza/IndexAjax2",
+            "bProcessing": true,
+            "fnDrawCallback": function (oSettings) {
+
+                $("a").tooltip();
+
+            },
+            "fnDrawCallback": function (oSettings) {
+
+                $("td").css("white-space", "pre-line");
+                $("td").css("padding", "1px 1px");
+                $("td").css("font-size", "12px");
+
+            },
+            "columnDefs": [
+                {
+                    "targets": 0,
+                    "orderable": true,
+                    "render": function (data, type, row) {
+                        if (row[0].length > 10)
+                            return "<span class=''>&nbsp; &nbsp; &nbsp;<i class='fa fa-2x fa-level-down text-info'></i> &nbsp; " + row[0] + "</span>";
+                        else if(row[12] == '1')
+                            return "<span class=''> <i class='fa fa-2x fa-dot-circle-o text-info'></i> &nbsp; " + row[0] + "</span>";
+                        else
+                            return row[0];
+                    }
+                },
+
+                {
+                    "targets": 1,
+                    "orderable": true,
+                    "render": function (data, type, row) {
+                        return row[2];
+                    }
+                },
+                {
+                    "targets": 2,
+                    "orderable": true,
+                    "render": function (data, type, row) {
+                        return row[3];
+                    }
+                },
+                {
+                    "targets": 3,
+                    "orderable": true,
+                    "render": function (data, type, row) {
+                        return row[4];
+                    }
+                },
+                                {
+                                    "targets": 4,
+                                    "orderable": true,
+                                    "render": function (data, type, row) {
+                                        return row[6];
+                                    }
+                                },
+                {
+                    "targets": 5,
+                    "orderable": true,
+                    "render": function (data, type, row) {
+                        return row[5] + " / " + row[7];
+                    }
+                },
+
+
+            {
+                "targets": -1,
+                "orderable": false,
+                "data": null,
+                "className": 'text-right no-padding',
+               "render": function (data, type, row) {
+                   return "<div style='white-space: nowrap;'><a style='padding: 1px 1px' href='/DnevnikPrevoza/Details/" + row[11] + "' title='Detalji' class='btn btn-flat ink-reaction btn-default'><i class='md md-details'></i></a>" +
+						  "<a style='padding: 1px 1px' href='/DnevnikPrevoza/Edit/" + row[11] + "' title='Izmjeni' class='btn btn-flat ink-reaction btn-default'><i class='md md-edit'></i></a>" +
+                          "<a style='padding: 1px 1px' href='/DnevnikPrevoza/Delete/" + row[11] + "' title='Izbriši' class='btn btn-flat ink-reaction btn-default'><i class='md md-delete'></i></a></br>" +
+                          "<a style='padding: 1px 1px' href='/DnevnikPrevoza/Copy/" + row[11] + "' title='Kloniraj' class='btn btn-flat ink-reaction btn-default btn-kloniraj'><i class='md md-content-copy'></i></a>" +
+                          "<a style='padding: 1px 1px' href='/Nalog/ReportDnevnikNovi/" + row[11] + "' title='Štampa Dnevnika' class='btn btn-flat ink-reaction btn-default'><i class='md md-print'></i></a>" +
+                          "<a style='padding: 1px 1px' id='" + row[11] + "' href='#' title='Podešavanja' class='btn btn-flat ink-reaction btn-default btn-podesavanja'><i class='md md-settings'></i></a></div>";
+
+                }
+            },
+                        {
+                            "targets": -2,
+                            "orderable": true,
+                            "data": null,
+                            "className": 'text-center',
+                            "render": function (data, type, row) {
+                                if (row[10] == 'NIJE UTOVARENO')
+                                {
+                                    return "<div class='row' style='min-width: 140px'><div class='col-md-offset-3 col-md-4'><a href='#' title='NIJE UTOVARENO'><img style='width:48px' src='/Content/images/palet0.png' /></a></div>" +
+                                           "<div class='col-md-3'><a href='/DnevnikPrevoza/PromjenaStatusa/" + row[11] + "?Status=1' title='Postavi status u \"U Transportu\"' class='text-warning text-xl promjena-statusa'><i class='md md-arrow-forward'></i></a></div></div>" +
+                                        "<div class='row'><div class='col-md-12'><strong class='text-danger'>Nije Utovareno</strong></div></div>";
+                                }
+                                else if (row[10] == 'ISTOVARENO') {
+                                    return "<div class='row' style='min-width: 140px'><div class='col-md-3'><a href='/DnevnikPrevoza/PromjenaStatusa/" + row[11] + "?Status=1' title='Postavi status u \"U Transportu\"' class='text-warning text-xl promjena-statusa'><i class='md md-arrow-back'></i></a></div>" +
+                                        "<div class='col-md-4'><a href='#' title='DOSTAVLJENO'><img style='width:48px' src='/Content/images/done_1.png' /></a></div></div>" +
+                                        "<div class='row'><div class='col-md-12'><strong class='text-success'>Dostavljeno</strong></div></div>";
+                                }
+                                else if (row[10] == 'UTOVARENO U TRANZITU')
+                                {
+                                    return "<div class='row' style='min-width: 140px'><div class='col-md-3'><a href='/DnevnikPrevoza/PromjenaStatusa/" + row[11] + "?Status=0' title='Postavi status u \"Nije Utovareno\"' class='text-danger text-xl promjena-statusa'><i class='md md-arrow-back'></i></a></div>" +
+                                        "<div class='col-md-4'><a href='#' title='U TRANSPORTU'><img style='width:48px' src='/Content/images/Transport1.png' /></a></div>" +
+                                        "<div class='col-md-3'><a href='/DnevnikPrevoza/PromjenaStatusa/" + row[11] + "?Status=2' title='Postavi status u \"Dostavljeno\"' class='text-success text-xl promjena-statusa' ><i class='md md-arrow-forward'></i></a></div></div>" +
+                                        "<div class='row'><div class='col-md-12'><strong class='text-warning'>U Transportu</strong></div></div>";
+
+                                }
+                                else return "<div class='row' style='min-width: 140px'><div class='col-md-3'></div>" +
+                                        "<div class='col-md-4'><a href='#' title='STOPIRANO'><img style='width:48px' src='/Content/images/cancel.png' /></a></div>" +
+                                        "<div class='col-md-3'></div></div>" +
+                                        "<div class='row'><div class='col-md-12'><strong class='text-danger'>STOPIRANO</strong></div></div>";
+
+                            }
+                        },
+
+                      {
+                          "targets": -3,
+                          "orderable": false,
+                          "data": null,
+                          "className": '',
+                          "render": function (data, type, row) {
+                              var ret = "";
+                              if (row[9] == 'B1')
+                                  ret = "<a href='#' class='text-danger istekla-valuta' data-toggle='tooltip' data-placement='bottom' data-original-title='Nije unesen Vozač ili Vozilo'><i class='fa fa-2x fa-fw fa-warning'></i></a>";
+
+                              if (row[8] == 'A1')
+                                  ret += "<a href='#' class='istekla-valuta' data-toggle='tooltip' data-placement='bottom' data-original-title='Dokument Prikačen'><i class='fa fa-2x fa-fw fa-paperclip'></i></a>";
+
+                              if (row[14] == 'C1')
+                                  ret += "<a href='#' class='istekla-valuta' data-toggle='tooltip' data-placement='bottom' data-original-title='Roba u Skladištu' ><img style='width:32px' src='/Content/images/warehouse.png' /></a>";
+                                //  ret += "<a href='#' class='istekla-valuta' data-toggle='tooltip' data-placement='bottom' data-original-title='Roba u Skladištu' ><i class='fa fa-2x fa-fw fa-home'></i></a>";
+                              if (row[15] == 'D1')
+                                  ret += "<a href='#' class='istekla-valuta' data-toggle='tooltip' data-placement='bottom' data-original-title='U tranzitu kod drugog prevoznika' ><img style='width:32px' src='/Content/images/DrugiPrevoznik.png' /></a>";
+                              if (row[16] == 'E1') {
+                                  if (ret != "")
+                                      ret += "<br>";
+                                  ret += "<span style='font-weight: bold;color: red;'> <b>NEDOSTAJE FAKTURA!<b> </span>";
+                              }
+                              if (row[17] == 'F1')
+                                  ret += "<a href='#' class='istekla-valuta' data-toggle='tooltip' data-placement='bottom' data-original-title='Dostavljeno u brzu poštu' ><img style='width:32px' src='/Content/images/post-office.png' /></a>";
+
+
+                              return ret;
+
+                          }
+
+                      },
+            {
+             "targets": -4,
+            "orderable": true,
+            "data": null,
+            "className": '',
+            "render": function (data, type, row) {
+                if (row[13] == '1')
+                    return "<a href='#' id='val-" + row[11] + "' class='istekla-valuta text-danger tooltip-a' data-toggle='tooltip' data-placement='bottom' data-original-title='Valuta plaćanja je istekla'><i class='fa fa-2x fa-fw fa-bolt'></i></a>";
+                else if (row[13] == '2')
+                    return "<a href='#' id='val-" + row[11] + "' class='istekla-valuta text-primary tooltip-a' data-toggle='tooltip' data-placement='bottom' data-original-title='Plaćeno !'><i class='fa fa-2x fa-fw fa-thumbs-up'></i></a>";
+                else return "<a href='#' id='val-" + row[11] + "' class='istekla-valuta'></a>"
+            }
+        }
+            ]
+
+        });
+
+
+        // 1 - nije uplacno i istekla valuta
+        // 0 - nije uplaceno i nije istekla
+        // 2 - uplaceno
+
+
+        $('.table').dataTable().columnFilter({
+            aoColumns: [
+								{ type: "text" },
+								{ type: "text" },
+								{ type: "text" },
+								{ type: "text" },
+								{ type: "text" },
+								{ type: "text" },
+                                { type: "select" },
+								{ type: "select" },
+								{ type: "text" },
+                                null
+
+            ]
+        });
+
+
+        $("select[rel = '6']").html("<option class='search_init' value=''></option><option class='search_init' value='istekla'>istekla</option> <option class='search_init' value='u valuti'>u valuti</option> <option class='search_init' value='placeno'>plaćeno</option>");
+        $("select[rel = '7']").html("<option class='search_init' value=''></option><option class='search_init' value='A1'>Prikačen Dokument</option><option class='search_init' value='A0'>Nedostaje Dokument</option> <option class='search_init' value='B1'>Nedostaje Vozač / Vozilo</option><option class='search_init' value='B0'>Upisan Vozač i Vozilo</option><option class='search_init' value='F1'>Dostavljeno u brzu poštu</option><option class='search_init' value='C1'>Roba u Skladištu</option><option class='search_init' value='C0'>Roba van skladišta</option><option class='search_init' value='D0'>Bez posrednika u prevozu</option><option class='search_init' value='D1'>U tranzitu kod drugog prevoznika</option><option class='search_init' value='E0'>Popunjeni podaci o fakturi za dostavljenu robu</option><option class='search_init' value='E1'>Nedostaju podaci o fakturi dostavljene robe</option>");
+
+
+        $('#tabelaDnevnik').on('click', '.promjena-statusa', function (e) {
+            e.preventDefault();
+
+            $.post($(this)[0].href, function (data) {
+                DataTable.ajax.reload(null, false);
+
+                var Naslov = "";
+                var StatusSr = "";
+                var StatusEn = "";
+                var SubjectSr = "";
+                var SubjectEN = "";
+                var istovariSR = "";
+                var istovariEN = "";
+                var gostiKod = "";
+                var UtovarSR = "";
+                var UtovarEN = "";
+                var UISR = "";
+                var UIEN = "";
+                var DATDOSTAVESR = "";
+                var DATDOSTAVEEN = "";
+                $.each(data, function (i, dataitem) {
+                    if (i == 0) {
+
+                        if (dataitem.Status == "ISTOVARENO") {
+                            StatusSr = "DOSTAVLJENO";
+                            StatusEn = "DELIVERED";
+                        }
+                        else if (dataitem.Status == "UTOVARENO U TRANZITU") {
+                            StatusSr = "UTOVARENO - U TRANZITU";
+                            StatusEn = "PICKED UP - IN TRANSIT";
+                        }
+                        else {
+                            StatusSr = "Zakazan utovar " + dataitem.DatUtovara;
+                            StatusEn = "Scheduled pick up " + dataitem.DatUtovara;
+                        }
+
+
+                        Naslov = "mailto:" + dataitem.Email + "?subject=Notification about shipment no. " + dataitem.SerijskiBroj + " / Izvještaj o statusu pošiljke br. " + dataitem.SerijskiBroj;
+                        SubjectSr = "&body=Poštovani,%0DObavještenje o statusu pošiljke: " + StatusSr + "%0D%0DNaručioc prevoza: " + dataitem.Naziv.replace("&", "i") + "%0DBroj Naloga za utovar:" + dataitem.BrojNaloga;  /*"%0DDetalji Utovara: " + dataitem.UtovarFirma.replace("&", "i") + " / " + dataitem.UtovarGrad + "%0DUvoznik: " + (dataitem.Uvoznik+"").replace("&", "i") + "%0DIzvoznik: " + (dataitem.Izvoznik+"").replace("&", "i");*/
+                        SubjectEN = "Greetings,%0DNotification of shipment status: " + StatusEn + "%0D%0DTransport order recived from: " + dataitem.Naziv.replace("&", "and") + "%0DTransport order no:" + dataitem.BrojNaloga;  /*"%0DLoading details: " + dataitem.UtovarFirma.replace("&", "i") + " / " + dataitem.UtovarGrad + "%0DImporter: " + (dataitem.Uvoznik+"").replace("&", "i") + "%0DExporter: " + (dataitem.Izvoznik+"").replace("&", "i");*/
+                        gostiKod = dataitem.Guest;
+
+                        UISR = "%0DUvoznik: " + (dataitem.Uvoznik + "").replace("&", "i") + "%0DIzvoznik: " + (dataitem.Izvoznik + "").replace("&", "i");
+                        UIEN = "%0DImporter: " + (dataitem.Uvoznik + "").replace("&", "i") + "%0DExporter: " + (dataitem.Izvoznik + "").replace("&", "i");
+                    }
+
+                    if (dataitem.IstovarFirma != "") {
+                        istovariSR += "%0DDetalji Istovara: " + dataitem.IstovarFirma.replace("&", "i") + " / " + dataitem.IstovarGrad;
+                        istovariEN += "%0DDelivery details: " + dataitem.IstovarFirma.replace("&", "i") + " / " + dataitem.IstovarGrad;
+                    }
+
+                    if (dataitem.UtovarFirma != "") {
+                        UtovarSR += "%0DDetalji Utovara: " + dataitem.UtovarFirma.replace("&", "i") + " / " + dataitem.UtovarGrad;
+                        UtovarEN += "%0DLoading details: " + dataitem.UtovarFirma.replace("&", "i") + " / " + dataitem.UtovarGrad;
+                    }
+
+                    if (StatusSr == "UTOVARENO - U TRANZITU") {
+                        DATDOSTAVESR += "%0D" + "Planirana Dostava: " + dataitem.DatIstovara;
+                        DATDOSTAVEEN += "%0D" + "Projected delivery: " + dataitem.DatIstovara;
+                    }
+
+                });
+
+                console.log(Naslov + SubjectSr + istovariSR + "%0D%0D%0D%0D" + SubjectEN + istovariEN);
+
+
+                var loc = Naslov + SubjectSr + UtovarSR + istovariSR + DATDOSTAVESR + UISR + "%0D%0D%0D%0D" + SubjectEN + UtovarEN + istovariEN + DATDOSTAVEEN + UIEN + "%0D%0D%0D%0D" + "Status pošiljke možete pratiti na linku / Shipment status can be folowed on this link:%0Dwww.gmtel-office.com/DnevnikPrevoza/GuestDetail?s=" + gostiKod + "%0D%0D";
+
+                var rep = 'null';
+                var regex = new RegExp(rep, 'g');
+                loc = loc.replace(regex, " ");
+
+                    document.location.href = loc;
+
+            });
+
+        });
+
+
+        $('#tabelaDnevnik').on('click', '.btn-kloniraj', function (e) {
+            e.preventDefault();
+
+            var result = confirm("Da li ste sigurni da želite klonirati dnevnik?");
+            if (result) {
+
+                document.location = $(this)[0].href;
+            }
+
+        });
+
+
+        $('#tabelaDnevnik').on('click', '.btn-podesavanja', function (e) {
+            e.preventDefault();
+
+
+            $('#id-dnevnik-valuta').val($(this)[0].id);
+            $('#id-dnevnik-valuta').attr('value', $(this)[0].id);
+
+            $.getJSON("/DnevnikValute/GetStatus", { id: $(this)[0].id }, function (data) {
+
+
+                $("#valuta-placeno").off();
+
+                if (data == "1") {
+                    $('#valuta-placeno').bootstrapToggle('on');
+                }
+                else {
+                    $("#valuta-placeno").bootstrapToggle('off');
+                }
+
+                $('#valuta-placeno').change(function (data) {
+
+                    var id = $('#id-dnevnik-valuta').val();
+
+                    if ($(this).prop('checked')) {
+
+                        $.getJSON("/DnevnikValute/SetStatusJson/"+id, { Status: 1 }, function (data) {
+                            $("#val-" + id).html("");
+                        });
+
+
+                    }
+                    else {
+                        $.getJSON("/DnevnikValute/SetStatusJson/"+id, { Status: 0 }, function (data) {
+                            $("#val-" + id).html("<i class='fa fa-2x fa-fw fa-bolt'></i>");
+                        });
+
+                    }
+
+                });
+
+
+                $('#simpleModal').modal('toggle');
+
+            });
+
+            $.getJSON("/DnevnikPrevoza/DetaljniStatus", { id: $(this)[0].id }, function (data) {
+
+                var lst = data.lstStatusa;
+                var idStatus = data.idStatusDetaljni;
+                var opis = data.StatusDetaljniOpis;
+                var opcije = "";
+
+                $.each(lst, function (index, item) {
+                    opcije += "<option value='" + item.IdStatusRobe + "'>" + item.Naziv + "</option>"
+                });
+
+                $("#StatusRobe").html("");
+                $("#StatusRobe").html(opcije);
+
+                $("#StatusRobe").val(idStatus);
+                $("#StatusRobeOpis").val(opis);
+            });
+
+        });
+
+
+        $("#btnSacuvajPodesavanja").on('click', function (e) {
+
+            var id = $('#id-dnevnik-valuta').val();
+
+            $.getJSON("/DnevnikPrevoza/SacuvajPodesavanja", { id: id, idStatus: $("#StatusRobe").val(), text :  $("#StatusRobeOpis").val() }, function (data) {
+
+                if (data == "OK")
+                    $('#simpleModal').modal('toggle');
+
+                else alert(data);
+            });
+
+
+
+        });
+
+        $('#tabelaDnevnik').tooltip({
+            selector: '.istekla-valuta'
+        });
+
+    });
+</script>
+
+
+<link href="~/Content/css/bootstrap-toggle.min.css" rel="stylesheet" />
+<script src="~/Content/js/bootstrap-toggle.min.js"></script>
+
+<script>
+  $(function() {
+    $('#toggle-event').change(function() {
+        if ($(this).prop('checked')) {
+
+            $.getJSON("/DnevnikPrevoza/SetDeafault", { val: "Index2" }, function (data) {
+                document.location = "/DnevnikPrevoza/Index2";
+            });
+
+
+        }
+        else
+        {
+            $.getJSON("/DnevnikPrevoza/SetDeafault", { val: "Index" }, function (data) {
+                document.location = "/DnevnikPrevoza/Index";
+            });
+
+        }
+
+    })
+  })
+</script>
+
+
+<div class="modal fade" id="simpleModal" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="simpleModalLabel">Podešavanja Dnevnika</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <input type="hidden" id="id-dnevnik-valuta" value="0" />
+                    <div class="col-md-4">
+                        <strong> Postavka valute plaćanja </strong>
+                    </div>
+                    <div class="col-md-8">
+                        <input id="valuta-placeno" type="checkbox" data-toggle="toggle" data-on="NAPLAĆENO" data-off="NIJE NAPLAĆENO" data-onstyle="success" data-offstyle="danger" data-size="small" data-width="200">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-body">
+                <form class="form" target="#">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <strong> Detaljni Status </strong>
+                            <a href="/StatusRobe/Index" target="_blank" tag="Ažuriraj listu statusa"> &nbsp; <i class="md md-settings"></i></a>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group floating-label">
+                                <select name="StatusRobe" id="StatusRobe" class="form-control dirty"></select>
+                                <label>Status</label>
+                            </div>
+                            <div class="form-group floating-label">
+                                <textarea name="StatusRobeOpis" id="StatusRobeOpis" class="form-control dirty"></textarea>
+                                <label>Napomena</label>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+                </div>
+
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+                        <button type="button" class="btn btn-primary" id="btnSacuvajPodesavanja">Sačuvaj promjene</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <section>
+        <div class="section-body ">
+
+            <div class="card card-bordered style-primary">
+                <div class="card-head">
+                    <div class="tools">
+                        <div class="btn-group">
+                            <input id="toggle-event" type="checkbox" checked data-toggle="toggle" data-on="Skraćena verzija" data-off="Podrazumjevani dnevnik" data-onstyle="danger" data-offstyle="success" data-size="small" data-width="200">
+
+                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                        </div>
+                    </div>
+                    <header><i class="fa fa-fw fa-list"></i>&nbsp Dnevnik svih Prevoza</header>
+                </div>
+                <div class="card-body style-default-bright">
+                    @Html.ActionLink("KREIRAJ", "Create", null, new { @class = "btn btn-flat btn-primary ink-reaction" })
+                    <br />
+
+
+                    <table id="tabelaDnevnik" class="table table-hover responsive">
+                        <thead>
+                            <tr>
+                                <th> @Html.DisplayNameFor(model => model.SerijskiBroj)</th>
+                                <th> @Html.DisplayNameFor(model => model.Subjekt1.Naziv)</th>
+                                <th> Uvoznik / Izvoznik</th>
+                                <th> @Html.DisplayNameFor(model => model.UtovarAdresa)</th>
+                                <th> @Html.DisplayNameFor(model => model.IstovarAdresa)</th>
+                                <th> Utovar / Istovar</th>
+                                <th> Valuta</th>
+                                <th style="width:100px"> Dok.</th>
+                                <th> @Html.DisplayNameFor(model => model.Status)</th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th class="no-padding"></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th class="no-padding"></th>
+
+                            </tr>
+                        </tfoot>
+                        <tbody class="table-hover"></tbody>
+
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </section>

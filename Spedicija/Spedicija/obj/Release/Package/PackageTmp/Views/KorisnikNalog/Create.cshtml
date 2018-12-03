@@ -1,0 +1,1493 @@
+﻿@model Spedicija.KorisnikNalog
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script src="~/Content/js/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/Content/js/jquery-validation/dist/localization/messages_sr_lat.min.js"></script>
+
+<script src="~/Content/js/jquery.bootstrap.wizard.min.js"></script>
+<link href="~/Content/css/wizard.css" rel="stylesheet" />
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".grad").autocomplete({
+            source: function (request, response) {
+                console.log(1);
+                $.ajax({
+                    url: "/DnevnikPrevoza/AjaxGradovi",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        console.log(data);
+                        response($.map(data, function (item) {
+                            console.log(item);
+                            return { label: item.Grad1, value: item.Grad1 };
+                        }))
+
+                    }
+                })
+            }
+
+        });
+
+
+        $(".drzava").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/DnevnikPrevoza/AjaxDrzava",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Drzava, value: item.Drzava };
+                        }))
+
+                    }
+                })
+            }
+
+        });
+
+        $("#Grad").focusout(function () {
+            if ($("#Drzava").val() == '') {
+                $.getJSON("/DnevnikPrevoza/AjaxVratiDrzavuZaGrad", { Grad: $("#Grad").val() }, function (data) {
+                    if (data.Drzava != "") {
+                        $("#Drzava").val(data.Drzava);
+                        $("#Drzava").addClass("dirty")
+
+                    }
+                });
+            }
+        });
+
+        $("#Grad1").focusout(function () {
+            if ($("#Drzava1").val() == '') {
+                $.getJSON("/DnevnikPrevoza/AjaxVratiDrzavuZaGrad", { Grad: $("#Grad1").val() }, function (data) {
+                    if (data.Drzava != "") {
+                        $("#Drzava1").val(data.Drzava);
+                        $("#Drzava1").addClass("dirty")
+
+                    }
+                });
+            }
+        });
+
+        $("#Grad2").focusout(function () {
+            if ($("#Drzava2").val() == '') {
+                $.getJSON("/DnevnikPrevoza/AjaxVratiDrzavuZaGrad", { Grad: $("#Grad2").val() }, function (data) {
+                    if (data.Drzava != "") {
+                        $("#Drzava2").val(data.Drzava);
+                        $("#Drzava2").addClass("dirty");
+
+                    }
+                });
+            }
+        });
+
+
+        
+        $("#FirmaUtovar").focusout(function () {
+            if ($("#MjestoUtovara").val() == '') {
+                $.getJSON("/DnevnikPrevoza/AjaxPodaciOFirmi", { Firma: $("#FirmaUtovar").val() }, function (data) {
+                    if (data.Adresa != "") {
+                        $("#MjestoUtovara").val(data.Adresa);
+                        $("#MjestoUtovara").addClass("dirty");
+
+                        $("#PTT1").val(data.PTT);
+                        $("#PTT1").addClass("dirty");
+
+                        $("#Grad1").val(data.Grad);
+                        $("#Grad1").addClass("dirty");
+
+                        $("#Drzava1").val(data.Drzava);
+                        $("#Drzava1").addClass("dirty");
+  
+                    }
+                });
+            }
+        });
+
+        $("#FirmaIStovar").focusout(function () {
+            if ($("#MjestoIstovara").val() == '') {
+                $.getJSON("/DnevnikPrevoza/AjaxPodaciOFirmi", { Firma: $("#FirmaIStovar").val() }, function (data) {
+                    if (data.Adresa != "") {
+                        $("#MjestoIstovara").val(data.Adresa);
+                        $("#MjestoIstovara").addClass("dirty");
+
+                        $("#PTT2").val(data.PTT);
+                        $("#PTT2").addClass("dirty");
+
+                        $("#Grad2").val(data.Grad);
+                        $("#Grad2").addClass("dirty");
+
+                        $("#Drzava2").val(data.Drzava);
+                        $("#Drzava2").addClass("dirty");
+
+                    }
+                });
+            }
+        });
+
+
+        $(".firma").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/DnevnikPrevoza/AjaxFirme",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Firma, value: item.Firma };
+                        }))
+
+                    }
+                })
+            }
+        });
+
+
+        $(".spedicija").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/DnevnikPrevoza/AjaxSpedicija",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Spedicija, value: item.Spedicija };
+                        }))
+
+                    }
+                })
+            }
+        });
+
+
+        $(".uvoznik").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/DnevnikPrevoza/AjaxUvoznik",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Uvoznik, value: item.Uvoznik };
+                        }))
+
+                    }
+                })
+            }
+
+        });
+
+
+        $(".izvoznik").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/DnevnikPrevoza/AjaxIzvoznik",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Izvoznik, value: item.Izvoznik };
+                        }))
+
+                    }
+                })
+            }
+        });
+
+
+
+        var clickedtab;
+
+        $(".cek").on('click', function (e) {
+            clickedtab = $(this)[0].id;
+
+        });
+
+        $('#rootwizard').bootstrapWizard({
+            onTabShow: function (tab, navigation, index) {
+                var $total = navigation.find('li').length;
+                var $current = index + 1;
+                var $percent = ($current / $total) * 100;
+
+                console.log($percent);
+
+                $('#rootwizard .progress-bar').css({ width: $percent + '%' });
+
+                if (index == 5) {
+                    var adr1 = $("#MjestoUtovara").val() + " " + $("#Grad1").val();
+                    var adr2 = $("#MjestoIstovara").val() + " " + $("#Grad2").val()
+
+                    $("#map").attr("style", "height:500px");
+                    initMap(adr1, adr2);
+                }
+                else {
+                    $("#map").html("");
+                    $("#map").attr("style", "height:0px");
+                    $("#map-details").html("");
+                }
+
+            },
+
+            onNext: function (tab, navigation, index) {
+                var form = $('#rootwizard').find('.form');
+                var valid = form.valid();
+                if (!valid) {
+                    form.data('validator').focusInvalid();
+                    return false;
+                }
+            },
+
+            onTabClick: function (tab, navigation, index) {
+
+                if (clickedtab > index) {
+                    var form = $('#rootwizard').find('.form');
+                    var valid = form.valid();
+                    if (!valid) {
+                        form.data('validator').focusInvalid();
+                        return false;
+                    }
+                }
+
+                // return false; // does not actual cancel tab change
+            },
+
+            onLast: function (tab, navigation, index) {
+                var form = $('#rootwizard').find('.form');
+                var valid = form.valid();
+                if (!valid) {
+                    form.data('validator').focusInvalid();
+                    return false;
+                }
+            }
+
+        });
+
+
+
+
+
+
+        var validator = $(".form").validate({
+            rules: {
+                Adresa: {
+                    "required": true
+                },
+                PTT: {
+                    "required": true
+                },
+                Grad: {
+                    "required": true
+                },
+                Drzava: {
+                    "required": true
+                },
+                KontaktOsoba: {
+                    "required": true
+                },
+                JIB: {
+                    "required": true,
+                    "digits": true
+                },
+
+                Naziv: {
+                    "required": true
+                },
+                Telefon: {
+                    "required": true
+                },
+                Email: {
+                    "email": true,
+                    "required": true
+                },
+                PIB: {
+                    "digits": true
+                },
+                Izvoznik: {
+                    "required": true
+                },
+                FirmaUtovar: {
+                    "required": true
+                },
+                MjestoUtovara: {
+                    "required": true
+                },
+                PTT1: {
+                    "required": true
+                },
+                Grad1: {
+                    "required": true
+                },
+                Drzava1: {
+                    "required": true
+                },
+                IzvoznikKontaktOsoba: {
+                    "required": true
+                },
+                DatumUtovara: {
+                    "required": true
+                },
+                VrstaRobe: {
+                    "required": true
+                },
+                VrijednostRobe: {
+                    "required": true
+                },
+                Dimenzije: {
+                    "required": true
+                },
+                BrutoTezina: {
+                    "required": true
+                },
+                IzvoznaCarina: {
+                    "required": true
+                },
+
+                MjestoIstovara: {
+                    "required": true
+                },
+                UvoznaCarina: {
+                    "required": true
+                },
+                Uvoznik: {
+                    "required": true
+                },
+                FirmaIStovar: {
+                    "required": true
+                },
+                UvoznikKontaktOsoba: {
+                    "required": true
+                },
+                Grad1: {
+                    "required": true
+                },
+                PTT2: {
+                    "required": true
+                },
+                Grad2: {
+                    "required": true
+                },
+                Drzava2: {
+                    "required": true
+                }
+            }
+        });
+
+        $('submit').on('click', function (e) {
+            e.preventDefault();
+
+            if (!($(".form").valid())) {
+                validator.focusInvalid();
+            }
+            else $(".form").submit();
+
+
+        });
+
+
+
+    });
+</script>
+
+
+<link href="~/Content/css/datepicker.css" rel="stylesheet" />
+<script src="~/Content/js/datepicker.js"></script>
+<script src="~/Content/js/bootstrap-datepicker.sr-latin.js"></script>
+
+<script src="~/Content/js/select.js"></script>
+<link href="~/Content/css/selectlist.css" rel="stylesheet" />
+
+<script src="~/Content/js/typehead.js"></script>
+<link href="~/Content/css/typehead.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(function () {
+
+        $('.datum').datepicker({
+            language: 'sr-latin',
+            format: "dd.mm.yyyy",
+            todayBtn: "linked",
+            autoclose: true,
+            todayHighlight: true,
+            toggleActive: true
+        });
+
+        $('.select').select2({
+            allowClear: true,
+            minimumInputLength: 3,
+            language: "es"
+        });
+
+        $('.select').on('change', function (e) {
+
+            var s = $("#SelectSubject").val();
+            if (s == '')
+                $("#subjekt-podaci").css("display", "block");
+            else $("#subjekt-podaci").css("display", "none");
+
+        });
+
+
+
+
+    });
+
+
+</script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCQBrlBT4GBGTFQsC4Ud5KeHOKCEa2o2ZY"></script>
+
+    <script>
+        function initMap(adr1, adr2) {
+            // var chicago = { lat: 41.85, lng: -87.65 };
+            //  var indianapolis = { lat: 39.79, lng: -86.14 };
+
+
+            var geocoder1 = new google.maps.Geocoder();;
+            var geocoder2 = new google.maps.Geocoder();;
+            var temp1 = { lat: 0, lng: 0 };
+            var temp2 = { lat: 0, lng: 0 };
+
+            geocoder1.geocode({ 'address': adr1 }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    temp1 = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() }   //convertLocationToLatLong(results[0].geometry.location.toUrlValue()); //results[0].geometry.location;
+                    console.log(temp1);
+                }
+                else alert("Adresa nije pronadjena. Nije moguće prikazati Google mapu")
+
+
+                geocoder2.geocode({ 'address': adr2 }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        temp2 = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() }
+                        console.log(temp2);
+                    }
+                    else alert("Adresa nije pronadjena. Nije moguće prikazati Google mapu")
+
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        center: temp2,
+                        zoom: 7,
+                        zoomControl: true,
+                        scaleControl: true
+                    });
+
+                    console.log(1);
+
+                    var directionsDisplay = new google.maps.DirectionsRenderer({
+                        map: map
+                    });
+
+                    // Set destination, origin and travel mode.
+                    var request = {
+                        destination: temp2,
+                        origin: temp1,
+                        travelMode: 'DRIVING'
+                    };
+
+                    // Pass the directions request to the directions service.
+                    var directionsService = new google.maps.DirectionsService();
+                    directionsService.route(request, function (response, status) {
+                        if (status == 'OK') {
+                            // Display the route on the map.
+                            directionsDisplay.setDirections(response);
+
+                            console.log(2);
+                        }
+                    });
+
+
+                    // racunanje udaljenost
+
+                    var distanceService = new google.maps.DistanceMatrixService();
+                    distanceService.getDistanceMatrix({
+                        origins: [temp1],
+                        destinations: [temp2],
+                        travelMode: google.maps.TravelMode.DRIVING,
+                        unitSystem: google.maps.UnitSystem.METRIC,
+                        durationInTraffic: true,
+                        avoidHighways: false,
+                        avoidTolls: false
+                    },
+                   function (response, status) {
+                       if (status !== google.maps.DistanceMatrixStatus.OK) {
+                           console.log('Error:', status);
+                       } else {
+                           console.log(response);
+                           $("#map-details").html("<div class='alert alert-callout alert-info no-margin' > Google maps procjena udaljenosti: " + response.rows[0].elements[0].distance.text + "<br> Google maps procjena vremena vožnje: " + response.rows[0].elements[0].duration.text + "</div>");
+
+                           // $("#distance").text(response.rows[0].elements[0].distance.text).show();
+                           // $("#duration").text(response.rows[0].elements[0].duration.text).show();
+                       }
+                   });
+
+
+
+
+
+                });
+
+
+
+            });
+
+
+
+
+        }
+
+    </script>
+
+
+
+<script>
+    $(document).ready(function () {
+
+
+        $("#a-add-utovar").on('click', function (e) {
+
+            e.preventDefault();
+            var numItems = $('#body-add-utovar').children('div.col-md-4').length;
+            console.log(numItems);
+            var html = "";
+
+
+            html += "<div class='col-md-4' id='DUrow-" + numItems + "'>";
+            html += "<div class='card card-underline'>";
+                html += "<div class='card-head style-djomla'>";
+                html += "<header class=''><strong># Dodatni Utovar</strong></header>";
+                    html += "<div class='tools'>";
+                    html += "<a href='#' title='Izbriši' id='DUrowrem-" + numItems + "' class='btn btn-icon-toggle btn-add'><i class='md md-delete'></i></a>"
+                    html += "</div>";
+                html += "</div>";
+            html += "<div class='card-body'>";
+
+                html += "<div class='form-group m0 floating-label'>";
+                html += "<input type='text' id='DU-BR-" + numItems + "' name='KorisnikNalogUtovar[" + numItems + "].ReferentniBrojUtovara' value='' class='form-control dirty' >";
+                html += "<label>Referentni Broj Utovara</label>";
+                html += "</div>";
+
+                html += "<div class='form-group m0 floating-label'>";
+                html += "<input type='text' id='DU-FIRMA-" + numItems + "' name='KorisnikNalogUtovar[" + numItems + "].Firma' value='' class='form-control dirty' >";
+                html += "<label>Firma</label>";
+                html += "</div>";
+
+                html += "<div class='form-group m0 floating-label'>";
+                html += "<input type='text' id='DU-ADRESA-" + numItems + "' name='KorisnikNalogUtovar[" + numItems + "].Adresa' value='' class='form-control dirty' >";
+                html += "<label>Adresa</label>";
+                html += "</div>";
+
+                html += "<div class='form-group m0 floating-label'>";
+                html += "<input type='text' id='DU-PTT-" + numItems + "' name='KorisnikNalogUtovar[" + numItems + "].PTT' value='' class='form-control dirty' >";
+                html += "<label>Poštanski Broj</label>";
+                html += "</div>";
+
+                html += "<div class='form-group m0 floating-label'>";
+                html += "<input type='text' id='DU-MJESTO-" + numItems + "' name='KorisnikNalogUtovar[" + numItems + "].Mjesto' value='' class='form-control dirty' >";
+                html += "<label>Grad</label>";
+                html += "</div>";
+
+                html += "<div class='form-group m0 floating-label'>";
+                html += "<input type='text' id='DU-DRZAVA-" + numItems + "' name='KorisnikNalogUtovar[" + numItems + "].Drzava' value='' class='form-control dirty' >";
+                html += "<label>Država</label>";
+                html += "</div>";
+
+                html += "<div class='form-group m0 floating-label'>";
+                html += "<input type='text' id='DU-KONTAKT-" + numItems + "' name='KorisnikNalogUtovar[" + numItems + "].Kontakt' value='' class='form-control dirty' >";
+                html += "<label>Kontakt</label>";
+                html += "</div>";
+
+                html += "<div class='form-group m0 floating-label'>";
+                html += "<input type='text' id='DU-DATUM-" + numItems + "' name='KorisnikNalogUtovar[" + numItems + "].DatmUtovara' value='' class='form-control dirty' >";
+                html += "<label>Datum Utovara</label>";
+                html += "</div>";
+
+                html += "<div class='form-group m0 floating-label'>";
+                html += "<input type='text' id='DU-KOLICINA-" + numItems + "' name='KorisnikNalogUtovar[" + numItems + "].KolicinaRobe' value='' class='form-control dirty' >";
+                html += "<label>Količina robe</label>";
+                html += "</div>";
+
+                html += "<div class='form-group m0 floating-label'>";
+                html += "<input type='text' id='DU-VRSTA-" + numItems + "' name='KorisnikNalogUtovar[" + numItems + "].VrstaRobe' value='' class='form-control dirty' >";
+                html += "<label>Vrsta robe</label>";
+                html += "</div>";
+
+                html += "<div class='form-group m0 floating-label'>";
+                html += "<input type='text' id='DU-TEZINA-" + numItems + "' name='KorisnikNalogUtovar[" + numItems + "].TezinaRobe' value='' class='form-control dirty' >";
+                html += "<label>Tezina robe</label>";
+                html += "</div>";
+
+                html += "<div class='form-group m0 floating-label'>";
+                html += "<input type='text' id='DU-DIMENZIJE-" + numItems + "' name='KorisnikNalogUtovar[" + numItems + "].DimenzijeRobe' value='' class='form-control dirty' >";
+                html += "<label>Dimenzije robe</label>";
+                html += "</div>";
+
+                html += "<div class='form-group m0 floating-label'>";
+                html += "<input type='text' id='DU-SPEDICIJA-" + numItems + "' name='KorisnikNalogUtovar[" + numItems + "].IzvoznaCarina' value='' class='form-control dirty' >";
+                html += "<label>Izvozna šedicija</label>";
+                html += "</div>";
+
+            html += "</div>";
+            html += "</div>";
+            html += "</div>";
+
+            $('#body-add-utovar').append(html);
+
+
+
+
+
+            $("#DU-FIRMA-" + numItems).rules("add", {
+                "required": true
+            });
+            $("#DU-ADRESA-" + numItems).rules("add", {
+                "required": true
+            });
+            $("#DU-MJESTO-" + numItems).rules("add", {
+                "required": true
+            });
+
+            $("#DU-DATUM-" + numItems).datepicker({
+                language: 'sr-latin',
+                format: "dd.mm.yyyy",
+                todayBtn: "linked",
+                autoclose: true,
+                todayHighlight: true,
+                toggleActive: true
+            });
+
+            $("#DU-SPEDICIJA-" + numItems).autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/DnevnikPrevoza/AjaxSpedicija",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.Spedicija, value: item.Spedicija };
+                            }))
+
+                        }
+                    })
+                }
+            });
+
+
+            $("#DU-DRZAVA-" + numItems).autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/DnevnikPrevoza/AjaxDrzava",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.Drzava, value: item.Drzava };
+                            }))
+
+                        }
+                    })
+                }
+
+            });
+
+
+            $("#DU-MJESTO-" + numItems).autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                url: "/DnevnikPrevoza/AjaxGradovi",
+                type: "POST",
+                dataType: "json",
+                data: { Prefix: request.term },
+                success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.Grad1, value: item.Grad1 };
+            }))
+
+            }
+            })
+            }
+
+            });
+
+
+            $("#DU-ADRESA-" + numItems).autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                url: "/DnevnikPrevoza/AjaxAdresa",
+                type: "POST",
+                dataType: "json",
+                data: { Prefix: request.term },
+                success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.Adresa, value: item.Adresa };
+            }))
+
+            }
+            })
+            }
+            });
+
+
+            $("#DU-FIRMA-" + numItems).autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                url: "/DnevnikPrevoza/AjaxFirme",
+                type: "POST",
+                dataType: "json",
+                data: { Prefix: request.term },
+                success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.Firma, value: item.Firma };
+            }))
+
+            }
+            })
+            }
+            });
+
+            $("#DU-FIRMA-" + numItems).focusout(function () {
+                console.log('uso' + $("#DU-MJESTO-" + numItems).val());
+                if ($("#DU-ADRESA-" + numItems).val() == '' || $("#DU-MJESTO-" + numItems).val() == '') {
+                    console.log(1);
+                    $.getJSON("/DnevnikPrevoza/AjaxPodaciOFirmi", { Firma: $("#DU-FIRMA-" + numItems).val() }, function (data) {
+                        if (data.Adresa != "") {
+                            $("#DU-ADRESA-" + numItems).val(data.Adresa);
+                            $("#DU-ADRESA-" + numItems).addClass("dirty");
+                            console.log(2);
+            }
+                        if (data.Grad != "") {
+                            $("#DU-MJESTO-" + numItems).val(data.Grad);
+                            $("#DU-MJESTO-" + numItems).addClass("dirty");
+                            console.log(3 + data.Grad);
+                        }
+                        if (data.PTT != "") {
+                            $("#DU-PTT-" + numItems).val(data.PTT);
+                            $("#DU-PTT-" + numItems).addClass("dirty");
+                        }
+                        if (data.Drzava != "") {
+                            $("#DU-DRZAVA-" + numItems).val(data.Drzava);
+                            $("#DU-DRZAVA-" + numItems).addClass("dirty");
+                        }
+            });
+            }
+            });
+
+
+
+            $("#DUrowrem-" + numItems).on('click', function (e) {
+                e.preventDefault();
+                $("#DU-FIRMA-"      + numItems).val("");
+                $("#DU-ADRESA-"     + numItems).val("");
+                $("#DU-MJESTO-"     + numItems).val("");
+                $("#DU-SPEDICIJA-"  + numItems).val("");
+                $("#DU-PTT-"        + numItems).val("");
+                $("#DU-DRZAVA-"     + numItems).val("");
+                $("#DU-KONTAKT-"    + numItems).val("");
+                $("#DU-DATUM-"      + numItems).val("");
+                $("#DU-KOLICINA-"   + numItems).val("");
+                $("#DU-VRSTA-"      + numItems).val("");
+                $("#DU-TEZINA-"     + numItems).val("");
+                $("#DU-DIMENZIJE-"  + numItems).val("");
+                $("#DU-BR-"         + numItems).val("");
+
+                $("#DU-FIRMA-"      + numItems).rules("remove");
+                $("#DU-ADRESA-"     + numItems).rules("remove");
+                $("#DU-MJESTO-"     + numItems).rules("remove");
+                $("#DU-SPEDICIJA-"  + numItems).rules("remove");
+
+                $("#DUrow-" + numItems).hide();
+            });
+
+            });
+
+            });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+
+
+        $("#a-add-istovar").on('click', function (e) {
+
+            e.preventDefault();
+            var numItems = $('#body-add-istovar').children('div.col-md-4').length;
+            console.log(numItems);
+            var html = "";
+
+
+            html += "<div class='col-md-4' id='DIrow-" + numItems + "'>";
+            html += "<div class='card card-underline'>";
+                html += "<div class='card-head style-djomla'>";
+                html += "<header class=''><strong># Dodatni Istovar</strong></header>";
+                    html += "<div class='tools'>";
+                    html += "<a href='#' title='Izbriši' id='DIrowrem-" + numItems + "' class='btn btn-icon-toggle btn-add'><i class='md md-delete'></i></a>"
+                    html += "</div>";
+                html += "</div>";
+            html += "<div class='card-body'>";
+
+                html += "<div class='form-group floating-label'>";
+                html += "<input type='text' id='DI-FIRMA-" + numItems + "' name='KorisnikNalogIstovar[" + numItems + "].Firma' value='' class='form-control dirty' >";
+                html += "<label>Firma</label>";
+                html += "</div>";
+
+                html += "<div class='form-group floating-label'>";
+                html += "<input type='text' id='DI-ADRESA-" + numItems + "' name='KorisnikNalogIstovar[" + numItems + "].Adresa' value='' class='form-control dirty' >";
+                html += "<label>Adresa</label>";
+                html += "</div>";
+
+                html += "<div class='form-group floating-label'>";
+                html += "<input type='text' id='DI-PTT-" + numItems + "' name='KorisnikNalogIstovar[" + numItems + "].PTT' value='' class='form-control dirty' >";
+                html += "<label>Poštanski Broj</label>";
+                html += "</div>";
+
+                html += "<div class='form-group floating-label'>";
+                html += "<input type='text' id='DI-MJESTO-" + numItems + "' name='KorisnikNalogIstovar[" + numItems + "].Mjesto' value='' class='form-control dirty' >";
+                html += "<label>Grad</label>";
+                html += "</div>";
+
+                html += "<div class='form-group floating-label'>";
+                html += "<input type='text' id='DI-DRZAVA-" + numItems + "' name='KorisnikNalogIstovar[" + numItems + "].Drzava' value='' class='form-control dirty' >";
+                html += "<label>Država</label>";
+                html += "</div>";
+
+                html += "<div class='form-group floating-label'>";
+                html += "<input type='text' id='DI-KONTAKT-" + numItems + "' name='KorisnikNalogIstovar[" + numItems + "].Kontakt' value='' class='form-control dirty' >";
+                html += "<label>Kontakt</label>";
+                html += "</div>";
+
+                html += "<div class='form-group floating-label'>";
+                html += "<input type='text' id='DI-DATUM-" + numItems + "' name='KorisnikNalogIstovar[" + numItems + "].DatumIstovara' value='' class='form-control dirty' >";
+                html += "<label>Datum Istovara</label>";
+                html += "</div>";
+
+                html += "<div class='form-group floating-label'>";
+                html += "<input type='text' id='DI-KOLICINA-" + numItems + "' name='KorisnikNalogIstovar[" + numItems + "].KolicinaRobe' value='' class='form-control dirty' >";
+                html += "<label>Količina robe</label>";
+                html += "</div>";
+            /*
+                html += "<div class='form-group floating-label'>";
+                html += "<input type='text' id='DI-VRSTA-" + numItems + "' name='DnevnikIstovar[" + numItems + "].VrstaRobe' value='' class='form-control dirty' >";
+                html += "<label>Vrsta robe</label>";
+                html += "</div>";
+
+                html += "<div class='form-group floating-label'>";
+                html += "<input type='text' id='DI-TEZINA-" + numItems + "' name='DnevnikIstovar[" + numItems + "].TezinaRobe' value='' class='form-control dirty' >";
+                html += "<label>Tezina robe</label>";
+                html += "</div>";
+                */
+                html += "<div class='form-group floating-label'>";
+                html += "<input type='text' id='DI-SPEDICIJA-" + numItems + "' name='KorisnikNalogIstovar[" + numItems + "].UvoznaCarina' value='' class='form-control dirty' >";
+                html += "<label>Uvozna šedicija</label>";
+                html += "</div>";
+
+            html += "</div>";
+            html += "</div>";
+            html += "</div>";
+
+            $('#body-add-istovar').append(html);
+
+
+
+
+
+            $("#DI-FIRMA-" + numItems).rules("add", {
+                "required": true
+            });
+            $("#DI-ADRESA-" + numItems).rules("add", {
+                "required": true
+            });
+            $("#DI-MJESTO-" + numItems).rules("add", {
+                "required": true
+            });
+
+            $("#DI-DATUM-" + numItems).datepicker({
+                language: 'sr-latin',
+                format: "dd.mm.yyyy",
+                todayBtn: "linked",
+                autoclose: true,
+                todayHighlight: true,
+                toggleActive: true
+            });
+
+            $("#DI-DRZAVA-" + numItems).autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/DnevnikPrevoza/AjaxDrzava",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.Drzava, value: item.Drzava };
+                            }))
+
+                        }
+                    })
+                }
+
+            });
+
+            $("#DI-SPEDICIJA-" + numItems).autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/DnevnikPrevoza/AjaxSpedicija",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.Spedicija, value: item.Spedicija };
+                            }))
+
+                        }
+                    })
+                }
+            });
+
+            $("#DI-MJESTO-" + numItems).autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                url: "/DnevnikPrevoza/AjaxGradovi",
+                type: "POST",
+                dataType: "json",
+                data: { Prefix: request.term },
+                success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.Grad1, value: item.Grad1 };
+            }))
+
+            }
+            })
+            }
+
+            });
+
+
+            $("#DI-ADRESA-" + numItems).autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                url: "/DnevnikPrevoza/AjaxAdresa",
+                type: "POST",
+                dataType: "json",
+                data: { Prefix: request.term },
+                success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.Adresa, value: item.Adresa };
+            }))
+
+            }
+            })
+            }
+            });
+
+
+            $("#DI-FIRMA-" + numItems).autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                url: "/DnevnikPrevoza/AjaxFirme",
+                type: "POST",
+                dataType: "json",
+                data: { Prefix: request.term },
+                success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.Firma, value: item.Firma };
+            }))
+
+            }
+            })
+            }
+            });
+
+            $("#DI-FIRMA-" + numItems).focusout(function () {
+                console.log('uso' + $("#DI-MJESTO-" + numItems).val());
+                if ($("#DI-ADRESA-" + numItems).val() == '' || $("#DI-MJESTO-" + numItems).val() == '') {
+                    console.log(1);
+                    $.getJSON("/DnevnikPrevoza/AjaxPodaciOFirmi", { Firma: $("#DI-FIRMA-" + numItems).val() }, function (data) {
+
+                        if (data.Adresa != "") {
+                            $("#DI-ADRESA-" + numItems).val(data.Adresa);
+                            $("#DI-ADRESA-" + numItems).addClass("dirty");
+                            console.log(2);
+                        }
+                        if (data.Grad != "") {
+                            $("#DI-MJESTO-" + numItems).val(data.Grad);
+                            $("#DI-MJESTO-" + numItems).addClass("dirty");
+                            console.log(3 + data.Grad);
+                        }
+                        if (data.PTT != "") {
+                            $("#DI-PTT-" + numItems).val(data.PTT);
+                            $("#DI-PTT-" + numItems).addClass("dirty");
+                        }
+                        if (data.Drzava != "") {
+                            $("#DI-DRZAVA-" + numItems).val(data.Drzava);
+                            $("#DI-DRZAVA-" + numItems).addClass("dirty");
+                        }
+
+            });
+            }
+            });
+
+
+
+            $("#DIrowrem-" + numItems).on('click', function (e) {
+                e.preventDefault();
+                $("#DI-FIRMA-" + numItems).val("");
+                $("#DI-ADRESA-" + numItems).val("");
+                $("#DI-MJESTO-" + numItems).val("");
+                $("#DI-SPEDICIJA-" + numItems).val("");
+                $("#DI-PTT-" + numItems).val("");
+                $("#DI-DRZAVA-" + numItems).val("");
+                $("#DI-KONTAKT-" + numItems).val("");
+                $("#DI-DATUM-" + numItems).val("");
+                $("#DI-KOLICINA-" + numItems).val("");
+              //  $("#DI-VRSTA-" + numItems).val("");
+              //  $("#DI-TEZINA-" + numItems).val("");
+
+                $("#DI-FIRMA-" + numItems).rules("remove");
+                $("#DI-ADRESA-" + numItems).rules("remove");
+                $("#DI-MJESTO-" + numItems).rules("remove");
+                $("#DI-SPEDICIJA-" + numItems).rules("remove");
+
+                $("#DIrow-" + numItems).hide();
+            });
+
+            });
+
+            });
+
+</script>
+
+
+<style>
+    td.djomla-new-line {
+        white-space: pre;
+    }
+
+    tr td {
+        padding: 1px 8px !important;
+    }
+
+    .contain-lg {
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #TOsnovniPodaci, #TUtovari, #TIstovari, #TPrevoz, #TDodatno {
+        min-height: 40em;
+    }
+
+    .text-primary {
+        min-height: 40px;
+        padding-bottom: 15px;
+    }
+
+    .style-djomla {
+        background-color: #f5f5f5;
+        border: 1px solid #e3e3e3;
+    }
+
+    .list li.divider-inset:after, .list.divider-inset li:after {
+        left: 0px;
+    }
+
+    .form-group.m0 {
+        margin-bottom: 0px;
+    }
+</style>
+
+<section>
+ <!--   <div class="container"> --> 
+        <div class="section-body  contain-lg">
+            <div class="card card-bordered style-primary">
+                <div class="card-head ">
+                    <div class="tools">
+                        <div class="btn-group">
+                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                        </div>
+                    </div>
+                    <header><i class="fa fa-fw fa-list"></i>&nbsp Nalog za utovar </header>
+                </div>
+
+                <div class="card-body style-default-bright">
+
+                    <div id="rootwizard" class="form-wizard form-wizard-horizontal">
+                        <div class="form-wizard-nav">
+                            <div class="progress" style="width: 100%;">
+                                <div class="progress-bar progress-bar-primary" style="width: 75%;"></div>
+                            </div>
+                            <ul id="wtabovi" class="nav nav-justified nav-pills">
+                                <li class="active">
+                                    <a class="cek" href="#tab1" id="0" data-toggle="tab"><span class="step">1</span> <span class="title">Podaci o Subjektu</span></a></li>
+                                <li><a class="cek" href="#tab2" id="1" data-toggle="tab"><span class="step">2</span> <span class="title">Utovar Robe</span></a></li>
+                                <li><a class="cek" href="#tab3" id="2" data-toggle="tab"><span class="step">3</span> <span class="title">Dodatni Utovari</span></a></li>
+                                <li><a class="cek" href="#tab4" id="3" data-toggle="tab"><span class="step">4</span> <span class="title">Istovar Robe</span></a></li>
+                                <li><a class="cek" href="#tab5" id="4" data-toggle="tab"><span class="step">5</span> <span class="title">Dodani Istovari</span></a></li>
+                                <li><a class="cek" href="#tab6" id="5" data-toggle="tab"><span class="step">6</span> <span class="title">Završi</span></a></li>
+                            </ul>
+                        </div>
+
+
+
+                        @using (Html.BeginForm("Create", "KorisnikNalog", FormMethod.Post, new { @class = "form", role = "form" }))
+                        {
+                            @Html.ValidationSummary(true)
+
+
+                            <div class="tab-content clerafix">
+
+
+                                <div class="tab-pane active" id="tab1">
+
+                                    <br>
+
+                                    <div class="card" id="subjekt-div">
+                                        <div class="card-head card-head-xs style-info">
+                                            <header>Da li imamo vaše podatke u našoj bazi podataka?</header>
+                                            <div class="tools">
+                                            </div>
+                                        </div>
+                                        <!--end .card-head -->
+                                        <div class="card-body">
+                                            <div class="alert alert-callout alert-info">
+                                                <p>Ako ste već ranije koristili naše usluge, dovoljno je da pretražite i izaberete vašu firmu iz padajuće liste </p>
+                                                <p>U koliko niste pronašli Vašu firmu, ostavite polje prazno i popunite formu koja se nalazi ispod</p>
+                                            </div>
+
+                                            <div class="form-group floating-label">
+
+                                                @Html.DropDownList("IdSubjekt", ViewBag.IdSubjekt as SelectList, String.Empty, new { @class = "form-control select", @id = "SelectSubject" })
+                                                @Html.Label("Pretraga Subjekata")
+
+                                            </div>
+
+                                        </div>
+                                        <!--end .card-body -->
+                                    </div>
+
+
+
+                                    <div class="card" id="subjekt-podaci">
+                                        <div class="card-head card-head-xs style-info">
+                                            <header>Podaci o poslovnom subjektu</header>
+                                            <div class="tools">
+                                            </div>
+                                        </div>
+                                        <!--end .card-head -->
+                                        <div class="card-body">
+                                            <div class="alert alert-callout alert-info">
+                                                Molimo Vas da unesete Vaše podatke
+                                            </div>
+
+
+                                            <div class="form-group floating-label">
+                                                @Html.TextBoxFor(model => model.Naziv, new { @class = "form-control" })
+                                                @Html.Label("Naziv Subjekta")
+                                            </div>
+                                            <div class="form-group floating-label">
+                                                @Html.TextBoxFor(model => model.Adresa, new { @class = "form-control" })
+                                                @Html.Label("Adresa")
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group floating-label">
+                                                        @Html.TextBoxFor(model => model.PTT, new { @class = "form-control" })
+                                                        @Html.Label("Poštanski Broj")
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group floating-label">
+                                                        @Html.TextBoxFor(model => model.Grad, new { @class = "form-control grad" })
+                                                        @Html.LabelFor(model => model.Grad)
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group floating-label">
+                                                        @Html.TextBoxFor(model => model.Drzava, new { @class = "form-control drzava" })
+                                                        @Html.LabelFor(model => model.Drzava)
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group floating-label">
+                                                        @Html.TextBoxFor(model => model.Telefon, new { @class = "form-control" })
+                                                        @Html.Label("Kontakt telefon")
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group floating-label">
+                                                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                                                        @Html.Label("Email")
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group floating-label">
+                                                        @Html.TextBoxFor(model => model.KontaktOsoba, new { @class = "form-control" })
+                                                        @Html.Label("Kontakt osoba")
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group floating-label">
+                                                        @Html.TextBoxFor(model => model.JIB, new { @class = "form-control" })
+                                                        @Html.LabelFor(model => model.JIB)
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group floating-label">
+                                                        @Html.TextBoxFor(model => model.PIB, new { @class = "form-control" })
+                                                        @Html.LabelFor(model => model.PIB)
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            </div>
+                                                <!--end .card-body -->
+                                            </div>
+
+
+                                        </div>
+
+                                <div class="tab-pane" id="tab2">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group floating-label">
+                                                @Html.TextBoxFor(model => model.Izvoznik, new { @class = "form-control izvoznik" })
+                                                @Html.Label("Izvoznik robe")
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group floating-label">
+                                                @Html.TextBoxFor(model => model.FirmaUtovar, new { @class = "form-control firma" })
+                                                @Html.Label("Naziv firme gdje se roba utovara")
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group floating-label">
+                                        @Html.TextBoxFor(model => model.MjestoUtovara, new { @class = "form-control" })
+                                        @Html.Label("Adresa utovara robe")
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group floating-label">
+                                                @Html.TextBox("PTT1", "", new { @class = "form-control" })
+                                                @Html.Label("Poštanski Broj")
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group floating-label">
+                                                @Html.TextBox("Grad1", "", new { @class = "form-control grad" })
+                                                @Html.Label("Grad utovara robe")
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group floating-label">
+                                                @Html.TextBox("Drzava1", "", new { @class = "form-control drzava" })
+                                                @Html.Label("Drzava")
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group floating-label">
+                                        @Html.TextBoxFor(model => model.IzvoznikKontaktOsoba, new { @class = "form-control" })
+                                        @Html.Label("Kontakt osoba za utovar")
+                                    </div>
+
+                                    <div class="form-group floating-label">
+                                        @Html.TextBoxFor(model => model.DatumUtovara, new { @class = "form-control datum" })
+                                        @Html.Label("Datum utovara")
+                                    </div>
+                                    <div class="form-group floating-label">
+                                        @Html.TextBoxFor(model => model.ReferentniBrojUtovara, new { @class = "form-control" })
+                                        @Html.Label("Referentni broj utovara")
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group floating-label">
+                                                @Html.TextBoxFor(model => model.VrstaRobe, new { @class = "form-control" })
+                                                @Html.Label("Vrsta robe")
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group floating-label">
+                                                @Html.TextBoxFor(model => model.VrijednostRobe, new { @class = "form-control" })
+                                                @Html.Label("Vrijednost robe")
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group floating-label">
+                                                @Html.TextBox("Dimenzije", "", new { @class = "form-control" })
+                                                @Html.Label("Broj euro-paltea I njiova visina ili navesti tačne dimenzije I broj koleta")
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group floating-label">
+                                                @Html.TextBoxFor(model => model.BrutoTezina, new { @class = "form-control" })
+                                                @Html.Label("Bruto težina robe")
+                                            </div>
+                                        </div>
+                                      </div>
+
+                                            <div class="form-group floating-label">
+                                                @Html.TextBoxFor(model => model.IzvoznaCarina, new { @class = "form-control spedicija" })
+                                                @Html.Label("Izvozno carinjenje (Špedicija i njena tačna adresa)")
+                                            </div>
+
+
+                                        </div>
+
+                                <div id="tab3" class="tab-pane">
+                                    <br />
+                                    <a id="a-add-utovar" class="btn ink-reaction btn-flat btn-lg btn-primary" href="#"><i class="md md-add"></i> Dodaj Novi Utovar </a>
+                                    <br />
+                                    <div class="row">
+                                        <div id="body-add-utovar">
+                                            </div>
+                                        </div>
+                                </div>
+
+                                <div class="tab-pane" id="tab4">
+
+                                     <div class="row">
+                                         <div class="col-md-6">
+                                             <div class="form-group floating-label">
+                                                 @Html.TextBoxFor(model => model.Uvoznik, new { @class = "form-control uvoznik" })
+                                                 @Html.Label("Uvoznik robe")
+                                             </div>
+                                         </div>
+                                         <div class="col-md-6">
+                                             <div class="form-group floating-label">
+                                                 @Html.TextBoxFor(model => model.FirmaIStovar, new { @class = "form-control  firma" })
+                                                 @Html.Label("Naziv firme gdje se roba istovara")
+                                             </div>
+                                         </div>
+                                      </div>
+
+                                     <div class="form-group floating-label">
+                                         @Html.TextBoxFor(model => model.UvoznikKontaktOsoba, new { @class = "form-control" })
+                                         @Html.Label("Kontakt osoba za uvoz")
+                                     </div>
+
+
+                                     <div class="form-group floating-label">
+                                         @Html.TextBoxFor(model => model.MjestoIstovara, new { @class = "form-control" })
+                                         @Html.Label("Adresa istovara robe")
+                                     </div>
+
+                                     <div class="row">
+                                         <div class="col-md-4">
+                                             <div class="form-group floating-label">
+                                                 @Html.TextBox("PTT2", "", new { @class = "form-control" })
+                                                 @Html.Label("Poštanski broj")
+                                             </div>
+                                         </div>
+
+                                         <div class="col-md-4">
+                                             <div class="form-group floating-label">
+                                                 @Html.TextBox("Grad2", "", new { @class = "form-control grad" })
+                                                 @Html.Label("Grad istovara robe")
+                                             </div>
+                                         </div>
+                                         <div class="col-md-4">
+                                             <div class="form-group floating-label">
+                                                 @Html.TextBox("Drzava2", "", new { @class = "form-control drzava" })
+                                                 @Html.Label("Država")
+                                             </div>
+                                         </div>
+                                     </div>
+
+                                     <div class="form-group floating-label">
+                                         @Html.TextBoxFor(model => model.DatumIstovara, new { @class = "form-control datum" })
+                                         @Html.Label("Datum istovara")
+                                     </div>
+                                     <div class="form-group floating-label">
+                                         @Html.TextBoxFor(model => model.UvoznaCarina, new { @class = "form-control spedicija" })
+                                         @Html.Label("Uvozno carinjenje (špedicija i njena tačna adresa, poštanski broj, grad i država )")
+                                     </div>
+
+
+                                 </div>
+
+                                <div id="tab5" class="tab-pane">
+                                    <br />
+                                    <a id="a-add-istovar" class="btn ink-reaction btn-flat btn-lg btn-primary" href="#"><i class="md md-add"></i> Dodaj Novi Istovar </a>
+                                    <br />
+                                    <div class="row">
+                                        <div id="body-add-istovar">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="tab-pane" id="tab6">
+
+
+                                            <div class="form-group floating-label">
+                                                <input type="submit" value="ZAVRŠI I POŠALJI NALOG ZA UTOVAR" class="btn btn-flat btn-lg btn-info ink-reaction btn-block" />
+                                            </div>
+                                        </div>
+
+
+
+                                        <ul class="pager wizard">
+                                            <li class="previous first" style="display: none;"><a href="#">Podacio Subjektu</a></li>
+                                            <li class="previous"><a href="#">Prethodno</a></li>
+                                            <li class="next last" style="display: none;"><a href="#">Istovar Robe</a></li>
+                                            <li class="next"><a href="#">Sledeće</a></li>
+                                        </ul>
+                                    </div>
+
+
+                                    }
+
+                                    <div id="map-details" class="col-sm-12" style="padding-left: 0px; padding-right: 0px; padding-bottom: 3px; clear: both;"></div>
+                                    <div id="map" class="col-sm-12" style="height:auto"></div>
+                                </div>
+                </div>
+
+
+
+               
+
+            </div>
+        </div>
+
+   <!--   </div> -->
+
+</section>
+

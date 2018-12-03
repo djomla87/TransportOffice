@@ -1,0 +1,689 @@
+﻿@model Spedicija.Ponuda
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script src="~/Content/js/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/Content/js/jquery-validation/dist/localization/messages_sr_lat.min.js"></script>
+<script src="~/Content/js/jquery-validation/dist/additional-methods.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        $.validator.setDefaults({
+            ignore: []
+        });
+
+        var validator = $(".form").validate({
+            rules: {
+
+                DatumDnevnika: {
+                    "required": true
+
+                }
+                ,
+                IdNarucioca: { "required": true },
+
+                UtovarGrad: { "required": true },
+                IstovarGrad: { "required": true },
+
+
+                CijenaPrevoza: {
+                    "required": true,
+              "pattern": /^(\d+|\d+,\d{1,2})$/
+                },
+
+                IdValuta: { "required": true },
+                CijenaPrevozaPrevoznika: { "pattern": /^(\d+|\d+,\d{1,2})$/ }
+              
+            },
+            messages: {
+                CijenaPrevoza: {
+                    pattern: 'Unesite ispravan iznos (za decimale koristite , )'
+                },
+                CijenaPrevozaPrevoznika: {
+                    pattern: 'Unesite ispravan iznos (za decimale koristite , )'
+                }
+
+            }
+
+        });
+
+        $('submit').on('click', function (e) {
+            e.preventDefault();
+
+            if (!($(".form").valid())) {
+                validator.focusInvalid();
+            }
+           else $(".form").submit();
+
+
+        });
+    });
+</script>
+
+
+
+<link href="~/Content/css/datepicker.css" rel="stylesheet" />
+<script src="~/Content/js/datepicker.js"></script>
+<script src="~/Content/js/bootstrap-datepicker.sr-latin.js"></script>
+
+
+<script src="~/Content/js/select.js"></script>
+<link href="~/Content/css/selectlist.css" rel="stylesheet" />
+
+<script src="~/Content/js/typehead.js"></script>
+<link href="~/Content/css/typehead.css" rel="stylesheet" />
+
+<script src="~/Content/nano-scroller/jquery.nanoscroller.min.js"></script>
+<link href="~/Content/nano-scroller/nanoscroller.css" rel="stylesheet" />
+
+<style type="text/css">
+
+.nano1 { width: 100%; height: 500px; }
+.nano1 .nano-content { padding: 10px; }
+.nano1 .nano-pane   { background: #888; }
+.nano1 .nano-slider { background: #111; }
+
+</style>
+
+
+<script type="text/javascript">
+    $(function () {
+
+        $('.datum').datepicker({
+            language: 'sr-latin',
+        format: "dd.mm.yyyy",
+        todayBtn: "linked",
+        autoclose: true,
+        todayHighlight: true,
+        toggleActive: true
+    });
+      
+        $('.select').select2({
+            allowClear: true
+        });
+
+    });
+
+
+</script> 
+<script>
+    $(document).ready(function () {
+
+        $("#_SaPDV").on('click', function (e) {
+
+            console.log('1');
+            if ($(this).is(':checked')) {
+
+                console.log('2');
+                var a = parseFloat($("#CijenaPrevoza").val().replace(',', '.'));
+                var c = (a * 17 / 100).toFixed(2);
+                a = (a + a * 17 / 100).toFixed(2);
+
+                $("#CijenaPrevoza").val(a.toString().replace('.', ','));
+                $("#IznosPDV").val(c.toString().replace('.', ','));
+
+            }
+            else {
+                console.log('3');
+                var b = parseFloat($("#CijenaPrevoza").val().replace(',', '.'));
+                b = (b * 100 / 117).toFixed(2);
+                $("#CijenaPrevoza").val(b.toString().replace('.', ','));
+                $("#IznosPDV").val("0");
+
+            }
+
+        });
+
+
+
+        $(".grad").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/DnevnikPrevoza/AjaxGradovi",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Grad1, value: item.Grad1 };
+                        }))
+
+                    }
+                })
+            }
+
+        });
+
+        $("#UtovarGrad").focusout(function () {
+            if ($("#UtovarDrzava").val() == '') {
+                $.getJSON("/DnevnikPrevoza/AjaxVratiDrzavuZaGrad", { Grad: $("#UtovarGrad").val() }, function (data) {
+                    if (data.Drzava != "") {
+                        $("#UtovarDrzava").val(data.Drzava);
+                        $("#UtovarDrzava").addClass("dirty")
+
+                    }
+                });
+            }
+        });
+
+        $("#IstovarGrad").focusout(function () {
+            if ($("#IstovarDrzava").val() == '') {
+                $.getJSON("/DnevnikPrevoza/AjaxVratiDrzavuZaGrad", { Grad: $("#IstovarGrad").val() }, function (data) {
+                    if (data.Drzava != "") {
+                        $("#IstovarDrzava").val(data.Drzava);
+                        $("#IstovarDrzava").addClass("dirty")
+
+                    }
+                });
+            }
+        });
+
+        $("#PrevoznikIstovarGrad").focusout(function () {
+            if ($("#PrevoznikIstovarDrzava").val() == '') {
+                $.getJSON("/DnevnikPrevoza/AjaxVratiDrzavuZaGrad", { Grad: $("#PrevoznikIstovarGrad").val() }, function (data) {
+                    if (data.Drzava != "") {
+                        $("#PrevoznikIstovarDrzava").val(data.Drzava);
+                        $("#PrevoznikIstovarDrzava").addClass("dirty")
+
+                    }
+                });
+            }
+        });
+        
+        $("#PrevoznikUtovarGrad").focusout(function () {
+            if ($("#PrevoznikUtovarDrzava").val() == '') {
+                $.getJSON("/DnevnikPrevoza/AjaxVratiDrzavuZaGrad", { Grad: $("#PrevoznikUtovarGrad").val() }, function (data) {
+                    if (data.Drzava != "") {
+                        $("#PrevoznikUtovarDrzava").val(data.Drzava);
+                        $("#PrevoznikUtovarDrzava").addClass("dirty")
+
+                    }
+                });
+            }
+        });
+
+
+        $(".drzava").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/DnevnikPrevoza/AjaxDrzava",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Drzava, value: item.Drzava };
+                        }))
+
+                    }
+                })
+            }
+
+        });
+
+
+        $(".ptt").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/DnevnikPrevoza/AjaxPTT",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.PTT, value: item.PTT };
+                        }))
+
+                    }
+                })
+            }
+
+        });
+
+
+
+        $("#UtovarPTT").focusout(function () {
+            if ($("#UtovarGrad").val() == '') {
+                $.getJSON("/DnevnikPrevoza/AjaxVratiZaPTT", { PTT: $("#UtovarPTT").val() }, function (data) {
+                    if (data.Drzava != "") {
+                        $("#UtovarDrzava").val(data.Drzava);
+                        $("#UtovarDrzava").addClass("dirty")
+
+                    }
+
+                    if (data.Grad != "") {
+                        $("#UtovarGrad").val(data.Grad);
+                        $("#UtovarGrad").addClass("dirty")
+
+                    }
+                });
+            }
+        });
+
+        $("#IstovarPTT").focusout(function () {
+            if ($("#IstovarGrad").val() == '') {
+                $.getJSON("/DnevnikPrevoza/AjaxVratiZaPTT", { PTT: $("#IstovarPTT").val() }, function (data) {
+                    if (data.Drzava != "") {
+                        $("#IstovarDrzava").val(data.Drzava);
+                        $("#IstovarDrzava").addClass("dirty")
+
+                    }
+
+                    if (data.Grad != "") {
+                        $("#IstovarGrad").val(data.Grad);
+                        $("#IstovarGrad").addClass("dirty")
+
+                    }
+
+                });
+            }
+        });
+
+
+    });
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+    //    $(".nano1").nanoScroller();
+
+        $("#btn-provjeri").on('click', function () {
+
+            var html = "";
+
+            $.getJSON("/Ponuda/PodundaIzDnevnika", { GradOd: $("#UtovarGrad").val(), GradDo: $("#IstovarGrad").val() }, function (data) {
+
+                $.each(data, function (i, item) {                
+                    html += "<tr><td>" + item.Datum + "</td><td>" + item.Cijena + "</td><td>" + item.PDV + "</td><td>" + item.CijenaDrugogPrevoznika + "</td><td>" + item.Troskovi + "</td><td>" + item.Roba + "</td><td><a href='/DnevnikPrevoza/Details/" + item.IdDnevnik +  "'>Detalji</a></td></tr>";
+                });
+
+                $("#tb-podaci").html(html);
+                $(".nano1").nanoScroller();
+            });
+
+        });
+
+        /*
+        IdDnevnik = c.IdDnevnik,
+                    RelacijaOd = c.UtovarPTT + " " + c.UtovarGrad + " " + c.UtovarDrzava,
+                    RelacijaDo = c.IstovarPTT + " " + c.IstovarGrad + " " + c.IstovarDrzava,
+                    Cijena = c.CijenaPrevoza + " " + c.Valuta.OznakaValute,
+                    PDV = c.IznosPDV != null ? c.IznosPDV.Value.ToString("0.00") : "0",
+                    CijenaDrugogPrevoznika = ((c.CijenaPrevozaPrevoznika ?? 0) * (c.Valuta1 == null ? 0 : c.Valuta1.UKM ?? 0)).ToString("0.00"),
+                    Troskovi = c.Troskovi.Count() > 0 ? (c.Troskovi.Sum(d => (d.Iznos ?? 0) * (d.Valuta.UKM ?? 0))).ToString("0.00") : "0",
+                    Roba = "Količina: " + c.KolicinaRobe + System.Environment.NewLine + "Težina: " + c.TezinaRobe + System.Environment.NewLine + "Vrsta: " + c.VrstaRobe,
+                    Datum = c.DatumDnevnika.Value.ToShortDateString(),
+        */
+       
+
+    });
+
+</script>
+
+
+<section>
+
+    <div class="section-body ">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-bordered style-primary">
+    <div class="card-head">
+        <div class="tools">
+            <div class="btn-group">
+                <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+                <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+                <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+            </div>
+        </div>
+        <header><i class="fa fa-fw fa-list"></i>&nbsp Kreiraj ponudu </header>
+    </div>
+
+
+
+
+
+    @using (Html.BeginForm("Create", "Ponuda", FormMethod.Post, new { @class = "form", role = "form" }))
+    {
+        @Html.ValidationSummary(true)
+
+        <div class="card-body style-default-bright">
+
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group floating-label">
+                        @Html.DropDownList("IdNarucioca", ViewBag.IdNarucioca as SelectList, String.Empty, new { @class = "form-control select" })
+                        @Html.ValidationMessageFor(model => model.IdNarucioca)
+                        @Html.LabelFor(model => model.IdNarucioca, "Naručioc")
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group floating-label">
+                        @Html.TextBoxFor(model => model.DatumDnevnika, new { @class = "form-control datum" })
+                        @Html.ValidationMessageFor(model => model.DatumDnevnika)
+                        @Html.LabelFor(model => model.DatumDnevnika)
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group floating-label">
+                        @Html.TextBoxFor(model => model.VrstaRobe, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.VrstaRobe)
+                        @Html.LabelFor(model => model.VrstaRobe)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group floating-label">
+                        @Html.TextBoxFor(model => model.KolicinaRobe, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.KolicinaRobe)
+                        @Html.LabelFor(model => model.KolicinaRobe)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group floating-label">
+                        @Html.TextBoxFor(model => model.DimenzijeRobe, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DimenzijeRobe)
+                        @Html.LabelFor(model => model.DimenzijeRobe)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group floating-label">
+                        @Html.TextBoxFor(model => model.TezinaRobe, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.TezinaRobe)
+                        @Html.LabelFor(model => model.TezinaRobe)
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group floating-label">
+                        @Html.TextBoxFor(model => model.UtovarPTT, new { @class = "form-control ptt" })
+                        @Html.ValidationMessageFor(model => model.UtovarPTT)
+                        @Html.LabelFor(model => model.UtovarPTT)
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group floating-label">
+                        @Html.TextBoxFor(model => model.UtovarGrad, new { @class = "form-control grad" })
+                        @Html.ValidationMessageFor(model => model.UtovarGrad)
+                        @Html.LabelFor(model => model.UtovarGrad)
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group floating-label">
+                        @Html.TextBoxFor(model => model.UtovarDrzava, new { @class = "form-control drzava" })
+                        @Html.ValidationMessageFor(model => model.UtovarDrzava)
+                        @Html.LabelFor(model => model.UtovarDrzava)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group floating-label">
+                        @Html.TextBoxFor(model => model.IstovarPTT, new { @class = "form-control ptt" })
+                        @Html.ValidationMessageFor(model => model.IstovarPTT)
+                        @Html.LabelFor(model => model.IstovarPTT)
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group floating-label">
+                        @Html.TextBoxFor(model => model.IstovarGrad, new { @class = "form-control grad" })
+                        @Html.ValidationMessageFor(model => model.IstovarGrad)
+                        @Html.LabelFor(model => model.IstovarGrad)
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group floating-label">
+                        @Html.TextBoxFor(model => model.IstovarDrzava, new { @class = "form-control drzava" })
+                        @Html.ValidationMessageFor(model => model.IstovarDrzava)
+                        @Html.LabelFor(model => model.IstovarDrzava)
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group floating-label">
+                        @Html.TextBoxFor(model => model.CijenaPrevoza, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CijenaPrevoza)
+                        @Html.LabelFor(model => model.CijenaPrevoza)
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group floating-label">
+                        @Html.TextBoxFor(model => model.IznosPDV, new { @class = "form-control dirty", @Readonly = "readonly" })
+                        @Html.Label("Iznos PDV-a")
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group floating-label">
+                        <div class="checkbox checkbox-inline checkbox-styled">
+                            <label>
+                                <input type="checkbox" id="_SaPDV" name="_SaPDV" /><span>Obračunat PDV</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group floating-label">
+                        @Html.DropDownList("IdValuta", ViewBag.IdValuta as SelectList, String.Empty, new { @class = "form-control select" })
+                        @Html.ValidationMessageFor(model => model.IdValuta)
+                        @Html.LabelFor(model => model.IdValuta, "Valuta")
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group floating-label">
+                        @Html.TextBoxFor(model => model.ValutaPlacanja, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ValutaPlacanja)
+                        @Html.LabelFor(model => model.ValutaPlacanja)
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="card card-bordered card-collapsed">
+                <div class="card-head card-head-xs style-gray-light">
+                    <div class="tools">
+                        <div class="btn-group">
+                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+                        </div>
+                    </div>
+                    <header>Podaci o drugom prevozniku </header>
+                </div>
+                <div class="card-body style-default-bright" style="display:none">
+                    <!-- DODATI -->
+                    <div class="row">
+                        <div class="com-md-6">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group floating-label">
+                                        <div class="checkbox checkbox-inline checkbox-styled">
+                                            <label>
+                                                <input type="checkbox" id="cbDrugi" name="_DrugiPrevoznik" /><span>Da li je u pitanju drugi prevoznik</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group floating-label">
+                                        @Html.DropDownList("IdSubjekt", ViewBag.IdSubjekt as SelectList, String.Empty, new { @class = "form-control select" })
+                                        @Html.ValidationMessageFor(model => model.IdSubjekt)
+                                        @Html.LabelFor(model => model.IdSubjekt, "Drugi Prevoznik")
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group floating-label">
+                                        @Html.TextBoxFor(model => model.CijenaPrevozaPrevoznika, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.CijenaPrevozaPrevoznika)
+                                        @Html.LabelFor(model => model.CijenaPrevozaPrevoznika)
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group floating-label">
+                                        @Html.DropDownList("IdValutaPrevoznika", ViewBag.IdValutaPrevoznika as SelectList, String.Empty, new { @class = "form-control select" })
+                                        @Html.ValidationMessageFor(model => model.IdValutaPrevoznika)
+                                        @Html.LabelFor(model => model.IdValutaPrevoznika, "Valuta")
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group floating-label">
+                                        @Html.TextBoxFor(model => model.ValutaPlacanjaPrevoznika, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ValutaPlacanjaPrevoznika)
+                                        @Html.LabelFor(model => model.IdValutaPrevoznika, "Valuta Plaćanja")
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group floating-label">
+                                        @Html.TextBoxFor(model => model.PrevoznikIstovarGrad, new { @class = "form-control grad" })
+                                        @Html.ValidationMessageFor(model => model.PrevoznikIstovarGrad)
+                                        @Html.Label("Grad istovara")
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group floating-label">
+                                        @Html.TextBoxFor(model => model.PrevoznikIstovarDrzava, new { @class = "form-control drzava" })
+                                        @Html.Label("Država")
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group floating-label">
+                                        @Html.TextBoxFor(model => model.PrevoznikUtovarGrad, new { @class = "form-control grad" })
+                                        @Html.ValidationMessageFor(model => model.PrevoznikUtovarGrad)
+                                        @Html.Label("Grad utovara")
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group floating-label">
+                                        @Html.TextBoxFor(model => model.PrevoznikUtovarDrzava, new { @class = "form-control drzava" })
+                                        @Html.Label("Država")
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- -->
+                </div>
+            </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group floating-label">
+                            @Html.TextAreaFor(model => model.Napomena, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Napomena)
+                            @Html.LabelFor(model => model.Napomena)
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+                    <div class="card-body style-default-bright">
+
+                        @foreach(var item in ViewBag.UsloviPrevoza as List<Spedicija.UsloviPrevoza>)
+                            {
+
+                            <div class="form-group floating-label" style="margin-bottom:0px; padding-top:0px;">
+                                <div class="checkbox checkbox-inline checkbox-styled">
+                                    <label>
+                                        @if (item.Aktivan)
+                                        {
+                                        <input type="checkbox" id="_UslovPrevoza" name="_UslovPrevoza" value="@item.IdUslov" checked />
+                                        }
+                                        else
+                                        {
+                                        <input type="checkbox" id="_UslovPrevoza" name="_UslovPrevoza" value="@item.IdUslov" />
+                                        }
+                                        <span> @item.Tekst </span>
+                                    </label>
+                                </div>
+                            </div>
+                            }
+
+
+                    </div>
+
+
+                    <div class="card-actionbar style-default-bright">
+                        <div class="card-actionbar-row">
+                            <input type="submit" value="KREIRAJ" class="btn btn-flat btn-primary ink-reaction" />
+                            @Html.ActionLink("NAZAD NA LISTU", "Index", null, new { @class = "btn btn-flat btn-primary ink-reaction pull-left" })
+                            <a href="#" id="btn-provjeri" class="btn btn-flat btn-primary ink-reaction pull-left"> Provjeri u Dnevniku </a>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card card-bordered style-primary">
+                    <div class="card-head">
+                        <header><i class="fa fa-fw fa-list"></i>&nbsp Postojeći dnevnici za tu relaciju </header>
+                    </div>
+                    <div class="card-body style-default-bright">
+
+                        <div id="prevozi" class="nano1">
+                            <div class="nano-content">
+
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Datum</th>
+                                            <th>Moja Cijena</th>
+                                            <th>Iznos PDV</th>
+                                            <th>Drugi Prevoznik</th>
+                                            <th>Troškovi</th>
+                                            <th>Roba</th>
+                                            <th>Detalji</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tb-podaci"></tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </section>
+

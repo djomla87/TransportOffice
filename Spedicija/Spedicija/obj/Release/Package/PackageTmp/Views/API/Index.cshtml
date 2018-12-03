@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $.getJSON("API/Tasks", function (data) {
+
+            $("#2").html("" + data)
+
+        });
+
+    });
+
+ </script>
+
+<section>
+
+    <div class="card">
+        <div class="card-head">
+            <header>Taskovi</header>
+        </div>
+        <div class="card-body">
+            <pre></pre>
+            <p id ="2"></p>
+        </div>
+    </div>
+
+
+    </section>

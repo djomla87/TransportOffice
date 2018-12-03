@@ -1,0 +1,202 @@
+﻿@model List<Spedicija.DnevnicaDetail>
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+<script src="~/Content/js/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/Content/js/jquery-validation/dist/localization/messages_sr_lat.min.js"></script>
+<script src="~/Content/js/jquery-validation/dist/additional-methods.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('input').click(function () {
+            // the select() function on the DOM element will do what you want
+            this.select();
+        });
+
+        $.validator.setDefaults({
+            ignore: []
+        });
+
+        var validator = $(".form").validate({
+            rules: {
+                Plata: { "pattern": /^(\d+|\d+,\d{1,2})$/ }
+            },
+            messages: {
+                Plata: {
+                    pattern: 'Unesite ispravan iznos (za decimale koristite , )'
+                }
+            }
+        });
+
+        $(".decimal-validate").each(function (item) {
+            $(this).rules("add", {
+                pattern: /^(\d+|\d+,\d{1,2})$/,
+                messages: {
+                    pattern: 'Neispravan iznos'
+                }
+            });
+        });
+
+        $('submit').on('click', function (e) {
+            e.preventDefault();
+
+            if (!($(".form").valid())) {
+                validator.focusInvalid();
+            }
+			else $(".form").submit();
+
+
+        });
+
+
+
+        $('.iznos').keydown(function (e) {
+            if (e.keyCode == 40) {
+               
+                var id = ($(this)[0].id);
+                var arr = id.split('-');
+                var num = parseInt(arr[1]) + 1;
+                var newid = arr[0] + '-' + num;
+                /*
+                37 - left
+                38 - up
+                39 - right
+                40 - down
+                */
+
+                $('#'+newid).focus();
+            }
+            else if (e.keyCode == 38)
+            {
+                var id = ($(this)[0].id);
+                var arr = id.split('-');
+                var num = parseInt(arr[1]) - 1;
+                var newid = arr[0] + '-' + num;
+
+                $('#' + newid).focus();
+            }
+
+            else if (e.keyCode == 37) {
+                var id = ($(this)[0].id);
+                var arr = id.split('-');
+                var num = parseInt(arr[0]) - 1;
+                var newid = num + '-' + arr[1]
+
+                $('#' + newid).focus();
+            }
+            else if (e.keyCode == 39) {
+                var id = ($(this)[0].id);
+                var arr = id.split('-');
+                var num = parseInt(arr[0]) + 1;
+                var newid = num + '-' + arr[1]
+
+                $('#' + newid).focus();
+            }
+
+        });
+  });
+</script> 
+
+
+<section>  
+<div class ="container">      
+    <div class="section-body ">
+           
+        <div class="card card-bordered style-primary">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-list"></i>&nbsp Unos Dnevnica </header>
+			</div>
+ 
+
+
+
+
+@using (Html.BeginForm("Create", "VozacDnevnica", FormMethod.Post, new { @class = "form", role = "form" })) {
+    @Html.ValidationSummary(true)
+    
+    @Html.Hidden("IdVozac", ViewBag.IdVozac as object)
+    
+<div class="card-body style-default-bright">
+   
+    @for( int i=0; i< DateTime.DaysInMonth( Convert.ToInt32(ViewBag.Godina),  Convert.ToInt32(ViewBag.Mjesec)); i++)
+    {
+	   <div class="row">
+            <div class="col-lg-2">
+           
+          <div class="form-group floating-label">
+            @Html.TextBoxFor(model => model[i].Datum, new { @class = "form-control ", @Value=(i+1)+"."+ViewBag.Mjesec+"."+ViewBag.Godina, @Readonly = "readonly"  })
+            @Html.ValidationMessageFor(model => model[i].Datum)
+            @Html.LabelFor(model => model[i].Datum)
+          </div>
+            </div>
+
+            <div class="col-lg-2">
+          <div class="form-group floating-label">
+            @Html.TextBoxFor(model => model[i].Dnevnica, new { @class = "form-control iznos decimal-validate" , id = "1-"+i })
+            @Html.ValidationMessageFor(model => model[i].Dnevnica)
+            @Html.LabelFor(model => model[i].Dnevnica)
+          </div>
+             </div>
+
+         <div class="col-lg-2">
+          <div class="form-group floating-label">
+            @Html.TextBoxFor(model => model[i].Nocenje, new { @class = "form-control iznos decimal-validate" , id = "2-"+i })
+            @Html.ValidationMessageFor(model => model[i].Nocenje)
+            @Html.LabelFor(model => model[i].Nocenje)
+          </div>
+             </div>
+
+             <div class="col-lg-2">
+          <div class="form-group floating-label">
+            @Html.TextBoxFor(model => model[i].OstaliTroskovi, new { @class = "form-control iznos decimal-validate" , id = "3-"+i })
+            @Html.ValidationMessageFor(model => model[i].OstaliTroskovi)
+            @Html.LabelFor(model => model[i].OstaliTroskovi)
+          </div>
+             </div>
+
+           <div class="col-lg-4">
+          <div class="form-group floating-label">
+            @Html.TextBoxFor(model => model[i].Napomena, new { @class = "form-control iznos ", id = "4-"+i })
+            @Html.ValidationMessageFor(model => model[i].Napomena)
+            @Html.LabelFor(model => model[i].Napomena)
+          </div>
+             </div>
+
+
+            </div>
+        
+    }
+
+     <div class="col-lg-4">
+          <div class="form-group floating-label">
+    @Html.TextBox("Plata", "", new { @class = "form-control" })
+    @Html.Label("Plata")
+</div>
+             </div>
+</div>
+		     <div class="card-actionbar style-default-bright">
+				<div class="card-actionbar-row">	
+                          <input type="submit" value="KREIRAJ" class = "btn btn-flat btn-primary ink-reaction"  />
+						  @Html.ActionLink("NAZAD NA DETALJE", "Details", "Vozaci", new { id = ViewBag.IdVozac}, new { @class = "btn btn-flat btn-primary ink-reaction pull-left" })
+				</div>
+			</div>
+}
+
+
+        </div>
+    </div>
+	</div>
+    </section>
+

@@ -1,0 +1,154 @@
+﻿@model Spedicija.Troskovi
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+<script src="~/Content/js/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/Content/js/jquery-validation/dist/localization/messages_sr_lat.min.js"></script>
+<script src="~/Content/js/jquery-validation/dist/additional-methods.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        $.validator.setDefaults({
+            ignore: []
+        });
+
+        var validator = $(".form").validate({
+            rules: {
+			
+ Iznos : {
+				"required" : true,
+                "pattern": /^(\d+|\d+,\d{1,2})$/
+					}
+ ,
+ IdValuta : {
+				"required" : true
+					}
+ ,
+ Vrsta : {
+				"required" : true
+					}
+						}
+						 });
+
+        $('submit').on('click', function (e) {
+            e.preventDefault();
+
+            if (!($(".form").valid())) {
+                validator.focusInvalid();
+            }
+			else $(".form").submit();
+
+
+        });
+  });
+</script> 
+
+
+<link href="~/Content/css/datepicker.css" rel="stylesheet" />
+<script src="~/Content/js/datepicker.js"></script>
+<script src="~/Content/js/bootstrap-datepicker.sr-latin.js"></script>
+
+<script src="~/Content/js/select.js"></script>
+<link href="~/Content/css/selectlist.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(function () {
+
+        $('.datum').datepicker({
+            language: 'sr-latin',
+        format: "dd.mm.yyyy",
+        todayBtn: "linked",
+        autoclose: true,
+        todayHighlight: true,
+        toggleActive: true
+    });
+        $('.select').select2({
+            allowClear: true
+        });
+
+    });
+
+
+</script> 
+
+
+<section>  
+<div class ="container">      
+    <div class="section-body ">
+           
+        <div class="card card-bordered style-primary">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-list"></i>&nbsp Kreiranje </header>
+			</div>
+ 
+
+
+
+
+@using (Html.BeginForm("Create", "Troskovi", FormMethod.Post, new { @class = "form", role = "form" })) {
+    @Html.ValidationSummary(true)
+
+	 <div class="card-body style-default-bright">
+
+             @Html.HiddenFor(model => model.IdDnevnik, new { @Value = ViewBag.IdDnevnik })
+
+        <div class="form-group floating-label">
+
+     
+					    @Html.TextBoxFor(model => model.Iznos, new { @class = "form-control"  })
+            @Html.ValidationMessageFor(model => model.Iznos)
+       
+
+            @Html.LabelFor(model => model.Iznos)
+
+</div>
+        <div class="form-group floating-label">
+
+     
+            @Html.DropDownList("IdValuta", ViewBag.IdValuta as SelectList, "",  new { @class = "form-control select"  })
+            @Html.ValidationMessageFor(model => model.IdValuta)
+       
+
+            @Html.LabelFor(model => model.IdValuta, "Valuta")
+
+</div>
+        <div class="form-group floating-label">
+
+     
+			@Html.DropDownList("Vrsta", ViewBag.Vrsta as SelectList, "", new { @class = "form-control select"  })
+            @Html.ValidationMessageFor(model => model.Vrsta)
+       
+
+            @Html.LabelFor(model => model.Vrsta)
+
+</div>
+     
+
+
+
+        </div>
+		     <div class="card-actionbar style-default-bright">
+				<div class="card-actionbar-row">	
+                          <input type="submit" value="KREIRAJ" class = "btn btn-flat btn-primary ink-reaction"  />
+						  @Html.ActionLink("NAZAD NA DETALJE", "Details", "DnevnikPrevoza", new { id = ViewBag.IdDnevnik }, new { @class = "btn btn-flat btn-primary ink-reaction pull-left" })
+									</div>
+			</div>
+}
+        </div>
+    </div>
+	</div>
+    </section>
+

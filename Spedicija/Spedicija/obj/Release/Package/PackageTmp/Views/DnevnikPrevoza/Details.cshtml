@@ -1,0 +1,1015 @@
+﻿@model Spedicija.DnevnikPrevoza
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<link href="~/Content/flag-icon-css-master/css/flag-icon.min.css" rel="stylesheet" />
+
+<script src="~/Content/js/dropzone.js"></script>
+<link href="~/Content/css/dropzone.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    Dropzone.options.myAwesomeDropzone = {
+        paramName: "file", // The name that will be used to transfer the file
+        maxFilesize: 10, // MB
+        uploadMultiple: true,
+        acceptedFiles: ".xls, .xlsx, .doc, .docx, .pdf, .img, .png. .gif, .tif",
+       complete: function (data) {
+            
+           var res = JSON.parse(data.xhr.responseText);
+           window.location.href = "/DnevnikPrevoza/Details/@Model.IdDnevnik";
+        },
+        init: function () {
+            this.on("sending", function (file, xhr, data) {
+
+                data.append("IdDnevnik", "@Model.IdDnevnik");
+            });
+        }
+    };
+
+
+</script>
+
+
+<script type ="text/javascript">
+
+    $(document).ready(function () {
+        /*
+        $('.doc-email-cls').on('click', function (e) {
+            e.preventDefault();
+
+            
+
+            var location = $(this)[0].href;
+
+            console.log(location);
+
+            document.location.href = "mailto:someone@gmail.com?subject=Notification&attachment=" + location;
+
+        });
+        */
+
+        $('#MailSend').on('click', function (e) {
+            e.preventDefault();
+
+            $.post("/DnevnikPrevoza/PromjenaStatusa/@Model.IdDnevnik?Status=-1", function (data) {
+              
+                var Naslov = "";
+                var StatusSr = "";
+                var StatusEn = "";
+                var SubjectSr = "";
+                var SubjectEN = "";
+                var istovariSR = "";
+                var istovariEN = "";
+                var gostiKod = "";
+                $.each(data, function (i, dataitem) {
+                    if (i == 0) {
+
+                        if (dataitem.Status == "ISTOVARENO") {
+                            StatusSr = "DOSTAVLJENO";
+                            StatusEn = "DELIVERED";
+                        }
+                        else if (dataitem.Status == "UTOVARENO U TRANZITU") {
+                            StatusSr = "UTOVARENO - U TRANZITU";
+                            StatusEn = "PICKED UP - IN TRANSIT";
+                        }
+
+                        Naslov = "mailto:" + dataitem.Email + "?subject=Notification about shipment no. " + dataitem.SerijskiBroj + " / Izvještaj o statusu pošiljke br. " + dataitem.SerijskiBroj;
+                        SubjectSr = "&body=Poštovani,%0DObavještenje o statusu pošiljke: " + StatusSr + "%0D%0DNaručioc prevoza: " + dataitem.Naziv.replace("&", "i") + "%0DBroj Naloga za utovar:" + dataitem.BrojNaloga + "%0DDetalji Utovara: " + dataitem.UtovarFirma.replace("&", "i") + " / " + dataitem.UtovarGrad + "%0DUvoznik: " + (dataitem.Uvoznik+"").replace("&", "i") + "%0DIzvoznik: " + (dataitem.Izvoznik+"").replace("&", "i");
+                        SubjectEN = "Greetings,%0DNotification of shipment status: " + StatusEn + "%0D%0DTransport order recived from: " + dataitem.Naziv.replace("&", "and") + "%0DTransport order no:" + dataitem.BrojNaloga + "%0DLoading details: " + dataitem.UtovarFirma.replace("&", "i") + " / " + dataitem.UtovarGrad + "%0DImporter: " + (dataitem.Uvoznik+"").replace("&", "i") + "%0DExporter: " + (dataitem.Izvoznik+"").replace("&", "i");
+                        gostiKod = dataitem.Guest;
+                    }
+
+                    istovariSR += "%0DDetalji Istovara: " + dataitem.IstovarFirma.replace("&", "i") + " / " + dataitem.IstovarGrad;
+                    istovariEN += "%0DDelivery details: " + dataitem.IstovarFirma.replace("&", "i") + " / " + dataitem.IstovarGrad;
+
+                });
+
+                
+                var loc = Naslov + SubjectSr + istovariSR + "%0D%0D%0D%0D" + SubjectEN + istovariEN + "%0D%0D%0D%0D" + "Status pošiljke možete pratiti na linku / Shipment status can be folowed on this link:%0Dwww.gmtel-office.com/DnevnikPrevoza/GuestDetail?s=" + gostiKod + "%0D%0D";
+                
+                var rep = 'null';
+                var regex = new RegExp(rep, 'g');
+                loc = loc.replace(regex, " ");
+
+                console.log(loc);
+                document.location.href = loc;
+
+            });
+
+        });
+    });
+
+</script>
+
+<section>       
+
+    <div class="row">
+        <div class="col-lg-6">
+    <div class="section-body ">
+          
+        <div class="card card-bordered style-primary">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+
+                   
+                                <a class="btn btn-icon-toggle btn-refresh" title="IstorijaProcesa" href="/DnevnikPrevoza/DnevnikLog/@Model.IdDnevnik"><i class="md md-history"></i></a>
+                                <a class="btn btn-icon-toggle btn-refresh" title="Štampaj Nalog" href="/Nalog/ReportDnevnik/@Model.IdDnevnik"><i class="md md-print"></i></a>
+                                
+                                    @if (Spedicija.Models.SpedicijaAutorizacija.ImaRolu("admin"))
+                                    {
+                                     <a class="btn btn-icon-toggle" id="MailSend" title="Pošalji Mail" href="#" ><i class="md md-email"></i></a>
+                                    }
+                                    
+                                <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div> 
+							    </div>
+							    <header><i class="fa fa-fw fa-list"></i>&nbsp Detalji dnevnika &nbsp Kreirao: @ViewBag.Korisnik </header>
+
+			</div>
+            <div class="card-body style-default-bright">
+
+			<ul class="list divider-full-bleed">
+	
+
+ 
+    <li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.Status)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Status)</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.DatumDnevnika)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.DatumDnevnika, "ShortDateTime")</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.Subjekt1.Naziv)</div> </div>
+						<div class="col-md-8"><a href="/Subjekt/Card/@Model.Subjekt1.IdSubjekt"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Subjekt1.Naziv)</div></a></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.BrojNaloga)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.BrojNaloga)</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.SerijskiBroj)</div> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.SerijskiBroj)</div></div>
+						</div>
+		</div>
+	</li>
+
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.UtovarFirma)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.UtovarFirma)</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.UtovarAdresa)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.UtovarAdresa)</div></div>
+						</div>
+		</div>
+	</li>
+
+		
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.UtovarGrad)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.UtovarGrad)</div></div>
+						</div>
+		</div>
+	</li>
+
+
+@if(Model.UtovarKontakt != null )
+{
+<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.UtovarKontakt)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.UtovarKontakt)</div></div>
+						</div>
+		</div>
+	</li>
+}
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.DatumUtovara)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.DatumUtovara, "ShortDateTime")</div></div>
+						</div>
+		</div>
+	</li>
+
+		<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.IstovarFirma)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.IstovarFirma)</div></div>
+						</div>
+		</div>
+	</li>
+
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.IstovarAdresa)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.IstovarAdresa)</div></div>
+						</div>
+		</div>
+	</li>
+
+		
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.IstovarGrad)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.IstovarGrad)</div></div>
+						</div>
+		</div>
+	</li>
+
+
+                @if(Model.IstovarKontakt != null )
+{
+			<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.IstovarKontakt)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.IstovarKontakt)</div></div>
+						</div>
+		</div>
+	</li>
+                }
+
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.DatumIstovara)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.DatumIstovara, "ShortDateTime")</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.KolicinaRobe)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.KolicinaRobe)</div></div>
+						</div>
+		</div>
+	</li>
+
+		<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.VrstaRobe)</div> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.VrstaRobe)</div></div>
+						</div>
+		</div>
+	</li>
+
+                    		<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.TezinaRobe)</div> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.TezinaRobe)</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.CijenaPrevoza)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.CijenaPrevoza) </div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.Valuta.OznakaValute)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Valuta.OznakaValute)</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">Iznos bez PDV-a</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@((Model.SaPDV ?? false) ? (Model.CijenaPrevoza.Value * 100 / 117).ToString("0.00") :  Model.CijenaPrevoza.Value.ToString("0.00") )   </div></div>
+						</div>
+		</div>
+	</li>
+
+    <li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">PDV:</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@((Model.SaPDV ?? false) ? (Model.CijenaPrevoza.Value - Model.CijenaPrevoza.Value * 100 / 117).ToString("0.00") :  "0" )   </div></div>
+						</div>
+		</div>
+	</li>
+
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.ValutaPlacanja)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.ValutaPlacanja)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.UvoznaSpedicija)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.UvoznaSpedicija)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.IzvoznaSpedicija)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.IzvoznaSpedicija)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4">
+                <div class="tile-icon">Vozilo</div><!-- <i class="fa fa-inbox"></i> --> </div>
+                @if (Model.Vozilo == null) { 
+                <div class="col-md-8"><div class="tile-text text-bold"></div></div>
+                }
+                else
+                {
+						<div class="col-md-8"><a href="/Vozilo/Details/@Model.Vozilo.IdVozilo"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Vozilo.TipVozila) @Html.DisplayFor(model => model.Vozilo.RegistarskiBroj)</div></a></div>
+                }
+                    </div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">Ime Vozača</div><!-- <i class="fa fa-inbox"></i> --> </div>
+				  @if (Model.Vozaci == null)
+      {
+           <div class="col-md-8"><div class="tile-text text-bold"></div></div>
+      }	
+                else{
+                	<div class="col-md-8"><a href="/Vozaci/Details/@Model.Vozaci.IdVozac"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Vozaci.ImeVozaca)</div></a></div>
+      }	</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.DrugiPrevoznik)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@if (Model.DrugiPrevoznik ?? false)
+                                                             { <span>DA</span> }
+                                                             else
+                                                             {  <span>NE</span> } </div></div>
+						</div>
+		</div>
+	</li>
+
+	
+    @if( Model.DrugiPrevoznik ?? false )
+    {
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">Prevoznik</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8">
+                            @if (Model.Subjekt == null)
+                            { <div class="tile-text text-bold"></div> }
+                            else
+                            {
+                            <a href="/Subjekt/Card/@Model.Subjekt.IdSubjekt"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Subjekt.Naziv)</div></a>
+                            }</div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.BrojNalogaPrevoznika)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.BrojNalogaPrevoznika)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.CijenaPrevozaPrevoznika)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.CijenaPrevozaPrevoznika)</div></div>
+						</div>
+		</div>
+	</li>
+
+		<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.ValutaPlacanjaPrevoznika)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.ValutaPlacanjaPrevoznika)</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">Valuta</div><!-- <i class="fa fa-inbox"></i> --> </div>
+
+						<div class="col-md-8">
+                            @if (Model.Valuta1 == null)
+                            { <div></div>}
+                            else
+                            {
+                            <div class="tile-text text-bold">@Html.DisplayFor(model => model.Valuta1.OznakaValute)</div>
+                            }
+						</div>
+						</div>
+		</div>
+	</li>
+
+			<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.RegistracijaVozilaPrevoznika)</div> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.RegistracijaVozilaPrevoznika)</div></div>
+						</div>
+		</div>
+	</li>
+                		<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.VozacPrevoznika)</div> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.VozacPrevoznika)</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.BrojFakture)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.BrojFakture)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.DatumSlanjaFakture)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.DatumSlanjaFakture, "ShortDateTime")</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.KontaktOsobaPrevoznika)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.KontaktOsobaPrevoznika)</div></div>
+						</div>
+		</div>
+	</li> 
+    }
+
+
+
+<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.KompletanUtovar)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold"> @if (Model.KompletanUtovar ?? false) { <span class="text-danger"> DA - samo naša roba na vozilu, dotovar nije dozvoljen </span> }
+                            else {<span> NE </span>}
+						                      </div></div>
+						</div>
+		</div>
+	</li> 
+
+                <li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.Napomena)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Napomena)</div></div>
+						</div>
+		</div>
+	</li>
+
+
+     @if(Spedicija.Models.SpedicijaAutorizacija.ImaRolu("admin")){
+    <li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.InternaNapomena)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.InternaNapomena)</div></div>
+						</div>
+		</div>
+	</li> 
+     }
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.DatumZapisa)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.DatumZapisa, "LongDateTime", "DatumZapisa")</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.ZapisAktivan)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@if (Model.ZapisAktivan ?? false)
+                                                             { <span>DA</span> }
+                                                             else
+                                                             {  <span>NE</span> } </div></div>
+						</div>
+		</div>
+	</li>
+   
+
+</ul>
+</div>
+          <div class="card-actionbar style-default-bright">
+				<div class="card-actionbar-row">	
+                        @Html.ActionLink("LISTA DNEVNIKA", "Index", null, new { @class = "btn btn-flat btn-primary ink-reaction pull-left" })
+
+                        @Html.ActionLink("Kloniraj", "Copy", new { id = Model.IdDnevnik }, new { @class = "btn btn-flat btn-primary ink-reaction pull-right" })
+						@Html.ActionLink("IZMJENI", "Edit", new { id = Model.IdDnevnik }, new { @class = "btn btn-flat btn-primary ink-reaction pull-right" }) 
+                        @Html.ActionLink("OBRIŠI", "Delete", new { id = Model.IdDnevnik }, new { @class = "btn btn-flat btn-danger ink-reaction pull-right" }) 
+                        
+					    
+									</div>
+			</div>
+</div>
+</div>
+
+
+     <div class="section-body ">
+          
+        <div class="card card-bordered style-primary">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-file-text-o"></i>&nbsp Nalozi Za Utovar</header>
+			</div>
+            <div class="card-body style-default-bright">
+
+                @if(Model.DrugiPrevoznik ?? false){
+                <table class="table  table-hover responsiv">
+                    <tr><th>Broj Naloga</th>
+                        <th>Za</th>
+                        <th>Od - Do</th>
+                        <th></th>
+                    </tr>
+
+                  
+                       
+                        <tr>
+                            <td class="no-padding"> @Model.BrojNalogaPrevoznika </td>
+                            <td class="no-padding"> @Model.Subjekt.Naziv</td>
+                            <td class="no-padding"> Od: @Model.UtovarGrad  Do: @Model.IstovarGrad</td>
+                            <td class="no-padding text-right">
+                                <a href="/Nalog/Report/@Model.IdDnevnik?Lan=SR" title='' class='btn btn-flat ink-reaction btn-default' ><h2>
+                                    <span class="label" style="background-color: whitesmoke;"><span data-toggle="tooltip" data-placement="top" data-original-title="Štampan Naloga [RS]" class="flag-icon flag-icon-rs"></span></span></h2>
+                                </a>
+
+                                <a href="/Nalog/Report/@Model.IdDnevnik?Lan=EN" title='' class='btn btn-flat ink-reaction btn-default' ><h2>
+                                    <span class="label" style="background-color: whitesmoke;"><span data-toggle="tooltip" data-placement="top" data-original-title="Štampan Naloga [EN]" class="flag-icon flag-icon-gb"></span></span></h2>
+                                </a>
+
+                            </td>
+                        </tr>
+                    
+
+                    </table>
+                    
+                }
+                </div>
+
+                    
+
+            </div>
+            </div>
+        </div>
+        <div class ="col-lg-6">
+
+        <div class="section-body ">
+          
+        <div class="card card-bordered style-primary">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-eur"></i>&nbsp Dodatne Usluge</header>
+			</div>
+            <div class="card-body style-default-bright">
+                <table class="table  table-hover responsiv">
+                    <tr><th></th>
+                        <th>Iznos</th>
+                        <th>Valuta</th>
+                        <th>Vrsta</th>
+                        <th></th>
+                    </tr>
+
+                    @{ 
+                        decimal suma = Convert.ToDecimal(@ViewBag.Suma);
+
+                        }
+                            <tr>
+                            <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
+                            <td> @Model.CijenaPrevoza</td>
+                            <td> @Model.Valuta.OznakaValute</td>
+                            <td> Moja Cijena Prevoza</td>
+                            <td></td></tr>
+                    @if ((Model.CijenaPrevozaPrevoznika ?? 0) > 0)
+                    {
+                            <tr>
+                            <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
+                            <td> @Model.CijenaPrevozaPrevoznika</td>
+                            <td> @Model.Valuta1.OznakaValute</td>
+                            <td> Cijena Prevoza Drugog Prevoznika</td>
+                            <td></td></tr>
+                    }
+                    @foreach (var item in Model.Troskovi)
+                    {
+                      
+                        <tr>
+                            <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
+                            <td>@item.Iznos</td>
+                            <td>@item.Valuta.OznakaValute</td>
+                            <td>@item.Vrsta</td>
+                            <td><a href="/Troskovi/Delete/@item.IdTroskovi" title='Izbriši' class='btn btn-flat ink-reaction btn-default'><i class='md md-delete'></i></a></td>
+                        </tr>
+                    }
+
+                     <tr class="danger">
+                            <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
+                            <td> @ViewBag.Trosak </td>
+                            <td> BAM </td>
+                            <td> Dodatni troškovi</td>
+                            <td></td></tr>
+
+
+                   @if (suma > 0)
+                   { 
+                    <tr class="success">
+                        <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td> 
+                        <td> <b> @ViewBag.Suma </b> </td>
+                        <td> <b> BAM  </b> </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                   }
+                   else if (suma < 0)
+                   { 
+                    <tr class="danger"> 
+                        <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
+                       
+                        <td> <b> @ViewBag.Suma </b> </td>
+                        <td> <b> BAM  </b> </td>
+                          <td></td>
+                        <td></td>
+                    </tr>
+                   }
+                   else
+                   {
+                    <tr> 
+                         <td><strong class="text-lg"><i class="md md-trending-neutral"></i></strong></td>
+                        <td> <b> @ViewBag.Suma </b> </td>
+                        <td> <b> BAM  </b> </td>
+                         <td></td>
+                        <td></td>
+                    </tr>
+                   }    
+                    </table>
+                </div>
+
+                      <div class="card-actionbar style-default-bright">
+				<div class="card-actionbar-row">	
+						@Html.ActionLink("DODAJ NOVI ZAPIS", "Create", "Troskovi", new { id = Model.IdDnevnik }, new { @class = "btn btn-flat btn-primary ink-reaction" }) 
+									</div>
+			</div>
+
+            </div>
+            </div>
+
+        
+                     <div class="section-body ">
+          
+            <div class="@("card card-bordered style-primary " + (Model.DnevnikUtovar.Count == 0 ? "card-collapsed" : ""))">
+
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-sign-in"></i>&nbsp Dodatni Utovar</header>
+			</div>
+            <div class="card-body style-default-bright" style="@("display : " + (Model.DnevnikUtovar.Count == 0 ? "none" : "block"))" >
+                <table class="table  table-hover responsiv">
+                    <tr>
+                        <th>Firma</th>
+                        <th>Adresa</th>
+                        <th>Mjesto</th>
+                    </tr>
+
+                    @foreach (var item in Model.DnevnikUtovar)
+                    { 
+                        <tr>
+                            <td>@item.Firma</td>
+                            <td>@item.Adresa</td>
+                            <td>@item.Mjesto</td>
+                            </tr>
+                    }
+                    </table>
+                </div>
+
+
+            </div>
+            </div>
+
+                     <div class="section-body ">
+          
+         <div class="@("card card-bordered style-primary " + (Model.DnevnikIstovar.Count == 0 ? "card-collapsed" : ""))">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-sign-out"></i>&nbsp Dodatni Istovar</header>
+			</div>
+            <div class="card-body style-default-bright" style="@("display : " + (Model.DnevnikIstovar.Count == 0 ? "none" : "block"))">
+                <table class="table  table-hover responsiv">
+                    <tr>
+                        <th>Firma</th>
+                        <th>Adresa</th>
+                        <th>Mjesto</th>
+                    </tr>
+                    
+                    @foreach (var item in Model.DnevnikIstovar)
+                    { 
+                        <tr>
+                            <td>@item.Firma</td>
+                            <td>@item.Adresa</td>
+                            <td>@item.Mjesto</td>
+                            </tr>
+                    }
+ 
+                    </table>
+                </div>
+
+
+            </div>
+            </div>
+            
+                     <div class="section-body ">
+          
+         <div class="@("card card-bordered style-primary " + (Model.DnevnikUvoznikIzvoznik.Count == 0 ? "card-collapsed" : ""))">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-exchange"></i>&nbsp Uvoznik i Izvoznik</header>
+			</div>
+             <div class="card-body style-default-bright" style="@("display : " + (Model.DnevnikUvoznikIzvoznik.Count == 0 ? "none" : "block"))">
+                <table class="table  table-hover responsiv">
+                    <tr>
+                        <th>Uvoznik</th>
+                        <th>Izvoznik</th>
+
+                    </tr>
+                    
+                    @foreach (var item in Model.DnevnikUvoznikIzvoznik)
+                    { 
+                        <tr>
+                            <td>@item.Uvoznik</td>
+                            <td>@item.Izvoznik</td>
+  
+                            </tr>
+                    }
+ 
+                    </table>
+                </div>
+
+
+            </div>
+            </div>
+
+                     <div class="section-body ">
+          
+         <div class="@("card card-bordered style-primary " + (Model.DnevnikCarina.Count == 0 ? "card-collapsed" : ""))">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-globe"></i>&nbsp Dodatne Carine </header>
+			</div>
+            <div class="card-body style-default-bright" style="@("display : " + (Model.DnevnikCarina.Count == 0 ? "none" : "block"))">
+                <table class="table  table-hover responsiv">
+                    <tr>
+                        <th>UvoznaCarina</th>
+                        <th>IzvoznaCarina</th>
+
+                    </tr>
+                    
+                    @foreach (var item in Model.DnevnikCarina)
+                    { 
+                        <tr>
+                            <td>@item.UvoznaCarina</td>
+                            <td>@item.IzvoznaCarina</td>
+  
+                            </tr>
+                    }
+ 
+                    </table>
+                </div>
+
+
+            </div>
+            </div>
+
+
+        <div class="section-body ">
+          
+        <div class="card card-bordered style-primary">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-paperclip"></i>&nbsp Dokumenti</header>
+			</div>
+            <div class="card-body style-default-bright">
+                 @ViewBag.Error @using (Html.BeginForm("UploadFile", "DnevnikPrevoza", FormMethod.Post, new { @class = "dropzone dz-clickable", id = "myAwesomeDropzone", enctype = "multipart/form-data" }))
+                                {
+            
+            <div class="dz-message">
+              <h3>Prevucite dokumenta ovdje ili kliknite za odabir</h3>
+              <em>maksimalna veličina dokumenta je 10MB</em>
+            </div>
+
+                                }
+                </div>
+
+                <div class="card-body style-default-bright">
+                    <div class="row">
+                    @foreach (var item in Model.Dokument)
+                    {
+                        <div class="col-md-6">
+                       <div class="card card-type-pricing card-outlined style-primary">
+					    	<div class="card-body text-center" style="padding: 0px;">
+                                <a title="Obriši Fajl" href="/DnevnikPrevoza/DeleteDokument/@item.IdDokument" class="pull-right btn btn-flat ink-reaction btn-default"><i class='md md-delete'></i></a>
+                                <a title="Pošalji E-mailom" href="/Mail/DownloadEmail?PathToAttachment=@item.Naziv" class="doc-email-cls pull-right btn btn-flat ink-reaction btn-default"><i class='md md-email'></i></a>
+
+					    		<h2 class="text-light" style="margin: 5px 5px 10px 5px; height: 52px; overflow: hidden;">@item.Naziv </h2>
+					    		<div class="price">
+                                    @if (item.Putanja.EndsWith(".xls") || item.Putanja.EndsWith(".xlsx"))
+                                    {
+					    			<a title="Preuzmi fajl" href="/Dokumenti/@item.Naziv" target="_blank"><img class="img-responsive width-2" src="/Content/images/Exel.png" alt="" style="margin: 0 auto;"></a>  
+                                    }
+                                     @if (item.Putanja.EndsWith(".doc") || item.Putanja.EndsWith(".docx"))
+                                     {
+					    			<a title="Preuzmi fajl" href="/Dokumenti/@item.Naziv" target="_blank"><img class="img-responsive width-2" src="/Content/images/Word.png" alt="" style="margin: 0 auto;"></a>
+                                     }
+                                     @if (item.Putanja.EndsWith(".pdf"))
+                                     {
+					    			<a title="Preuzmi fajl" href="/Dokumenti/@item.Naziv" target="_blank"><img class="img-responsive width-2" src="/Content/images/Pdf.png" alt="" style="margin: 0 auto;"></a>
+                                     }
+                                        </div>
+					    		<br>
+					    	</div><!--end .card-body -->
+					    	<div class="card-body no-padding">
+					    		<ul class="list-unstyled text-left">
+					    			<li style="border-top: 1px solid #e5e6e6;"><div class="row"><div class="col-md-4">Tip </div><div class="col-md-8"> @item.Tip</div>  </div></li>
+					    			<li style="border-top: 1px solid #e5e6e6;"><div class="row"><div class="col-md-4">Veličina</div><div class="col-md-8">@item.Velicina kb</div></div></li>
+
+					    		</ul>
+					    	</div><!--end .card-body -->
+					    </div><!--end .card --> 
+                            </div>
+                    }
+                    </div>
+                    </div>
+
+
+            </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+
+    </section>
+
+

@@ -1,0 +1,2157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Rectangle Name="Rectangle2">
+        <ReportItems>
+          <Textbox Name="Textbox11">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>NALOG ZA UTOVAR</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox11</rd:DefaultName>
+            <Top>0.02646cm</Top>
+            <Left>0.23813cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.78625cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox12">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>ORDER FOR LOADING</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox11</rd:DefaultName>
+            <Top>0.80285cm</Top>
+            <Left>0.23813cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.78625cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="BrojNaloga">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!BrojNaloga.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>BrojNaloga</rd:DefaultName>
+            <Top>1.54396cm</Top>
+            <Left>0.23813cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.78625cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>0.0441cm</Top>
+        <Left>0.12912cm</Left>
+        <Height>2.67023cm</Height>
+        <Width>7.40771cm</Width>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Rectangle>
+      <Rectangle Name="Rectangle3">
+        <ReportItems>
+          <Textbox Name="Naziv">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Naziv.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Naziv</rd:DefaultName>
+            <Left>0.26458cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.62341cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Adresa">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Adresa.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Adresa</rd:DefaultName>
+            <Top>0.77139cm</Top>
+            <Left>0.26458cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.62341cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>TimoCom:</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.54778cm</Top>
+            <Left>0.26458cm</Left>
+            <Height>0.6cm</Height>
+            <Width>1.85208cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Timocom">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Timocom.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Timocom</rd:DefaultName>
+            <Top>1.54778cm</Top>
+            <Left>2.15194cm</Left>
+            <Height>0.6cm</Height>
+            <Width>4.73605cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>0.10766cm</Top>
+        <Left>9.19488cm</Left>
+        <Height>2.57139cm</Height>
+        <Width>7.12611cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Rectangle>
+      <Rectangle Name="Rectangle4">
+        <ReportItems>
+          <Textbox Name="Textbox15">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>= Datetime.Today.Day.ToString() + "."+ Datetime.Today.Month.ToString() + "." + Datetime.Today.Year.ToString()</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox15</rd:DefaultName>
+            <Top>0.07cm</Top>
+            <Left>3.89665cm</Left>
+            <Height>0.63528cm</Height>
+            <Width>12.0571cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox16">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Banja Luka,</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox16</rd:DefaultName>
+            <Top>0.07cm</Top>
+            <Left>0.13547cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox22">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Izvoznik</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>0.96958cm</Top>
+            <Left>0.13547cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox23">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Napomena</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>1.74597cm</Top>
+            <Left>0.13547cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox24">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Mjesto Utovara</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>2.52236cm</Top>
+            <Left>0.13547cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Izvoznik">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Izvoznik.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Izvoznik</rd:DefaultName>
+            <Top>0.96958cm</Top>
+            <Left>3.89665cm</Left>
+            <Height>0.63528cm</Height>
+            <Width>12.0571cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Napomena">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Napomena.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Napomena</rd:DefaultName>
+            <Top>1.74597cm</Top>
+            <Left>3.89665cm</Left>
+            <Height>0.63528cm</Height>
+            <Width>12.0571cm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Utovar">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Utovar.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Utovar</rd:DefaultName>
+            <Top>2.52236cm</Top>
+            <Left>3.89665cm</Left>
+            <Height>0.63528cm</Height>
+            <Width>12.0571cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="DatumUtovara">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!DatumUtovara.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>DatumUtovara</rd:DefaultName>
+            <Top>4.85153cm</Top>
+            <Left>3.89666cm</Left>
+            <Height>0.63528cm</Height>
+            <Width>12.0571cm</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox25">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Datum Utovara</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>4.85153cm</Top>
+            <Left>0.13548cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>9</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox26">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Vrsta Robe</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>5.62792cm</Top>
+            <Left>0.13548cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>10</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox27">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Bruto težina</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>6.40431cm</Top>
+            <Left>0.13548cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>11</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox28">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Izvozna Carina</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>7.1807cm</Top>
+            <Left>0.13548cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="VrtsaRobe">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!VrtsaRobe.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>VrtsaRobe</rd:DefaultName>
+            <Top>5.62792cm</Top>
+            <Left>3.89666cm</Left>
+            <Height>0.63528cm</Height>
+            <Width>12.0571cm</Width>
+            <ZIndex>13</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Brutotezina">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Brutotezina.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Brutotezina</rd:DefaultName>
+            <Top>6.40431cm</Top>
+            <Left>3.89666cm</Left>
+            <Height>0.63528cm</Height>
+            <Width>12.0571cm</Width>
+            <ZIndex>14</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="IzvoznaCarina">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!IzvoznaCarina.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>IzvoznaCarina</rd:DefaultName>
+            <Top>7.1807cm</Top>
+            <Left>3.89666cm</Left>
+            <Height>0.6cm</Height>
+            <Width>12.0571cm</Width>
+            <ZIndex>15</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox34">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Firma Utovara</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>3.29875cm</Top>
+            <Left>0.13547cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>16</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="UtovarFirma">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!UtovarFirma.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>UtovarFirma</rd:DefaultName>
+            <Top>3.29875cm</Top>
+            <Left>3.89666cm</Left>
+            <Height>0.6cm</Height>
+            <Width>12.0571cm</Width>
+            <ZIndex>17</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox35">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Kontakt Osoba za utovar</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>4.07514cm</Top>
+            <Left>0.13546cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>18</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="UtovarKontakt">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!UtovarKontakt.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>UtovarKontakt</rd:DefaultName>
+            <Top>4.07514cm</Top>
+            <Left>3.89666cm</Left>
+            <Height>0.6cm</Height>
+            <Width>12.05709cm</Width>
+            <ZIndex>19</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>2.85544cm</Top>
+        <Left>0.12912cm</Left>
+        <Height>7.96602cm</Height>
+        <Width>16.19187cm</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Rectangle>
+      <Rectangle Name="Rectangle5">
+        <ReportItems>
+          <Textbox Name="Textbox29">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Uvoznik</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>0.18564cm</Top>
+            <Left>0.13547cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox30">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Kontakt Osoba Prevoznika</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>0.96203cm</Top>
+            <Left>0.13547cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox31">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Mjesto Istovara</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>3.32592cm</Top>
+            <Left>0.13547cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox32">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Datum Istovara</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>4.10231cm</Top>
+            <Left>0.13547cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox33">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Špedicija za Uvoz</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>4.8787cm</Top>
+            <Left>0.13547cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Subjekt">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Subjekt.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Subjekt</rd:DefaultName>
+            <Top>0.18564cm</Top>
+            <Left>3.89665cm</Left>
+            <Height>0.6cm</Height>
+            <Width>12.0571cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="KontaktOsoba">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!KontaktOsoba.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>KontaktOsoba</rd:DefaultName>
+            <Top>0.96203cm</Top>
+            <Left>3.89665cm</Left>
+            <Height>0.6cm</Height>
+            <Width>12.0571cm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="IstovatAdresa">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!IstovatAdresa.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>IstovatAdresa</rd:DefaultName>
+            <Top>3.32592cm</Top>
+            <Left>3.89665cm</Left>
+            <Height>0.6cm</Height>
+            <Width>12.0571cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="DatumIstovara">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!DatumIstovara.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>DatumIstovara</rd:DefaultName>
+            <Top>4.10231cm</Top>
+            <Left>3.89665cm</Left>
+            <Height>0.6cm</Height>
+            <Width>12.0571cm</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="UvoznaSpedicija">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!UvoznaSpedicija.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>UvoznaSpedicija</rd:DefaultName>
+            <Top>4.8787cm</Top>
+            <Left>3.89665cm</Left>
+            <Height>0.6cm</Height>
+            <Width>12.0571cm</Width>
+            <ZIndex>9</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="IstovarFirma">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!IstovarFirma.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>IstovarFirma</rd:DefaultName>
+            <Top>1.73842cm</Top>
+            <Left>3.89664cm</Left>
+            <Height>0.6cm</Height>
+            <Width>12.05711cm</Width>
+            <ZIndex>10</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox36">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Firma Istovara</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>1.73842cm</Top>
+            <Left>0.13546cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>11</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="IStovarkontakt">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!IStovarkontakt.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>IStovarkontakt</rd:DefaultName>
+            <Top>2.51481cm</Top>
+            <Left>3.89664cm</Left>
+            <Height>0.6cm</Height>
+            <Width>12.05711cm</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox37">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Kontak Osoba za Istovar</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>2.51071cm</Top>
+            <Left>0.13548cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>13</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>10.96257cm</Top>
+        <Left>0.12912cm</Left>
+        <Height>5.62141cm</Height>
+        <Width>16.19187cm</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Rectangle>
+      <Rectangle Name="Rectangle6">
+        <ReportItems>
+          <Textbox Name="RegBroj">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!RegBroj.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>RegBroj</rd:DefaultName>
+            <Top>0.29104cm</Top>
+            <Left>3.89665cm</Left>
+            <Height>0.6cm</Height>
+            <Width>12.0571cm</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="ImeVozaca">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!ImeVozaca.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ImeVozaca</rd:DefaultName>
+            <Top>1.06743cm</Top>
+            <Left>3.89665cm</Left>
+            <Height>0.6cm</Height>
+            <Width>12.0571cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox60">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Registracija Vozila</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox60</rd:DefaultName>
+            <Top>0.29104cm</Top>
+            <Left>0.13547cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox61">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Vozač</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox60</rd:DefaultName>
+            <Top>1.06743cm</Top>
+            <Left>0.13547cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>16.72509cm</Top>
+        <Left>0.12912cm</Left>
+        <Height>1.94438cm</Height>
+        <Width>16.19187cm</Width>
+        <ZIndex>4</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Rectangle>
+      <Rectangle Name="Rectangle7">
+        <ReportItems>
+          <Textbox Name="CijenaPrevoza">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Sum(Fields!CijenaPrevoza.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>CijenaPrevoza</rd:DefaultName>
+            <Top>0.25931cm</Top>
+            <Left>3.89664cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.5cm</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Valuta">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Valuta.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Valuta</rd:DefaultName>
+            <Top>0.25931cm</Top>
+            <Left>6.57303cm</Left>
+            <Height>0.6cm</Height>
+            <Width>1.6316cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="ValutaPlacanja">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Sum(Fields!ValutaPlacanja.Value, "NalogZaUtovar")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ValutaPlacanja</rd:DefaultName>
+            <Top>1.03569cm</Top>
+            <Left>3.89664cm</Left>
+            <Height>0.6cm</Height>
+            <Width>4.30799cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox65">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Cijena prevoza</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox65</rd:DefaultName>
+            <Top>0.25931cm</Top>
+            <Left>0.13546cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox66">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Valuta plaćanja</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox65</rd:DefaultName>
+            <Top>1.03569cm</Top>
+            <Left>0.13546cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.58479cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>19.02224cm</Top>
+        <Left>0.12912cm</Left>
+        <Height>1.81208cm</Height>
+        <Width>16.19187cm</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Rectangle>
+      <Textbox Name="Textbox14">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>ZA:</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox14</rd:DefaultName>
+        <Top>0.10766cm</Top>
+        <Left>8.2912cm</Left>
+        <Height>0.6cm</Height>
+        <Width>0.72729cm</Width>
+        <ZIndex>6</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox67">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Nalog ovjeriti i poslati nazad</Value>
+                <Style>
+                  <FontStyle>Italic</FontStyle>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox67</rd:DefaultName>
+        <Top>21.41641cm</Top>
+        <Left>1.96828cm</Left>
+        <Height>0.54709cm</Height>
+        <Width>6.07505cm</Width>
+        <ZIndex>7</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox68">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>GMTEL LOGISTIC d.o.o
+Jovana Dučića 72, Banja Luka</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Bosna I Hercegovina</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>PIB: 403378650005</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox68</rd:DefaultName>
+        <Top>21.99849cm</Top>
+        <Left>8.99266cm</Left>
+        <Height>1.84354cm</Height>
+        <Width>5.27813cm</Width>
+        <ZIndex>8</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox69">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Fakturu Ispostaviti na:</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox69</rd:DefaultName>
+        <Top>21.41641cm</Top>
+        <Left>8.99266cm</Left>
+        <Height>0.6cm</Height>
+        <Width>5.27813cm</Width>
+        <ZIndex>9</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox70">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>MP</Value>
+                <Style>
+                  <FontStyle>Italic</FontStyle>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox70</rd:DefaultName>
+        <Top>22.13989cm</Top>
+        <Left>1.96828cm</Left>
+        <Height>1.70214cm</Height>
+        <Width>6.07505cm</Width>
+        <ZIndex>10</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>9.46996in</Height>
+    <Style />
+  </Body>
+  <Width>6.47917in</Width>
+  <Page>
+    <PageHeader>
+      <Height>2.81974cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Image Name="Image3">
+          <Source>Embedded</Source>
+          <Value>gmtel</Value>
+          <Sizing>FitProportional</Sizing>
+          <Height>1.5cm</Height>
+          <Width>8.04333cm</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
+        <Textbox Name="Textbox72">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Jovana Dučića 72, 78000 Banja Luka, Bosna i Hercegovina</Value>
+                  <Style>
+                    <FontStyle>Normal</FontStyle>
+                    <FontFamily>Calibri</FontFamily>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>www.gmtellogistics.com    e-mail: info@gmtellogistics.com</Value>
+                  <Style>
+                    <FontStyle>Normal</FontStyle>
+                    <FontFamily>Calibri</FontFamily>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Tel/Fax: +387 51 924 340, Mob: +387 66 133 988</Value>
+                  <Style>
+                    <FontStyle>Normal</FontStyle>
+                    <FontFamily>Calibri</FontFamily>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox72</rd:DefaultName>
+          <Top>1.57056cm</Top>
+          <Left>0.12912cm</Left>
+          <Height>1.12571cm</Height>
+          <Width>7.91421cm</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Veza">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>="Nalog Ispostavio: " + First(Fields!Veza.Value, "NalogZaUtovar")</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Veza</rd:DefaultName>
+          <Left>8.2912cm</Left>
+          <Height>0.6cm</Height>
+          <Width>8.02979cm</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <PageFooter>
+      <Height>1.56104cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox71">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Napomena</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontFamily>Calibri</FontFamily>
+                    <FontWeight>Bold</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>: Pruzimanjem ovog naloga saglasni ste da preuzimate u potpunosti odgovornost u slučaju oštećenja robe prilikom transporta. U slučaju nepoštivanja roka utovara i istovara zadržavamo pravo korekcije dogovorene cijene transporta do 40% u našu korist!</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontFamily>Calibri</FontFamily>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox71</rd:DefaultName>
+          <Left>0.12912cm</Left>
+          <Height>1.44667cm</Height>
+          <Width>16.19187cm</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
+    <PageHeight>29.7cm</PageHeight>
+    <PageWidth>21cm</PageWidth>
+    <LeftMargin>2cm</LeftMargin>
+    <RightMargin>2cm</RightMargin>
+    <TopMargin>2cm</TopMargin>
+    <BottomMargin>2cm</BottomMargin>
+    <ColumnSpacing>0.13cm</ColumnSpacing>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DSNalozi">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>b8e79182-7808-45be-953e-7ee9f168122e</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="NalogZaUtovar">
+      <Query>
+        <DataSourceName>DSNalozi</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="BrojNaloga">
+          <DataField>BrojNaloga</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Naziv">
+          <DataField>Naziv</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Adresa">
+          <DataField>Adresa</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Timocom">
+          <DataField>Timocom</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Izvoznik">
+          <DataField>Izvoznik</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Napomena">
+          <DataField>Napomena</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Utovar">
+          <DataField>Utovar</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DatumUtovara">
+          <DataField>DatumUtovara</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="VrtsaRobe">
+          <DataField>VrtsaRobe</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Brutotezina">
+          <DataField>Brutotezina</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IzvoznaCarina">
+          <DataField>IzvoznaCarina</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Subjekt">
+          <DataField>Subjekt</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="KontaktOsoba">
+          <DataField>KontaktOsoba</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IstovatAdresa">
+          <DataField>IstovatAdresa</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DatumIstovara">
+          <DataField>DatumIstovara</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="UvoznaSpedicija">
+          <DataField>UvoznaSpedicija</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RegBroj">
+          <DataField>RegBroj</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ImeVozaca">
+          <DataField>ImeVozaca</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CijenaPrevoza">
+          <DataField>CijenaPrevoza</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Valuta">
+          <DataField>Valuta</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ValutaPlacanja">
+          <DataField>ValutaPlacanja</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Veza">
+          <DataField>Veza</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="UtovarFirma">
+          <DataField>UtovarFirma</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IstovarFirma">
+          <DataField>IstovarFirma</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="UtovarKontakt">
+          <DataField>UtovarKontakt</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IStovarkontakt">
+          <DataField>IStovarkontakt</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DSNalozi</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\Dataset\DSNalozi.xsd</rd:SchemaPath>
+        <rd:TableName>spVratiPodatkeZaNalog</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>spVratiPodatkeZaNalogTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <EmbeddedImages>
+    <EmbeddedImage Name="gmtel">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>677fa78c-c224-488e-85ca-f1c0da9fdd98</rd:ReportID>
+</Report>

@@ -1,0 +1,3 @@
+﻿@model System.DateTime
+
+@(Model.ToShortDateString() + " " +  Model.AddHours(8).ToLongTimeString())

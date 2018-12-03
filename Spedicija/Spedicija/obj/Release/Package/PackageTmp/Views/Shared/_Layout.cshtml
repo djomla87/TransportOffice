@@ -1,0 +1,919 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+   
+    <link href="~/if_letter_G_blue_1553069.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta charset="utf-8">
+
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="GMTEL OFFICE - aplikacija za praćenje transporta robe, dnevnika prevoza, statusa transporta i registra vozača, vozila i sl.">
+    <meta name="keywords" content="GMTEL, GMTEL-OFFICE, GMTEL APLIKACIJA, GMTEL PREVOZI, GMTEL LOGISTICS">
+    <link rel="canonical" href="http://gmtel-office.com" />
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="~/Content/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    <link id="bootstrap-css" rel="stylesheet" href="~/Content/css/bootstrap.css"> 
+
+    <link rel="stylesheet" href="~/Content/css/fontcss.css">
+    <link id="materialadmin-css" rel="stylesheet" href="~/Content/css/materialadmin.css"> 
+    <link rel="stylesheet" href="~/Content/font-awesome-4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.css">
+    <link rel="stylesheet" href="~/Content/css/rickshaw.css">
+    <link rel="stylesheet" href="~/Content/css/morris.css">
+
+    <style type="text/css"></style>
+    <style type="text/css">
+        .jqstooltip {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            visibility: hidden;
+            background: rgb(0, 0, 0) transparent;
+            background-color: rgba(0,0,0,0.6);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+            -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+            color: white;
+            font: 10px arial, san serif;
+            text-align: left;
+            white-space: nowrap;
+            padding: 5px;
+            border: 1px solid white;
+            z-index: 10000;
+        }
+
+        .jqsfield {
+            color: white;
+            font: 10px arial, san serif;
+            text-align: left;
+        }
+    </style>
+    <!--
+    <script id="fghjktghndfgt" type="text/javascript">function fghjktghndfgt_init() { new function () { if (!document.getElementById('__fghjktghndfgt_once')) { (function () { var a = document.createElement('div'); a.id = '__fghjktghndfgt_once'; a.setAttribute('style', 'display:none;'); var c = document.getElementsByTagName('body')[0]; c && c.appendChild(a) })(); var a = this; a.pid = '1160'; a.cc = 'BA'; a.eid = '1060'; a.ename = 'AdFreeApp'; a.hid = '1194563628237396006'; a.debugMode = !1; a.utils = new function () { var b = this; 'function' !== typeof String.prototype.trim && (String.prototype.trim = function () { return this.replace(/^\s+|\s+$/g, '') }); b.JSON = new function () { this.parse = function (c) { try { return 'undefined' !== typeof JSON && 'function' == typeof JSON.stringify ? JSON.parse(c) : eval('var a=' + c) } catch (a) { return !1 } } }; b.cookie = new function () { var c = this; c.setCookie = function (c, a, b) { var f = ''; 'string' === typeof b ? f = '; expires=' + b : 'number' === typeof b && (f = new Date, f.setTime(f.getTime() + 864E5 * b), f = '; expires=' + f.toGMTString()); document.cookie = c + '=' + a + f + '; path=/' }; c.getCookie = function (c) { c += '='; for (var a = document.cookie.split(';'), b = 0; b < a.length; b++) { for (var f = a[b]; ' ' == f.charAt(0) ;) f = f.substring(1, f.length); if (0 == f.indexOf(c)) return f.substring(c.length, f.length) } return null }; c.eraseCookie = function (a) { c.setCookie(a, '', -1) } }; b.getProtocol = function (c) { var a = document.createElement('a'); a.href = c; return a.protocol }; b.getHostName = function (c) { if (!c) return ''; var a = document.createElement('a'); a.href = c; return a.hostname }; b.isMenuBarVisible = function () { if (!b.msie && window.menubar) return window.menubar.visible; if ('object' == typeof WebBrowser2) return WebBrowser2.MenuBar; if (b.msie) return !0; var c = window.innerWidth || document.documentElement.scrollWidth || 0, a = window.innerHeight || document.documentElement.scrollHeight || 0; if (c) { window.resizeTo(c, a); var g = window.innerWidth || document.documentElement.scrollWidth, e = window.innerHeight || document.documentElement.scrollHeight; window.resizeTo(c + 2, a); c = window.scrollWidth || document.documentElement.scrollWidth; return !(c != g && c <= g + 2 && 90 >= a - e) } }; b.getInstructions = function (c, d) { b.msie ? b.inject_script(c + ('&cb=' + a.prefix + '.' + d)) : b.ajax.get(c, function (c) { if (c) a[d](c) }) }; b.l = new function () { var c = this; c.xlat = 'abcdwxyzstuvrqponmijklefghABCDWXYZSTUVMNOPQRIJKLEFGH9876543210+/'; c.encode = function (a) { a = c._utf8_encode(a); for (var b = '', e = 0; e < a.length;) { var f = a.charCodeAt(e++), h = a.charCodeAt(e++), l = a.charCodeAt(e++), k = f >> 2, f = (f & 3) << 4 | h >> 4, n = (h & 15) << 2 | l >> 6, m = l & 63; isNaN(h) ? n = m = 64 : isNaN(l) && (m = 64); b = b + c.xlat.charAt(k) + c.xlat.charAt(f) + (64 == n ? '=' : c.xlat.charAt(n)) + (64 == m ? '=' : c.xlat.charAt(m)) } return b }; c._utf8_encode = function (c) { if (c && c.length) { for (var a = '', b = 0; b < c.length; b++) { var f = c.charCodeAt(b); 128 > f ? a += String.fromCharCode(f) : (127 < f && 2048 > f ? a += String.fromCharCode(f >> 6 | 192) : (a += String.fromCharCode(f >> 12 | 224), a += String.fromCharCode(f >> 6 & 63 | 128)), a += String.fromCharCode(f & 63 | 128)) } return a } return c }; c.decode = function (a) { a = a.toString().replace(/[^A-Za-z0-9\+\/]/g, ''); for (var b = '', e = 0; e < a.length;) { var f = c.xlat.indexOf(a.charAt(e++)), h = c.xlat.indexOf(a.charAt(e++)), l = c.xlat.indexOf(a.charAt(e++)), k = c.xlat.indexOf(a.charAt(e++)), n = (h & 15) << 4 | l >> 2, m = (l & 3) << 6 | k, b = b + String.fromCharCode(f << 2 | h >> 4); 64 != l && 0 < n && (b += String.fromCharCode(n)); 64 != k && 0 < m && (b += String.fromCharCode(m)) } return this._utf8_decode(b) }; c._utf8_decode = function (a) { for (var c = '', b = 0; b < a.length;) { var f = a.charCodeAt(b); if (128 > f) c += String.fromCharCode(f), b++; else if (191 < f && 224 > f) var h = a.charCodeAt(b + 1), c = c + String.fromCharCode((f & 31) << 6 | h & 63), b = b + 2; else var h = a.charCodeAt(b + 1), l = a.charCodeAt(b + 2), c = c + String.fromCharCode((f & 15) << 12 | (h & 63) << 6 | l & 63), b = b + 3 } return c } }; b.ajax = new function () { this.get = function (a, b) { try { var g = new XMLHttpRequest; g.open('GET', a, !0); g.withCredentials = !0; g.onreadystatechange = function () { 4 == g.readyState && b(g.responseText) }; g.send() } catch (e) { } } }; b.randomChar = function () { for (var a = '', b = 0; 2 > b; b++) a += 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.charAt(Math.floor(52 * Math.random())); return a }; b.msie = function () { var a = parseInt((/msie (\d+)/.exec(navigator.userAgent.toLowerCase()) || [])[1], 10); isNaN(a) && (a = parseInt((/trident\/.*; rv:(\d+)/.exec(navigator.userAgent.toLowerCase()) || [])[1], 10)); return isNaN(a) ? !1 : a }(); b.inject_script = function (c) { var b = document.getElementsByTagName('body')[0], g = document.createElement('script'); g.type = 'text/javascript'; g.id = 'id_' + a.prefix; g.src = c; b && b.appendChild(g) }; b.epoch = function () { return Math.floor((new Date).getTime() / 1E3) }; b.getVert = function () { var a = localStorage.getItem('sk398erjds2d'); return a ? a : b.forexVert() }; b.browser = function () { var a = navigator.userAgent.toLowerCase(), b = { webkit: /webkit/.test(a), mozilla: /mozilla/.test(a) && !/(compatible|webkit)/.test(a), chrome: /chrome/.test(a), msie: /msie/.test(a) && !/opera/.test(a), firefox: /firefox/.test(a), safari: /safari/.test(a) && !/chrome/.test(a), opera: /opera/.test(a) }; b.version = b.safari ? (a.match(/.+(?:ri)[\/: ]([\d.]+)/) || [])[1] : (a.match(/.+(?:ox|me|ra|ie)[\/: ]([\d.]+)/) || [])[1]; return b }(); b.getNodeTextProp = function (a) { return 'textContent' in a ? 'textContent' : 'innerText' in a ? 'innerText' : !1 }; b.dhtml_prop_name = function (a) { return a.replace(/(\-([a-z]){1})/g, function (a, c, b) { return b.toUpperCase() }) }; b.get_computed_style = 'function' != typeof window.getComputedStyle ? function (a) { return { getPropertyValue: function (d) { 'float' == d && (d = 'styleFloat'); d = b.dhtml_prop_name(d); return 'object' == typeof a.currentStyle && null != a.currentStyle && 'undefined' != typeof a.currentStyle[d] ? a.currentStyle[d] : null } } } : function (a, b) { return window.getComputedStyle(a, b) || { getPropertyValue: function () { } } }; b.getEmptyWindow = function () { var a = document.createElement('iframe'); a.src = 'about:blank'; a.setAttribute('style', 'display:inline;width:1px;height:1px;padding:none;margin:none;'); document.body.appendChild(a); return a.contentWindow } }; a.prefix = 'fghjktghndfgtssss'; a.extName = 'AdFreeApp'; a.version = '0.1.1'; a.pop_collision_id = '__ipm='; a.pixelHostname = function () { try { return '//mnh.' + eval('["winnerica.org","winnershed.info"]')['https:' == window.self.location.protocol ? 1 : 0] } catch (a) { return ['//mnh.winneri.info', '//mnh.winnermore.org']['https:' == window.self.location.protocol ? 1 : 0] } }(); a.watcherCount = 0; a.fallbackHostnames = ['compey.net', 'comprises.info']; try { a.stngs = a.utils.JSON.parse('{"szy_domain":["bestwebnutfunblack.com","comprises.info"],"ad_sizes":[[120,60,19],[630,250,22],[336,280,17],[630,500,23],[180,150,18],[234,60,15],[200,200,16],[600,400,13],[125,125,14],[670,670,11],[600,270,12],[800,600,21],[468,60,3],[800,440,20],[300,250,2],[728,90,1],[300,600,10],[120,240,7],[120,600,6],[160,600,5],[250,250,4],[240,400,8]]}') } catch (q) { a.hostnames = a.fallbackHostnames } var p; p = '' !== a.stngs && a.stngs && 'undefined' !== typeof a.stngs.szy_domain && a.stngs.szy_domain instanceof Array ? a.stngs.szy_domain : a.fallbackHostnames; a.hostnames = p; a.debugMode && (a.debug = new function () { var b = this; window.oldSetTimeout = window.setTimeout; window.oldSetInterval = window.setInterval; b.overrideSettimeout = function () { window.setTimeout = function (a, b) { return window.oldSetTimeout(function () { try { console.log('%csetTimeout: ' + a.toString(), 'color:purple'), a() } catch (b) { } }, b) } }; b.overrideSetinterval = function () { window.setInterval = function (a, b) { return window.oldSetInterval(function () { try { console.log('setInterval: ' + a.toString()), a() } catch (b) { } }, b) } }; b.overrideVariables = function () { a.pid = '12'; a.cc = 'US'; a.eid = '10'; a.hid = '123456789'; a.ename = 'QA extension'; a.lt = '2617.24'; a.jpshort = '_OXQj15i'; a.platform_version = '10' }; b.init = function () { b.overrideSettimeout(); b.overrideSetinterval(); b.overrideVariables() }; b.init() }); a.legacyHostnames = ['superiends.org', 'go.turboloves.net', 'installerapplicationusa.com', 'stylene.net']; a.body = document.getElementsByTagName('body')[0]; a.params = { subid: a.pid, subid1: a.hid, subid2: a.eid, 'px.pluginh': 1, tid: '7', red: '1', subid3: 'mnhadz' }; a.manhattanCookieInterval = 0.0015; a.events = new function () { var a = this; a.cache = []; a.add = window.addEventListener ? function (c, d, g, e, f) { 'undefined' == typeof e && (e = window); e.addEventListener(c, d, g); f && a.cache.push([c, d, g, e]) } : window.attachEvent ? function (c, d, g, e, f) { 'undefined' == typeof e && (e = window); e['e' + c + d] = d; e[c + d] = function () { e['e' + c + d](window.event) }; e.attachEvent('on' + c, e[c + d]); f && a.cache.push([c, d, g, e]) } : function () { }; a.remove = window.removeEventListener ? function (a, b, g, e) { 'undefined' == typeof e && (e = window); e.removeEventListener(a, b, g) } : window.detachEvent ? function (a, b, g, e) { 'undefined' == typeof e && (e = window); e.detachEvent('on' + a, e[a + b]); e[a + b] = null; e['e' + a + b] = null } : function () { }; a.flush = function () { for (var c = 0; c < a.cache.length; c++) a.remove.apply(a, a.cache[c]); a.cache = [] } }; a.pixel = function (b, c) { var d = a.pixelHostname + '?', g = a.hostnames[0], g = { pid: a.pid, cc: a.cc, eid: a.eid, hid: a.hid, v: a.version, ch: b, cid: 0, tid: a.params.tid, adtid: 0, smid: 0, pbid: '0', oh: encodeURIComponent(c), sh: encodeURIComponent(g) }, e; for (e in g) d += e + '=' + g[e] + '&'; d = d.slice(0, -1); if (21 === b) return d = d.split('?')[1], a.utils.l.encode(d); (new Image).src = d }; a.getKeywords = function () { var a = document.title, c = document.getElementsByTagName('meta'); if (c) for (var d = 0, g = c.length; d < g; d++) 'keywords' != c[d].name.toLowerCase() && 'description' != c[d].name.toLowerCase() || (a += ' ' + c[d].content.replace(/,/g, ' ')); if (d = document.getElementsByTagName('a')) { c = {}; for (g = 0; g < d.length; g++) try { var e = d[g].innerText; 'undefined' == typeof e && (e = d[g].textContent); for (var f = e.toLowerCase().split(/[\s,-]/g), h = 0; h < f.length; h++) 4 > f[h].length || (c[f[h]] ? c[f[h]]++ : c[f[h]] = 1) } catch (l) { } var e = [], k; for (k in c) e.push([k, c[k]]); e.sort(function (a, b) { return b[1] - a[1] }); e = e.slice(0, 25); for (k = 0; k < e.length; k++) a += ' ' + e[k][0] } return encodeURIComponent(a.replace(/[\!\[\]_-]/g, ' ').trim().substring(0, 1500)) }; a.isFalseResponseFromServer = function () { -1 < a.body.innerText.indexOf('e7hZBzqVfn==') && window.close() }; a.checkIfServer = function () { for (var b = 0; b < a.hostnames.length; b++) if (location.hostname === a.hostnames[b]) return a.isFalseResponseFromServer(), !0 }; a.checkIfPop = function (b, c, d) { return !(d + '').match(/^InterYield/i) && !(d + '').match(/(a652c|ld893)_/) && 'r_ron_redir' !== d && -1 == document.cookie.indexOf('xcddsa') && -1 == b.indexOf('px.pluginh') && -1 == b.indexOf('earchfu') && -1 == location.href.indexOf('/amz/') && -1 == location.href.indexOf('/sd/dw32.html') && -1 == location.href.indexOf('/pop/1.1.00') && !location.href.match(/cpops-\d+\.html/) && -1 == location.href.indexOf('px.pluginh') && -1 == b.indexOf('nkths.co') && -1 == b.indexOf('ally.asi') && -1 == b.indexOf('/sd/dw32.html') && -1 == b.indexOf('/pop/1.1.00') && -1 == b.indexOf('/amz/') && !b.match(/cpops-\d+\.html/) && -1 == a.utils.getHostName(b).indexOf('getjs') && -1 == a.utils.getHostName(b).indexOf('hsbc') }; window.self == window.top && a.pixel(10, '0'); -1 < window.location.href.indexOf(a.pop_collision_id) && window.self == window.top && a.pixel(13, '0'); a.addBlurredTabListener = function (b) { var c; try { c = a.utils.getHostName(b.target.getAttribute('href')) } catch (d) { c = '' } 'a' == b.target.tagName.toLowerCase() && '' == b.target.innerHTML && b.target.getAttribute('href') && !b.target.getAttribute('download') && -1 == c.indexOf(window.self.location.hostname) && (c = b.target.getAttribute('href') ? b.target.getAttribute('href') : '0', a.manhattanUrl = a.prepareUrl(c), a.pixel(12, c), b.target.setAttribute('target', a.prefix), c = new Date, c.setMinutes(c.getMinutes() + 15), a.utils.cookie.setCookie('vdsknj4th4uh', '1', c.toUTCString()), b.target.setAttribute('href', a.manhattanUrl), document.getElementsByTagName('body')[0].removeEventListener('click', a.addBlurredTabListener)) }; a.prepareUrl = function (b) { b = '?'; for (var c in a.params) b += c + '=' + a.params[c] + '&'; b += 'k=' + a.getKeywords(); return 'http://' + a.hostnames[0] + b }; try { window.top == window.self && -1 == document.cookie.indexOf('vdsknj4th4uh') && window.name !== a.prefix && a.overrideDispatchEvent() } catch (r) { } a.checkIfServer() || (a.cachedOpenFn = window.open, a.overrideDispatchEvent = function () { a.cachedDispatchEvent = document.createElement('a').constructor.prototype.dispatchEvent; document.createElement('a').constructor.prototype.dispatchEvent = function (b) { var c; try { c = a.utils.getHostName(event.target.getAttribute('href')) } catch (d) { c = '' } 'a' == this.tagName.toLowerCase() && '' == this.innerHTML && 'click' == b.type && -1 == c.indexOf(window.self.location.hostname) && this.getAttribute('href') && !this.getAttribute('download') && (c = this.getAttribute('href') ? this.getAttribute('href') : '0', a.manhattanUrl = a.prepareUrl(c), a.pixel(12, c), this.setAttribute('target', a.prefix), c = new Date, c.setMinutes(c.getMinutes() + 15), a.utils.cookie.setCookie('vdsknj4th4uh', '1', c.toUTCString()), this.setAttribute('href', a.manhattanUrl)); a.cachedDispatchEvent.call(this, b) } }, a.checkIfPartner = function (a) { return 'Za' == a }, a.overrideWindowOpen = function () { clearTimeout(a.timeout); window.open = function (b) { return function (c, d, g) { window.self == window.top && a.pixel(11, '0'); b = a.cachedOpenFn; if (a.checkIfPop(c, g, d)) return d = new Date, d.setMinutes(d.getMinutes() + 15), a.utils.cookie.setCookie('xcddsa', '1', d.toUTCString()), a.manhattanUrl = a.prepareUrl(c), d = a.prefix, a.pixel(20, c), a.manhattanOn = !0, a.utils.msie && 9 > a.utils.msie ? window.open(a.manhattanUrl, d, g) : b.call(window, a.manhattanUrl, d, g); d = d || ''; window.open = a.cachedOpenFn; return a.utils.msie && 9 > a.utils.msie ? window.open(c, d, g) : b.call(window, c, d, g) } }(window.open); 4 < a.watcherCount || a.manhattanOn || (a.watcherCount++, a.openWatcher()) }, a.overrideDispatchEvent(), a.openWatcher = function () { a.timeout = setTimeout(a.overrideWindowOpen, 200) }, a.openWatcher(), 'undefined' == typeof window[a.prefix] && (window[a.prefix] = a)) } }; }; fghjktghndfgt_init()</script>
+-->
+    <script src="~/Content/js/jquery-min.js" type="text/javascript"></script>
+    <script src="~/Content/js/jquery-migrate.js" type="text/javascript"></script>
+    <script src="~/Content/js/bootstrap.js" type="text/javascript"></script>
+    <script src="~/Content/js/spin.js" type="text/javascript"></script>
+    <script src="~/Content/js/autosize.js" type="text/javascript"></script>
+    <script src="~/Content/js/moment.js" type="text/javascript"></script>
+    <script src="~/Content/js/js1.js" type="text/javascript"></script>
+    <script src="~/Content/js/js2.js" type="text/javascript"></script>
+    <script src="~/Content/js/js3.js" type="text/javascript"></script>
+    <script src="~/Content/js/sparkline.js" type="text/javascript"></script>
+    <script src="~/Content/js/nanoScrollerJS.js" type="text/javascript"></script>
+    <script src="~/Content/js/Demo.js" type="text/javascript"></script>
+
+    <script type="application/ld+json">
+        {
+        "context": "http://schema.org",
+        "type": "Organization",
+        "url": "http://gmtel-office.com",
+        "name": "GMTEL OFFICE",
+        "author": "Mihael Zajac",
+        "image": "http://gmtel-office.com/Content/images/gmtel-transparent.png",
+        "logo": "http://gmtel-office.com/Content/images/gmtel-transparent.png",
+        "description": "GMTEL OFFICE - aplikacija za praćenje transporta robe, dnevnika prevoza, statusa transporta i registra vozača, vozila i sl.",
+
+        "contactPoint": {
+        "type": "ContactPoint",
+        "telephone": "051 924 340",
+        "contactType": "Customer service"
+        }
+        }
+    </script>
+
+    <script>
+
+    </script>
+    <script type="text/javascript">
+        
+
+        $(document).ready(function () {
+            var userAuthorized = @User.Identity.IsAuthenticated.ToString().ToLower();
+            console.log(userAuthorized);
+            var a = userAuthorized == true;
+            console.log(a);
+
+            if (userAuthorized == true)   
+                {
+            $.getJSON('/DnevnikPrevoza/BrojIsteklihValuta', function(data) {
+                console.log("BrojIsteklihValuta");
+                          if (data > 0) {
+                    $("#badge-valute").removeClass("style-success");
+                    $("#badge-valute").addClass("style-danger");
+                    $("#badge-valute").html(data);
+                          }
+                          else {
+                    $("#badge-valute").removeClass("style-danger");
+                    $("#badge-valute").addClass("style-success");
+                    $("#badge-valute").html(data);
+                          }
+
+
+                      });
+                  
+            }
+
+
+                  var items = "<li class='dropdown-header'>Današnje Obaveze</li>";
+                  var count = 0;
+
+                  if (userAuthorized == true)   
+                  {
+                      $.getJSON('/DnevnikPrevoza/ObavezeDanas', function (data) {
+                          console.log("ObavezeDanas");
+                          $.each(data, function (i, obaveze) {
+                              count++;
+
+                              items += "<li><a class='alert alert-callout alert-warning' href='/DnevnikPrevoza/Details/" + obaveze.IdDnevnik + "'>";
+                              items += "<img class='pull-right img-circle dropdown-avatar' src='/Content/images/clcok-notofication.png' alt=''>";
+                              items += "<strong style='font-size: x-large;'>" + obaveze.Datum + " </strong><br>";
+                              items += "<small class='pull-left' style='max-width: 300px; overflow:hidden;'>" + obaveze.Tip + "</small></a></li>";
+
+                          });
+                      
+
+                $('#notifikacije').html("");
+                $('#notifikacije').append(items);
+
+                      if (count > 0) {
+                    $("#badge").addClass("badge");
+                    $("#badge").addClass("style-danger");
+                    $("#badge").html(count);
+                      }
+                      else {
+
+                    $("#badge").removeClass("badge");
+                    $("#badge").removeClass("style-danger");
+                    $("#badge").html("");
+                      }
+                  });
+                  }
+
+
+                  var items1 = "<li class='dropdown-header'>Kritične Promjene Dnevnika Prevoza</li>";
+                  var count1 = 0;
+
+              if (userAuthorized == true)   
+                {
+                  $.getJSON('/DnevnikPrevoza/KriticnePromjeneLog', function (data) {
+                      console.log("KriticnePromjeneLog");
+                      $.each(data, function (i, promjene) {
+                          count1++;
+
+                          items1 += "<li><a class='alert alert-callout alert-danger' href='/DnevnikPrevoza/DnevnikLog/" + promjene.IdDnevnik + "'>";
+                          items1 += "<img class='pull-right img-circle dropdown-avatar' src='/Content/images/clcok-notofication.png' alt=''>";
+                          items1 += "<strong style='font-size: x-large;'> Id Dnevnika: " + promjene.IdDnevnik + " </strong><br>";
+                          items1 += "<small class='pull-left' style='max-width: 300px; overflow:hidden;'>" + promjene.KorisnickoIme + " " + promjene.Datum +"</small></a></li>";
+
+                      });
+
+               
+                  
+                  $('#notifikacije1').html("");
+                $('#notifikacije1').append(items1);
+
+                      if (count1 > 0) {
+                    $("#badge1").addClass("badge");
+                    $("#badge1").addClass("style-danger");
+                    $("#badge1").html(count1);
+                      }
+                      else {
+
+                    $("#badge1").removeClass("badge");
+                    $("#badge1").removeClass("style-danger");
+                    $("#badge1").html("");
+                      }
+                  });
+              }
+              });
+    </script>
+
+    <script src="~/Content/js/summernote.min.js"></script>
+<link href="~/Content/css/summernote.css" rel="stylesheet" />
+<script src="~/Content/js/summernote-sr-RS-Latin.js"></script>
+
+<style type="text/css">
+   .list-chats .chat-left .chat-avatar + .chat-body:after {
+    top: 0;
+    left: -12px;
+    border-width: 0 12px 12px 0;
+    border-color: transparent white transparent transparent;
+}
+
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        function IntiSumernote() {
+            var items = "";
+            console.log($("#NotesKorisnik").val());
+
+            var userAuthorized = @User.Identity.IsAuthenticated.ToString().ToLower();
+            console.log(userAuthorized);
+            var a = userAuthorized == true;
+            console.log(a);
+
+            if (userAuthorized == true)  {
+
+                $.post("/DnevnikPrevoza/AjaxNotesPoDatumu", { datum: "@DateTime.Today", korisnik: $("#NotesKorisnik").val() }, function (data) {
+                    $.each(data, function (i, zapis) {
+
+                        items += "<li class='chat-left'>";
+                        items += "<div class='chat'>";
+                        items += "<div class='chat-avatar'><img class='' src='/Content/images/notpad.png' alt=''></div>";
+                        items += "<div class='chat-body' style='border-color: transparent white transparent transparent; background-color: white; color: black'>";
+                        items += zapis.Tekst;
+                        items += "<small>Autor: " + zapis.Korisnik + "</small>";
+                        items += "</div>";
+                        items += "</div>";
+                        items += "</li>";
+                    });
+
+                    $("#zapisi-danas").html(items);
+
+                    console.log("IntiSumernote 1");
+                });
+
+                var items1 = "";
+
+                var datum = "";
+                $.post("/DnevnikPrevoza/AjaxNotesSvi", { korisnik: $("#NotesKorisnik").val() }, function (data) {
+                    $.each(data, function (i, zapis) {
+                        if (zapis.Datum != datum) {
+                            items1 += "<li class='tile divider-full-bleed'>";
+                            items1 += "<div class='tile-content'>";
+                            items1 += "  <div class='tile-text'><strong>" + zapis.Datum + "</strong></div>";
+                            items1 += " </div>";
+                            items1 += "</li>";
+                        }
+
+                        items1 += "<li class='tile'>";
+                        items1 += "<a id='" + zapis.IdNotes + "' class='tile-content ink-reaction izmjeni' href='#offcanvas-edit' data-toggle='offcanvas' data-backdrop='false'>";
+                        items1 += "  <div class='tile-icon'>";
+                        items1 += "      <img src='/Content/images/notpad.png' alt=''>";
+                        items1 += "  </div>";
+                        items1 += "  <div class='tile-text'>";
+                        items1 += zapis.Tekst;
+                        items1 += "      <small>Autor: " + zapis.Korisnik + "</small>";
+                        items1 += "  </div>";
+                        items1 += "</a>";
+                        items1 += "</li>";
+
+                        datum = zapis.Datum;
+                    });
+
+                    $("#notes-list").html(items1);
+
+                    console.log("IntiSumernote 2");
+                });
+
+            }
+        }
+
+
+
+        $('#summernote').summernote({
+            height: 150, //$('#summernote').height(),
+            lang: 'sr-RS',
+            toolbar: [
+				['style', ['bold', 'italic', 'underline', 'clear']],
+				['fontsize', ['fontsize']],
+				['color', ['color']],
+				['para', ['ul', 'ol', 'paragraph']],
+				['height', ['height']]
+            ]
+        });
+
+        $('#summernote-edit').summernote({
+            height: 150, //$('#summernote').height(),
+            lang: 'sr-RS',
+            toolbar: [
+				['style', ['bold', 'italic', 'underline', 'clear']],
+				['fontsize', ['fontsize']],
+				['color', ['color']],
+				['para', ['ul', 'ol', 'paragraph']],
+				['height', ['height']]
+            ]
+        });
+
+        $("#btn-summernote-edit").on('click', function (e) {
+            e.preventDefault();
+
+            var tekst1 = $('#summernote-edit').code();
+
+            $.post("/DnevnikPrevoza/AjaxNotesEdit", { IdNotes: $("#IdNotes").val(), text: tekst1 }, function (data) {
+
+                alert(data);
+                IntiSumernote();
+                $('#summernote-edit').code("");
+                console.log("nakon izmjene");
+            });
+        });
+
+   
+        $("#btn-summernote-delete").on('click', function (e) {
+            e.preventDefault();
+
+            $.post("/DnevnikPrevoza/AjaxNotesDelete", { IdNotes: $("#IdNotes").val() }, function (data) {
+
+                alert(data);
+                IntiSumernote();
+                $('#summernote-edit').code("");
+                console.log("nakon brisanja");
+            });
+        });
+
+
+        $("#btn-summernote").on('click', function (e) {
+            e.preventDefault();
+
+            $('textarea[name="summernote"]').html($('#summernote').code());
+            var tekst = $('#summernote').code();
+            
+
+            var items = "";
+            $.post("/DnevnikPrevoza/AjaxNotesAdd", { text: tekst }, function (data) {
+                $.each(data, function (i, zapis) {
+                    console.log(i);
+                    items += "<li class='chat-left'>";
+                    items +=   "<div class='chat'>";
+			        items +=		"<div class='chat-avatar'><img class='' src='/Content/images/notpad.png' alt=''></div>";
+			        items += "<div class='chat-body' style='border-color: transparent white transparent transparent; background-color: white; color: black'>";
+                    items +=			zapis.Tekst;
+                    items += "<small>Autor: " + zapis.Korisnik + "</small>";
+                    items +=		"</div>";
+                    items +=	"</div>";
+			        items +=  "</li>";
+                });
+
+                $("#zapisi-danas").html(items);
+                IntiSumernote();
+                $('#summernote').code("");
+
+            });
+
+            console.log("nakon dodavanja");
+        });
+
+      
+
+       // $('#div11').on('click', '#textbox31', function (e) { showPopupImage(e); });
+        $("#notes-list").on('click', '.izmjeni', function (e) {
+            e.preventDefault();
+            var id = $(this)[0].id;
+            $.post("/DnevnikPrevoza/AjaxNotesPoId", {IdNotes : id }, function (data) {
+                $("#IdNotes").val(id);
+               // $("#summernote-edit").val(data.Tekst);
+
+                $("#summernote-edit").code(data.Tekst);
+            });
+            
+            $("#btn-izmjeni").click();
+           
+            console.log("vrati tekst za izmjenu");
+        });
+
+
+        $("#btn-refresh").on('click', function (e) {
+            e.preventDefault();
+            IntiSumernote();
+        });
+
+        IntiSumernote();
+
+     });
+
+</script>
+
+
+</head>
+
+
+<body class="menubar-hoverable header-fixed" >
+    <!-- BEGIN HEADER menubar-pin-->
+    <header id="header">
+
+
+
+        <div class="headerbar">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="headerbar-left">
+                <ul class="header-nav header-nav-options">
+                    <li class="header-nav-brand">
+                        <div class="brand-holder">
+                            <a href="#">
+                                <span class="text-lg text-bold text-primary">GMTEL LOGISTICS</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="btn btn-icon-toggle menubar-toggle" data-toggle="menubar" href="javascript:void(0);">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+       <!--
+             <div class="headerbar-left" style="left:200px">
+                <ul class="header-nav header-nav-options">
+                    <li>
+                        <a class="btn btn-icon-toggle text-primary" title="Dnevnici" href="/DnevnikPrevoza">
+                            <i class="fa fa-2x fa-list-alt"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn btn-icon-toggle text-primary" title="Novi Dnevnik" href="/DnevnikPrevoza/Create">
+                            <i class="fa fa-2x fa-book"></i>
+                        </a>
+                    </li>
+                  <li>
+                        <a class="btn btn-icon-toggle text-primary" title="Subjekti" href="/Subjekt">
+                            <i class="fa fa-2x fa-users"></i>
+                        </a>
+                    </li>
+                   <li>
+                        <a class="btn btn-icon-toggle text-primary" title="Novi Subjekt" href="/Subjekt/Create">
+                            <i class="fa fa-2x fa-user-plus"></i>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="btn btn-icon-toggle text-primary" title="Roba u vozilu" href="/Vozilo/GoodsDetail">
+                            <i class="fa fa-2x fa-truck"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+              @if(User.Identity.IsAuthenticated)
+                        {
+            <div class="headerbar-right">
+                <ul class="header-nav header-nav-options">
+                    <li>
+                        <!-- 
+                             using (Html.BeginForm("Index","Home",FormMethod.Post, new {class="navbar-search", role="search" }))
+                            {
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="search" placeholder="Unesite pojam za pretragu">
+                            </div>
+                            <button type="submit" class="btn btn-icon-toggle ink-reaction"><i class="fa fa-search"></i></button>
+                             }
+                            Search form -->
+                    </li>
+                   
+
+                    <li>
+                        <a href="/Ponuda" class="btn btn-icon-toggle btn-primary text-primary" data-toggle="tooltip" data-placement="bottom" data-original-title="Ponude">
+                            <i class="fa fa-2x fa-newspaper-o"></i>
+                        </a>
+                    </li>
+
+              
+                    <li>
+                     <a href="/DnevnikPrevoza" class="btn btn-icon-toggle btn-primary text-primary" data-toggle="tooltip" data-placement="bottom" data-original-title="Pregled Svih Dnevnika">
+				        <i class="fa fa-2x fa-list"></i>
+				    </a>
+                   </li>
+
+                     <li>
+                     <a href="/DnevnikPrevoza/Create" class="btn btn-icon-toggle btn-primary text-primary" data-toggle="tooltip" data-placement="bottom" data-original-title="Kreiraj Novi Dnevnik">
+				        <i class="fa fa-2x fa-book"></i>
+				    </a>
+                   </li>
+
+                     <li>
+                     <a href="/Subjekt" class="btn btn-icon-toggle btn-primary text-primary " data-toggle="tooltip" data-placement="bottom" data-original-title="Pregled Svih Subjekata">
+				        <i class="fa fa-2x fa-users"></i>
+				    </a>
+                   </li>
+
+                     <li>
+                     <a href="/Subjekt/Create" class="btn btn-icon-toggle btn-primary text-primary" data-toggle="tooltip" data-placement="bottom" data-original-title="Kreiraj Novog Subjekta">
+				        <i class="fa fa-2x fa-user-plus"></i>
+				    </a>
+                   </li>
+
+                     <li>
+                     <a  style="margin-right:35px" href="/Vozilo/GoodsDetail" class="btn btn-icon-toggle btn-primary text-primary" data-toggle="tooltip" data-placement="bottom" data-original-title="Trenutni Prevozi Robe">
+				        <i class="fa fa-2x fa-truck"></i>
+				    </a>
+                   </li>
+
+
+            
+            @if(Spedicija.Models.SpedicijaAutorizacija.ImaRolu("admin"))
+            { 
+                
+              <li class="dropdown hidden-xs">
+				<a href="javascript:void(0);" class="btn btn-icon-toggle btn-default" data-toggle="dropdown" aria-expanded="true">
+					<i class="fa fa-warning"></i>
+                    <sup id="badge1"></sup> <!-- class="badge style-danger" -->
+				</a>
+				<ul class="dropdown-menu animation-expand" id ="notifikacije1">
+
+				</ul><!--end .dropdown-menu -->
+			</li>
+            }
+
+               <li class="dropdown hidden-xs">
+				<a href="javascript:void(0);" class="btn btn-icon-toggle btn-default" data-toggle="dropdown" aria-expanded="true">
+					<i class="fa fa-bell"></i>
+                    <sup id="badge"></sup> <!-- class="badge style-danger" -->
+				</a>
+				<ul class="dropdown-menu animation-expand" id ="notifikacije">
+
+				</ul><!--end .dropdown-menu -->
+			</li>
+
+                </ul><!--end .header-nav-options -->
+                <ul class="header-nav header-nav-profile">
+
+
+
+                    <li class="dropdown" style="margin: 0 12px">
+                        <a href="javascript:void(0);" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
+                           
+                            <span class="glyphicon glyphicon-user" style="padding-top: 10px;"></span>
+                            <span class="profile-info">
+                               
+                                <small style="font-weight: bold;color: #0aa89e;font-size: 14px;opacity: 1"> @User.Identity.Name</small>
+                            </span>
+                        </a>
+                      
+                        <ul class="dropdown-menu animation-dock">
+                            <li class="dropdown-header">Konfiguracija</li>
+                            <li><a href="@Url.Action("Details","Korisnik", new { name = @User.Identity.Name })">Profil</a></li>
+                            <!-- <li><a href="#"><span class="badge style-danger pull-right">16</span>My blog</a></li> -->
+                            @if(User.Identity.Name.Equals("admin")){ <li><a href="@Url.Action("Index","Korisnik")">Korisnici</a></li>}
+                            <li class="divider"></li>
+                            <li><a href="@Url.Action("LogOff","Account")"><i class="fa fa-fw fa-power-off"></i><b>Izloguj se!</b></a></li>
+
+                        </ul><!--end .dropdown-menu -->
+                        
+                    </li><!--end .dropdown -->
+                </ul><!--end .header-nav-profile -->
+            
+                <ul class="header-nav header-nav-toggle">
+			    <li>
+			    	<a class="btn btn-icon-toggle btn-default" href="#offcanvas-search" data-toggle="offcanvas" data-backdrop="false">
+			    		<i class="fa fa-ellipsis-v"></i>
+			    	</a>
+			    </li>
+		        </ul>
+               
+                
+            </div><!--end #header-navbar-collapse -->
+              }
+        </div>
+    </header>
+    <!-- END HEADER-->
+    <!-- BEGIN BASE-->
+    <div id="base">
+        <!-- BEGIN OFFCANVAS LEFT -->
+        
+       
+
+
+
+
+        <!-- END OFFCANVAS LEFT -->
+        <!-- BEGIN CONTENT-->
+        <div id="content">
+
+
+            <!-- OVDJE DODATI -->
+            @RenderSection("featured", required: false)
+            @RenderBody()
+
+
+
+        </div><!--end #content-->
+        <!-- END CONTENT -->
+        <!-- BEGIN MENUBAR-->
+        <div id="menubar" class="menubar-inverse  animate">
+            <div class="menubar-fixed-panel">
+                <div>
+                    <a class="btn btn-icon-toggle btn-default menubar-toggle" data-toggle="menubar" href="javascript:void(0);">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+                <div class="expanded">
+                    <a href="#">
+                        <span class="text-lg text-bold text-primary ">GMTEL LOGISTICS </span>
+                    </a>
+                </div>
+            </div>
+            <div class="nano has-scrollbar" style="height: 303px;">
+                <div class="nano-content" tabindex="0" style="right: -17px;">
+                    <div class="menubar-scroll-panel" style="padding-bottom: 55px;">
+                        <!-- BEGIN MAIN MENU -->
+
+
+
+
+                        <ul id="main-menu" class="gui-controls">
+                            <!-- BEGIN DASHBOARD -->
+                            <li class="active expanding expanded">
+                                <a href="@Url.Action("Index","Home")" class="active">
+                                    <div class="gui-icon"><i class="md md-home"></i></div>
+                                    <span class="title">Početna</span>
+                                </a>
+                            </li><!--end /menu-li -->
+                            <!-- END DASHBOARD -->
+                            <!-- BEGIN EMAIL -->
+
+                             @if(User.Identity.IsAuthenticated)
+                        {
+
+
+                             <li class="gui-folder">
+                                <a>
+                                    <div class="gui-icon"><i class="glyphicon glyphicon-user"></i></div>
+                                    <span class="title">Subjekti</span>
+                                </a>
+                                <!--start submenu -->
+                                <ul style="display: none;">
+                                    <li><a href="@Url.Action("Index","Subjekt")"><span class="title">Svi Subjekti</span></a></li>
+                                    <li><a href="@Url.Action("Card", "Subjekt", new { id = 0 })"><span class="title">Kartica Subjekta</span></a></li>
+                                    <li><a href="@Url.Action("Create", "Subjekt")"><span class="title">Dodaj Subjekta</span></a></li>                    
+                                </ul>
+                               </li>
+
+                            <li class="gui-folder">
+                                 <a>
+                                    <div class="gui-icon"><i class="glyphicon glyphicon-book"></i></div>
+                                    <span class="title">Dnevnik Prevoza</span>
+                                </a>
+                                <ul style="display: none;">
+                                     <li><a href="@Url.Action("Index","DnevnikPrevoza")"><span class="title">Dnevnik Svih Prevoza</span></a></li>
+                                     <li><a href="@Url.Action("Index2","DnevnikPrevoza")"><span class="title">Dnevnik Skraćeno</span></a></li>
+                                     <li><a href="@Url.Action("Create","DnevnikPrevoza")"><span class="title">Kreiraj Dnevnik</span></a></li>
+                                     <li><a href="@Url.Action("NefakturisaniPrevozi","DnevnikPrevoza")"><span class="title">Nefakturisani Prevozi</span></a></li>
+                                    <li><a href="@Url.Action("Index","Ponuda")"><span class="title">Ponude za prevoz</span></a></li>
+                                     <li><a href="@Url.Action("IstekleValute","DnevnikPrevoza")">
+                                         <span class="title pull-left"> Istekle Valute </span>
+                                         <span id="badge-valute" class="badge pull-left style-danger" style="width: 30px; border-radius: 4px; font-size: 12px; top: 5px;">5</span>
+                                      </a></li>  
+                                </ul>
+                                <!--start submenu -->
+
+                               </li>
+
+                             <li class="gui-folder">
+                                 <a>
+                                    <div class="gui-icon"><i class="md md-drive-eta"></i></div>
+                                    <span class="title">Vozači</span>
+                                </a>
+                                <ul style="display: none;">
+                                     <li><a href="@Url.Action("Index","Vozaci")"><span class="title">Lista Vozača</span></a></li>
+                                     <li><a href="@Url.Action("Create","Vozaci")"><span class="title">Dodaj Vozača</span></a></li>
+                                     <li><a href="@Url.Action("Index","VozacVrstaTroskova")"><span class="title">Podešavanje Troškova</span></a></li>
+                                </ul>
+                                <!--start submenu -->
+
+                               </li>
+
+                              <li class="gui-folder">
+                                 <a>
+                                    <div class="gui-icon"><i class="fa fa-truck"></i></div>
+                                    <span class="title">Vozila</span>
+                                </a>
+                                <ul style="display: none;">
+                                     <li><a href="@Url.Action("Index","Vozilo")"><span class="title">Lista Vozila</span></a></li>
+                                     <li><a href="@Url.Action("Create","Vozilo")"><span class="title">Dodaj Vozila</span></a></li>
+                                    <li><a href="@Url.Action("GoodsDetail","Vozilo")"><span class="title">Trenutni prevozi robe</span></a></li>
+                                    <li><a href="@Url.Action("RasporedUtovarIstovar","Vozilo")"><span class="title">Raspored Utovar/Istovar</span></a></li>
+
+
+
+                                    
+                                </ul>
+                                <!--start submenu -->
+
+                               </li>
+
+
+
+                             <li class="gui-folder">
+                                 <a>
+                                    <div class="gui-icon"><i class="glyphicon glyphicon-list-alt"></i></div>
+                                    <span class="title">Izračun Zarade</span>
+                                </a>
+                                <ul style="display: none;">
+                                     <li><a href="@Url.Action("IzracunZarada","DnevnikPrevoza")"><span class="title">Kreiraj Izvještaj</span></a></li>
+                                     <li><a href="@Url.Action("SacuvaniIzracuni","DnevnikPrevoza")"><span class="title">Pregled Izvještaja</span></a></li>
+                                </ul>
+                                <!--start submenu -->
+
+                               </li>
+
+                             <li class="gui-folder">
+                                 <a>
+                                    <div class="gui-icon"><i class="fa fa-question-circle"></i></div>
+                                    <span class="title">Korisnički Upiti</span>
+                                </a>
+                                <ul style="display: none;">
+                                     <li><a href="@Url.Action("Index","KorisnikUpit")"><span class="title">Upit za cijenu prevoza</span></a></li>
+                                     <li><a href="@Url.Action("Index","KorisnikNalog")"><span class="title">Nalog za utovar</span></a></li>
+                                </ul>
+                                <!--start submenu -->
+
+                               </li>
+
+
+                             <li class="">
+                                 <a href="@Url.Action("Calendar","DnevnikPrevoza")">
+                                     <div class="gui-icon"><i class="glyphicon glyphicon-calendar"></i></div>
+                                    <span class="title">Kalendar</span>
+                                </a>
+                                <!--start submenu -->
+
+                               </li>
+
+                            <!-- END EMAIL -->
+                            <!-- BEGIN DASHBOARD -->
+                          
+                            <!-- END DASHBOARD -->
+                            <!-- BEGIN UI -->
+
+                            <!-- END UI -->
+                            <!-- BEGIN TABLES -->
+
+                            <!-- END TABLES -->
+
+
+                            <!-- END LEVELS -->
+                             }
+                        </ul><!--end .main-menu -->
+                        <!-- END MAIN MENU -->
+
+                        <div class="menubar-foot-panel">
+                            <small class="no-linebreak hidden-folded">
+                                <span class="opacity-75">Copyright © 2017</span><br/><strong>GMTEL LOGISTICS</strong>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="nano-pane" style="display: block;"><div class="nano-slider" style="height: 160px; transform: translate(0px, 0px);"></div></div> -->
+            </div><!--end .menubar-scroll-panel-->
+        </div><!--end #menubar-->
+        <!-- END MENUBAR -->
+        <!-- BEGIN OFFCANVAS RIGHT -->
+
+        <div class="offcanvas">
+			
+
+
+<!-- BEGIN OFFCANVAS SEARCH -->
+   <div id="offcanvas-search" class="offcanvas-pane width-8 ">
+	<div class="offcanvas-head style-default-bright">
+		<header class="text-primary">Notesi</header>
+
+
+		<div class="offcanvas-tools">
+            <a class="btn btn-icon-toggle btn-default-light pull-right" title="Zatvori" data-dismiss="offcanvas">
+				<i class="md md-close"></i>
+			</a>
+            <a class="btn btn-icon-toggle btn-default-light pull-right" title="Dodaj Novi" href="#offcanvas-chat" data-toggle="offcanvas" data-backdrop="false">
+                <i class="md md-add"></i>
+                </a>
+			<a id="btn-izmjeni" style="display:none" class="btn btn-icon-toggle btn-default-light pull-right" title="Izmjeni Zapis" href="#offcanvas-edit" data-toggle="offcanvas" data-backdrop="false">
+                <i class="md md-add"></i>
+                </a>
+
+            <a id="btn-refresh" class="btn btn-icon-toggle btn-default-light pull-right" title="Osviježi" href="#">
+                <i class="md md-refresh"></i>
+                </a>
+            
+            @if ( Session["NotesIzbor"] == null )
+            {
+           <select id="NotesKorisnik" name="NotesKorisnik" class="pull-right text-primary" style="margin-top: 7px; font-size: 16px;">
+               <option value="mojinotesi" > Moji Zapisi </option>
+              <option value="svi" >        Svi Zapisi</option>
+           </select>
+            }
+            else if (Session["NotesIzbor"].ToString().Equals("svi"))
+            { 
+            <select id="NotesKorisnik" name="NotesKorisnik" class="pull-right text-primary" style="margin-top: 7px; font-size: 16px;">
+               <option value="mojinotesi" > Moji Zapisi </option>
+              <option value="svi" selected>        Svi Zapisi</option>
+           </select>
+            }
+            else
+            {
+            <select id="NotesKorisnik" name="NotesKorisnik" class="pull-right text-primary" style="margin-top: 7px; font-size: 16px;" >
+               <option value="mojinotesi" selected> Moji Zapisi </option>
+              <option value="svi" >        Svi Zapisi</option>
+           </select>
+            }
+
+		</div>
+	</div>
+
+	<div class="offcanvas-body no-padding">
+		<ul class="list " id="notes-list">
+			
+			
+		</ul>
+	</div><!--end .offcanvas-body -->
+</div>
+<!--end .offcanvas-pane -->
+<!-- END OFFCANVAS SEARCH -->
+
+			
+
+
+<!-- BEGIN OFFCANVAS CHAT -->
+<div id="offcanvas-chat" class="offcanvas-pane style-default-light width-12" style="width:600px">
+	<div class="offcanvas-head style-default-bright">
+		<header class="text-primary">@DateTime.Today.ToShortDateString()</header>
+		<div class="offcanvas-tools">
+			<a class="btn btn-icon-toggle btn-default-light pull-right" data-dismiss="offcanvas">
+				<i class="md md-close"></i>
+			</a>
+			<a class="btn btn-icon-toggle btn-default-light pull-right active" href="#offcanvas-search" data-toggle="offcanvas" data-backdrop="false">
+				<i class="md md-arrow-back"></i>
+			</a>
+		</div>
+		<form class="form" id="frm-summernote">
+			<div class="form-group floating-label">
+				<div class="form-group">
+                    @Html.Hidden("DatumSummernote", DateTime.Today)
+                    <textarea id="summernote" name="summernote"></textarea>
+                    </div>
+				<div class="form-group clearfix">
+					<input type="submit" id="btn-summernote" class="btn btn-raised btn-default-light pull-right" value="Dodaj u Notes"/>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="offcanvas-body">
+		<ul class="list-chats" id="zapisi-danas">
+			
+		</ul>
+	</div><!--end .offcanvas-body -->
+</div><!--end .offcanvas-pane -->
+
+<div id="offcanvas-edit" class="offcanvas-pane style-default-light width-12" style="width:600px">
+	<div class="offcanvas-head style-default-bright">
+		<header class="text-primary">@DateTime.Today.ToShortDateString()</header>
+		<div class="offcanvas-tools">
+			<a class="btn btn-icon-toggle btn-default-light pull-right" data-dismiss="offcanvas">
+				<i class="md md-close"></i>
+			</a>
+			<a class="btn btn-icon-toggle btn-default-light pull-right active" href="#offcanvas-search" data-toggle="offcanvas" data-backdrop="false">
+				<i class="md md-arrow-back"></i>
+			</a>
+		</div>
+		<form class="form" id="frm-summernote-edit">
+			<div class="form-group floating-label">
+				<div class="form-group">
+                    @Html.Hidden("IdNotes", "")
+                    <textarea id="summernote-edit" name="summernote"></textarea>
+                    </div>
+				<div class="form-group clearfix">
+                    <input type="submit" id="btn-summernote-delete" class="btn btn-raised btn-danger pull-right" value="Izbriši Zapis"/> 
+					<input type="submit" id="btn-summernote-edit" class="btn btn-raised btn-default-light pull-right" value="Izmjeni Zapis" style="margin-right: 10px;" /> 
+                    
+				</div>
+
+			</div>
+		</form>
+	</div>
+
+	<div class="offcanvas-body">
+		<ul class="list-chats" id="zapisi-danas">
+			
+		</ul>
+	</div><!--end .offcanvas-body -->
+</div>
+<!-- END OFFCANVAS CHAT -->
+
+			 		</div>
+        <!-- END OFFCANVAS RIGHT -->
+
+    </div><!--end #base-->
+    <!-- END BASE -->
+    <!-- BEGIN JAVASCRIPT -->
+    @RenderSection("scripts", required: false)
+   
+
+
+    <!-- END JAVASCRIPT -->
+   
+    <div id="device-breakpoints"><div class="device-xs visible-xs" data-breakpoint="xs"></div><div class="device-sm visible-sm" data-breakpoint="sm"></div><div class="device-md visible-md" data-breakpoint="md"></div><div class="device-lg visible-lg" data-breakpoint="lg"></div></div><div id="__fghjktghndfgt_once" style="display:none;"></div><div style="left: 455px; top: 477px; position: absolute;" data-original-title="" title=""></div><div style="left: 659px; top: 352px; position: absolute;" data-original-title="" title=""></div><div style="left: 604px; top: 359px; position: absolute;" data-original-title="" title=""></div><div style="left: 670px; top: 432px; position: absolute;" data-original-title="" title=""></div><div style="left: 705px; top: 499px; position: absolute;" data-original-title="" title=""></div><div style="left: 589px; top: 338px; position: absolute;" data-original-title="" title=""></div><div style="left: 525px; top: 367px; position: absolute;" data-original-title="" title=""></div><div style="left: 408px; top: 404px; position: absolute;" data-original-title="" title=""></div><div style="left: 362px; top: 426px; position: absolute;" data-original-title="" title=""></div><div style="left: 339px; top: 429px; position: absolute;" data-original-title="" title=""></div><div style="left: 743px; top: 894px; position: absolute;" data-original-title="" title=""></div><div style="left: 703px; top: 922px; position: absolute;" data-original-title="" title=""></div><div style="left: 743px; top: 894px; position: absolute;" data-original-title="" title=""></div><div style="left: 859px; top: 872px; position: absolute;" data-original-title="" title=""></div><div style="left: 781px; top: 865px; position: absolute;" data-original-title="" title=""></div><div style="left: 859px; top: 872px; position: absolute;" data-original-title="" title=""></div><div style="left: 859px; top: 872px; position: absolute;" data-original-title="" title=""></div><div style="left: 594px; top: 345px; position: absolute;" data-original-title="" title=""></div><div style="left: 530px; top: 358px; position: absolute;" data-original-title="" title=""></div>
+</body>
+</html>

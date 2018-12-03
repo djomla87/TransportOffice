@@ -1,0 +1,450 @@
+﻿@model Spedicija.DnevnikPrevoza
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<section>     
+<div class="container">   
+    <div class="section-body ">
+           
+        <div class="card card-bordered style-primary">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-trash"></i>&nbsp Da li ste sigurni da želite izbrisati?</header>
+			</div>
+            <div class="card-body style-default-bright">
+<ul class="list divider-full-bleed">
+	
+
+    
+    <li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.Status)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Status)</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.DatumDnevnika)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.DatumDnevnika, "ShortDateTime")</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.Subjekt1.Naziv)</div> </div>
+						<div class="col-md-8"><a href="/Subjekt/Card/@Model.Subjekt1.IdSubjekt"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Subjekt1.Naziv)</div></a></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.BrojNaloga)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.BrojNaloga)</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.SerijskiBroj)</div> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.SerijskiBroj)</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.UtovarAdresa)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.UtovarAdresa)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.UtovarFirma)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.UtovarFirma)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.UtovarGrad)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.UtovarGrad)</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.UtovarKontakt)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.UtovarKontakt)</div></div>
+						</div>
+		</div>
+	</li>
+
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.DatumUtovara)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.DatumUtovara, "ShortDateTime")</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.IstovarAdresa)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.IstovarAdresa)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.IstovarFirma)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.IstovarFirma)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.IstovarGrad)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.IstovarGrad)</div></div>
+						</div>
+		</div>
+	</li>
+
+		<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.IstovarKontakt)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.IstovarKontakt)</div></div>
+						</div>
+		</div>
+	</li>
+
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.DatumIstovara)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.DatumIstovara, "ShortDateTime")</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.KolicinaRobe)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.KolicinaRobe)</div></div>
+						</div>
+		</div>
+	</li>
+
+		<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.VrstaRobe)</div> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.VrstaRobe)</div></div>
+						</div>
+		</div>
+	</li>
+
+    		<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.TezinaRobe)</div> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.TezinaRobe)</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.CijenaPrevoza)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.CijenaPrevoza)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.Valuta.OznakaValute)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Valuta.OznakaValute)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.ValutaPlacanja)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.ValutaPlacanja)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.UvoznaSpedicija)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.UvoznaSpedicija)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.IzvoznaSpedicija)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.IzvoznaSpedicija)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4">
+                <div class="tile-icon">Vozilo</div><!-- <i class="fa fa-inbox"></i> --> </div>
+                @if (Model.Vozilo == null) { 
+                <div class="col-md-8"><div class="tile-text text-bold"></div></div>
+                }
+                else
+                {
+						<div class="col-md-8"><a href="/Vozilo/Details/@Model.Vozilo.IdVozilo"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Vozilo.TipVozila)</div></a></div>
+                }
+                    </div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">Ime Vozača</div><!-- <i class="fa fa-inbox"></i> --> </div>
+				  @if (Model.Vozilo == null)
+      {
+           <div class="col-md-8"><div class="tile-text text-bold"></div></div>
+      }	
+                else{
+                	<div class="col-md-8"><a href="/Vozaci/Details/@Model.Vozilo.IdVozilo"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Vozaci.ImeVozaca)</div></a></div>
+      }	</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.DrugiPrevoznik)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@if (Model.DrugiPrevoznik ?? false)
+                                                             { <span>DA</span> }
+                                                             else
+                                                             {  <span>NE</span> } </div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">Prevoznik</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8">
+                            @if (Model.Subjekt == null)
+                            { <div class="tile-text text-bold"></div> }
+                            else
+                            {
+                            <a href="/Subjekt/Card/@Model.Subjekt.IdSubjekt"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Subjekt.Naziv)</div></a>
+                            }</div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.BrojNalogaPrevoznika)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.BrojNalogaPrevoznika)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.CijenaPrevozaPrevoznika)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.CijenaPrevozaPrevoznika)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">Valuta</div><!-- <i class="fa fa-inbox"></i> --> </div>
+
+						<div class="col-md-8">
+                            @if (Model.Valuta1 == null)
+                            { <div></div>}
+                            else
+                            {
+                            <div class="tile-text text-bold">@Html.DisplayFor(model => model.Valuta1.OznakaValute)</div>
+                            }
+						</div>
+						</div>
+		</div>
+	</li>
+
+			<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.RegistracijaVozilaPrevoznika)</div> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.RegistracijaVozilaPrevoznika)</div></div>
+						</div>
+		</div>
+	</li>
+                		<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.VozacPrevoznika)</div> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.VozacPrevoznika)</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.BrojFakture)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.BrojFakture)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.DatumSlanjaFakture)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.DatumSlanjaFakture, "ShortDateTime")</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.DatumZapisa)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@Html.DisplayFor(model => model.DatumZapisa)</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-4"><div class="tile-icon">@Html.DisplayNameFor(model => model.ZapisAktivan)</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-8"><div class="tile-text text-bold">@if (Model.ZapisAktivan ?? false)
+                                                             { <span>DA</span> }
+                                                             else
+                                                             {  <span>NE</span> } </div></div>
+						</div>
+		</div>
+	</li>
+
+</ul>
+
+            </div>
+
+
+@using (Html.BeginForm()) {
+    
+	          <div class="card-actionbar style-default-bright">
+				<div class="card-actionbar-row">	
+						<input type="submit" value="Obriši" class = "btn btn-flat btn-warning ink-reaction" />
+					    @Html.ActionLink("NAZAD NA LISTU", "Index", null, new { @class = "btn btn-flat btn-primary ink-reaction pull-left"  })
+				</div>
+			</div>
+    
+}
+
+</div>
+</div>
+        </div>
+    </section>
+
+

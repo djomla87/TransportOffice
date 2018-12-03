@@ -1,0 +1,264 @@
+﻿@model Spedicija.Models.SearchViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<section>
+		<div class="section-body">
+			<div class="container">
+                <h2 class="text-light text-center"><img src="~/Content/images/gmtel-transparent.png" /></h2>
+                
+				<h2 class="text-light text-center">Dobrodošli na početnu stranicu Aplikacije<br><small class="opacity-75">Pretraga aplikacije</small></h2>
+				<br>
+                <div class="row">
+                    <div class="col-md-12">
+
+
+                        <div class="col-md-12">
+                            
+                           @using (Html.BeginForm("Index","Home",FormMethod.Post, new {@class="form", @role="form" }))
+                            {
+								<div class="form-group floating-label">
+									<input type="text" name="search" class="form-control input-lg" id="search" style="font-size: 2.5em;">
+									<label for="pojam">Pretražite subjekte, dnevnik, dokumente ...</label>
+								</div>
+							}
+                           
+                         </div>
+
+
+                        <div class="col-md-12">
+					        <div class="card tabs-left style-default-light">
+								<ul class="card-head nav nav-tabs text-center" data-toggle="tabs">
+							        <li class=""><a href="#first"><i class="fa fa-lg fa-user"></i><br><h4>PROFIL<br><small>Subjekti</small></h4></a></li>
+                                    <li class="active"><a href="#second">     <i class="fa fa-lg fa-folder"></i><br><h4>ARHIVA<br><small>Dnevnika</small></h4></a></li>
+							        <li class=""><a href="#third">      <i class="fa fa-lg fa-truck"></i><br><h4>VOZNI PARK<br><small>Vozila</small></h4></a></li>
+                                    <li class=""><a href="#forth">      <i class="md md-drive-eta" style="font-size: 1.5em;"></i><br><h4>ZAPOSLENI<br><small>Vozači</small></h4></a></li>
+                                    <li class=""><a href="#fifth">      <i class="fa fa-lg fa-file-pdf-o"></i><br><h4>UPLOAD<br><small>Dokumenti</small></h4></a></li>
+                                     <li class=""><a href="#sixth">      <i class="fa fa-lg fa-fw fa-file-text-o"></i><br><h4>NALOZI<br><small>Za Utovar</small></h4></a></li>
+						        </ul>
+						        <div class="card-body tab-content style-default-bright" style="min-height: 700px;">
+
+							    <div class="tab-pane" id="first">			
+                                    <h1><i class="fa fa-users text-info"></i> Subjekti </h1>
+								    <p class="lead">Ovdje su prikazani rezultati pretrage svih Subjekta unešenih u aplikaciju koji u svom Nazivu, kontakt osobi ili Timocom broju sadrže pojam koji je unešen u pretragu </p>
+									<p></p>
+                                            @{int i = 1; int count = Model.Subjekt.Count();}
+                                    
+                                            @foreach (var item in Model.Subjekt)
+                                            {
+                                              
+                                                 if (i % 3 == 1) { @Html.Raw("<div class=\"row\">") } 
+                                            <div class="col-md-4">
+					                        	<div class="card card-type-pricing">
+					                        		<div class="card-body text-center style-gray" style="padding: 10px 0px 0px 0px;">
+					                        			<h2 class="text-light" style="margin: 5px 5px 10px 5px; height: 55px;">@item.Naziv</h2>
+					                        			<div class="price">
+					                        				<a title="Otvori Karticu" href="@Url.Action("Card", "Subjekt", new {id = item.IdSubjekt  })"><img class="img-circle img-responsive width-2" src="/Content/images/company.png" alt="" style="margin: 0 auto;"></a>
+					                        			</div>
+					                        			<br>
+					                        		</div><!--end .card-body -->
+					                        		<div class="card-body no-padding">
+					                        			<ul class="list-unstyled text-left">
+					                        				<li><div class="row"><div class="col-md-3">Kontakt:</div><div class="col-md-9">@item.KontaktOsoba</div></div></li>
+					                        				<li><div class="row"><div class="col-md-3">Adresa:</div><div class="col-md-9"> @item.Adresa</div></div></li>
+					                        				<li><div class="row"><div class="col-md-3">Telefon:</div><div class="col-md-9"> @item.Telefon</div></div></li>
+					                        				<li><div class="row"><div class="col-md-3">Timocom:</div><div class="col-md-9"> @item.Timocom</div></div></li>
+					                        			</ul>
+					                        		</div><!--end .card-body -->
+					                        	</div><!--end .card -->
+					                        </div>
+                                               if (i % 3 == 0 || i == count) { @Html.Raw("</div>") }
+                                                i++; 
+                                            }
+                                        
+	                            </div>
+
+							    <div class="tab-pane active" id="second">
+								    <h1><i class="fa fa-folder-open text-warning"></i> Dnevnik </h1>
+								    <p class="lead">Ovdje su prikazani rezultatu pretrage svih Dnevnika prevoza koji su kreirani u aplikaciji i čiji broj naloga, naziv, naručioc, mjesta utovara i istovara isl. sadrže pojam koji je unešen u pretragu</p>
+									<p></p>
+                                             @{i = 1; count = Model.Dnevnik.Count();}
+                                            @foreach (var item in Model.Dnevnik)
+                                            {
+                                                  if (i % 3 == 1) { @Html.Raw("<div class=\"row\">") }
+                                            <div class="col-md-4">
+					                        	<div class="card card-type-pricing">
+					                        		<div class="card-body text-center" style="padding: 10px 0px 0px 0px; background-color: cornsilk;">
+					                        			<h2 class="text-light" style="margin:  5px 5px 10px 5px; height: 55px;">@item.BrojNaloga </h2>
+					                        			<div class="price">
+					                        				<a title="Otvori Karticu" href="@Url.Action("Details", "DnevnikPrevoza", new {id = item.IdDnevnik })"><img class="img-responsive width-2" src="/Content/images/folder.png" alt="" style="margin: 0 auto;"></a>
+					                        			</div>
+					                        			<br>
+					                        		</div><!--end .card-body -->
+					                        		<div class="card-body no-padding">
+					                        			<ul class="list-unstyled text-left">
+					                        				<li><div class="row"><div class="col-md-3">Naručioc:</div><div class="col-md-9">@(item.Subjekt1 == null ? "" : item.Subjekt1.Naziv)</div></div></li>
+					                        				<li><div class="row"><div class="col-md-3">Prevoznik: </div><div class="col-md-9">@(item.Subjekt == null ? "" : item.Subjekt.Naziv)</div></div></li>
+                                                            <li><div class="row"><div class="col-md-3">Utovar: </div><div class="col-md-9">@item.UtovarGrad</div></div></li>
+                                                            <li><div class="row"><div class="col-md-3">IStovar: </div><div class="col-md-9">@item.IstovarGrad</div></div></li>
+					                        			</ul>
+					                        		</div><!--end .card-body -->
+					                        	</div><!--end .card -->
+					                        </div>
+                                                 if (i % 3 == 0 || i == count) { @Html.Raw("</div>") }  
+                                                    i++;
+                                            }
+    							</div>
+
+
+                                <div class="tab-pane" id="third">
+								    <h1><i class="fa fa-truck text-accent"></i> Vozila </h1>
+								    <p class="lead">Ovdje su prikazani rezultati pretrage svih vozila čiji tip, reg. nroj ili opis sadrže pojam koji je unesen u pretragu</p>
+									<p></p>
+                                             @{i = 1; count = Model.Vozila.Count();}
+                                            @foreach (var item in Model.Vozila)
+                                            {
+                                                  if (i % 3 == 1) { @Html.Raw("<div class=\"row\">") }
+                                            <div class="col-md-4">
+					                        	<div class="card card-type-pricing">
+					                        		<div class="card-body text-center" style="padding: 10px 0px 0px 0px; background-color: aliceblue;">
+					                        			<h2 class="text-light" style="margin: 5px 5px 10px 5px; height: 55px;">@item.TipVozila </h2>
+					                        			<div class="price">
+					                        				<a title="Otvori Detalje" href="@Url.Action("Details", "Vozilo", new {id = item.IdVozilo })"><img class="img-responsive width-2" src="/Content/images/Transport.png" alt="" style="margin: 0 auto;"></a>
+					                        			</div>
+					                        			<br>
+					                        		</div><!--end .card-body -->
+					                        		<div class="card-body no-padding">
+					                        			<ul class="list-unstyled text-left">
+					                        				<li><div class="row"><div class="col-md-3">Reg. broj:</div><div class="col-md-9">@item.RegistarskiBroj </div></div></li>
+					                        				<li><div class="row"><div class="col-md-3">Detalji:</div><div class="col-md-9"> @item.DodatniPodaci </div></div></li>
+					                        			</ul>
+					                        		</div><!--end .card-body -->
+					                        	</div><!--end .card -->
+					                        </div>
+                                                   if (i % 3 == 0 || i == count) { @Html.Raw("</div>") }  
+                                                     i++;
+                                            }
+    							</div>
+
+
+                                <div class="tab-pane" id="forth">
+								    <h1><i class="md md-drive-eta text-danger"></i> Vozači </h1>
+								    <p class="lead">Ovdje su prikazani rezultati pretrage svih Vozača koji sadrže pojam koji je unesen u pretragu</p>
+									<p></p>
+                                     @{i = 1; count = Model.Vozaci.Count();}
+                                            @foreach (var item in Model.Vozaci)
+                                            {
+                                                  if (i % 3 == 1) { @Html.Raw("<div class=\"row\">") }
+                                            <div class="col-md-4">
+					                        	<div class="card card-type-pricing">
+					                        		<div class="card-body text-center" style="padding-bottom: 0px;     background-color: aliceblue;">
+					                        			<h2 class="text-light" style="margin-top: 5px;"> @item.ImeVozaca </h2>
+					                        			<div class="price">
+					                        				<a title="Otvori Detalje" href="@Url.Action("Details", "Vozaci", new {id = item.IdVozac })"><img class="img-responsive width-2" src="/Content/images/Driver.png" alt="" style="margin: 0 auto;"></a>
+					                        			</div>
+					                        			<br>
+					                        		</div><!--end .card-body -->
+					                        		<div class="card-body no-padding">
+					                        			<ul class="list-unstyled text-left">
+					                        				<li><div class="row"><div class="col-md-3">Adresa:</div><div class="col-md-9"> @item.Adresa </div></div></li>
+					                        				<li><div class="row"><div class="col-md-3">Vozačka:</div><div class="col-md-9"> @item.BrojVozackeDozvole </div></div></li>
+                                                            <li><div class="row"><div class="col-md-3">Telefon:</div><div class="col-md-9"> @item.Telefon </div></div></li>
+					                        			</ul>
+					                        		</div><!--end .card-body -->
+					                        	</div><!--end .card -->
+					                        </div>
+                                                   if (i % 3 == 0 || i == count) { @Html.Raw("</div>") }  
+                                                     i++;
+                                            }
+
+    							</div>
+
+                              <div class="tab-pane" id="fifth">
+								    <h1><i class="fa fa-file-pdf-o"></i>&nbsp<i class="fa fa-file-excel-o"></i>&nbsp<i class="fa fa-file-word-o"></i> Dokumenti </h1>
+								    <p class="lead">Ovdje su prikazani rezultati pretrage svih prikačenih dokumenata koji u svom nazivu sadrže traženi pojam</p>
+									<p></p>
+                                                       <div class="row">
+                                      @foreach (var item in Model.Dokument)
+                                      {
+                                          <div class="col-md-4">
+                                         <div class="card card-type-pricing card-outlined style-primary">
+					                        	<div class="card-body text-center" style="padding: 0px;">
+					                        		<h2 class="text-light" style="margin: 5px 5px 10px 5px; height: 52px; overflow: hidden;">@item.Naziv </h2>
+					                        		<div class="price">
+                                                      @if(item.Putanja.EndsWith(".xls") || item.Putanja.EndsWith(".xlsx")){
+					                        			<a title="Preuzmi fajl" href="/Dokumenti/@item.Naziv" target="_blank"><img class="img-responsive width-2" src="/Content/images/Exel.png" alt="" style="margin: 0 auto;"></a>  
+                                                      }
+                                                       @if(item.Putanja.EndsWith(".doc") || item.Putanja.EndsWith(".docx")){
+					                        			<a title="Preuzmi fajl" href="/Dokumenti/@item.Naziv" target="_blank"><img class="img-responsive width-2" src="/Content/images/Word.png" alt="" style="margin: 0 auto;"></a>
+                                                      }
+                                                       @if(item.Putanja.EndsWith(".pdf")){
+					                        			<a title="Preuzmi fajl" href="/Dokumenti/@item.Naziv" target="_blank"><img class="img-responsive width-2" src="/Content/images/Pdf.png" alt="" style="margin: 0 auto;"></a>
+                                                      }
+                                                          </div>
+					                        		<br>
+					                        	</div><!--end .card-body -->
+					                        	<div class="card-body no-padding">
+					                        		<ul class="list-unstyled text-left">
+					                        			<li style="border-top: 1px solid #e5e6e6;"><div class="row"><div class="col-md-4">Tip </div><div class="col-md-8"> @item.Tip</div>  </div></li>
+					                        			<li style="border-top: 1px solid #e5e6e6;"><div class="row"><div class="col-md-4">Veličina</div><div class="col-md-8">@item.Velicina kb</div></div></li>
+
+					                        		</ul>
+					                        	</div><!--end .card-body -->
+					                        </div><!--end .card --> 
+                                              </div>
+                                      }
+                                      </div>
+
+    							</div>
+
+                                 <div class="tab-pane" id="sixth">
+								    <h1><i class="fa fa-fw fa-file-text-o"></i> Nalozi za utovar </h1>
+								    <p class="lead">Ovdje su prikazani rezultati pretrage svih Naloga za utovar koji se odnosi na stranku koja je pretraživana ili ako broj naloga ili dnevnika sadrže traženi pojam</p>
+									<p></p>
+                                     @{i = 1; count = Model.Nalozi.Count();}
+                                            @foreach (var item in Model.Nalozi)
+                                            {
+                                                  if (i % 3 == 1) { @Html.Raw("<div class=\"row\">") }
+                                            <div class="col-md-4">
+					                        	<div class="card card-type-pricing">
+					                        		<div class="card-body text-center" style="padding-bottom: 0px;     background-color: aliceblue;">
+					                        			<h2 class="text-light" style="margin-top: 5px;"> @item.BrojNaloga </h2>
+					                        			<div class="price">
+					                        				<a title="Otvori Detalje" href="@Url.Action("Report", "Nalog", new {id = item.IdNalog })"><img class="img-responsive width-2" src="/Content/images/papers.png" alt="" style="margin: 0 auto;"></a>
+					                        			</div>
+					                        			<br>
+					                        		</div><!--end .card-body -->
+					                        		<div class="card-body no-padding">
+					                        			<ul class="list-unstyled text-left">
+					                        				<li><div class="row"><div class="col-md-3">Dnevnik:</div><div class="col-md-9"> @item.DnevnikPrevoza.BrojNaloga </div></div></li>
+					                        				<li><div class="row"><div class="col-md-3">Subjekt:</div><div class="col-md-9"> @item.DnevnikPrevoza.Subjekt.Naziv </div></div></li>
+                                                            <li><div class="row"><div class="col-md-3">Izvoznik:</div><div class="col-md-9"> @item.DnevnikPrevoza.UtovarFirma - @item.DnevnikPrevoza.IstovarFirma </div></div></li>
+					                        			</ul>
+					                        		</div><!--end .card-body -->
+					                        	</div><!--end .card -->
+					                        </div>
+                                                   if (i % 3 == 0 || i == count) { @Html.Raw("</div>") }  
+                                                     i++;
+                                            }
+
+    							</div>
+
+						        </div>
+					        </div><!--end .card -->
+					        <em class="text-caption">Rezultati pretrage</em>
+				        </div>
+
+
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            </div><!--end .container -->
+		</div><!--end .section-body -->
+	</section>

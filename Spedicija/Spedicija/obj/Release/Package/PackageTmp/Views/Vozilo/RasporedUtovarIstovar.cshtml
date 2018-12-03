@@ -1,0 +1,314 @@
+﻿@{
+    ViewBag.Title = "RasporedUtovarIstovar";
+}
+
+
+<style>
+    .sortable-placeholder {
+        margin-left: 0 !important;
+        border: 1px solid #ccc;
+        background-color: yellow;
+        -webkit-box-shadow: 0px 0px 10px #888;
+        -moz-box-shadow: 0px 0px 10px #888;
+        box-shadow: 0px 0px 10px #888;
+    }
+</style>
+
+
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCQBrlBT4GBGTFQsC4Ud5KeHOKCEa2o2ZY"></script>
+
+<script src="~/Content/js/select.js"></script>
+<link href="~/Content/css/selectlist.css" rel="stylesheet" />
+
+<script type="text/javascript">
+
+    var geocoder;
+    var map;
+    var directionsDisplay;
+    var directionsService = new google.maps.DirectionsService();
+    var locations = [];
+
+
+    $(document).ready(function () {
+
+        $('.select').select2({
+            allowClear: true
+        });
+
+
+        $("#btn-potvrdi").on('click', function (e) {
+
+            $.ajax({
+                type: 'GET',
+                url: '/Vozilo/AktivniPrevoziVozila',
+                dataType: 'json',
+                success: function (data) {
+
+                    var geocoder = new google.maps.Geocoder();
+
+                    $("#PrevoziSort").html("");
+
+
+                    $.each(data, function (i, val) {
+
+                        geocoder.geocode({ 'address': val.Adresa }, function (results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                                // var item = [val.Adresa, val.Opis, results[0].geometry.location.lng(), results[0].geometry.location.lat(), val.Tip];
+                                // locations.push(item);
+                                val.Long = results[0].geometry.location.lng();
+                                val.Lat = results[0].geometry.location.lat();
+                                locations[i] = val;
+
+                            }
+                        });
+
+                        var klasa = "";
+                        if (val.Header == "Utovar")
+                            klasa = " panel-info ";
+                        else
+                            klasa = " panel-warning ";
+
+                        var html = "<div class='col-md-3'><div class='panel " + klasa + " unsortable' style='height:270px'>";
+
+                        html += "<div class='panel-heading unsortable'>";
+                        html += "<h3 class='panel-title'>" + val.Header + "<span style='float:right'>#" + val.RedniBroj + "</span>" + "</h3></div>";
+
+                        html += "<div class='panel-body unsortable cls-redoslijed'>";
+                        html += "<p>" + val.Opis + "</p>";
+                        html += "<p>" + val.Status + "</p>";
+                        html += "<input type='hidden' id='RED-DNEVNIK' value='" + val.IdDnevnik + "'  />";
+                        html += "<input type='hidden' id='RED-UTOVAR' value='" + val.IdDodatniUtovar + "'  />";
+                        html += "<input type='hidden' id='RED-ISTOVAR' value='" + val.IdDodatniIstovar + "'  />";
+                        html += "<input type='hidden' id='RED-AKTIVNOST' value='" + val.Aktivnost + "'  />";
+                        html += "<input type='hidden' id='RED-ID' value='" + val.IdRedoslijed + "'  />";
+                        html += "</div>";
+                        html += "</div>";
+                        html += "</div>";
+
+                        console.log(val.RedniBroj);
+                        $("#PrevoziSort").append(html);
+                    });
+
+
+                },
+                data: { IdVozilo: $("#IdVozilo").val(), IdVozac: $("#IdVozac").val() }
+
+            });
+
+        });
+
+        $("#btn-mapa").on('click', function(e){
+            console.log(locations);
+
+            console.log("obradjujem niz");
+            console.log(locations.length);
+            console.log(locations[0][2]);
+            console.log(locations[0][3]);
+
+            var icons = {
+                Utovar1: {
+                    icon: '/Images/Markers/Utovar1.png'
+                },
+                Istovar1: {
+                    icon: '/Images/Markers/Istovar1.png'
+                },
+                Utovar: {
+                    icon: '/Images/Markers/Utovar.png'
+                },
+                Istovar: {
+                    icon: '/Images/Markers/Istovar.png'
+                }
+
+            };
+
+
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {  lat: locations[0].Lat, lng: locations[0].Long },
+                zoom: 4
+            });
+
+
+
+            var directionsDisplay = new google.maps.DirectionsRenderer({
+                map: map
+            });
+
+            var infowindow = new google.maps.InfoWindow({});
+
+
+            // Set destination, origin and travel mode.
+            var request = {
+                destination: {  lat: locations[0].Lat, lng: locations[0].Long },
+                origin: {  lat: locations[locations.length - 1].Lat, lng: locations[locations.length - 1].Long },
+                travelMode: 'DRIVING'
+            };
+
+
+            for (i = 0; i < locations.length; i++) {
+
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(parseFloat(locations[i].Lat), parseFloat(locations[i].Long)),
+                    icon: icons[locations[i].Tip].icon,
+                    map : map
+                });
+
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        infowindow.setContent(locations[i].Opis);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+
+            }
+
+
+
+        });
+    
+
+        var ObjRedoslijed = [];
+
+        $("#btn-redoslijed").on('click', function(e){
+
+            $('.cls-redoslijed').each(function(i, obj){
+
+                var a =  $(this).find("#RED-DNEVNIK");
+                var b =  $(this).find("#RED-UTOVAR");
+                var c =  $(this).find("#RED-ISTOVAR");
+                var d =  $(this).find("#RED-AKTIVNOST");
+                var e =  $(this).find("#RED-ID");
+
+                var obj = {
+                    IdDnevnik:  a.val(),
+                    IdDodatniUtovar: b.val(),
+                    IdDodatniIstovar: c.val(),
+                    Aktivnost : d.val(),
+                    IdRedoslijed : e.val()
+                }
+
+                ObjRedoslijed.push(obj);
+
+            });
+
+            console.log(ObjRedoslijed);
+
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                contentType: "application/json; charset=utf-8", // specify the content type
+                dataType: 'JSON',
+                url: "/Vozilo/SortirajUtovarIstovar",
+                data: JSON.stringify({  ui : ObjRedoslijed }),
+                success: function(data){
+                    alert(data);
+                }
+            });
+
+            /*
+            $.post("/Vozilo/SortirajUtovarIstovar",{ ui : ObjRedoslijed } , function(data){
+
+                if (data != "OK")
+                    alert(data);
+            });
+            */
+        });
+
+
+        $( ".sortable" ).sortable({
+            items       : 'div:not(.unsortable)',
+            placeholder : 'sortable-placeholder'
+        });
+        $( ".sortable" ).disableSelection();
+
+
+        });
+
+
+</script>
+
+
+    <section> 
+
+        <div class="section-body ">
+            <div class="card card-underline">
+                <div class="card-head">
+                    <header class="pull-left" style="margin-top: 10px;"> Redoslijed Utovara i istovara </header>
+                    </div>
+
+
+                <div class="card-body tab-content">
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+
+
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h1 class="panel-title" style="display: inline;">Izaberite Vozilo / Vozača </h1>
+                                </div>
+                                <div class="panel-body">
+
+                                    <form class="form" role="form">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group floating-label">
+                                                    @Html.DropDownList("IdVozac", ViewBag.IdVozac as SelectList, String.Empty, new { @class = "form-control select" })
+                                                    @Html.Label("Vozač")
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group floating-label">
+                                                    @Html.DropDownList("IdVozilo", ViewBag.IdVozilo as SelectList, String.Empty, new { @class = "form-control select" })
+                                                    @Html.Label("Vozilo")
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group floating-label">
+                                                   <a href="#" id="btn-potvrdi" class="btn btn-primary">POTVRDI</a>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+
+
+
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h1 class="panel-title" style="display: inline;">Aktivni prevozi za vozilo</h1>
+                                    <span class="btn-group pull-right">
+                                        <a href="#" id="btn-redoslijed" class="btn btn-default btn-sm" style="margin-right: 5px;"><i class="md md-2x md-save"></i> &nbsp;  Zapamti redoslijed</a>
+                                        <a href="#" id="btn-mapa" class="btn btn-info btn-sm"><i class="md  md-2x md-location-on"></i> &nbsp; Prikaži lokacije na mapi </a>
+                                    </span>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div id="PrevoziSort" class="row sortable">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="map" style="height:500px"></div>
+                </div>
+                </div>
+        </div> 
+    
+    </section>

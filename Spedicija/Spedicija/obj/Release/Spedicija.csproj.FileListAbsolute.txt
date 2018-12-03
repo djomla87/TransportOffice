@@ -1,0 +1,202 @@
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Spedicija.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Spedicija.pdb
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Antlr3.Runtime.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\DotNetOpenAuth.Core.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\EntityFramework.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Newtonsoft.Json.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\System.Web.Helpers.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\System.Web.Mvc.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\System.Web.Optimization.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\System.Web.Razor.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\System.Web.WebPages.Deployment.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\System.Web.WebPages.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\System.Web.WebPages.Razor.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\WebGrease.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\WebMatrix.Data.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\WebMatrix.WebData.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\EntityFramework.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Newtonsoft.Json.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\System.Web.Helpers.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\System.Web.Mvc.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\System.Web.Razor.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\System.Web.WebPages.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\System.Web.WebPages.Deployment.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\System.Web.WebPages.Razor.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\WebMatrix.Data.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\WebMatrix.WebData.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\DotNetOpenAuth.Core.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\obj\Release\RdlCompile.cache
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\obj\Release\RdlCompile.compiled
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\obj\Release\Spedicija.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\obj\Release\Spedicija.pdb
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\obj\Release\Spedicija.csprojResolveAssemblyReference.cache
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\SqlServerTypes\x64\msvcr100.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\SqlServerTypes\x64\SqlServerSpatial110.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\SqlServerTypes\x86\msvcr100.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\SqlServerTypes\x86\SqlServerSpatial110.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Microsoft.ReportViewer.DataVisualization.DLL
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Microsoft.ReportViewer.Design.DLL
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Microsoft.ReportViewer.WebDesign.DLL
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Microsoft.ReportViewer.WebForms.DLL
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Microsoft.ReportViewer.WinForms.DLL
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Microsoft.SqlServer.Types.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Microsoft.Windows.Design.Interaction.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Microsoft.Windows.Design.Extensibility.dll
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Microsoft.Windows.Design.Interaction.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Microsoft.Windows.Design.Extensibility.xml
+C:\Users\mladen.todorovic.PURS\Documents\Visual Studio 2012\Projects\Spedicija\Spedicija\bin\Zen.Barcode.Core.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\SqlServerTypes\x64\msvcr100.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\SqlServerTypes\x64\SqlServerSpatial110.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\SqlServerTypes\x86\msvcr100.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\SqlServerTypes\x86\SqlServerSpatial110.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Spedicija.dll.config
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Spedicija.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Spedicija.pdb
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Antlr3.Runtime.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.AspNet.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.Core.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.OAuth.Consumer.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.OAuth.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.OpenId.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\EntityFramework.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.ReportViewer.Common.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.ReportViewer.DataVisualization.DLL
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.ReportViewer.Design.DLL
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.ReportViewer.WebDesign.DLL
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.ReportViewer.WebForms.DLL
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.ReportViewer.WinForms.DLL
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.SqlServer.Types.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.Web.Infrastructure.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.Web.WebPages.OAuth.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Newtonsoft.Json.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Net.Http.Formatting.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Helpers.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Http.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Http.WebHost.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Mvc.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Optimization.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Razor.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.WebPages.Deployment.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.WebPages.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.WebPages.Razor.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\WebGrease.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\WebMatrix.Data.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\WebMatrix.WebData.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Zen.Barcode.Core.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\EnvDTE.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\EnvDTE80.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\stdole.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.MSXML.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\EntityFramework.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Newtonsoft.Json.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Net.Http.Formatting.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Helpers.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Http.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Http.WebHost.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Mvc.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Razor.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.WebPages.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.WebPages.Deployment.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.WebPages.Razor.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\WebMatrix.Data.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.Web.WebPages.OAuth.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\WebMatrix.WebData.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.AspNet.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.Core.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.OAuth.Consumer.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.OAuth.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.OpenId.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\EnvDTE.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\bin\EnvDTE80.xml
+E:\GIT\GmtelMVC\Spedicija\Spedicija\obj\Release\Spedicija.csprojResolveAssemblyReference.cache
+E:\GIT\GmtelMVC\Spedicija\Spedicija\obj\Release\Spedicija.dll
+E:\GIT\GmtelMVC\Spedicija\Spedicija\obj\Release\Spedicija.pdb
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\SqlServerTypes\x64\msvcr100.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\SqlServerTypes\x64\SqlServerSpatial110.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\SqlServerTypes\x86\msvcr100.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\SqlServerTypes\x86\SqlServerSpatial110.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Spedicija.dll.config
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Spedicija.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Spedicija.pdb
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Antlr3.Runtime.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.Core.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\EntityFramework.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.ReportViewer.DataVisualization.DLL
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.ReportViewer.Design.DLL
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.ReportViewer.WebDesign.DLL
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.ReportViewer.WebForms.DLL
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.ReportViewer.WinForms.DLL
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.SqlServer.Types.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Newtonsoft.Json.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Net.Http.Formatting.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Helpers.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Http.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Http.WebHost.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Mvc.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Optimization.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Razor.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.WebPages.Deployment.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.WebPages.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.WebPages.Razor.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\WebGrease.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\WebMatrix.Data.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\WebMatrix.WebData.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Zen.Barcode.Core.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\EnvDTE.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\EnvDTE80.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\stdole.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.MSXML.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\EntityFramework.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Newtonsoft.Json.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Net.Http.Formatting.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Helpers.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Http.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Http.WebHost.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Mvc.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.Razor.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.WebPages.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.WebPages.Deployment.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\System.Web.WebPages.Razor.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\WebMatrix.Data.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\WebMatrix.WebData.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.Core.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\EnvDTE.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\bin\EnvDTE80.xml
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\obj\Release\Spedicija.csprojResolveAssemblyReference.cache
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\obj\Release\Spedicija.dll
+C:\Users\MLADEN\Documents\GIT\GmtelMVC\Spedicija\Spedicija\obj\Release\Spedicija.pdb
+E:\GIT\GmtelMVC\Spedicija\Spedicija\obj\Release\RdlCompile.cache
+E:\GIT\GmtelMVC\Spedicija\Spedicija\obj\Release\RdlCompile.compiled

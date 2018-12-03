@@ -1,0 +1,137 @@
+﻿@model Spedicija.VozacDnevnica
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('.cbclick').on('click', function (e) {
+
+            var id = (($(this)[0]).id);
+
+            if ($(this).is(':checked')) {
+                $.getJSON('/VozacDnevnica/DnevnicaPlaceno?IdVozacDnevnica=@Model.IdVozacDnevnica&period=' + id + '&placeno=1', null, function (data) {
+                    var a = data;
+                });
+            }
+            else {
+                $.getJSON('/VozacDnevnica/DnevnicaPlaceno?IdVozacDnevnica=@Model.IdVozacDnevnica&period=' + id + '&placeno=0', null, function (data) {
+                    var a = data;
+                });
+            }
+        });
+
+    });
+
+</script>
+
+<section>       
+    <div class="container"> 
+        <div class="section-body ">
+              
+            <div class="card card-bordered style-primary">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-list"></i>&nbsp Dnevnice Detalji</header>
+			</div>
+            <div class="card-body style-default-bright">
+
+                <div class="row"><div class="col-lg-12">
+			<ul class="list divider-full-bleed">
+	
+
+	                <li class="tile">
+	                	<div class="ink-reaction">
+	                		<div class="row">
+	                		<div class="col-md-6"><div class="tile-icon">@Html.DisplayNameFor(model => model.Vozaci.ImeVozaca)</div></div>
+	                					<div class="col-md-6"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Vozaci.ImeVozaca)</div></div>
+	                					</div>
+	                	</div>
+	                </li>
+
+	                 <li class="tile">
+	                	<div class="ink-reaction">
+	                		<div class="row">
+	                		<div class="col-md-6"><div class="tile-icon" style="width:auto">Plata za  @Model.DnevnicaDetail.FirstOrDefault().Datum.ToString("MMMM") @Model.Godina. Godine</div></div>
+	                					<div class="col-md-6"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Plata) @Html.DisplayFor(model => model.Valuta.OznakaValute)</div></div>
+	                					</div>
+	                	</div>
+	                </li>
+
+                  <li class="tile">
+	                	<div class="ink-reaction">
+	                		<div class="row">
+	                		<div class="col-md-6"><div class="tile-icon" style="width:auto">Pregled (polumjesečnih) dnevnica</div></div>
+	                					<div class="col-md-6"><div class="tile-text text-bold"></div></div>
+	                					</div>
+	                	</div>
+	                </li>
+
+            </ul>
+            </div></div>
+                <br>
+                 <div class="row"><div class="col-lg-12" style="font-size: 1.3em;">
+
+                     <table class="table table-hover responsiv">
+                         <tr>
+                             <th>Od - Do </th> <th>Dnevnice</th> <th>Noćenja</th> <th>Dodatni Troškovi</th> <th>Ukupno</th> <th>Isplaćeno ?</th>
+                         </tr>
+                         <tr><td>01 - 15 </td>              
+                             <td>@ViewBag.SumDnevnice115</td> 
+                             <td>@ViewBag.SumNocenje115</td> 
+                             <td>@ViewBag.SumTroskovi115</td>
+                             <td>@ViewBag.SumUkupno115</td>
+                             <td><div class="checkbox checkbox-inline checkbox-styled"><label>
+                                 @if(Model.DnevnicaDetail.Single(c => c.Datum.Day == 1).Isplaceno) {<input type ="checkbox" id="0" class="cbclick"  name="placeno0" checked />}
+                                 else  { <input type ="checkbox" id="0" class="cbclick" name="placeno0" /> }
+                                 <span ></span></label></div></td>
+                         </tr>
+                         <tr><td>15 - @DateTime.DaysInMonth(Model.Godina, Model.Mjesec) </td> 
+                             <td>@ViewBag.SumDnevnice1630</td> 
+                             <td>@ViewBag.SumNocenje1630 </td> 
+                             <td> @ViewBag.SumTroskovi1630</td>
+                             <td>@ViewBag.SumUkupno1630</td>
+                             <td><div class="checkbox checkbox-inline checkbox-styled"><label>
+                                  @if(Model.DnevnicaDetail.Single(c => c.Datum.Day == 16).Isplaceno) {<input type ="checkbox" id="1" class="cbclick" name="placeno1" checked />}
+                                 else  { <input type ="checkbox"  id="1" class="cbclick" name="placeno1" /> }
+                                 <span ></span></label></div></td>
+                         </tr>
+                         <tr class="success">
+                             <td>Ukupno</td>               
+                             <td>@ViewBag.SumDnevnice    </td> 
+                             <td>@ViewBag.SumNocenje</td> 
+                             <td>@ViewBag.SumTroskovi</td>
+                             <td>@ViewBag.SumUkupno</td>
+                             <td></td>
+                         </tr>
+                      
+                      </table>
+  
+                  </div></div> 
+                 <br>
+                 <div class="row text-bold text-success"><div class="col-lg-12" style="font-size: 1.3em;">Plata + Dnevnica = @(Model.Plata + ViewBag.SumDnevnice)  @Html.DisplayFor(model => model.Valuta.OznakaValute)</div></div>
+                 
+
+</div>
+          <div class="card-actionbar style-default-bright">
+				<div class="card-actionbar-row">	
+										    @Html.ActionLink("IZMJENI", "Edit", new { id = Model.IdVozacDnevnica }, new { @class = "btn btn-flat btn-primary ink-reaction" }) 
+					    @Html.ActionLink("NAZAD NA DETALJE", "Details", "Vozaci", new {id = Model.IdVozac }, new { @class = "btn btn-flat btn-primary ink-reaction" })
+									</div>
+			</div>
+</div>
+    
+        </div>
+    </div>
+</section>
+
+

@@ -1,0 +1,1542 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="uvhszjiy_spedicijaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="uvhszjiy_spedicijaEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="DnevnicaDetail" EntityType="uvhszjiy_spedicijaModel.DnevnicaDetail" />
+    <EntitySet Name="DnevnikPrevoza" EntityType="uvhszjiy_spedicijaModel.DnevnikPrevoza" />
+    <EntitySet Name="Dokument" EntityType="uvhszjiy_spedicijaModel.Dokument" />
+    <EntitySet Name="Drzava" EntityType="uvhszjiy_spedicijaModel.Drzava" />
+    <EntitySet Name="Grad" EntityType="uvhszjiy_spedicijaModel.Grad" />
+    <EntitySet Name="Korisnik" EntityType="uvhszjiy_spedicijaModel.Korisnik" />
+    <EntitySet Name="Log" EntityType="uvhszjiy_spedicijaModel.Log" />
+    <EntitySet Name="NalogZaUtovar" EntityType="uvhszjiy_spedicijaModel.NalogZaUtovar" />
+    <EntitySet Name="Subjekt" EntityType="uvhszjiy_spedicijaModel.Subjekt" />
+    <EntitySet Name="Troskovi" EntityType="uvhszjiy_spedicijaModel.Troskovi" />
+    <EntitySet Name="Valuta" EntityType="uvhszjiy_spedicijaModel.Valuta" />
+    <EntitySet Name="VozacDnevnica" EntityType="uvhszjiy_spedicijaModel.VozacDnevnica" />
+    <EntitySet Name="Vozaci" EntityType="uvhszjiy_spedicijaModel.Vozaci" />
+    <EntitySet Name="Vozilo" EntityType="uvhszjiy_spedicijaModel.Vozilo" />
+    <AssociationSet Name="FK_Dnevnica_Detail" Association="uvhszjiy_spedicijaModel.FK_Dnevnica_Detail">
+      <End Role="VozacDnevnica" EntitySet="VozacDnevnica" />
+      <End Role="DnevnicaDetail" EntitySet="DnevnicaDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dnevnik" Association="uvhszjiy_spedicijaModel.FK_Dnevnik">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="Troskovi" EntitySet="Troskovi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dnevnik_Nalog" Association="uvhszjiy_spedicijaModel.FK_Dnevnik_Nalog">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="NalogZaUtovar" EntitySet="NalogZaUtovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dnevnik1" Association="uvhszjiy_spedicijaModel.FK_Dnevnik1">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="Dokument" EntitySet="Dokument" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DrugiPrevoznik" Association="uvhszjiy_spedicijaModel.FK_DrugiPrevoznik">
+      <End Role="Subjekt" EntitySet="Subjekt" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Narucioc" Association="uvhszjiy_spedicijaModel.FK_Narucioc">
+      <End Role="Subjekt" EntitySet="Subjekt" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Valuta" Association="uvhszjiy_spedicijaModel.FK_Valuta">
+      <End Role="Valuta" EntitySet="Valuta" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ValutaPrevoznika" Association="uvhszjiy_spedicijaModel.FK_ValutaPrevoznika">
+      <End Role="Valuta" EntitySet="Valuta" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vozac" Association="uvhszjiy_spedicijaModel.FK_Vozac">
+      <End Role="Vozaci" EntitySet="Vozaci" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vozilo" Association="uvhszjiy_spedicijaModel.FK_Vozilo">
+      <End Role="Vozilo" EntitySet="Vozilo" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Korisnik" Association="uvhszjiy_spedicijaModel.FK_Korisnik">
+      <End Role="Korisnik" EntitySet="Korisnik" />
+      <End Role="Log" EntitySet="Log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subjekt_Nalog" Association="uvhszjiy_spedicijaModel.FK_Subjekt_Nalog">
+      <End Role="Subjekt" EntitySet="Subjekt" />
+      <End Role="NalogZaUtovar" EntitySet="NalogZaUtovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subjekt" Association="uvhszjiy_spedicijaModel.FK_Subjekt">
+      <End Role="Subjekt" EntitySet="Subjekt" />
+      <End Role="Vozaci" EntitySet="Vozaci" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Valuta1" Association="uvhszjiy_spedicijaModel.FK_Valuta1">
+      <End Role="Valuta" EntitySet="Valuta" />
+      <End Role="Troskovi" EntitySet="Troskovi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DnevnicaValuta" Association="uvhszjiy_spedicijaModel.FK_DnevnicaValuta">
+      <End Role="Valuta" EntitySet="Valuta" />
+      <End Role="VozacDnevnica" EntitySet="VozacDnevnica" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VozacDnevnica" Association="uvhszjiy_spedicijaModel.FK_VozacDnevnica">
+      <End Role="Vozaci" EntitySet="Vozaci" />
+      <End Role="VozacDnevnica" EntitySet="VozacDnevnica" />
+    </AssociationSet>
+    <EntitySet Name="IzracunDnevnik" EntityType="uvhszjiy_spedicijaModel.IzracunDnevnik" />
+    <EntitySet Name="IzracunZarada" EntityType="uvhszjiy_spedicijaModel.IzracunZarada" />
+    <AssociationSet Name="FK_Dnevnik_Zarada" Association="uvhszjiy_spedicijaModel.FK_Dnevnik_Zarada">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="IzracunDnevnik" EntitySet="IzracunDnevnik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ZaradaDnevnik" Association="uvhszjiy_spedicijaModel.FK_ZaradaDnevnik">
+      <End Role="IzracunZarada" EntitySet="IzracunZarada" />
+      <End Role="IzracunDnevnik" EntitySet="IzracunDnevnik" />
+    </AssociationSet>
+    <EntitySet Name="IzracunTrosak" EntityType="uvhszjiy_spedicijaModel.IzracunTrosak" />
+    <AssociationSet Name="FK_Zarada_Trosak" Association="uvhszjiy_spedicijaModel.FK_Zarada_Trosak">
+      <End Role="IzracunZarada" EntitySet="IzracunZarada" />
+      <End Role="IzracunTrosak" EntitySet="IzracunTrosak" />
+    </AssociationSet>
+    <EntitySet Name="Notes" EntityType="uvhszjiy_spedicijaModel.Notes" />
+    <AssociationSet Name="FK_PrikljucnoVozilo" Association="uvhszjiy_spedicijaModel.FK_PrikljucnoVozilo">
+      <End Role="Vozilo" EntitySet="Vozilo" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <EntitySet Name="DnevnikCarina" EntityType="uvhszjiy_spedicijaModel.DnevnikCarina" />
+    <EntitySet Name="DnevnikIstovar" EntityType="uvhszjiy_spedicijaModel.DnevnikIstovar" />
+    <EntitySet Name="DnevnikUtovar" EntityType="uvhszjiy_spedicijaModel.DnevnikUtovar" />
+    <EntitySet Name="DnevnikUvoznikIzvoznik" EntityType="uvhszjiy_spedicijaModel.DnevnikUvoznikIzvoznik" />
+    <AssociationSet Name="FK_DNEVNIK_CARINA" Association="uvhszjiy_spedicijaModel.FK_DNEVNIK_CARINA">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="DnevnikCarina" EntitySet="DnevnikCarina" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dnevnik_ISTOVAR" Association="uvhszjiy_spedicijaModel.FK_Dnevnik_ISTOVAR">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="DnevnikIstovar" EntitySet="DnevnikIstovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dnevnik_UTOVAR" Association="uvhszjiy_spedicijaModel.FK_Dnevnik_UTOVAR">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="DnevnikUtovar" EntitySet="DnevnikUtovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DnevnikUI" Association="uvhszjiy_spedicijaModel.FK_DnevnikUI">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="DnevnikUvoznikIzvoznik" EntitySet="DnevnikUvoznikIzvoznik" />
+    </AssociationSet>
+    <FunctionImport Name="spVratiPodatkeZaNalog" ReturnType="Collection(uvhszjiy_spedicijaModel.spVratiPodatkeZaNalog_Result)">
+      <Parameter Name="IdNalog" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VratiDnevnikCarinaPoIdDnevnik" ReturnType="Collection(uvhszjiy_spedicijaModel.VratiDnevnikCarinaPoIdDnevnik_Result)">
+      <Parameter Name="IdDnevnik" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VratiDnevnikIStovarPoIdDnevnik" ReturnType="Collection(uvhszjiy_spedicijaModel.VratiDnevnikIStovarPoIdDnevnik_Result)">
+      <Parameter Name="IdDnevnik" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VratiDnevnikPoId" ReturnType="Collection(uvhszjiy_spedicijaModel.VratiDnevnikPoId_Result)">
+      <Parameter Name="IdDnevnik" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VratiDnevnikUIPoIdDnevnik" ReturnType="Collection(uvhszjiy_spedicijaModel.VratiDnevnikUIPoIdDnevnik_Result)">
+      <Parameter Name="IdDnevnik" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VratiDnevnikUtovarPoIdDnevnik" ReturnType="Collection(uvhszjiy_spedicijaModel.VratiDnevnikUtovarPoIdDnevnik_Result)">
+      <Parameter Name="IdDnevnik" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VratiTroskovePoIdDnevnik" ReturnType="Collection(uvhszjiy_spedicijaModel.VratiTroskovePoIdDnevnik_Result)">
+      <Parameter Name="IdDnevnik" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="DnevnikValute" EntityType="uvhszjiy_spedicijaModel.DnevnikValute" />
+    <AssociationSet Name="FK_DnevnikValute_Dnevnik" Association="uvhszjiy_spedicijaModel.FK_DnevnikValute_Dnevnik">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="DnevnikValute" EntitySet="DnevnikValute" />
+    </AssociationSet>
+    <EntitySet Name="KorisnikUpit" EntityType="uvhszjiy_spedicijaModel.KorisnikUpit" />
+    <EntitySet Name="KorisnikNalog" EntityType="uvhszjiy_spedicijaModel.KorisnikNalog" />
+    <EntitySet Name="VozacUser" EntityType="uvhszjiy_spedicijaModel.VozacUser" />
+    <EntitySet Name="TipUsluge" EntityType="uvhszjiy_spedicijaModel.TipUsluge" />
+    <EntitySet Name="AndroidTask" EntityType="uvhszjiy_spedicijaModel.AndroidTask" />
+    <AssociationSet Name="FK_TaskDnevnik" Association="uvhszjiy_spedicijaModel.FK_TaskDnevnik">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="AndroidTask" EntitySet="AndroidTask" />
+    </AssociationSet>
+    <EntitySet Name="KorisnikNalogIstovar" EntityType="uvhszjiy_spedicijaModel.KorisnikNalogIstovar" />
+    <EntitySet Name="KorisnikNalogUtovar" EntityType="uvhszjiy_spedicijaModel.KorisnikNalogUtovar" />
+    <AssociationSet Name="FK_NALOG_ISTOVAR" Association="uvhszjiy_spedicijaModel.FK_NALOG_ISTOVAR">
+      <End Role="KorisnikNalog" EntitySet="KorisnikNalog" />
+      <End Role="KorisnikNalogIstovar" EntitySet="KorisnikNalogIstovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NalogIStovar" Association="uvhszjiy_spedicijaModel.FK_NalogIStovar">
+      <End Role="KorisnikNalog" EntitySet="KorisnikNalog" />
+      <End Role="KorisnikNalogUtovar" EntitySet="KorisnikNalogUtovar" />
+    </AssociationSet>
+    <EntitySet Name="Ponuda" EntityType="uvhszjiy_spedicijaModel.Ponuda" />
+    <AssociationSet Name="FK_ponuda_subjekt" Association="uvhszjiy_spedicijaModel.FK_ponuda_subjekt">
+      <End Role="Subjekt" EntitySet="Subjekt" />
+      <End Role="Ponuda" EntitySet="Ponuda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ponuda_valuta" Association="uvhszjiy_spedicijaModel.FK_ponuda_valuta">
+      <End Role="Valuta" EntitySet="Valuta" />
+      <End Role="Ponuda" EntitySet="Ponuda" />
+    </AssociationSet>
+    <EntitySet Name="PonudaUsloviPrevoza" EntityType="uvhszjiy_spedicijaModel.PonudaUsloviPrevoza" />
+    <EntitySet Name="UsloviPrevoza" EntityType="uvhszjiy_spedicijaModel.UsloviPrevoza" />
+    <AssociationSet Name="FK_Dnevnik_POnuda" Association="uvhszjiy_spedicijaModel.FK_Dnevnik_POnuda">
+      <End Role="Ponuda" EntitySet="Ponuda" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ponuda_Uslov" Association="uvhszjiy_spedicijaModel.FK_Ponuda_Uslov">
+      <End Role="Ponuda" EntitySet="Ponuda" />
+      <End Role="PonudaUsloviPrevoza" EntitySet="PonudaUsloviPrevoza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ponuda_Uslov2" Association="uvhszjiy_spedicijaModel.FK_Ponuda_Uslov2">
+      <End Role="UsloviPrevoza" EntitySet="UsloviPrevoza" />
+      <End Role="PonudaUsloviPrevoza" EntitySet="PonudaUsloviPrevoza" />
+    </AssociationSet>
+    <EntitySet Name="AppPodesavanja" EntityType="uvhszjiy_spedicijaModel.AppPodesavanja" />
+    <EntitySet Name="StatusPrevoza" EntityType="uvhszjiy_spedicijaModel.StatusPrevoza" />
+    <EntitySet Name="VozacTroskovi" EntityType="uvhszjiy_spedicijaModel.VozacTroskovi" />
+    <EntitySet Name="VozacVrstaTroskova" EntityType="uvhszjiy_spedicijaModel.VozacVrstaTroskova" />
+    <AssociationSet Name="FK_VozacTroskoviValuta" Association="uvhszjiy_spedicijaModel.FK_VozacTroskoviValuta">
+      <End Role="Valuta" EntitySet="Valuta" />
+      <End Role="VozacTroskovi" EntitySet="VozacTroskovi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VozacTroskoviVrstaTroska" Association="uvhszjiy_spedicijaModel.FK_VozacTroskoviVrstaTroska">
+      <End Role="VozacVrstaTroskova" EntitySet="VozacVrstaTroskova" />
+      <End Role="VozacTroskovi" EntitySet="VozacTroskovi" />
+    </AssociationSet>
+    <EntitySet Name="StatusRobe" EntityType="uvhszjiy_spedicijaModel.StatusRobe" />
+    <AssociationSet Name="FK_Dnebvni_StatusRobe" Association="uvhszjiy_spedicijaModel.FK_Dnebvni_StatusRobe">
+      <End Role="StatusRobe" EntitySet="StatusRobe" />
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+    </AssociationSet>
+    <EntitySet Name="IDnevnikPrevozaVozac" EntityType="uvhszjiy_spedicijaModel.IDnevnikPrevozaVozac" />
+    <AssociationSet Name="FK_IDnevnik_Dnevnik" Association="uvhszjiy_spedicijaModel.FK_IDnevnik_Dnevnik">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="IDnevnikPrevozaVozac" EntitySet="IDnevnikPrevozaVozac" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IDnevnik_Vozac" Association="uvhszjiy_spedicijaModel.FK_IDnevnik_Vozac">
+      <End Role="Vozaci" EntitySet="Vozaci" />
+      <End Role="IDnevnikPrevozaVozac" EntitySet="IDnevnikPrevozaVozac" />
+    </AssociationSet>
+    <EntitySet Name="RedoslijedUtovarIstovar" EntityType="uvhszjiy_spedicijaModel.RedoslijedUtovarIstovar" />
+    <AssociationSet Name="FK_DnevnikIstovarRedosled" Association="uvhszjiy_spedicijaModel.FK_DnevnikIstovarRedosled">
+      <End Role="DnevnikIstovar" EntitySet="DnevnikIstovar" />
+      <End Role="RedoslijedUtovarIstovar" EntitySet="RedoslijedUtovarIstovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dnevnik_Redoslijed" Association="uvhszjiy_spedicijaModel.FK_Dnevnik_Redoslijed">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="RedoslijedUtovarIstovar" EntitySet="RedoslijedUtovarIstovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DnevnikUtovarRedosled" Association="uvhszjiy_spedicijaModel.FK_DnevnikUtovarRedosled">
+      <End Role="DnevnikUtovar" EntitySet="DnevnikUtovar" />
+      <End Role="RedoslijedUtovarIstovar" EntitySet="RedoslijedUtovarIstovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IDnevnik_Vozilo" Association="uvhszjiy_spedicijaModel.FK_IDnevnik_Vozilo">
+      <End Role="Vozilo" EntitySet="Vozilo" />
+      <End Role="IDnevnikPrevozaVozac" EntitySet="IDnevnikPrevozaVozac" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DnevnicaDetail">
+    <Key>
+      <PropertyRef Name="IdDnevnicaDetail" />
+    </Key>
+    <Property Name="IdDnevnicaDetail" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="IdVozacDnevnica" Type="Int32" Nullable="false" />
+    <Property Name="Dnevnica" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Nocenje" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OstaliTroskovi" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Napomena" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Ukupno" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Isplaceno" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="VozacDnevnica" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnica_Detail" FromRole="DnevnicaDetail" ToRole="VozacDnevnica" />
+    <Property Type="DateTime" Name="Datum" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="DnevnikPrevoza">
+    <Key>
+      <PropertyRef Name="IdDnevnik" />
+    </Key>
+    <Property Name="IdDnevnik" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="DatumDnevnika" Type="DateTime" Precision="0" />
+    <Property Name="IdNarucioca" Type="Int32" />
+    <Property Name="BrojNaloga" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="UtovarAdresa" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="UtovarFirma" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="UtovarGrad" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="DatumUtovara" Type="DateTime" Precision="3" />
+    <Property Name="IstovarAdresa" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="IstovarFirma" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="IstovarGrad" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="DatumIstovara" Type="DateTime" Precision="3" />
+    <Property Name="KolicinaRobe" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="CijenaPrevoza" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IdValuta" Type="Int32" />
+    <Property Name="ValutaPlacanja" Type="Int32" />
+    <Property Name="UvoznaSpedicija" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="IzvoznaSpedicija" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="IdVozilo" Type="Int32" />
+    <Property Name="IdVozac" Type="Int32" />
+    <Property Name="DrugiPrevoznik" Type="Boolean" />
+    <Property Name="IdSubjekt" Type="Int32" />
+    <Property Name="BrojNalogaPrevoznika" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="CijenaPrevozaPrevoznika" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IdValutaPrevoznika" Type="Int32" />
+    <Property Name="BrojFakture" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="DatumSlanjaFakture" Type="DateTime" Precision="0" />
+    <Property Name="DatumZapisa" Type="DateTime" Precision="3" />
+    <Property Name="ZapisAktivan" Type="Boolean" />
+    <Property Name="SerijskiBroj" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="VrstaRobe" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="RegistracijaVozilaPrevoznika" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="VozacPrevoznika" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="KontaktOsobaPrevoznika" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Napomena" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Troskovi" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik" FromRole="DnevnikPrevoza" ToRole="Troskovi" />
+    <NavigationProperty Name="NalogZaUtovar" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik_Nalog" FromRole="DnevnikPrevoza" ToRole="NalogZaUtovar" />
+    <NavigationProperty Name="Dokument" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik1" FromRole="DnevnikPrevoza" ToRole="Dokument" />
+    <NavigationProperty Name="Subjekt" Relationship="uvhszjiy_spedicijaModel.FK_DrugiPrevoznik" FromRole="DnevnikPrevoza" ToRole="Subjekt" />
+    <NavigationProperty Name="Subjekt1" Relationship="uvhszjiy_spedicijaModel.FK_Narucioc" FromRole="DnevnikPrevoza" ToRole="Subjekt" />
+    <NavigationProperty Name="Valuta" Relationship="uvhszjiy_spedicijaModel.FK_Valuta" FromRole="DnevnikPrevoza" ToRole="Valuta" />
+    <NavigationProperty Name="Valuta1" Relationship="uvhszjiy_spedicijaModel.FK_ValutaPrevoznika" FromRole="DnevnikPrevoza" ToRole="Valuta" />
+    <NavigationProperty Name="Vozaci" Relationship="uvhszjiy_spedicijaModel.FK_Vozac" FromRole="DnevnikPrevoza" ToRole="Vozaci" />
+    <NavigationProperty Name="Vozilo" Relationship="uvhszjiy_spedicijaModel.FK_Vozilo" FromRole="DnevnikPrevoza" ToRole="Vozilo" />
+    <NavigationProperty Name="IzracunDnevnik" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik_Zarada" FromRole="DnevnikPrevoza" ToRole="IzracunDnevnik" />
+    <Property Type="Int32" Name="IdPrikljucnoVozilo" />
+    <Property Type="String" Name="Uvoznik" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Izvoznik" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="ValutaPlacanjaPrevoznika" />
+    <Property Type="Boolean" Name="SaPDV" />
+    <NavigationProperty Name="Vozilo1" Relationship="uvhszjiy_spedicijaModel.FK_PrikljucnoVozilo" FromRole="DnevnikPrevoza" ToRole="Vozilo" />
+    <NavigationProperty Name="DnevnikCarina" Relationship="uvhszjiy_spedicijaModel.FK_DNEVNIK_CARINA" FromRole="DnevnikPrevoza" ToRole="DnevnikCarina" />
+    <NavigationProperty Name="DnevnikIstovar" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik_ISTOVAR" FromRole="DnevnikPrevoza" ToRole="DnevnikIstovar" />
+    <NavigationProperty Name="DnevnikUtovar" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik_UTOVAR" FromRole="DnevnikPrevoza" ToRole="DnevnikUtovar" />
+    <NavigationProperty Name="DnevnikUvoznikIzvoznik" Relationship="uvhszjiy_spedicijaModel.FK_DnevnikUI" FromRole="DnevnikPrevoza" ToRole="DnevnikUvoznikIzvoznik" />
+    <Property Type="String" Name="UtovarKontakt" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="IstovarKontakt" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="GostPristup" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DnevnikValute" Relationship="uvhszjiy_spedicijaModel.FK_DnevnikValute_Dnevnik" FromRole="DnevnikPrevoza" ToRole="DnevnikValute" />
+    <Property Type="Boolean" Name="Uplaceno" />
+    <Property Type="Boolean" Name="KompletanUtovar" />
+    <Property Type="String" Name="InternaNapomena" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="TezinaRobe" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PrevoznikIstovarAdresa" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PrevoznikIstovarFirma" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PrevoznikIstovarGrad" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikIstovarPTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikIstovarDrzava" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IznosPDV" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UtovarPTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UtovarDrzava" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IstovarPTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IstovarDrzava" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DimenzijeRobe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikUtovarFirma" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikUtovarAdresa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikUtovarGrad" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikUtovarPTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikUtovarDrzava" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IstovarKolicinaRobe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AndroidTask" Relationship="uvhszjiy_spedicijaModel.FK_TaskDnevnik" FromRole="DnevnikPrevoza" ToRole="AndroidTask" />
+    <Property Name="ReferentniBrojUtovara" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IdDnevnikParent" Type="Int32" />
+    <Property Name="LONG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LAT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DrugiPrevoznikStatus" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IdPonuda" Type="Int32" />
+    <NavigationProperty Name="Ponuda" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik_POnuda" FromRole="DnevnikPrevoza" ToRole="Ponuda" />
+    <Property Name="idStatusDetaljni" Type="Int32" />
+    <NavigationProperty Name="StatusRobe" Relationship="uvhszjiy_spedicijaModel.FK_Dnebvni_StatusRobe" FromRole="DnevnikPrevoza" ToRole="StatusRobe" />
+    <Property Name="StatusDetaljniOpis" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="IDnevnikPrevozaVozac" Relationship="uvhszjiy_spedicijaModel.FK_IDnevnik_Dnevnik" FromRole="DnevnikPrevoza" ToRole="IDnevnikPrevozaVozac" />
+    <NavigationProperty Name="RedoslijedUtovarIstovar" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik_Redoslijed" FromRole="DnevnikPrevoza" ToRole="RedoslijedUtovarIstovar" />
+  </EntityType>
+  <EntityType Name="Dokument">
+    <Key>
+      <PropertyRef Name="IdDokument" />
+    </Key>
+    <Property Name="IdDokument" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Tip" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Putanja" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="IdDnevnik" Type="Int32" />
+    <Property Name="Velicina" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Naziv" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik1" FromRole="Dokument" ToRole="DnevnikPrevoza" />
+    <Property Type="Int32" Name="IdVozac" />
+    <Property Type="Int32" Name="IdVozilo" />
+  </EntityType>
+  <EntityType Name="Drzava">
+    <Key>
+      <PropertyRef Name="IdDrzava" />
+    </Key>
+    <Property Name="IdDrzava" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ISO" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Grad">
+    <Key>
+      <PropertyRef Name="IdGrad" />
+    </Key>
+    <Property Name="IdGrad" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Drzava" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ISO" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Grad1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Korisnik">
+    <Key>
+      <PropertyRef Name="IdKorisnik" />
+    </Key>
+    <Property Name="IdKorisnik" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="KorisnickoIme" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Lozinka" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DatumKreiranja" Type="DateTime" Precision="3" />
+    <Property Name="PoslednjaPrijava" Type="DateTime" Precision="3" />
+    <Property Name="IPAdresa" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ZapisAktivan" Type="Boolean" />
+    <Property Name="Role" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Ime" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Log" Relationship="uvhszjiy_spedicijaModel.FK_Korisnik" FromRole="Korisnik" ToRole="Log" />
+    <Property Type="String" Name="Token" MaxLength="2000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="IdLog" />
+    </Key>
+    <Property Name="IdLog" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Tabela" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="PK" Type="Int32" />
+    <Property Name="IdKorisnik" Type="Int32" />
+    <Property Name="Aktivnost" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Datum" Type="DateTime" Precision="3" />
+    <Property Name="IPAdresa" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Korisnik" Relationship="uvhszjiy_spedicijaModel.FK_Korisnik" FromRole="Log" ToRole="Korisnik" />
+    <Property Type="String" Name="StaraVrijednost" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NovaVrijednost" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="KorisnickoIme" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="StatusPromjene" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Pregledano" />
+  </EntityType>
+  <EntityType Name="NalogZaUtovar">
+    <Key>
+      <PropertyRef Name="IdNalog" />
+    </Key>
+    <Property Name="IdNalog" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="BrojNaloga" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="IdSubjekt" Type="Int32" />
+    <Property Name="Izvoznik" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Napomena" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="VrstaRobe" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="BrutoTezina" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="IzvoznaCarina" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="IdDnevnik" Type="Int32" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik_Nalog" FromRole="NalogZaUtovar" ToRole="DnevnikPrevoza" />
+    <NavigationProperty Name="Subjekt" Relationship="uvhszjiy_spedicijaModel.FK_Subjekt_Nalog" FromRole="NalogZaUtovar" ToRole="Subjekt" />
+  </EntityType>
+  <EntityType Name="Subjekt">
+    <Key>
+      <PropertyRef Name="IdSubjekt" />
+    </Key>
+    <Property Name="IdSubjekt" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Adresa" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Telefon" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="KontaktOsoba" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Timocom" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DatumKreiranja" Type="DateTime" Precision="0" />
+    <Property Name="DatumZapisa" Type="DateTime" Precision="3" />
+    <Property Name="ZapisAktivan" Type="Boolean" Nullable="false" />
+    <Property Name="Opis" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_DrugiPrevoznik" FromRole="Subjekt" ToRole="DnevnikPrevoza" />
+    <NavigationProperty Name="DnevnikPrevoza1" Relationship="uvhszjiy_spedicijaModel.FK_Narucioc" FromRole="Subjekt" ToRole="DnevnikPrevoza" />
+    <NavigationProperty Name="NalogZaUtovar" Relationship="uvhszjiy_spedicijaModel.FK_Subjekt_Nalog" FromRole="Subjekt" ToRole="NalogZaUtovar" />
+    <NavigationProperty Name="Vozaci" Relationship="uvhszjiy_spedicijaModel.FK_Subjekt" FromRole="Subjekt" ToRole="Vozaci" />
+    <Property Type="String" Name="Grad" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PIB" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PTT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="JIB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Drzava" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RedniBroj" Type="Int32" />
+    <NavigationProperty Name="Ponuda" Relationship="uvhszjiy_spedicijaModel.FK_ponuda_subjekt" FromRole="Subjekt" ToRole="Ponuda" />
+  </EntityType>
+  <EntityType Name="Troskovi">
+    <Key>
+      <PropertyRef Name="IdTroskovi" />
+    </Key>
+    <Property Name="IdTroskovi" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="IdDnevnik" Type="Int32" />
+    <Property Name="Iznos" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IdValuta" Type="Int32" />
+    <Property Name="Vrsta" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik" FromRole="Troskovi" ToRole="DnevnikPrevoza" />
+    <NavigationProperty Name="Valuta" Relationship="uvhszjiy_spedicijaModel.FK_Valuta1" FromRole="Troskovi" ToRole="Valuta" />
+    <Property Name="StvarniTrosak" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Valuta">
+    <Key>
+      <PropertyRef Name="IdValuta" />
+    </Key>
+    <Property Name="IdValuta" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="NazivValute" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="OznakaValute" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UKM" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="DatumZapisa" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Valuta" FromRole="Valuta" ToRole="DnevnikPrevoza" />
+    <NavigationProperty Name="DnevnikPrevoza1" Relationship="uvhszjiy_spedicijaModel.FK_ValutaPrevoznika" FromRole="Valuta" ToRole="DnevnikPrevoza" />
+    <NavigationProperty Name="Troskovi" Relationship="uvhszjiy_spedicijaModel.FK_Valuta1" FromRole="Valuta" ToRole="Troskovi" />
+    <NavigationProperty Name="VozacDnevnica" Relationship="uvhszjiy_spedicijaModel.FK_DnevnicaValuta" FromRole="Valuta" ToRole="VozacDnevnica" />
+    <NavigationProperty Name="Ponuda" Relationship="uvhszjiy_spedicijaModel.FK_ponuda_valuta" FromRole="Valuta" ToRole="Ponuda" />
+    <NavigationProperty Name="VozacTroskovi" Relationship="uvhszjiy_spedicijaModel.FK_VozacTroskoviValuta" FromRole="Valuta" ToRole="VozacTroskovi" />
+  </EntityType>
+  <EntityType Name="VozacDnevnica">
+    <Key>
+      <PropertyRef Name="IdVozacDnevnica" />
+    </Key>
+    <Property Name="IdVozacDnevnica" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="IdVozac" Type="Int32" Nullable="false" />
+    <Property Name="Mjesec" Type="Int32" Nullable="false" />
+    <Property Name="Godina" Type="Int32" Nullable="false" />
+    <Property Name="Plata" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IdValuta" Type="Int32" />
+    <NavigationProperty Name="DnevnicaDetail" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnica_Detail" FromRole="VozacDnevnica" ToRole="DnevnicaDetail" />
+    <NavigationProperty Name="Valuta" Relationship="uvhszjiy_spedicijaModel.FK_DnevnicaValuta" FromRole="VozacDnevnica" ToRole="Valuta" />
+    <NavigationProperty Name="Vozaci" Relationship="uvhszjiy_spedicijaModel.FK_VozacDnevnica" FromRole="VozacDnevnica" ToRole="Vozaci" />
+  </EntityType>
+  <EntityType Name="Vozaci">
+    <Key>
+      <PropertyRef Name="IdVozac" />
+    </Key>
+    <Property Name="IdVozac" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ImeVozaca" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Telefon" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Adresa" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="BrojPasosa" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="JMBG" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="BrojLK" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="BrojVozackeDozvole" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="IdSubjekt" Type="Int32" />
+    <Property Name="ZapisAktivan" Type="Boolean" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Vozac" FromRole="Vozaci" ToRole="DnevnikPrevoza" />
+    <NavigationProperty Name="Subjekt" Relationship="uvhszjiy_spedicijaModel.FK_Subjekt" FromRole="Vozaci" ToRole="Subjekt" />
+    <NavigationProperty Name="VozacDnevnica" Relationship="uvhszjiy_spedicijaModel.FK_VozacDnevnica" FromRole="Vozaci" ToRole="VozacDnevnica" />
+    <Property Type="String" Name="ZiroRacun" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Napomene" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="IDnevnikPrevozaVozac" Relationship="uvhszjiy_spedicijaModel.FK_IDnevnik_Vozac" FromRole="Vozaci" ToRole="IDnevnikPrevozaVozac" />
+  </EntityType>
+  <EntityType Name="Vozilo">
+    <Key>
+      <PropertyRef Name="IdVozilo" />
+    </Key>
+    <Property Name="IdVozilo" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="TipVozila" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="RegistarskiBroj" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DodatniPodaci" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="DatumZapisa" Type="DateTime" Precision="3" />
+    <Property Name="ZapisAktivan" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Vozilo" FromRole="Vozilo" ToRole="DnevnikPrevoza" />
+    <Property Type="String" Name="VrstaVozila" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DnevnikPrevoza1" Relationship="uvhszjiy_spedicijaModel.FK_PrikljucnoVozilo" FromRole="Vozilo" ToRole="DnevnikPrevoza" />
+    <NavigationProperty Name="IDnevnikPrevozaVozac" Relationship="uvhszjiy_spedicijaModel.FK_IDnevnik_Vozilo" FromRole="Vozilo" ToRole="IDnevnikPrevozaVozac" />
+  </EntityType>
+  <Association Name="FK_Dnevnica_Detail">
+    <End Role="VozacDnevnica" Type="uvhszjiy_spedicijaModel.VozacDnevnica" Multiplicity="1" />
+    <End Role="DnevnicaDetail" Type="uvhszjiy_spedicijaModel.DnevnicaDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VozacDnevnica">
+        <PropertyRef Name="IdVozacDnevnica" />
+      </Principal>
+      <Dependent Role="DnevnicaDetail">
+        <PropertyRef Name="IdVozacDnevnica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dnevnik">
+    <End Role="DnevnikPrevoza" Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Multiplicity="0..1" />
+    <End Role="Troskovi" Type="uvhszjiy_spedicijaModel.Troskovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="Troskovi">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dnevnik_Nalog">
+    <End Role="DnevnikPrevoza" Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Multiplicity="0..1" />
+    <End Role="NalogZaUtovar" Type="uvhszjiy_spedicijaModel.NalogZaUtovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="NalogZaUtovar">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dnevnik1">
+    <End Role="DnevnikPrevoza" Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Multiplicity="0..1" />
+    <End Role="Dokument" Type="uvhszjiy_spedicijaModel.Dokument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="Dokument">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DrugiPrevoznik">
+    <End Role="Subjekt" Type="uvhszjiy_spedicijaModel.Subjekt" Multiplicity="0..1" />
+    <End Role="DnevnikPrevoza" Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjekt">
+        <PropertyRef Name="IdSubjekt" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="IdSubjekt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Narucioc">
+    <End Role="Subjekt" Type="uvhszjiy_spedicijaModel.Subjekt" Multiplicity="0..1" />
+    <End Role="DnevnikPrevoza" Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjekt">
+        <PropertyRef Name="IdSubjekt" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="IdNarucioca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Valuta">
+    <End Role="Valuta" Type="uvhszjiy_spedicijaModel.Valuta" Multiplicity="0..1" />
+    <End Role="DnevnikPrevoza" Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Valuta">
+        <PropertyRef Name="IdValuta" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="IdValuta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ValutaPrevoznika">
+    <End Role="Valuta" Type="uvhszjiy_spedicijaModel.Valuta" Multiplicity="0..1" />
+    <End Role="DnevnikPrevoza" Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Valuta">
+        <PropertyRef Name="IdValuta" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="IdValutaPrevoznika" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vozac">
+    <End Role="Vozaci" Type="uvhszjiy_spedicijaModel.Vozaci" Multiplicity="0..1" />
+    <End Role="DnevnikPrevoza" Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozaci">
+        <PropertyRef Name="IdVozac" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="IdVozac" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vozilo">
+    <End Role="Vozilo" Type="uvhszjiy_spedicijaModel.Vozilo" Multiplicity="0..1" />
+    <End Role="DnevnikPrevoza" Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozilo">
+        <PropertyRef Name="IdVozilo" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="IdVozilo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Korisnik">
+    <End Role="Korisnik" Type="uvhszjiy_spedicijaModel.Korisnik" Multiplicity="0..1" />
+    <End Role="Log" Type="uvhszjiy_spedicijaModel.Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnik">
+        <PropertyRef Name="IdKorisnik" />
+      </Principal>
+      <Dependent Role="Log">
+        <PropertyRef Name="IdKorisnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subjekt_Nalog">
+    <End Role="Subjekt" Type="uvhszjiy_spedicijaModel.Subjekt" Multiplicity="0..1" />
+    <End Role="NalogZaUtovar" Type="uvhszjiy_spedicijaModel.NalogZaUtovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjekt">
+        <PropertyRef Name="IdSubjekt" />
+      </Principal>
+      <Dependent Role="NalogZaUtovar">
+        <PropertyRef Name="IdSubjekt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subjekt">
+    <End Role="Subjekt" Type="uvhszjiy_spedicijaModel.Subjekt" Multiplicity="0..1" />
+    <End Role="Vozaci" Type="uvhszjiy_spedicijaModel.Vozaci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjekt">
+        <PropertyRef Name="IdSubjekt" />
+      </Principal>
+      <Dependent Role="Vozaci">
+        <PropertyRef Name="IdSubjekt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Valuta1">
+    <End Role="Valuta" Type="uvhszjiy_spedicijaModel.Valuta" Multiplicity="0..1" />
+    <End Role="Troskovi" Type="uvhszjiy_spedicijaModel.Troskovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Valuta">
+        <PropertyRef Name="IdValuta" />
+      </Principal>
+      <Dependent Role="Troskovi">
+        <PropertyRef Name="IdValuta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DnevnicaValuta">
+    <End Role="Valuta" Type="uvhszjiy_spedicijaModel.Valuta" Multiplicity="0..1" />
+    <End Role="VozacDnevnica" Type="uvhszjiy_spedicijaModel.VozacDnevnica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Valuta">
+        <PropertyRef Name="IdValuta" />
+      </Principal>
+      <Dependent Role="VozacDnevnica">
+        <PropertyRef Name="IdValuta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VozacDnevnica">
+    <End Role="Vozaci" Type="uvhszjiy_spedicijaModel.Vozaci" Multiplicity="1" />
+    <End Role="VozacDnevnica" Type="uvhszjiy_spedicijaModel.VozacDnevnica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozaci">
+        <PropertyRef Name="IdVozac" />
+      </Principal>
+      <Dependent Role="VozacDnevnica">
+        <PropertyRef Name="IdVozac" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="IzracunDnevnik">
+    <Key>
+      <PropertyRef Name="IdIzracunDnevnik" />
+    </Key>
+    <Property Type="Int32" Name="IdIzracunDnevnik" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="IdIzracunZarada" Nullable="false" />
+    <Property Type="Int32" Name="IdDnevnik" Nullable="false" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik_Zarada" FromRole="IzracunDnevnik" ToRole="DnevnikPrevoza" />
+    <NavigationProperty Name="IzracunZarada" Relationship="uvhszjiy_spedicijaModel.FK_ZaradaDnevnik" FromRole="IzracunDnevnik" ToRole="IzracunZarada" />
+  </EntityType>
+  <EntityType Name="IzracunZarada">
+    <Key>
+      <PropertyRef Name="IdIzracunZarada" />
+    </Key>
+    <Property Type="Int32" Name="IdIzracunZarada" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Naziv" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DatumZapisa" Nullable="false" Precision="0" />
+    <NavigationProperty Name="IzracunDnevnik" Relationship="uvhszjiy_spedicijaModel.FK_ZaradaDnevnik" FromRole="IzracunZarada" ToRole="IzracunDnevnik" />
+    <NavigationProperty Name="IzracunTrosak" Relationship="uvhszjiy_spedicijaModel.FK_Zarada_Trosak" FromRole="IzracunZarada" ToRole="IzracunTrosak" />
+    <Property Type="Boolean" Name="ZapisAktivan" />
+  </EntityType>
+  <Association Name="FK_Dnevnik_Zarada">
+    <End Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Role="DnevnikPrevoza" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.IzracunDnevnik" Role="IzracunDnevnik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="IzracunDnevnik">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ZaradaDnevnik">
+    <End Type="uvhszjiy_spedicijaModel.IzracunZarada" Role="IzracunZarada" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.IzracunDnevnik" Role="IzracunDnevnik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IzracunZarada">
+        <PropertyRef Name="IdIzracunZarada" />
+      </Principal>
+      <Dependent Role="IzracunDnevnik">
+        <PropertyRef Name="IdIzracunZarada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="IzracunTrosak">
+    <Key>
+      <PropertyRef Name="IdIzracunTrosak" />
+    </Key>
+    <Property Type="Int32" Name="IdIzracunTrosak" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="DodatniTrosak" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="IznosTroskova" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="IdIzracunZarada" Nullable="false" />
+    <Property Type="Int32" Name="Postotak" Nullable="false" />
+    <NavigationProperty Name="IzracunZarada" Relationship="uvhszjiy_spedicijaModel.FK_Zarada_Trosak" FromRole="IzracunTrosak" ToRole="IzracunZarada" />
+  </EntityType>
+  <Association Name="FK_Zarada_Trosak">
+    <End Type="uvhszjiy_spedicijaModel.IzracunZarada" Role="IzracunZarada" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.IzracunTrosak" Role="IzracunTrosak" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IzracunZarada">
+        <PropertyRef Name="IdIzracunZarada" />
+      </Principal>
+      <Dependent Role="IzracunTrosak">
+        <PropertyRef Name="IdIzracunZarada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Notes">
+    <Key>
+      <PropertyRef Name="IdNotes" />
+    </Key>
+    <Property Type="Int32" Name="IdNotes" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="DateTime" Name="Datum" Nullable="false" Precision="0" />
+    <Property Type="String" Name="Tekst" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Korisnik" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_PrikljucnoVozilo">
+    <End Type="uvhszjiy_spedicijaModel.Vozilo" Role="Vozilo" Multiplicity="0..1" />
+    <End Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Role="DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozilo">
+        <PropertyRef Name="IdVozilo" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="IdPrikljucnoVozilo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DnevnikCarina">
+    <Key>
+      <PropertyRef Name="IdCarina" />
+    </Key>
+    <Property Type="Int32" Name="IdCarina" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="UvoznaCarina" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="IzvoznaCarina" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="IdDnevnik" Nullable="false" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_DNEVNIK_CARINA" FromRole="DnevnikCarina" ToRole="DnevnikPrevoza" />
+  </EntityType>
+  <EntityType Name="DnevnikIstovar">
+    <Key>
+      <PropertyRef Name="IdIstovar" />
+    </Key>
+    <Property Type="Int32" Name="IdIstovar" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="IdDnevnik" Nullable="false" />
+    <Property Type="String" Name="Firma" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Adresa" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Mjesto" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik_ISTOVAR" FromRole="DnevnikIstovar" ToRole="DnevnikPrevoza" />
+    <Property Name="PTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Drzava" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Kontakt" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DatumIstovara" Type="DateTime" Precision="0" />
+    <Property Name="KolicinaRobe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="RedoslijedUtovarIstovar" Relationship="uvhszjiy_spedicijaModel.FK_DnevnikIstovarRedosled" FromRole="DnevnikIstovar" ToRole="RedoslijedUtovarIstovar" />
+  </EntityType>
+  <EntityType Name="DnevnikUtovar">
+    <Key>
+      <PropertyRef Name="IdUtovar" />
+    </Key>
+    <Property Type="Int32" Name="IdUtovar" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="IdDnevnik" Nullable="false" />
+    <Property Type="String" Name="Firma" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Adresa" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Mjesto" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik_UTOVAR" FromRole="DnevnikUtovar" ToRole="DnevnikPrevoza" />
+    <Property Name="PTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Drzava" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Kontakt" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DatmUtovara" Type="DateTime" Precision="0" />
+    <Property Name="KolicinaRobe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="VrstaRobe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TezinaRobe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DimenzijeRobe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ReferentniBrojUtovara" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="RedoslijedUtovarIstovar" Relationship="uvhszjiy_spedicijaModel.FK_DnevnikUtovarRedosled" FromRole="DnevnikUtovar" ToRole="RedoslijedUtovarIstovar" />
+  </EntityType>
+  <EntityType Name="DnevnikUvoznikIzvoznik">
+    <Key>
+      <PropertyRef Name="IdUvoznikIzvoznik" />
+    </Key>
+    <Property Type="Int32" Name="IdUvoznikIzvoznik" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Uvoznik" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Izvoznik" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="IdDnevnik" Nullable="false" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_DnevnikUI" FromRole="DnevnikUvoznikIzvoznik" ToRole="DnevnikPrevoza" />
+  </EntityType>
+  <Association Name="FK_DNEVNIK_CARINA">
+    <End Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Role="DnevnikPrevoza" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.DnevnikCarina" Role="DnevnikCarina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="DnevnikCarina">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dnevnik_ISTOVAR">
+    <End Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Role="DnevnikPrevoza" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.DnevnikIstovar" Role="DnevnikIstovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="DnevnikIstovar">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dnevnik_UTOVAR">
+    <End Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Role="DnevnikPrevoza" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.DnevnikUtovar" Role="DnevnikUtovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="DnevnikUtovar">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DnevnikUI">
+    <End Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Role="DnevnikPrevoza" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.DnevnikUvoznikIzvoznik" Role="DnevnikUvoznikIzvoznik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="DnevnikUvoznikIzvoznik">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="spVratiPodatkeZaNalog_Result">
+    <Property Type="String" Name="BrojNaloga" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Naziv" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Adresa" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Timocom" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Izvoznik" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Napomena" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Utovar" Nullable="false" MaxLength="354" />
+    <Property Type="DateTime" Name="DatumUtovara" Nullable="true" Precision="23" />
+    <Property Type="String" Name="VrtsaRobe" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Brutotezina" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="IzvoznaCarina" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Subjekt" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="KontaktOsoba" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="IstovatAdresa" Nullable="false" MaxLength="304" />
+    <Property Type="DateTime" Name="DatumIstovara" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UvoznaSpedicija" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="RegBroj" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ImeVozaca" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="CijenaPrevoza" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Valuta" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ValutaPlacanja" Nullable="true" />
+    <Property Type="String" Name="Veza" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="VratiDnevnikCarinaPoIdDnevnik_Result">
+    <Property Type="Int32" Name="IdCarina" Nullable="false" />
+    <Property Type="String" Name="UvoznaCarina" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="IzvoznaCarina" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="VratiDnevnikIStovarPoIdDnevnik_Result">
+    <Property Type="Int32" Name="IdIstovar" Nullable="false" />
+    <Property Type="String" Name="DodatniIstovar" Nullable="true" MaxLength="604" />
+  </ComplexType>
+  <ComplexType Name="VratiDnevnikPoId_Result">
+    <Property Type="Int32" Name="IdDnevnik" Nullable="false" />
+    <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SerijskiBroj" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="DatumDnevnika" Nullable="true" />
+    <Property Type="String" Name="Naziv" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="BrojNaloga" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Utovar" Nullable="true" MaxLength="354" />
+    <Property Type="String" Name="Istovar" Nullable="true" MaxLength="304" />
+    <Property Type="DateTime" Name="DatumUtovara" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="DatumIstovara" Nullable="true" Precision="23" />
+    <Property Type="String" Name="KolicinaRobe" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="VrstaRobe" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="CijenaPrevoza" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="OznakaValute" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PDV" Nullable="false" MaxLength="2" />
+    <Property Type="Int32" Name="ValutaPlacanja" Nullable="true" />
+    <Property Type="String" Name="Uvoznik" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Izvoznik" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="UvoznaSpedicija" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="IzvoznaSpedicija" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ImeVozaca" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Vozilo" Nullable="true" MaxLength="152" />
+    <Property Type="String" Name="Prikljucno" Nullable="true" MaxLength="152" />
+    <Property Type="Boolean" Name="DrugiPrevoznik" Nullable="true" />
+    <Property Type="String" Name="Prevoznik" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="BrojNalogaPrevoznika" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="CijenaPrevozaPrevoznika" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="ValutaPrevoznika" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ValutaPlacanjaPrevoznika" Nullable="true" />
+    <Property Type="String" Name="RegistracijaVozilaPrevoznika" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="VozacPrevoznika" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="KontaktOsobaPrevoznika" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="BrojFakture" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="DatumSlanjaFakture" Nullable="true" />
+    <Property Type="DateTime" Name="DatumZapisa" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Napomena" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="VratiDnevnikUIPoIdDnevnik_Result">
+    <Property Type="Int32" Name="IdUvoznikIzvoznik" Nullable="false" />
+    <Property Type="String" Name="DodatniUvoznik" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="DodatniIzvoznik" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="VratiDnevnikUtovarPoIdDnevnik_Result">
+    <Property Type="Int32" Name="IdUtovar" Nullable="false" />
+    <Property Type="String" Name="DodatniUtovar" Nullable="true" MaxLength="604" />
+  </ComplexType>
+  <ComplexType Name="VratiTroskovePoIdDnevnik_Result">
+    <Property Type="Int32" Name="IdTroskovi" Nullable="false" />
+    <Property Type="Decimal" Name="iznosTroska" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="ValutaTrosak" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="VrstaTrosak" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="DnevnikValute">
+    <Key>
+      <PropertyRef Name="IdDnevnikValute" />
+    </Key>
+    <Property Type="Int32" Name="IdDnevnikValute" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="IdDnevnik" Nullable="false" />
+    <Property Type="DateTime" Name="DatumAktivnosti" Nullable="false" Precision="3" />
+    <Property Type="String" Name="Aktivnost" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Detalji" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_DnevnikValute_Dnevnik" FromRole="DnevnikValute" ToRole="DnevnikPrevoza" />
+  </EntityType>
+  <Association Name="FK_DnevnikValute_Dnevnik">
+    <End Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Role="DnevnikPrevoza" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.DnevnikValute" Role="DnevnikValute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="DnevnikValute">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="KorisnikUpit">
+    <Key>
+      <PropertyRef Name="IdKorisnikUpit" />
+    </Key>
+    <Property Type="Int32" Name="IdKorisnikUpit" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Utovar" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Istovar" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="KolicinaRobe" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="VrijednostRobe" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="VrstaRobe" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DatumUtovara" Precision="0" />
+    <Property Type="DateTime" Name="DatumIstovara" Precision="0" />
+    <Property Type="String" Name="ImeKorisnika" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Telefon" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Napomena" MaxLength="4000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="KorisnikNalog">
+    <Key>
+      <PropertyRef Name="idKorisnikNalog" />
+    </Key>
+    <Property Type="Int32" Name="idKorisnikNalog" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Naziv" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Adresa" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Grad" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Telefon" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="KontaktOsoba" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Timocom" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PIB" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Izvoznik" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="IzvoznikKontaktOsoba" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MjestoUtovara" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DatumUtovara" Precision="0" />
+    <Property Type="String" Name="ReferentniBrojUtovara" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="VrstaRobe" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="VrijednostRobe" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BrutoTezina" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="IzvoznaCarina" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Uvoznik" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UvoznikKontaktOsoba" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MjestoIstovara" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DatumIstovara" Precision="0" />
+    <Property Type="String" Name="UvoznaCarina" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DatumZahtjeva" Nullable="false" Precision="3" />
+    <Property Type="Int32" Name="IdSubjekt" />
+    <Property Name="PTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Drzava" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JIB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FirmaUtovar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FirmaIStovar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PTT1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Grad1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Drzava1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Dimenzije" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PTT2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Grad2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Drzava2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="KorisnikNalogIstovar" Relationship="uvhszjiy_spedicijaModel.FK_NALOG_ISTOVAR" FromRole="KorisnikNalog" ToRole="KorisnikNalogIstovar" />
+    <NavigationProperty Name="KorisnikNalogUtovar" Relationship="uvhszjiy_spedicijaModel.FK_NalogIStovar" FromRole="KorisnikNalog" ToRole="KorisnikNalogUtovar" />
+  </EntityType>
+  <EntityType Name="VozacUser">
+    <Key>
+      <PropertyRef Name="IdVozacUser" />
+    </Key>
+    <Property Type="Int32" Name="IdVozacUser" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="IdVozac" Nullable="false" />
+    <Property Type="Int32" Name="IdUser" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipUsluge">
+    <Key>
+      <PropertyRef Name="IdTipUsluge" />
+    </Key>
+    <Property Name="IdTipUsluge" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AndroidTask">
+    <Key>
+      <PropertyRef Name="IdTask" />
+    </Key>
+    <Property Name="IdTask" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdDnevnik" Type="Int32" Nullable="false" />
+    <Property Name="DatumZapisa" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="VozacPregled" Type="Boolean" Nullable="false" />
+    <Property Name="AdminPregled" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_TaskDnevnik" FromRole="AndroidTask" ToRole="DnevnikPrevoza" />
+  </EntityType>
+  <Association Name="FK_TaskDnevnik">
+    <End Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Role="DnevnikPrevoza" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.AndroidTask" Role="AndroidTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="AndroidTask">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="KorisnikNalogIstovar">
+    <Key>
+      <PropertyRef Name="IdIstovar" />
+    </Key>
+    <Property Name="IdIstovar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdKorisnikNalog" Type="Int32" Nullable="false" />
+    <Property Name="Firma" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Adresa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Mjesto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="PTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Drzava" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Kontakt" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DatumIstovara" Type="DateTime" Precision="0" />
+    <Property Name="KolicinaRobe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="KorisnikNalog" Relationship="uvhszjiy_spedicijaModel.FK_NALOG_ISTOVAR" FromRole="KorisnikNalogIstovar" ToRole="KorisnikNalog" />
+    <Property Name="UvoznaCarina" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="KorisnikNalogUtovar">
+    <Key>
+      <PropertyRef Name="IdUtovar" />
+    </Key>
+    <Property Name="IdUtovar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdKorisnikNalog" Type="Int32" Nullable="false" />
+    <Property Name="Firma" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Adresa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Mjesto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="PTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Drzava" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Kontakt" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DatmUtovara" Type="DateTime" Precision="0" />
+    <Property Name="KolicinaRobe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="VrstaRobe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TezinaRobe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DimenzijeRobe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ReferentniBrojUtovara" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="KorisnikNalog" Relationship="uvhszjiy_spedicijaModel.FK_NalogIStovar" FromRole="KorisnikNalogUtovar" ToRole="KorisnikNalog" />
+    <Property Name="IzvoznaCarina" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_NALOG_ISTOVAR">
+    <End Type="uvhszjiy_spedicijaModel.KorisnikNalog" Role="KorisnikNalog" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.KorisnikNalogIstovar" Role="KorisnikNalogIstovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KorisnikNalog">
+        <PropertyRef Name="idKorisnikNalog" />
+      </Principal>
+      <Dependent Role="KorisnikNalogIstovar">
+        <PropertyRef Name="IdKorisnikNalog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NalogIStovar">
+    <End Type="uvhszjiy_spedicijaModel.KorisnikNalog" Role="KorisnikNalog" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.KorisnikNalogUtovar" Role="KorisnikNalogUtovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KorisnikNalog">
+        <PropertyRef Name="idKorisnikNalog" />
+      </Principal>
+      <Dependent Role="KorisnikNalogUtovar">
+        <PropertyRef Name="IdKorisnikNalog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Ponuda">
+    <Key>
+      <PropertyRef Name="IdDnevnik" />
+    </Key>
+    <Property Name="IdDnevnik" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DatumDnevnika" Type="DateTime" Precision="0" />
+    <Property Name="IdNarucioca" Type="Int32" />
+    <Property Name="BrojNaloga" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="UtovarAdresa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="UtovarFirma" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="UtovarGrad" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DatumUtovara" Type="DateTime" Precision="3" />
+    <Property Name="IstovarAdresa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IstovarFirma" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IstovarGrad" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DatumIstovara" Type="DateTime" Precision="3" />
+    <Property Name="KolicinaRobe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CijenaPrevoza" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IdValuta" Type="Int32" />
+    <Property Name="ValutaPlacanja" Type="Int32" />
+    <Property Name="UvoznaSpedicija" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IzvoznaSpedicija" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IdVozilo" Type="Int32" />
+    <Property Name="IdVozac" Type="Int32" />
+    <Property Name="DrugiPrevoznik" Type="Boolean" />
+    <Property Name="IdSubjekt" Type="Int32" />
+    <Property Name="BrojNalogaPrevoznika" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CijenaPrevozaPrevoznika" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IdValutaPrevoznika" Type="Int32" />
+    <Property Name="BrojFakture" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DatumSlanjaFakture" Type="DateTime" Precision="0" />
+    <Property Name="DatumZapisa" Type="DateTime" Precision="3" />
+    <Property Name="ZapisAktivan" Type="Boolean" />
+    <Property Name="SerijskiBroj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VrstaRobe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="RegistracijaVozilaPrevoznika" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="VozacPrevoznika" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="KontaktOsobaPrevoznika" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Napomena" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IdPrikljucnoVozilo" Type="Int32" />
+    <Property Name="Uvoznik" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Izvoznik" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ValutaPlacanjaPrevoznika" Type="Int32" />
+    <Property Name="SaPDV" Type="Boolean" />
+    <Property Name="UtovarKontakt" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IstovarKontakt" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="GostPristup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Uplaceno" Type="Boolean" />
+    <Property Name="KompletanUtovar" Type="Boolean" />
+    <Property Name="InternaNapomena" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="TezinaRobe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikIstovarAdresa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikIstovarFirma" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikIstovarGrad" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikIstovarPTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikIstovarDrzava" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IznosPDV" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UtovarPTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UtovarDrzava" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IstovarPTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IstovarDrzava" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DimenzijeRobe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikUtovarFirma" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikUtovarAdresa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikUtovarGrad" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikUtovarPTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrevoznikUtovarDrzava" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IstovarKolicinaRobe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ReferentniBrojUtovara" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IdDnevnikParent" Type="Int32" />
+    <Property Name="LONG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LAT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DrugiPrevoznikStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Subjekt" Relationship="uvhszjiy_spedicijaModel.FK_ponuda_subjekt" FromRole="Ponuda" ToRole="Subjekt" />
+    <NavigationProperty Name="Valuta" Relationship="uvhszjiy_spedicijaModel.FK_ponuda_valuta" FromRole="Ponuda" ToRole="Valuta" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik_POnuda" FromRole="Ponuda" ToRole="DnevnikPrevoza" />
+    <NavigationProperty Name="PonudaUsloviPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Ponuda_Uslov" FromRole="Ponuda" ToRole="PonudaUsloviPrevoza" />
+  </EntityType>
+  <Association Name="FK_ponuda_subjekt">
+    <End Type="uvhszjiy_spedicijaModel.Subjekt" Role="Subjekt" Multiplicity="0..1" />
+    <End Type="uvhszjiy_spedicijaModel.Ponuda" Role="Ponuda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjekt">
+        <PropertyRef Name="IdSubjekt" />
+      </Principal>
+      <Dependent Role="Ponuda">
+        <PropertyRef Name="IdNarucioca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ponuda_valuta">
+    <End Type="uvhszjiy_spedicijaModel.Valuta" Role="Valuta" Multiplicity="0..1" />
+    <End Type="uvhszjiy_spedicijaModel.Ponuda" Role="Ponuda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Valuta">
+        <PropertyRef Name="IdValuta" />
+      </Principal>
+      <Dependent Role="Ponuda">
+        <PropertyRef Name="IdValuta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PonudaUsloviPrevoza">
+    <Key>
+      <PropertyRef Name="IdPodudaUslovi" />
+    </Key>
+    <Property Name="IdPodudaUslovi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdPonuda" Type="Int32" Nullable="false" />
+    <Property Name="IdUsloviPrevoza" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Ponuda" Relationship="uvhszjiy_spedicijaModel.FK_Ponuda_Uslov" FromRole="PonudaUsloviPrevoza" ToRole="Ponuda" />
+    <NavigationProperty Name="UsloviPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Ponuda_Uslov2" FromRole="PonudaUsloviPrevoza" ToRole="UsloviPrevoza" />
+  </EntityType>
+  <EntityType Name="UsloviPrevoza">
+    <Key>
+      <PropertyRef Name="IdUslov" />
+    </Key>
+    <Property Name="IdUslov" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tekst" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Aktivan" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="PonudaUsloviPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Ponuda_Uslov2" FromRole="UsloviPrevoza" ToRole="PonudaUsloviPrevoza" />
+  </EntityType>
+  <Association Name="FK_Dnevnik_POnuda">
+    <End Type="uvhszjiy_spedicijaModel.Ponuda" Role="Ponuda" Multiplicity="0..1" />
+    <End Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Role="DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ponuda">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="IdPonuda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ponuda_Uslov">
+    <End Type="uvhszjiy_spedicijaModel.Ponuda" Role="Ponuda" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.PonudaUsloviPrevoza" Role="PonudaUsloviPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ponuda">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="PonudaUsloviPrevoza">
+        <PropertyRef Name="IdPonuda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ponuda_Uslov2">
+    <End Type="uvhszjiy_spedicijaModel.UsloviPrevoza" Role="UsloviPrevoza" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.PonudaUsloviPrevoza" Role="PonudaUsloviPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UsloviPrevoza">
+        <PropertyRef Name="IdUslov" />
+      </Principal>
+      <Dependent Role="PonudaUsloviPrevoza">
+        <PropertyRef Name="IdUsloviPrevoza" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AppPodesavanja">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vrsta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Vrijednost" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="StatusPrevoza">
+    <Key>
+      <PropertyRef Name="IdStatusPrevoza" />
+    </Key>
+    <Property Name="IdStatusPrevoza" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NazivStatusa" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Aktivan" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VozacTroskovi">
+    <Key>
+      <PropertyRef Name="IdCozacTroskovi" />
+    </Key>
+    <Property Name="IdCozacTroskovi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Iznos" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="IdValuta" Type="Int32" Nullable="false" />
+    <Property Name="Tip" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IdVrstaTroska" Type="Int32" />
+    <Property Name="OdobrenoZaduzenje" Type="Boolean" Nullable="false" />
+    <Property Name="PrihvacenRashod" Type="Boolean" />
+    <Property Name="RazmjenjenoMjenjacnica" Type="Boolean" />
+    <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Napomena" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Aktivno" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Valuta" Relationship="uvhszjiy_spedicijaModel.FK_VozacTroskoviValuta" FromRole="VozacTroskovi" ToRole="Valuta" />
+    <NavigationProperty Name="VozacVrstaTroskova" Relationship="uvhszjiy_spedicijaModel.FK_VozacTroskoviVrstaTroska" FromRole="VozacTroskovi" ToRole="VozacVrstaTroskova" />
+    <Property Name="IdVozac" Type="Int32" Nullable="false" />
+    <Property Name="Zakljucano" Type="Boolean" />
+    <Property Name="Kartica" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="VozacVrstaTroskova">
+    <Key>
+      <PropertyRef Name="IdVrstaTroska" />
+    </Key>
+    <Property Name="IdVrstaTroska" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="VozacTroskovi" Relationship="uvhszjiy_spedicijaModel.FK_VozacTroskoviVrstaTroska" FromRole="VozacVrstaTroskova" ToRole="VozacTroskovi" />
+  </EntityType>
+  <Association Name="FK_VozacTroskoviValuta">
+    <End Type="uvhszjiy_spedicijaModel.Valuta" Role="Valuta" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.VozacTroskovi" Role="VozacTroskovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Valuta">
+        <PropertyRef Name="IdValuta" />
+      </Principal>
+      <Dependent Role="VozacTroskovi">
+        <PropertyRef Name="IdValuta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VozacTroskoviVrstaTroska">
+    <End Type="uvhszjiy_spedicijaModel.VozacVrstaTroskova" Role="VozacVrstaTroskova" Multiplicity="0..1" />
+    <End Type="uvhszjiy_spedicijaModel.VozacTroskovi" Role="VozacTroskovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VozacVrstaTroskova">
+        <PropertyRef Name="IdVrstaTroska" />
+      </Principal>
+      <Dependent Role="VozacTroskovi">
+        <PropertyRef Name="IdVrstaTroska" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="StatusRobe">
+    <Key>
+      <PropertyRef Name="IdStatusRobe" />
+    </Key>
+    <Property Name="IdStatusRobe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Dnebvni_StatusRobe" FromRole="StatusRobe" ToRole="DnevnikPrevoza" />
+  </EntityType>
+  <Association Name="FK_Dnebvni_StatusRobe">
+    <End Type="uvhszjiy_spedicijaModel.StatusRobe" Role="StatusRobe" Multiplicity="0..1" />
+    <End Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Role="DnevnikPrevoza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusRobe">
+        <PropertyRef Name="IdStatusRobe" />
+      </Principal>
+      <Dependent Role="DnevnikPrevoza">
+        <PropertyRef Name="idStatusDetaljni" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="IDnevnikPrevozaVozac">
+    <Key>
+      <PropertyRef Name="IdIDnevnikPrevozaVozac" />
+    </Key>
+    <Property Name="IdIDnevnikPrevozaVozac" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DatumOd" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DatumDo" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DatumZapisa" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IdVozac" Type="Int32" Nullable="false" />
+    <Property Name="IdDnevnik" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_IDnevnik_Dnevnik" FromRole="IDnevnikPrevozaVozac" ToRole="DnevnikPrevoza" />
+    <NavigationProperty Name="Vozaci" Relationship="uvhszjiy_spedicijaModel.FK_IDnevnik_Vozac" FromRole="IDnevnikPrevozaVozac" ToRole="Vozaci" />
+    <Property Name="IdVozilo" Type="Int32" />
+    <NavigationProperty Name="Vozilo" Relationship="uvhszjiy_spedicijaModel.FK_IDnevnik_Vozilo" FromRole="IDnevnikPrevozaVozac" ToRole="Vozilo" />
+  </EntityType>
+  <Association Name="FK_IDnevnik_Dnevnik">
+    <End Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Role="DnevnikPrevoza" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.IDnevnikPrevozaVozac" Role="IDnevnikPrevozaVozac" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="IDnevnikPrevozaVozac">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IDnevnik_Vozac">
+    <End Type="uvhszjiy_spedicijaModel.Vozaci" Role="Vozaci" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.IDnevnikPrevozaVozac" Role="IDnevnikPrevozaVozac" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozaci">
+        <PropertyRef Name="IdVozac" />
+      </Principal>
+      <Dependent Role="IDnevnikPrevozaVozac">
+        <PropertyRef Name="IdVozac" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="RedoslijedUtovarIstovar">
+    <Key>
+      <PropertyRef Name="IdRedoslijed" />
+    </Key>
+    <Property Name="IdRedoslijed" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdDnevnik" Type="Int32" Nullable="false" />
+    <Property Name="IdDodatniUtovar" Type="Int32" />
+    <Property Name="IdDodatniIstovar" Type="Int32" />
+    <Property Name="Aktivnost" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="RedniBroj" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DnevnikIstovar" Relationship="uvhszjiy_spedicijaModel.FK_DnevnikIstovarRedosled" FromRole="RedoslijedUtovarIstovar" ToRole="DnevnikIstovar" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik_Redoslijed" FromRole="RedoslijedUtovarIstovar" ToRole="DnevnikPrevoza" />
+    <NavigationProperty Name="DnevnikUtovar" Relationship="uvhszjiy_spedicijaModel.FK_DnevnikUtovarRedosled" FromRole="RedoslijedUtovarIstovar" ToRole="DnevnikUtovar" />
+  </EntityType>
+  <Association Name="FK_DnevnikIstovarRedosled">
+    <End Type="uvhszjiy_spedicijaModel.DnevnikIstovar" Role="DnevnikIstovar" Multiplicity="0..1" />
+    <End Type="uvhszjiy_spedicijaModel.RedoslijedUtovarIstovar" Role="RedoslijedUtovarIstovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikIstovar">
+        <PropertyRef Name="IdIstovar" />
+      </Principal>
+      <Dependent Role="RedoslijedUtovarIstovar">
+        <PropertyRef Name="IdDodatniIstovar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dnevnik_Redoslijed">
+    <End Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Role="DnevnikPrevoza" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.RedoslijedUtovarIstovar" Role="RedoslijedUtovarIstovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="RedoslijedUtovarIstovar">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DnevnikUtovarRedosled">
+    <End Type="uvhszjiy_spedicijaModel.DnevnikUtovar" Role="DnevnikUtovar" Multiplicity="0..1" />
+    <End Type="uvhszjiy_spedicijaModel.RedoslijedUtovarIstovar" Role="RedoslijedUtovarIstovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikUtovar">
+        <PropertyRef Name="IdUtovar" />
+      </Principal>
+      <Dependent Role="RedoslijedUtovarIstovar">
+        <PropertyRef Name="IdDodatniUtovar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IDnevnik_Vozilo">
+    <End Type="uvhszjiy_spedicijaModel.Vozilo" Role="Vozilo" Multiplicity="0..1" />
+    <End Type="uvhszjiy_spedicijaModel.IDnevnikPrevozaVozac" Role="IDnevnikPrevozaVozac" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozilo">
+        <PropertyRef Name="IdVozilo" />
+      </Principal>
+      <Dependent Role="IDnevnikPrevozaVozac">
+        <PropertyRef Name="IdVozilo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

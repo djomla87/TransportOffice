@@ -1,0 +1,219 @@
+﻿@model Spedicija.DnevnikPrevoza
+@{
+    Layout =  null;
+}
+
+ <link rel="stylesheet" href="~/Content/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    <link id="bootstrap-css" rel="stylesheet" href="~/Content/css/bootstrap.css"> 
+
+    <link rel="stylesheet" href="~/Content/css/fontcss.css">
+    <link id="materialadmin-css" rel="stylesheet" href="~/Content/css/materialadmin.css"> 
+    <link rel="stylesheet" href="~/Content/font-awesome-4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.css">
+    <script src="~/Content/js/jquery-min.js" type="text/javascript"></script>
+    <script src="~/Content/js/jquery-migrate.js" type="text/javascript"></script>
+    <script src="~/Content/js/bootstrap.js" type="text/javascript"></script>
+<section>       
+
+    <div class="row">
+        <div class="col-lg-6">
+    <div class="section-body ">
+          
+        <div class="card card-bordered style-primary">
+            <div class="card-head">
+
+							    <header><i class="fa fa-fw fa-list"></i>&nbsp Detalji o pošiljci</header>
+			</div>
+            <div class="card-body style-default-bright">
+
+			<ul class="list divider-full-bleed">
+	
+
+ 
+    <li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-6"><div class="tile-icon" style="width:auto">@Html.DisplayNameFor(model => model.Status) / Current Transport Status</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-6">
+                            <div class="tile-text text-bold">
+                                @Html.DisplayFor(model => model.Status)   /
+
+                            @if (Model.Status.Equals("ISTOVARENO"))
+                            {  <b> DELIVERED </b> }
+                            @if (Model.Status.Equals("STOPIRANO"))
+                            {  <b> STOPED </b> }
+                            @if (Model.Status.Equals("UTOVARENO U TRANZITU"))
+                            {  <b> IN TRANSIT </b> }
+                            @if (Model.Status.Equals("NIJE UTOVARENO"))
+                            {  <b> NOT LOADED YET </b> }
+                        </div>
+                </div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-6"><div class="tile-icon" style="width:auto">@Html.DisplayNameFor(model => model.DatumDnevnika) / Entry Date</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-6"><div class="tile-text text-bold">@Html.DisplayFor(model => model.DatumDnevnika, "ShortDateTime")</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-6"><div class="tile-icon" style="width:auto">@Html.DisplayNameFor(model => model.Subjekt1.Naziv) / Customer</div> </div>
+						<div class="col-md-6"><a href="/Subjekt/Card/@Model.Subjekt1.IdSubjekt"><div class="tile-text text-bold">@Html.DisplayFor(model => model.Subjekt1.Naziv)</div></a></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-6"><div class="tile-icon" style="width:auto">@Html.DisplayNameFor(model => model.BrojNaloga) / Transport order no</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-6"><div class="tile-text text-bold">@Html.DisplayFor(model => model.BrojNaloga)</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-6"><div class="tile-icon" style="width:auto">@Html.DisplayNameFor(model => model.SerijskiBroj) / Internal Seriall no</div> </div>
+						<div class="col-md-6"><div class="tile-text text-bold">@Html.DisplayFor(model => model.SerijskiBroj)</div></div>
+						</div>
+		</div>
+	</li>
+
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-6"><div class="tile-icon" style="width:auto">@Html.DisplayNameFor(model => model.UtovarFirma) / Transport order recived from</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-6"><div class="tile-text text-bold">@Html.DisplayFor(model => model.UtovarFirma)</div></div>
+						</div>
+		</div>
+	</li>
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-6"><div class="tile-icon" style="width:auto">@Html.DisplayNameFor(model => model.UtovarAdresa) / Loading Address</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-6"><div class="tile-text text-bold">@Html.DisplayFor(model => model.UtovarAdresa)</div></div>
+						</div>
+		</div>
+	</li>
+
+		
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-6"><div class="tile-icon" style="width:auto">@Html.DisplayNameFor(model => model.UtovarGrad) / Loading place</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-6"><div class="tile-text text-bold">@Html.DisplayFor(model => model.UtovarGrad)</div></div>
+						</div>
+		</div>
+	</li>
+
+
+@if(Model.UtovarKontakt != null )
+{
+<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-6"><div class="tile-icon" style="width:auto">@Html.DisplayNameFor(model => model.UtovarKontakt) / Contact person for Loading</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-6"><div class="tile-text text-bold">@Html.DisplayFor(model => model.UtovarKontakt)</div></div>
+						</div>
+		</div>
+	</li>
+}
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-6"><div class="tile-icon" style="width:auto">@Html.DisplayNameFor(model => model.DatumUtovara) / Loading Date</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-6"><div class="tile-text text-bold">@Html.DisplayFor(model => model.DatumUtovara, "ShortDateTime")</div></div>
+						</div>
+		</div>
+	</li>
+
+		<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-6"><div class="tile-icon" style="width:auto">@Html.DisplayNameFor(model => model.IstovarFirma) / Delivery for</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-6"><div class="tile-text text-bold">@Html.DisplayFor(model => model.IstovarFirma)</div></div>
+						</div>
+		</div>
+	</li>
+
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-6"><div class="tile-icon" style="width:auto">@Html.DisplayNameFor(model => model.IstovarAdresa) / Delivery  Address</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-6"><div class="tile-text text-bold">@Html.DisplayFor(model => model.IstovarAdresa)</div></div>
+						</div>
+		</div>
+	</li>
+
+		
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-6"><div class="tile-icon" style="width:auto">@Html.DisplayNameFor(model => model.IstovarGrad) / Delivery place</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-6"><div class="tile-text text-bold">@Html.DisplayFor(model => model.IstovarGrad)</div></div>
+						</div>
+		</div>
+	</li>
+
+
+                @if(Model.IstovarKontakt != null )
+{
+			<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-6"><div class="tile-icon" style="width:auto">@Html.DisplayNameFor(model => model.IstovarKontakt) / Delivery Contact person</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-6"><div class="tile-text text-bold">@Html.DisplayFor(model => model.IstovarKontakt)</div></div>
+						</div>
+		</div>
+	</li>
+                }
+
+
+	<li class="tile">
+		<div class="ink-reaction">
+			<div class="row">
+			<div class="col-md-6"><div class="tile-icon" style="width:auto">@Html.DisplayNameFor(model => model.DatumIstovara) / Delivery  Date</div><!-- <i class="fa fa-inbox"></i> --> </div>
+						<div class="col-md-6"><div class="tile-text text-bold">@Html.DisplayFor(model => model.DatumIstovara, "ShortDateTime")</div></div>
+						</div>
+		</div>
+	</li>
+
+	
+
+	
+   
+
+</ul>
+</div>
+
+</div>
+</div>
+
+
+        </div>
+  
+    </div>
+
+
+
+
+    </section>
+

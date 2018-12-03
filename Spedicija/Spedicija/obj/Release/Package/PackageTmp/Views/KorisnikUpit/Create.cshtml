@@ -1,0 +1,333 @@
+﻿@model Spedicija.KorisnikUpit
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<script src="~/Content/js/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/Content/js/jquery-validation/dist/localization/messages_sr_lat.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+var validator = $(".form").validate({
+            rules: {
+
+
+
+                DatumUtovara : { "required": true },
+                KolicinaRobe1 : { "required": true },
+                VrijednostRobe : { "required": true },
+                VrstaRobe: { "required": true },
+ Utovar: { "required": true },
+ Utovar1 : {"required" : true},
+ Utovar2 : {"required" : true},
+ Istovar: { "required": true },
+ Istovar1: { "required": true },
+ Istovar2: { "required": true },
+ KolicinaRobe : {"required" : true},
+ ImeKorisnika : {"required" : true},
+ Email : {"email" : true} 
+						}
+						 });
+
+        $('submit').on('click', function (e) {
+            e.preventDefault();
+
+            if (!($(".form").valid())) {
+                validator.focusInvalid();
+            }
+            else {
+                
+                $(".form").submit();
+            }
+
+        });
+  });
+</script> 
+
+
+<link href="~/Content/css/datepicker.css" rel="stylesheet" />
+<script src="~/Content/js/datepicker.js"></script>
+<script src="~/Content/js/bootstrap-datepicker.sr-latin.js"></script>
+
+<script src="~/Content/js/select.js"></script>
+<link href="~/Content/css/selectlist.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(function () {
+
+        $('.datum').datepicker({
+            language: 'sr-latin',
+        format: "dd.mm.yyyy",
+        todayBtn: "linked",
+        autoclose: true,
+        todayHighlight: true,
+        toggleActive: true
+    });
+      
+
+        $('.select').select2({
+            allowClear: true,
+            minimumInputLength: 3,
+            language: "es"
+        });
+
+        $('.select').on('change', function (e) {
+
+            var s = $("#SelectSubject").val();
+            if (s == '')
+                $("#subjekt-podaci").css("display", "block");
+            else $("#subjekt-podaci").css("display", "none");
+
+        });
+
+    });
+
+
+</script> 
+
+
+<section>  
+<div class ="container">      
+    <div class="section-body ">
+
+
+
+
+
+
+
+           
+        <div class="card card-bordered style-primary contain-sm ">
+            <div class="card-head">
+                			    <div class="tools">
+								<div class="btn-group">
+	                            <a class="btn btn-icon-toggle btn-refresh"><i class="md md-refresh"></i></a>
+	                            <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
+	                            <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
+                                </div>
+							    </div>
+							    <header><i class="fa fa-fw fa-list"></i>&nbsp Kreiraj upit za prevoz </header>
+			</div>
+ 
+
+@using (Html.BeginForm("Create", "KorisnikUpit", FormMethod.Post, new { @class = "form", role = "form" })) {
+    @Html.ValidationSummary(true)
+
+    <div class="card-body style-default-bright">
+
+
+        <div class="card" id="subjekt-div">
+            <div class="card-head card-head-xs style-info">
+                <header>Da li imamo vaše podatke u našoj bazi podataka?</header>
+                <div class="tools">
+                </div>
+            </div>
+            <!--end .card-head -->
+            <div class="card-body">
+                <div class="alert alert-callout alert-info">
+                    <p>Ako ste već ranije koristili naše usluge, dovoljno je da pretražite i izaberete vašu firmu iz padajuće liste </p>
+                    <p>U koliko niste pronašli Vašu firmu, ostavite polje prazno i popunite formu koja se nalazi ispod</p>
+                </div>
+
+                <div class="form-group floating-label">
+
+                    @Html.DropDownList("IdSubjekt", ViewBag.IdSubjekt as SelectList, String.Empty, new { @class = "form-control select", @id = "SelectSubject" })
+                    @Html.Label("Pretraga Subjekata")
+
+                </div>
+
+            </div>
+            <!--end .card-body -->
+        </div>
+
+
+        <div class="card" >
+            <div class="card-head card-head-xs style-info">
+                <header>Podaci o poslovnom subjektu i prevozu robe</header>
+                <div class="tools">
+                </div>
+            </div>
+            <!--end .card-head -->
+            <div class="card-body">
+
+
+
+                <div id="subjekt-podaci">
+
+                    <div class="alert alert-callout alert-info">
+                       <span class="text-xl text-info"> Molimo Vas da unesete Vaše podatke </span>
+
+                        <div class="form-group floating-label">
+                            @Html.TextBoxFor(model => model.ImeKorisnika, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ImeKorisnika)
+                            @Html.Label("Korisnik usluge")
+                            <p class="help-block">Vaše ime, naziv firme ili kontak osobe</p>
+                        </div>
+
+                        <div class="form-group floating-label">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Email)
+                            @Html.LabelFor(model => model.Email)
+                            <p class="help-block">Popunite u koliko želite odgovor na email!</p>
+                        </div>
+
+                        <div class="form-group floating-label">
+                            @Html.TextBoxFor(model => model.Telefon, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Telefon)
+                            @Html.LabelFor(model => model.Telefon)
+                            <p class="help-block">Telefon na koji vas možemo kontaktirati</p>
+                        </div>
+
+                        
+                    </div>
+                </div>
+
+
+
+                <div class="alert alert-callout alert-success">
+                    <span class="text-xl text-success">
+                        Unesite podatke o utovaru robe
+                        </span>
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group floating-label">
+                                    @Html.TextBox("Utovar1", "", new { @class = "form-control" })
+                                    @Html.Label("PTT")
+                                    <p class="help-block">Poštanski broj Grada</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group floating-label">
+                                    @Html.TextBox("Utovar2", "", new { @class = "form-control" })
+                                    @Html.Label("Grad")
+                                    <p class="help-block">Grad</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group floating-label">
+                                    @Html.TextBoxFor(model => model.Utovar, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Utovar)
+                                    @Html.Label("Država")
+                                    <p class="help-block">Država</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group floating-label">
+                            @Html.TextBoxFor(model => model.DatumUtovara, new { @class = "form-control datum" })
+                            @Html.ValidationMessageFor(model => model.DatumUtovara)
+                            @Html.Label("Roba spreman za utovar od")
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group floating-label">
+                                    @Html.TextBoxFor(model => model.KolicinaRobe, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.KolicinaRobe)
+                                    @Html.Label("Količina i dimenzije robe")
+                                    <p class="help-block">Broj euro-paltea i njiova visina ili navesti tačne dimenzije I broj koleta</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group floating-label">
+                                    @Html.TextBox("KolicinaRobe1", "", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.KolicinaRobe)
+                                    @Html.Label("Bruto težina robe")
+                                    <p class="help-block">Bruto težina robe u Kg</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group floating-label">
+                            @Html.TextBoxFor(model => model.VrijednostRobe, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.VrijednostRobe)
+                            @Html.Label("Vrijednost robe")
+                            <p class="help-block">Vrijednost robe u KM</p>
+                        </div>
+
+                        <div class="form-group floating-label">
+                            @Html.TextBoxFor(model => model.VrstaRobe, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.VrstaRobe)
+                            @Html.Label("Vrsta robe")
+                            <p class="help-block">Opis robe koja se prevozi</p>
+                        </div>
+
+</div>
+
+
+
+                <div class="alert alert-callout alert-danger">
+                    <span class="text-xl text-danger">
+                        Unesite podatke o istovaru robe
+                        </span>
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <div class="form-group floating-label">
+                                    @Html.TextBox("Istovar1", "", new { @class = "form-control" })
+                                    @Html.Label("PTT")
+                                    <p class="help-block">Poštanski broj grada</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group floating-label">
+                                    @Html.TextBox("Istovar2", "", new { @class = "form-control" })
+                                    @Html.Label("Grad")
+                                    <p class="help-block">Grad</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group floating-label">
+                                    @Html.TextBoxFor(model => model.Istovar, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Istovar)
+                                    @Html.Label("Država")
+                                    <p class="help-block">Država</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group floating-label">
+                            @Html.TextBoxFor(model => model.DatumIstovara, new { @class = "form-control datum" })
+                            @Html.ValidationMessageFor(model => model.DatumIstovara)
+                            @Html.Label("Željeni rok dostave robe")
+
+                        </div>
+
+                        <div class="form-group floating-label">
+                            @Html.TextAreaFor(model => model.Napomena, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Napomena)
+                            @Html.LabelFor(model => model.Napomena)
+                            <p class="help-block"></p>
+
+                        </div>
+</div>
+
+
+                    </div>
+                    <!--end .card-body -->
+                </div>
+
+            </div>
+            <div class="card-actionbar style-default-bright">
+                <div class="card-actionbar-row">
+                    <input type="submit" value="KREIRAJ" class="btn btn-flat btn-primary ink-reaction" />
+
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+	</div>
+    </section>
+

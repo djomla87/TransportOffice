@@ -1,0 +1,1901 @@
+﻿@model Spedicija.DnevnikPrevoza
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+<style>
+
+    td.djomla-new-line { white-space:pre }
+   
+    tr td{
+  padding: 1px 8px !important;
+}
+  
+    .contain-lg {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    #TDodatneUsluge, #TDokumenti, #TDrugiP, #TIstovari, #TOsnovniPodaci, #TUtovari, #TVozaci {
+    
+    min-height: 40em;
+    }
+
+    .text-primary {
+    min-height: 40px;
+    padding-bottom: 15px;
+    }
+
+    .style-djomla {
+        background-color: #f5f5f5;
+        border: 1px solid #e3e3e3;
+    }
+
+.list li.divider-inset:after, .list.divider-inset li:after {
+    left: 0px;
+}
+
+
+</style>
+
+<link href="~/Content/flag-icon-css-master/css/flag-icon.min.css" rel="stylesheet" />
+
+<script src="~/Content/js/dropzone.js"></script>
+<link href="~/Content/css/dropzone.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    Dropzone.options.myAwesomeDropzone = {
+        paramName: "file", // The name that will be used to transfer the file
+        maxFilesize: 50, // MB
+        uploadMultiple: true,
+        acceptedFiles: ".xls, .xlsx, .doc, .docx, .pdf, .img, .png. .gif, .tif",
+       complete: function (data) {
+            
+           var res = JSON.parse(data.xhr.responseText);
+           window.location.href = "/DnevnikPrevoza/Details/@Model.IdDnevnik";
+        },
+        init: function () {
+            this.on("sending", function (file, xhr, data) {
+
+                data.append("IdDnevnik", "@Model.IdDnevnik");
+            });
+        }
+    };
+
+
+</script>
+
+<script type ="text/javascript">
+
+    $(document).ready(function () {
+
+
+        $('#MailSend').on('click', function (e) {
+            e.preventDefault();
+
+            $.post("/DnevnikPrevoza/PromjenaStatusa/@Model.IdDnevnik?Status=-1", function (data) {
+              
+                var Naslov = "";
+                var StatusSr = "";
+                var StatusEn = "";
+                var SubjectSr = "";
+                var SubjectEN = "";
+                var istovariSR = "";
+                var istovariEN = "";
+                var gostiKod = "";
+                var UtovarSR = "";
+                var UtovarEN = "";
+                var UISR = "";
+                var UIEN = "";
+                var DATDOSTAVESR = "";
+                var DATDOSTAVEEN = "";
+                $.each(data, function (i, dataitem) {
+                    if (i == 0) {
+
+                        if (dataitem.Status == "ISTOVARENO") {
+                            StatusSr = "DOSTAVLJENO";
+                            StatusEn = "DELIVERED";
+                        }
+                        else if (dataitem.Status == "UTOVARENO U TRANZITU") {
+                            StatusSr = "UTOVARENO - U TRANZITU";
+                            StatusEn = "PICKED UP - IN TRANSIT";
+                        }
+                        else {
+                            StatusSr = "Zakazan utovar " + dataitem.DatUtovara;
+                            StatusEn = "Scheduled pick up " + dataitem.DatUtovara;
+                        }
+
+                        Naslov = "mailto:" + dataitem.Email + "?subject=Notification about shipment no. " + dataitem.SerijskiBroj + " / Izvještaj o statusu pošiljke br. " + dataitem.SerijskiBroj;
+                        SubjectSr = "&body=Poštovani,%0DObavještenje o statusu pošiljke: " + StatusSr + "%0D%0DNaručioc prevoza: " + dataitem.Naziv.replace("&", "i") + "%0DBroj Naloga za utovar:" + dataitem.BrojNaloga;  /*"%0DDetalji Utovara: " + dataitem.UtovarFirma.replace("&", "i") + " / " + dataitem.UtovarGrad + "%0DUvoznik: " + (dataitem.Uvoznik+"").replace("&", "i") + "%0DIzvoznik: " + (dataitem.Izvoznik+"").replace("&", "i");*/
+                        SubjectEN = "Greetings,%0DNotification of shipment status: " + StatusEn + "%0D%0DTransport order recived from: " + dataitem.Naziv.replace("&", "and") + "%0DTransport order no:" + dataitem.BrojNaloga;  /*"%0DLoading details: " + dataitem.UtovarFirma.replace("&", "i") + " / " + dataitem.UtovarGrad + "%0DImporter: " + (dataitem.Uvoznik+"").replace("&", "i") + "%0DExporter: " + (dataitem.Izvoznik+"").replace("&", "i");*/
+                        gostiKod = dataitem.Guest;
+
+                        UISR = "%0DUvoznik: " + (dataitem.Uvoznik + "").replace("&", "i") + "%0DIzvoznik: " + (dataitem.Izvoznik + "").replace("&", "i");
+                        UIEN = "%0DImporter: " + (dataitem.Uvoznik + "").replace("&", "i") + "%0DExporter: " + (dataitem.Izvoznik + "").replace("&", "i");
+                    }
+
+                    if (dataitem.IstovarFirma != "") {
+                        istovariSR += "%0DDetalji Istovara: " + dataitem.IstovarFirma.replace("&", "i") + " / " + dataitem.IstovarGrad;
+                        istovariEN += "%0DDelivery details: " + dataitem.IstovarFirma.replace("&", "i") + " / " + dataitem.IstovarGrad;
+                    }
+
+                    if (dataitem.UtovarFirma != "") {
+                        UtovarSR += "%0DDetalji Utovara: " + dataitem.UtovarFirma.replace("&", "i") + " / " + dataitem.UtovarGrad;
+                        UtovarEN += "%0DLoading details: " + dataitem.UtovarFirma.replace("&", "i") + " / " + dataitem.UtovarGrad;
+                    }
+
+                    if (StatusSr == "UTOVARENO - U TRANZITU") {
+                        DATDOSTAVESR += "%0D" + "Planirana Dostava: " + dataitem.DatIstovara;
+                        DATDOSTAVEEN += "%0D" + "Projected delivery: " + dataitem.DatIstovara;
+                    }
+                });
+
+                
+                var loc = Naslov + SubjectSr + UtovarSR+  istovariSR + DATDOSTAVESR + UISR + "%0D%0D%0D%0D" + SubjectEN + UtovarEN + istovariEN + DATDOSTAVEEN +  UIEN + "%0D%0D%0D%0D" + "Status pošiljke možete pratiti na linku / Shipment status can be folowed on this link:%0Dwww.gmtel-office.com/DnevnikPrevoza/GuestDetail?s=" + gostiKod + "%0D%0D";
+                
+                var rep = 'null';
+                var regex = new RegExp(rep, 'g');
+                loc = loc.replace(regex, " ");
+
+                console.log(loc);
+                document.location.href = loc;
+
+            });
+
+        });
+    });
+
+</script>
+
+
+<link href="~/Content/sweetAlert/sweetalert.css" rel="stylesheet" />
+<script src="~/Content/sweetAlert/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        if ("@Model.Status" == "STOPIRANO")
+            swal("Ovaj dnevnik je stopiran", "", "warning");
+
+
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#fak-ne-placena').on('click', function (e) {
+            e.preventDefault();
+
+            $.getJSON("/DnevnikValute/SetStatusJson/@Model.IdDnevnik", { Status: 0 }, function (data) {
+
+                location.reload();
+            });
+        });
+
+
+        $('#fak-placena').on('click', function (e) {
+            e.preventDefault();
+
+            $.getJSON("/DnevnikValute/SetStatusJson/@Model.IdDnevnik", { Status: 1 }, function (data) {
+                location.reload();
+            });
+        });
+
+
+
+        $("#btn-driver-change").on('click', function (e) {
+
+            var opcije = "";
+            var opcije1 = "";
+
+            $.getJSON("/Vozaci/VratiAktivneVozaceOsim", { "IdVozac": "@Model.IdVozac" }, function (data) {
+
+                $.each(data, function (index, item) {
+                    opcije += "<option value='" + item.key + "'>" + item.value + "</option>";
+                });
+
+                $("#div-select").html(opcije);
+
+                $.getJSON("/Vozilo/VratiAktivnaVozilaOsim", { "IdVozilo": "@(Model.IdVozilo ?? 0)" }, function (data) {
+
+                    $.each(data, function (index, item) {
+                        opcije1 += "<option value='" + item.key + "'>" + item.value + "</option>";
+                    });
+
+                    $("#div-select-vozilo").html(opcije1);
+                 //   $('#simpleModal').modal('toggle');
+
+                });
+
+                $('#simpleModal').modal('toggle');
+
+            });
+
+        });
+
+
+        $("#btn-vozac-promjeni").on('click', function (e) {
+
+            $.getJSON("/Vozaci/PromjeniVozaca/", { "IdVozac": $("#div-select").val(), "IdVozilo": $("#div-select-vozilo").val(), "IdDnevnik": "@Model.IdDnevnik" }, function (data) {
+
+                if (data.response == "OK") {
+                    $('#simpleModal').modal('toggle');
+                    location.reload();
+                }
+                else
+                    alert(data.message);
+
+            });
+
+
+        });
+
+
+    });
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCQBrlBT4GBGTFQsC4Ud5KeHOKCEa2o2ZY"></script>
+
+
+<style>
+    .sortable-placeholder {
+    margin-left: 0 !important;
+    border: 1px solid #ccc;
+    background-color: yellow;
+    -webkit-box-shadow: 0px 0px 10px #888;
+    -moz-box-shadow: 0px 0px 10px #888;
+    box-shadow: 0px 0px 10px #888;
+}
+
+</style>
+
+<div class="modal fade" id="simpleModal" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="simpleModalLabel">Promjena Vozača</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-6"><select id="div-select" style="padding: 8px; font-weight: bold;"></select></div>
+                </div>
+                </br>
+                <div class="row">
+                    <div class="col-md-6"><select id="div-select-vozilo" style="padding: 8px; font-weight: bold;"></select></div>
+                    <div class="col-md-6"> <a href="#" id="btn-vozac-promjeni" class="btn btn-info"> Promjeni </a> </div>
+                </div>
+
+                </div>
+        </div>
+    </div>
+</div>
+
+
+<section>
+
+    <div class="section-body contain-lg">
+
+        <div class="card card-underline">
+            <div class="card-head">
+                <header class="pull-left" style="margin-top: 10px;">Dnevnik Prevoza</header>
+                <div class="tools">
+
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-icon-toggle dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="md md-settings"></i></a>
+                        <ul class="dropdown-menu animation-dock pull-right menu-card-styling" role="menu" style="text-align: left;">
+
+
+                           <li><a title="" href="/DnevnikPrevoza/Index/@Model.IdDnevnik"> <i class="md md-list"></i> &nbsp; Lista dnevnika</a>     </li>
+                           <li><a title="" href="/DnevnikPrevoza/Copy/@Model.IdDnevnik"> <i class="fa fa-copy"></i> &nbsp; Kloniraj </a>    </li>
+                        @if (Model.IdDnevnikParent == null)
+                        {
+                             <li><a title="" href="/DnevnikPrevoza/Create?idParent=@Model.IdDnevnik"> <i class="fa fa-caret-square-o-down"></i> &nbsp; Kreiraj Poddnevnik </a>    </li>
+                        }
+                           <li><a title="" href="/DnevnikPrevoza/Edit/@Model.IdDnevnik"> <i class="md md-edit"></i> &nbsp; Izmjeni </a>    </li>
+
+
+                            @if (!Model.Status.Equals("STOPIRANO"))
+                            {
+                            <li><a title="" href="/DnevnikPrevoza/StopirajPrevoz/@Model.IdDnevnik"> <i class="fa fa-stop"></i> &nbsp; Stopiraj Prevoz</a>     </li>
+                            }
+                            else
+                            {
+                                <li><a title="" href="/DnevnikPrevoza/StopirajPrevoz/@Model.IdDnevnik"> <i class="fa fa-stop"></i> &nbsp; Aktiviraj Prevoz</a>     </li>
+                            }
+
+                           <li><a title="" href="/DnevnikPrevoza/Delete/@Model.IdDnevnik"> <i class="fa fa-trash"></i> &nbsp; Obriši</a>     </li>
+
+                            <li>
+                                <a  title="IstorijaProcesa" href="/DnevnikPrevoza/DnevnikLog/@Model.IdDnevnik"><i class="md md-history"></i>&nbsp; Istorija Izmjena</a>
+                            </li>
+                            <li>
+                                <a  title="Štampaj Nalog" href="/Nalog/ReportDnevnik/@Model.IdDnevnik"><i class="md md-print"></i>&nbsp; Štampa Dnevnika </a>
+                            </li>
+                            <li>
+                                <a title="Štampaj Nalog" href="/Nalog/ReportDnevnikNovi/@Model.IdDnevnik"><i class="md md-print"></i>&nbsp; Štampa Dnevnika - Novi </a>
+                            </li>
+                            <li>
+                                <a title="Štampaj Nalog" href="/DnevnikPrevoza/Faktura/@Model.IdDnevnik"><i class="md md-print"></i>&nbsp; Faktura - demo </a>
+                            </li>
+
+                            @if (Model.Uplaceno ?? false)
+                            {
+                            <li>
+                                <a title="Postavi fakturu da nije plaćena" id="fak-ne-placena"  href="#"><i class="text-danger fa fa-bolt"></i>&nbsp; Postavi fakturu da nije plaćena </a>
+                            </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a title="Postavi fakturu da je plaćena" id="fak-placena" href="#"><i class="text-success fa fa-bolt"></i>&nbsp; Postavi fakturu da je plaćena </a>
+                                </li>
+                            }
+
+                                @if (Spedicija.Models.SpedicijaAutorizacija.ImaRolu("admin"))
+                                {
+                                    <li>
+                                        <a id="MailSend" title="Pošalji Mail" href="#"><i class="md md-email"></i>&nbsp; Pošalji mail Naručiocu Prevoza </a>
+                                    </li>
+                                }
+
+                        </ul>
+                    </div>
+
+                </div>
+
+                <ul class="nav nav-tabs pull-left" data-toggle="tabs">
+                    <li class="active"><a href="#T1">@Model.SerijskiBroj</a></li>
+                    <li class=""><a id="OPMap" href="#TOsnovniPodaci">Osnovni Podaci</a></li>
+                    <li class=""><a href="#TUtovari">Utovari</a></li>
+                    <li class=""><a href="#TIstovari">Istovari</a></li>
+                    <li class=""><a href="#TVozaci">Vozač</a></li>
+                    <li class=""><a href="#TDrugiP">Drugi Prevoznik</a></li>
+                    <li class=""><a href="#TDokumenti">Dokumenti</a></li>
+                    <li class=""><a href="#TDodatno">Dodatno</a></li>
+
+                </ul>
+
+
+
+            </div>
+            <div class="card-body tab-content">
+
+                <div id="T1" class="tab-pane active">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card card-underline style-djomla">
+                                <div class="card-head">
+                                    <header class="">
+                                        <strong>
+                                            Prevoz za <a href="/Subjekt/Card/@Model.IdNarucioca">@Model.Subjekt1.Naziv</a>
+
+                                        </strong>
+                                    </header>
+                                    <div class="tools" style="line-height: 25px">
+                                        
+                                        <strong>Status: @Model.Status</strong>
+
+                                        @if (Model.Uplaceno ?? false)
+                                        {
+                                            <strong class="text-success"> - Faktura plaćena </strong>
+                                        }
+                                        else
+                                        {
+                                            <strong class="text-danger"> - Faktura nije plaćena </strong>
+                                        }
+                                        <br>
+                                        <strong> @(Model.idStatusDetaljni == null ? "" : Model.StatusRobe.Naziv + " ( " + Model.StatusDetaljniOpis + " )"  )      </strong>
+                                    </div>
+  
+                                </div><!--end .card-head -->
+                                <div class="card-body no-padding">
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th> #Rb </th>
+                                                <th> Firma </th>
+                                                <th> Datum </th>
+                                                <th> Kontakt  </th>
+                                                <th> Špedicija </th>
+                                                <th> Roba </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in (List<Spedicija.Models.UtovarSpedicije>)ViewBag.UtovariIstovari)
+                                            {
+                                                <tr>
+                                                    <td class="@(item.Tip.Equals("Utovar") ? "text-primary" : "text-info" )">
+                                                        <strong>@item.Tip</strong><br><span class="text-ultra-bold text-xxl">#@item.Rb</span>
+                                                    </td>
+                                                    <td class="djomla-new-line">@item.Firma</td>
+                                                    <td> @item.Datum </td>
+                                                    <td> @item.Kontakt </td>
+                                                    <td> @item.Spedicija </td>
+                                                    <td class=""> @item.Roba </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th> #Rb</th>
+                                                <th> Uvoznik </th>
+                                                <th> Izvoznik </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            @{ int q = 1;}
+                                            @foreach (var item in (List<Spedicija.Models.CarineUvoznikIzvoznik>)ViewBag.CARINEUI)
+                                            {
+                                                <tr>
+                                                    <td><strong> #@q </strong></td>
+                                                    <td> @item.Uvoznik     </td>
+                                                    <td> @item.Izvoznik    </td>
+                                                </tr>
+                                                q++;
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                            <div class="card card-underline style-djomla">
+                                <div class="card-head">
+                                    <header class="">
+                                        <strong>
+                                            Podredjeni Dnevnici Prevoza
+                                            </strong>
+                                        </header>
+                                    </div>
+                                <div class="card-body no-padding">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>#Rb</th>
+                                                <th>Serijski Broj</th>
+                                                <th>Status</th>
+                                                <th>Detalji</th>
+                                            </tr>
+                                            </thead>
+                                        <tbody>
+
+                                            @{ int x = 1; }
+                                            @foreach (var item in (List<Spedicija.DnevnikPrevoza>)ViewBag.PodredjeniDnevnici)
+                                            {
+
+                                                    <tr>
+                                                        <td> @x </td>
+                                                        <td>@item.SerijskiBroj </td>
+                                                        <td>@item.Status</td>
+                                                        <td><a href="/DnevnikPrevoza/Details/@item.IdDnevnik" title="Detalji" class="btn btn-flat ink-reaction btn-default"><i class="md md-details"></i></a></td>
+                                                        </tr>
+
+                                                x++;
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </div>
+
+
+
+                            @if (Model.IdDnevnikParent != null)
+                            {
+                                <div class="card card-underline style-djomla">
+                                    <div class="card-head">
+                                        <header class="">
+                                            Glavni Dnevnik
+                                            <a href="/DnevnikPrevoza/DetailsTab/@Model.IdDnevnikParent"> @ViewBag.SBNadredjenog </a>
+                                        </header>
+                                    </div>
+                                </div>
+                            }
+
+                            @if(Model.IdPonuda != null)
+                            {
+                            <div class="card card-underline style-djomla">
+                                <div class="card-head">
+                                    <header class="">
+                                            Dnevnik nastao na osnovu Ponude
+                                        <a href="/Ponuda/ReportPonuda2/@Model.IdPonuda" target="_blank"> @Model.Ponuda.SerijskiBroj </a>
+                                    </header>
+                                </div>
+                            </div>
+                            }
+
+
+                            </div>
+
+                                <div class="col-md-4">
+                                    <div class="card card-underline style-djomla">
+                                        <div class="card-head">
+                                            <header class=""><strong>Dodatne usluge </strong></header><!--end .tools -->
+                                            <div class="tools">
+                                                 
+                                                @if (Model.DatumSlanjaFakture.HasValue && Model.ValutaPlacanja != null)
+                                                {
+                                                    DateTime dat = Model.DatumSlanjaFakture.Value.AddDays(Model.ValutaPlacanja.Value);
+
+                                                    if (DateTime.Now.AddHours(7) < dat)
+                                                    {
+                                                        <span class="text-warning">Valuta Ističe: @Model.DatumSlanjaFakture.Value.AddDays(Model.ValutaPlacanja.Value).ToShortDateString()</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        if (Model.Uplaceno ?? false)
+                                                        {
+                                                            <span class="text-success">Valuta istekla: @Model.DatumSlanjaFakture.Value.AddDays(Model.ValutaPlacanja.Value).ToShortDateString() i plaćena je!</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="text-danger">Valuta istekla: @Model.DatumSlanjaFakture.Value.AddDays(Model.ValutaPlacanja.Value).ToShortDateString() i nije plaćena!</span>
+                                                        }
+
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-xs"> { Nije upisana valuta plaćanja i/ili Datum slanja fakture } </span>
+                                                }
+                                            </div>
+
+                                            </div><!--end .card-head -->
+                                        <div class="card-body no-padding">
+                                            <table class="table table-hover">
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Iznos</th>
+                                                    <th>Vrsta</th>
+                                                    <th></th>
+                                                </tr>
+
+                                                @{
+                                                    decimal qsuma = Convert.ToDecimal(@ViewBag.Suma);
+                                                    decimal qsumapozitivna = (Model.CijenaPrevoza ?? 0) * (Model.Valuta.UKM ?? 0);
+                                                    decimal sumanegativna = Convert.ToDecimal(@ViewBag.TrosakStvarni); // bilo Trosak
+                                                    decimal SumaPodDnevnikaPoz = 0;
+                                                    decimal SumaTroskovaPodDnevnik = 0;
+                                                    decimal SumaPodDnevnikaNeg = 0;
+                                                }
+
+                                                <tr>
+                                                    <td colspan="4"> <strong>Usluge</strong> </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td></td>
+                                                    <td> @(Model.CijenaPrevoza ?? 0 - Model.IznosPDV ?? 0 ) @Model.Valuta.OznakaValute </td>
+                                                    <td> Cijena bez PDV </td>
+                                                    <td> </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td></td>
+                                                    <td> @(Model.IznosPDV ?? 0)  @Model.Valuta.OznakaValute </td>
+                                                    <td> PDV </td>
+                                                    <td> </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
+                                                    <td> @Model.CijenaPrevoza @Model.Valuta.OznakaValute</td>
+                                                    <td> Moja ukupna cijena prevoza</td>
+                                                    <td> Valuta Plaćanja: @Model.ValutaPlacanja</td>
+                                                </tr>
+
+
+
+
+                                                @foreach (var item in Model.Troskovi)
+                                                {
+                                                    qsumapozitivna += (item.Iznos ?? 0)  * ( item.Valuta.UKM ?? 0 );
+           
+                                        <tr>
+                                            <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
+                                            <td>@item.Iznos @item.Valuta.OznakaValute</td>
+                                            <td>@item.Vrsta</td>
+                                            <td><a href="/Troskovi/Delete/@item.IdTroskovi" title='Izbriši' class='btn btn-flat ink-reaction btn-default'><i class='md md-delete'></i></a></td>
+                                        </tr>
+                                        }
+
+
+                                                <!-- dodato -->
+
+                                                @if (((List<Spedicija.DnevnikPrevoza>)ViewBag.PodredjeniDnevnici).Count > 0)
+                                                {
+                                                    <tr>
+                                                        <td colspan="4"> <strong>Usluge sa poddnevnika </strong> </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td></td>
+                                                        <td> Moja cijena </td>
+                                                        <td> Usluge </td>
+                                                        <td> Poddnevnik </td>
+                                                    </tr>
+
+                                                    foreach (var item in (List<Spedicija.Models.SumePoddnevnika>)ViewBag.PodDnevnikSume)
+                                                    {
+                                                        <tr>
+                                                            <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
+                                                            <td> @(item.mojacijena.ToString("0.00")) BAM</td>
+                                                            <td> @(item.troskovi.ToString("0.00")) BAM</td>
+                                                            <td> @item.SerijskiBroj </td>
+                                                        </tr>
+
+                                                        SumaPodDnevnikaPoz += (item.mojacijena + item.troskovi);
+                                                        SumaPodDnevnikaNeg += (item.troskoviStvarni + item.drugiprevoznik);
+                                                        SumaTroskovaPodDnevnik += item.troskoviStvarni;
+
+
+                                                    }
+                                                    qsumapozitivna += SumaPodDnevnikaPoz;
+
+                                                }
+
+                                                <!--   -->
+
+
+
+
+                                                <tr class="success">
+                                                    <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
+                                                    <td> @(qsumapozitivna.ToString("0.00")) BAM</td>
+                                                    <td> Ukupno za Fakturisanje</td>
+                                                    <td></td>
+                                                </tr>
+
+
+
+
+
+                                                <tr>
+                                                    <td colspan="4"> <strong>Troškovi</strong> </td>
+                                                </tr>
+
+                                                @if ((Model.CijenaPrevozaPrevoznika ?? 0) > 0)
+                                        {
+                                            sumanegativna += (Model.CijenaPrevozaPrevoznika ?? 0) * (Model.Valuta1.UKM ?? 0);
+
+                                        <tr>
+                                            <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
+                                            <td> @Model.CijenaPrevozaPrevoznika @Model.Valuta1.OznakaValute</td>
+                                            <td> Cijena Prevoza Drugog Prevoznika</td>
+                                            <td></td>
+                                        </tr>
+                                        }
+
+
+                                                <tr>
+                                                    <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
+                                                    <td> @ViewBag.TrosakStvarni BAM</td>
+                                                    <td> Dodatni troškovi</td>
+                                                    <td></td>
+                                                </tr>
+
+                                                <!-- dodato -->
+
+                                                @if (((List<Spedicija.DnevnikPrevoza>)ViewBag.PodredjeniDnevnici).Count > 0)
+                                                {
+                                                    <tr>
+                                                        <td colspan="4"> <strong>Troškovi sa poddnevnika </strong> </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td></td>
+                                                        <td> Drugi Prevoznik </td>
+                                                        <td> Dodatni trošak </td>
+                                                        <td> Poddnevnik </td>
+                                                    </tr>
+
+                                                    foreach (var item in (List<Spedicija.Models.SumePoddnevnika>)ViewBag.PodDnevnikSume)
+                                                    {
+                                                        <tr>
+                                                            <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
+                                                            <td> @(item.drugiprevoznik.ToString("0.00")) BAM</td>
+                                                            <td> @(item.troskoviStvarni.ToString("0.00")) BAM</td>
+                                                            <td> @item.SerijskiBroj </td>
+                                                        </tr>
+
+                                                    }
+
+
+                                                }
+
+
+                                                <tr class="danger">
+                                                    <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
+                                                    <td> @((sumanegativna + SumaPodDnevnikaNeg).ToString("0.00")) BAM</td>
+                                                    <td> Ukupno za troškove</td>
+                                                    <td></td>
+                                                </tr>
+
+
+                                                <tr>
+                                                    <td colspan="4"> <strong>Ukupno</strong> </td>
+                                                </tr>
+                                                @if (qsuma > 0)
+                                        {
+                                        <tr class="success">
+                                            <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
+                                            <td> <b> @ViewBag.Suma BAM</b> </td>
+                                            <td> UKUPNO </td>
+                                            <td></td>
+                                        </tr>
+                                        }
+                                        else if (qsuma < 0)
+                                        {
+                                        <tr class="danger">
+                                            <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
+
+                                            <td> <b> @ViewBag.Suma BAM</b> </td>
+                                            <td>UKUPNO </td>
+                                            <td></td>
+                                        </tr>
+                                        }
+                                        else
+                                        {
+                                        <tr>
+                                            <td><strong class="text-lg"><i class="md md-trending-neutral"></i></strong></td>
+                                            <td> <b> @ViewBag.Suma BAM</b> </td>
+                                            <td>UKUPNO </td>
+                                            <td></td>
+                                        </tr>
+                                        }
+                                            </table>
+
+
+                                        </div>
+
+                                        <div class="card-head">
+                                            <header class=""><strong>Vozači </strong></header><!--end .tools -->
+                                        </div>
+                                        <div class="card-body no-padding">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th> Vozač </th>
+                                                        <th> Vozilo </th>
+                                                        <th> Priljučno </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            @if (Model.Vozaci != null)
+                                                    {
+                                                    @Model.Vozaci.ImeVozaca
+                                                    }
+                                                        </td>
+
+                                                        <td>
+                                                            @if (Model.Vozilo != null)
+                                                    {
+                                                    <span>@Model.Vozilo.TipVozila @Model.Vozilo.RegistarskiBroj </span>
+                                                    }
+                                                        </td>
+
+                                                        <td>
+                                                            @if (Model.Vozilo1 != null)
+                                                    {
+                                                    <span>@Model.Vozilo1.TipVozila @Model.Vozilo1.RegistarskiBroj </span>
+                                                    }
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="card-head">
+                                            <header class=""><strong>Napomene </strong></header><!--end .tools -->
+                                        </div>
+                                        <div class="card-body no-padding">
+                                            <table class="table table-hover">
+                                                <tr>
+                                                    <td>Napomena: @Model.Napomena</td>
+                                                </tr>
+                                                @if (Spedicija.Models.SpedicijaAutorizacija.ImaRolu("admin"))
+                                       {
+                                        <tr>
+                                            <td>Interno: @Model.InternaNapomena</td>
+                                        </tr>
+                                       }
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                <div class="tab-pane" id="TOsnovniPodaci">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="">@Html.DisplayNameFor(model => model.Status)</div>
+                            <div class="text-xl text-primary">@Html.DisplayFor(model => model.Status)</div>
+
+                            <div class="">Dnevnik Kreirao</div>
+                            <div class="text-xl  text-primary">@ViewBag.Korisnik</div>
+
+                            <div class="">@Html.DisplayNameFor(model => model.DatumDnevnika)</div>
+                            <div class="text-xl text-primary">@Html.DisplayFor(model => model.DatumDnevnika, "ShortDateTime")</div>
+
+                            <div class="">@Html.DisplayNameFor(model => model.Subjekt1.Naziv)</div>
+                            <div class="text-xl text-primary"><a href="/Subjekt/Card/@Model.Subjekt1.IdSubjekt">@Html.DisplayFor(model => model.Subjekt1.Naziv)</a></div>
+
+                            <div class="">@Html.DisplayNameFor(model => model.BrojNaloga)</div>
+                            <div class="text-xl text-primary">@Html.DisplayFor(model => model.BrojNaloga)</div>
+
+                            <div class="">@Html.DisplayNameFor(model => model.SerijskiBroj)</div>
+                            <div class="text-xl text-primary">@Html.DisplayFor(model => model.SerijskiBroj)</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="">@Html.DisplayNameFor(model => model.BrojFakture)</div>
+                            <div class="text-xl text-primary">@Html.DisplayFor(model => model.BrojFakture)</div>
+
+                            <div class="">@Html.DisplayNameFor(model => model.DatumSlanjaFakture)</div>
+                            <div class="text-xl text-primary">@Html.DisplayFor(model => model.DatumSlanjaFakture, "ShortDateTime")</div>
+
+                            <div class="">@Html.DisplayNameFor(model => model.Napomena)</div>
+                            <div class="text-xl text-primary">@Html.DisplayFor(model => model.Napomena)</div>
+
+                            @if (Spedicija.Models.SpedicijaAutorizacija.ImaRolu("admin"))
+                            {
+                            <div class="">@Html.DisplayNameFor(model => model.InternaNapomena)</div>
+                            <div class="text-xl text-primary">@Html.DisplayFor(model => model.InternaNapomena)</div>
+                            }
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card-body no-padding">
+                                <div class="">Dodatni troškovi</div>
+                                <table class="table table-hover">
+                                    <tr>
+                                        <th></th>
+                                        <th>Iznos</th>
+                                        <th>Valuta</th>
+                                        <th>Vrsta</th>
+                                        <th></th>
+                                    </tr>
+
+                                    @{
+                                    decimal sumaX = Convert.ToDecimal(@ViewBag.Suma);
+
+                                    }
+                                    <tr>
+                                        <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
+                                        <td> @Model.CijenaPrevoza</td>
+                                        <td> @Model.Valuta.OznakaValute</td>
+                                        <td> Moja Cijena Prevoza</td>
+                                        <td></td>
+                                    </tr>
+                                    @if ((Model.CijenaPrevozaPrevoznika ?? 0) > 0)
+                                {
+                                        <tr>
+                                            <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
+                                            <td> @Model.CijenaPrevozaPrevoznika</td>
+                                            <td> @Model.Valuta1.OznakaValute</td>
+                                            <td> Cijena Prevoza Drugog Prevoznika</td>
+                                            <td></td>
+                                        </tr>
+                                }
+                                    @foreach (var item in Model.Troskovi)
+                                {
+
+                                        <tr>
+                                            <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
+                                            <td>@item.Iznos</td>
+                                            <td>@item.Valuta.OznakaValute</td>
+                                            <td>@item.Vrsta</td>
+                                            <td><a href="/Troskovi/Delete/@item.IdTroskovi" title='Izbriši' class='btn btn-flat ink-reaction btn-default'><i class='md md-delete'></i></a></td>
+                                        </tr>
+                                }
+
+                                    <tr class="danger">
+                                        <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
+                                        <td> @ViewBag.Trosak </td>
+                                        <td> BAM </td>
+                                        <td> Dodatni troškovi</td>
+                                        <td></td>
+                                    </tr>
+
+
+                                    @if (sumaX > 0)
+                                {
+                                        <tr class="success">
+                                            <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
+                                            <td> <b> @ViewBag.Suma </b> </td>
+                                            <td> <b> BAM  </b> </td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                }
+                                else if (sumaX < 0)
+                                {
+                                        <tr class="danger">
+                                            <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
+
+                                            <td> <b> @ViewBag.Suma </b> </td>
+                                            <td> <b> BAM  </b> </td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                }
+                                else
+                                {
+                                        <tr>
+                                            <td><strong class="text-lg"><i class="md md-trending-neutral"></i></strong></td>
+                                            <td> <b> @ViewBag.Suma </b> </td>
+                                            <td> <b> BAM  </b> </td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                }
+                                </table>
+                            </div>
+                        </div>
+
+                        </div>
+                  
+                </div>
+
+
+                <div class="tab-pane" id="TUtovari">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card card-underline style-djomla">
+                                <div class="card-head">
+                                    <header class=""><strong>#1 Utovar</strong></header>
+                                    <div class="tools">
+                                        <a class="btn btn-icon-toggle ink-reaction"><i class="md md-edit"></i></a>
+                                    </div><!--end .tools -->
+                                </div><!--end .card-head -->
+                                <div class="card-body no-padding">
+                                    <ul class="list">
+
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Referentni Broj Utovara</small>
+                                                    @Model.ReferentniBrojUtovara
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Firma</small>
+                                                    @Model.UtovarFirma
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Grad</small>
+                                                    @Model.UtovarPTT @Model.UtovarGrad
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Adresa</small>
+                                                    @Model.UtovarAdresa
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Država</small>
+                                                    @Model.UtovarDrzava
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Datum Utovara</small>
+                                                    @Model.DatumUtovara
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <!-- <li class="divider-inset"></li> -->
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Količina</small>
+                                                    @Model.KolicinaRobe @Model.DimenzijeRobe
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Vrsta</small>
+                                                    @Model.VrstaRobe
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Težina</small>
+                                                    @Model.TezinaRobe
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Cijena</small>
+                                                    @Model.CijenaPrevoza @Model.Valuta.OznakaValute &nbsp; &nbsp; &nbsp; @((Model.SaPDV ?? false) ? "   Sa PDV-om" : "   Bez PDV-a")
+                                                </div>
+                                            </a>
+                                        </li>
+
+
+                                        <!-- <li class="divider-inset"></li> -->
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Utovar Kontakt</small>
+                                                    @Model.UtovarKontakt
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Izvozna Špedicija</small>
+                                                    @Model.IzvoznaSpedicija
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div><!--end .card-body -->
+                            </div>
+                        </div>
+
+                        @foreach (var item in Model.DnevnikUtovar.ToList())
+                        {
+                        <div class="col-md-6">
+                            <div class="card card-underline style-djomla">
+                                <div class="card-head">
+                                    <header class=""><strong># @(Model.DnevnikUtovar.ToList().IndexOf(item) + 2) Utovar </strong></header>
+                                    <div class="tools">
+                                        <a class="btn btn-icon-toggle ink-reaction"><i class="md md-edit"></i></a>
+                                    </div><!--end .tools -->
+                                </div><!--end .card-head -->
+                                <div class="card-body no-padding">
+                                    <ul class="list">
+
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Referentni Broj Utovara</small>
+                                                    @item.ReferentniBrojUtovara
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Firma</small>
+                                                    @item.Firma
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Grad</small>
+                                                   @item.PTT @item.Mjesto @item.Drzava
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Adresa</small>
+                                                    @item.Adresa
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <!--
+                                                <li class="tile">
+                                                    <a class="tile-content ink-reaction">
+                                                        <div class="tile-text">
+                                                            <small>Država</small>
+
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="tile">
+                                                    <a class="tile-content ink-reaction">
+                                                        <div class="tile-text">
+                                                            <small>Datum Utovara</small>
+
+                                                        </div>
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="tile">
+                                                    <a class="tile-content ink-reaction">
+                                                        <div class="tile-text">
+                                                            <small>Količina</small>
+
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="tile">
+                                                    <a class="tile-content ink-reaction">
+                                                        <div class="tile-text">
+                                                            <small>Vrsta</small>
+
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="tile">
+                                                    <a class="tile-content ink-reaction">
+                                                        <div class="tile-text">
+                                                            <small>Težina</small>
+
+                                                        </div>
+                                                    </a>
+                                                </li>
+
+                                                <li class="tile">
+                                                    <a class="tile-content ink-reaction">
+                                                        <div class="tile-text">
+                                                            <small>Utovar Kontakt</small>
+
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="tile">
+                                                    <a class="tile-content ink-reaction">
+                                                        <div class="tile-text">
+                                                            <small>Izvozna Špedicija</small>
+
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                    -->
+
+                                    </ul>
+                                </div><!--end .card-body -->
+                            </div>
+                        </div>
+                        }
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-underline style-djomla">
+                                <div class="card-head">
+                                    <header class=""><strong>Uvoznici, Izvoznici i Špedicije</strong></header>
+                                    <div class="tools">
+                                        <a class="btn btn-icon-toggle ink-reaction"><i class="md md-edit"></i></a>
+                                    </div><!--end .tools -->
+                                </div><!--end .card-head -->
+                                <div class="card-body no-padding">
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th> # Rb. </th>
+                                                <th> Uvoznik </th>
+                                                <th> Uvozna Carina </th>
+                                                <th> Izvoznik </th>
+                                                <th> Izvozna Carina </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            @{ int i = 1;}
+                                            @foreach (var item in (List<Spedicija.Models.CarineUvoznikIzvoznik>)ViewBag.CARINEUI)
+                                            {
+                                            <tr>
+                                                <td> # @i </td>
+                                                <td> @item.Uvoznik     </td>
+                                                <td> @item.UvoznaCarina         </td>
+                                                <td> @item.Izvoznik    </td>
+                                                <td> @item.IzvoznaCarina        </td>
+                                            </tr>
+                                                i++;
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="tab-pane" id="TIstovari">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card card-underline style-djomla">
+                                <div class="card-head">
+                                    <header class=""><strong>#1 Istovar</strong></header>
+                                    <div class="tools">
+                                        <a class="btn btn-icon-toggle ink-reaction"><i class="md md-edit"></i></a>
+                                    </div><!--end .tools -->
+                                </div><!--end .card-head -->
+                                <div class="card-body no-padding">
+                                    <ul class="list">
+
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Firma</small>
+                                                    @Model.IstovarFirma
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Grad</small>
+                                                    @Model.IstovarPTT @Model.IstovarGrad
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Adresa</small>
+                                                    @Model.IstovarAdresa
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Država</small>
+                                                    @Model.IstovarDrzava
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Datum Istovara</small>
+                                                    @Model.DatumIstovara
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <!-- <li class="divider-inset"></li> -->
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Količina</small>
+                                                    @Model.KolicinaRobe
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Vrsta</small>
+                                                    @Model.VrstaRobe
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Težina</small>
+                                                    @Model.TezinaRobe
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Cijena</small>
+                                                    @Model.CijenaPrevoza @Model.Valuta.OznakaValute &nbsp; &nbsp; &nbsp; @((Model.SaPDV ?? false) ? "   Sa PDV-om" : "   Bez PDV-a")
+                                                </div>
+                                            </a>
+                                        </li>
+
+
+                                        <!-- <li class="divider-inset"></li> -->
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Istovar Kontakt</small>
+                                                    @Model.IstovarKontakt
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Uvozna Špedicija</small>
+                                                    @Model.UvoznaSpedicija
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div><!--end .card-body -->
+                            </div>
+                        </div>
+
+                        @foreach (var item in Model.DnevnikIstovar.ToList())
+                                {
+                                <div class="col-md-6">
+                                    <div class="card card-underline style-djomla">
+                                        <div class="card-head">
+                                            <header class=""><strong># @(Model.DnevnikIstovar.ToList().IndexOf(item) + 2) Istovar </strong></header>
+                                            <div class="tools">
+                                                <a class="btn btn-icon-toggle ink-reaction"><i class="md md-edit"></i></a>
+                                            </div><!--end .tools -->
+                                        </div><!--end .card-head -->
+                                        <div class="card-body no-padding">
+                                            <ul class="list">
+
+                                                <li class="tile">
+                                                    <a class="tile-content ink-reaction">
+                                                        <div class="tile-text">
+                                                            <small>Firma</small>
+                                                            @item.Firma
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="tile">
+                                                    <a class="tile-content ink-reaction">
+                                                        <div class="tile-text">
+                                                            <small>Grad</small>
+                                                            @item.PTT @item.Mjesto @item.Drzava
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="tile">
+                                                    <a class="tile-content ink-reaction">
+                                                        <div class="tile-text">
+                                                            <small>Adresa</small>
+                                                            @item.Adresa
+                                                        </div>
+                                                    </a>
+                                                </li>
+
+
+                                            </ul>
+                                        </div><!--end .card-body -->
+                                    </div>
+                                </div>
+                                }
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-underline style-djomla">
+                                <div class="card-head">
+                                    <header class=""><strong>Uvoznici, Izvoznici i Špedicije</strong></header>
+                                    <div class="tools">
+                                        <a class="btn btn-icon-toggle ink-reaction"><i class="md md-edit"></i></a>
+                                    </div><!--end .tools -->
+                                </div><!--end .card-head -->
+                                <div class="card-body no-padding">
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th> # Rb. </th>
+                                                <th> Uvoznik </th>
+                                                <th> Uvozna Carina </th>
+                                                <th> Izvoznik </th>
+                                                <th> Izvozna Carina </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            @{ i = 1;}
+                                            @foreach (var item in (List<Spedicija.Models.CarineUvoznikIzvoznik>)ViewBag.CARINEUI)
+                                                    {
+                                                    <tr>
+                                                        <td> # @i </td>
+                                                        <td> @item.Uvoznik     </td>
+                                                        <td> @item.UvoznaCarina         </td>
+                                                        <td> @item.Izvoznik    </td>
+                                                        <td> @item.IzvoznaCarina        </td>
+                                                    </tr>
+                                                        i++;
+                                                    }
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="tab-pane" id="TVozaci">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-underline style-djomla">
+                                <div class="card-head">
+                                    <header class=""><strong>Vozač / Vozilo</strong></header>
+                                    <div class="tools">
+                                        <a class="btn btn-icon-toggle ink-reaction"><i class="md md-edit"></i></a>
+                                    </div><!--end .tools -->
+                                </div><!--end .card-head -->
+                                <div class="card-body no-padding">
+
+                                    <div class="col-md-6">
+                                        <ul class="list">
+
+                                            <li class="tile">
+                                                <a class="tile-content ink-reaction">
+                                                    <div class="tile-text">
+                                                        <small>Vozilo</small>
+                                                        @if (Model.Vozilo == null)
+                                                    {}
+                                                    else
+                                                    {
+                                                            @Html.DisplayFor(model => model.Vozilo.TipVozila) @Html.DisplayFor(model => model.Vozilo.RegistarskiBroj)
+                                                    }
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="tile">
+                                                <a class="tile-content ink-reaction">
+                                                    <div class="tile-text">
+                                                        <small>Priključno Vozilo</small>
+                                                        @if (Model.Vozilo1 == null)
+                                                    { }
+                                                    else
+                                                    {
+                                                            @Html.DisplayFor(model => model.Vozilo1.TipVozila) @Html.DisplayFor(model => model.Vozilo1.RegistarskiBroj)
+                                                    }
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="tile">
+                                                <a class="tile-content ink-reaction">
+                                                    <div class="tile-text">
+                                                        <small>Vozač</small>
+                                                        @if (Model.Vozaci == null)
+                                                    { }
+                                                    else
+                                                    {
+                                                            @Html.DisplayFor(model => model.Vozaci.ImeVozaca)
+
+                                                        }
+                                                    </div>
+                                                </a>
+                                                <a href="#" id="btn-driver-change" title="Promjeni Vozača"><i class="fa fa-child"></i> &nbsp; Promjeni vozača </a>
+                                            </li>
+                                        </ul>
+
+                                        <br />
+
+                                        <h3>Promjene vozača </h3>
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th> Prethodni vozač </th>
+                                                    <th> Prethodno vozilo </th>
+                                                    <th> Datum Od </th>
+                                                    <th> Datum Do </th>
+                                                    <th> Promjena </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.IDnevnikPrevozaVozac.ToList())
+                                                {
+                                                    <tr>
+                                                        <td> @item.Vozaci.ImeVozaca                 </td>
+                                                        <td> @(item.IdVozilo == null ? "" : item.Vozilo.TipVozila + " " + item.Vozilo.RegistarskiBroj) </td>
+                                                        <td> @item.DatumOd.ToShortDateString()      </td>
+                                                        <td> @item.DatumDo.ToShortDateString()      </td>
+                                                        <td> @item.DatumZapisa.ToShortDateString() @item.DatumZapisa.ToShortTimeString()  </td>
+                                                   </tr>
+                                                }
+
+
+                                                </tbody>
+                                            </table>
+
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <h3>Promjene statusa od strane vozača (Android)</h3>
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th> Korisničko Ime </th>
+                                                    <th> Datum </th>
+                                                    <th> Status </th>
+                                                    <th> Geo. Dužina </th>
+                                                    <th> Geo. Širina </th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in (List<Spedicija.Models.AndroidChange>)ViewBag.AndroidChange)
+                                                {
+                                                    <tr>
+                                                        <td> @item.Korisnik</td>
+                                                        <td> @item.Datum</td>
+                                                        <td> @item.Dnevnik</td>
+                                                        <td> @item.Long</td>
+                                                        <td> @item.Lat</td>
+                                                        <td> <a target="_blank" title="Otvori na mapi" href="https://www.google.com/maps/?q=@item.Lat,@item.Long"> <i class="fa fa-map-marker"></i></a>  </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+              
+
+                <div class="tab-pane" id="TDrugiP">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-underline style-djomla">
+                                <div class="card-head">
+                                    <header class=""><strong>Drugi Prevoznik</strong></header>
+                                    <div class="tools">
+
+                                        <a href="/Nalog/Report/@Model.IdDnevnik?Lan=SR" title='' class='btn btn-flat ink-reaction btn-default btn-circle'>
+
+                                            <span class="label" style="background-color: whitesmoke; font-size: 24px;"><span data-toggle="tooltip" data-placement="top" data-original-title="Štampan Naloga [RS]" class="flag-icon flag-icon-rs"></span></span>
+
+                                        </a>
+
+                                        <a href="/Nalog/Report/@Model.IdDnevnik?Lan=EN" title='' class='btn btn-flat ink-reaction btn-default btn-circle'>
+
+                                            <span class="label" style="background-color: whitesmoke; font-size: 24px;"><span data-toggle="tooltip" data-placement="top" data-original-title="Štampan Naloga [EN]" class="flag-icon flag-icon-gb"></span></span>
+
+                                        </a>
+                                    </div><!--end .tools -->
+                                </div><!--end .card-head -->
+                                <div class="card-body no-padding">
+
+                                    <ul class="list">
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Drugi Prevoznik</small>
+                                                    @if (Model.DrugiPrevoznik ?? false)
+                                                    {
+                                                    <span>DA</span> }
+                                                    else
+                                                    {
+                                                    <span>NE</span> }
+                                                </div>
+                                            </a>
+                                        </li>
+
+
+                                        @if (Model.DrugiPrevoznik ?? false)
+                                            {
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Prevoznik </small>
+                                                    @Html.DisplayFor(model => model.Subjekt.Naziv)
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Broj Naloga</small>
+                                                    @Html.DisplayFor(model => model.BrojNalogaPrevoznika)
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Cijena</small>
+                                                    @Html.DisplayFor(model => model.CijenaPrevozaPrevoznika)
+
+                                                    @if (Model.Valuta1 != null)
+                                                    {
+                                                    @Html.DisplayFor(model => model.Valuta1.OznakaValute)
+                                                    }
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Registracija vozila</small>
+                                                    @Html.DisplayFor(model => model.RegistracijaVozilaPrevoznika)
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Vozač</small>
+                                                    @Html.DisplayFor(model => model.VozacPrevoznika)
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Kontakt Osoba</small>
+                                                    @Html.DisplayFor(model => model.KontaktOsobaPrevoznika)
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Kompletan Utovar</small>
+                                                    @if (Model.KompletanUtovar ?? false)
+                                                    { <span class="text-danger"> DA - samo naša roba na vozilu, dotovar nije dozvoljen </span> }
+                                                    else
+                                                    {<span> NE </span>}
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Firma Istovara</small>
+                                                    @Html.DisplayFor(model => model.PrevoznikIstovarFirma)
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Adresa</small>
+                                                    @Html.DisplayFor(model => model.PrevoznikIstovarAdresa)
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction">
+                                                <div class="tile-text">
+                                                    <small>Grad</small>
+                                                    @Html.DisplayFor(model => model.PrevoznikIstovarGrad)
+                                                </div>
+                                            </a>
+                                        </li>
+                                            }
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="tab-pane" id="TDokumenti">
+                    <div class="card-body style-default-bright">
+                        <div class="row">
+                            @foreach (var item in Model.Dokument)
+                                            {
+                                            <div class="col-md-4">
+                                                <div class="card card-type-pricing card-outlined style-primary">
+                                                    <div class="card-body text-center" style="padding: 0px;">
+                                                        <a title="Obriši Fajl" href="/DnevnikPrevoza/DeleteDokument/@item.IdDokument" class="pull-right btn btn-flat ink-reaction btn-default"><i class='md md-delete'></i></a>
+                                                        <a title="Pošalji E-mailom" href="/Mail/DownloadEmail?PathToAttachment=@item.IdDokument" class="doc-email-cls pull-right btn btn-flat ink-reaction btn-default"><i class='md md-email'></i></a>
+
+                                                        <h2 class="text-light" style="margin: 5px 5px 10px 5px; height: 100px; overflow: hidden;">@item.Naziv </h2>
+                                                        <div class="price">
+                                                            @if (item.Putanja.EndsWith(".xls") || item.Putanja.EndsWith(".xlsx"))
+                                                                {
+                                                                <a title="Preuzmi fajl" href="/Dokumenti/@item.Naziv" target="_blank"><img class="img-responsive width-2" src="/Content/images/Exel.png" alt="" style="margin: 0 auto;"></a>
+                                                                }
+                                                            @if (item.Putanja.EndsWith(".doc") || item.Putanja.EndsWith(".docx"))
+                                                                {
+                                                                <a title="Preuzmi fajl" href="/Dokumenti/@item.Naziv" target="_blank"><img class="img-responsive width-2" src="/Content/images/Word.png" alt="" style="margin: 0 auto;"></a>
+                                                                }
+                                                            @if (item.Putanja.EndsWith(".pdf"))
+                                                                {
+                                                                <a title="Preuzmi fajl" href="/Dokumenti/@item.Naziv" target="_blank"><img class="img-responsive width-2" src="/Content/images/Pdf.png" alt="" style="margin: 0 auto;"></a>
+                                                                }
+                                                        </div>
+                                                        <br>
+                                                    </div><!--end .card-body -->
+                                                    <div class="card-body no-padding">
+                                                        <ul class="list-unstyled text-left">
+                                                            <li style="border-top: 1px solid #e5e6e6;"><div class="row"><div class="col-md-4">Tip </div><div class="col-md-8"> @item.Tip</div>  </div></li>
+                                                            <li style="border-top: 1px solid #e5e6e6;"><div class="row"><div class="col-md-4">Veličina</div><div class="col-md-8">@item.Velicina kb</div></div></li>
+
+                                                        </ul>
+                                                    </div><!--end .card-body -->
+                                                </div><!--end .card -->
+                                            </div>
+                                            }
+                        </div>
+                    </div>
+
+                    <div class="card-body style-djomla">
+                        @ViewBag.Error @using (Html.BeginForm("UploadFile", "DnevnikPrevoza", FormMethod.Post, new { @class = "dropzone dz-clickable", id = "myAwesomeDropzone", enctype = "multipart/form-data" }))
+                                        {
+
+                                        <div class="dz-message">
+                                            <h3>Prevucite dokumenta ovdje ili kliknite za odabir</h3>
+                                            <em>maksimalna veličina dokumenta je 10MB</em>
+                                        </div>
+
+                                        }
+
+
+                    </div>
+
+                </div>
+
+
+                <div  class="tab-pane" id="TDodatno">
+
+                    <div class="card card-underline style-djomla">
+                        <div class="card-head">
+                            <header class=""><strong>Dodatne usluge</strong></header>
+                        </div>
+                        <div class="card-body no-padding">
+                            <table class="table table-hover">
+                                <tr>
+                                    <th></th>
+                                    <th>Iznos</th>
+                                    <th>Valuta</th>
+                                    <th>Vrsta</th>
+                                    <th></th>
+                                </tr>
+
+                                @{
+                                    decimal suma = Convert.ToDecimal(@ViewBag.Suma);
+
+                                }
+                                <tr>
+                                    <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
+                                    <td> @Model.CijenaPrevoza</td>
+                                    <td> @Model.Valuta.OznakaValute</td>
+                                    <td> Moja Cijena Prevoza</td>
+                                    <td></td>
+                                </tr>
+                                @if ((Model.CijenaPrevozaPrevoznika ?? 0) > 0)
+                                {
+                                    <tr>
+                                        <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
+                                        <td> @Model.CijenaPrevozaPrevoznika</td>
+                                        <td> @Model.Valuta1.OznakaValute</td>
+                                        <td> Cijena Prevoza Drugog Prevoznika</td>
+                                        <td></td>
+                                    </tr>
+                                }
+                                @foreach (var item in Model.Troskovi)
+                                {
+
+                                    <tr>
+                                        <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
+                                        <td>@item.Iznos</td>
+                                        <td>@item.Valuta.OznakaValute</td>
+                                        <td>@item.Vrsta</td>
+                                        <td><a href="/Troskovi/Delete/@item.IdTroskovi" title='Izbriši' class='btn btn-flat ink-reaction btn-default'><i class='md md-delete'></i></a></td>
+                                    </tr>
+                                }
+
+                                <tr class="danger">
+                                    <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
+                                    <td> @ViewBag.Trosak </td>
+                                    <td> BAM </td>
+                                    <td> Dodatni troškovi</td>
+                                    <td></td>
+                                </tr>
+
+
+                                @if (suma > 0)
+                                {
+                                    <tr class="success">
+                                        <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
+                                        <td> <b> @ViewBag.Suma </b> </td>
+                                        <td> <b> BAM  </b> </td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                }
+                                else if (suma < 0)
+                                {
+                                    <tr class="danger">
+                                        <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
+
+                                        <td> <b> @ViewBag.Suma </b> </td>
+                                        <td> <b> BAM  </b> </td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td><strong class="text-lg"><i class="md md-trending-neutral"></i></strong></td>
+                                        <td> <b> @ViewBag.Suma </b> </td>
+                                        <td> <b> BAM  </b> </td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+
+                        </div>
+
+
+
+
+             </div>
+
+           </div>
+
+
+        </div>
+
+
+
+</section>
+
+

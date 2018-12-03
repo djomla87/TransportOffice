@@ -1,0 +1,1618 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4F538CBD-CF52-4616-AE7B-BE2FC9C585EC}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Spedicija</RootNamespace>
+    <AssemblyName>Spedicija</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.DataVisualization.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.Design.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.WebDesign.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.WinForms.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.11.0.1\lib\net20\Microsoft.SqlServer.Types.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.20710.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.3.12153\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Zen.Barcode.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zen.Barcode.Core.2.0.0\lib\net45\Zen.Barcode.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AndroidTask.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppPodesavanja.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DnevnikPrevozaController.cs" />
+    <Compile Include="Controllers\DnevnikValuteController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KorisnikController.cs" />
+    <Compile Include="Controllers\KorisnikNalogController.cs" />
+    <Compile Include="Controllers\KorisnikUpitController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
+    <Compile Include="Controllers\NalogController.cs" />
+    <Compile Include="Controllers\PonudaController.cs" />
+    <Compile Include="Controllers\StatusRobeController.cs" />
+    <Compile Include="Controllers\SubjektController.cs" />
+    <Compile Include="Controllers\TasksController.cs" />
+    <Compile Include="Controllers\TroskoviController.cs" />
+    <Compile Include="Controllers\UsloviPrevozaController.cs" />
+    <Compile Include="Controllers\UslugaController.cs" />
+    <Compile Include="Controllers\VozacDnevnicaController.cs" />
+    <Compile Include="Controllers\VozaciController.cs" />
+    <Compile Include="Controllers\VozacTroskoviController.cs" />
+    <Compile Include="Controllers\VozacVrstaTroskovaController.cs" />
+    <Compile Include="Controllers\VoziloController.cs" />
+    <Compile Include="Dataset\DSNalozi.cs">
+      <DependentUpon>DSNalozi.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\DSNalozi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSNalozi.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DnevnicaDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DnevnikCarina.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DnevnikIstovar.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DnevnikPrevoza.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DnevnikUtovar.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DnevnikUvoznikIzvoznik.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DnevnikValute.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dokument.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Drzava.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Grad.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IDnevnikPrevozaVozac.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IzracunDnevnik.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IzracunTrosak.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IzracunZarada.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Korisnik.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KorisnikNalog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KorisnikNalogIstovar.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KorisnikNalogUtovar.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KorisnikUpit.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Log.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AndroidChange.cs" />
+    <Compile Include="Models\CalendarModel.cs" />
+    <Compile Include="Models\CarineUvoznikIzvoznik.cs" />
+    <Compile Include="Models\DnavnikPrevozaIndexModel.cs" />
+    <Compile Include="Models\DnevniceViewModel.cs" />
+    <Compile Include="Models\DnevnikViewModel.cs" />
+    <Compile Include="Models\DodatniTroskoviIzracun.cs" />
+    <Compile Include="Models\FakturaMaster.cs" />
+    <Compile Include="Models\FakturaView.cs" />
+    <Compile Include="Models\jQueryDataTableParamModel.cs" />
+    <Compile Include="Models\MapaPrevozaModel.cs" />
+    <Compile Include="Models\Mobile\Task.cs" />
+    <Compile Include="Models\Mobile\Token.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
+    <Compile Include="Models\SerijskiBrojGenerator.cs" />
+    <Compile Include="Models\SortUImodel.cs" />
+    <Compile Include="Models\SumePoddnevnika.cs" />
+    <Compile Include="Models\TroskoviReportView.cs" />
+    <Compile Include="Models\UtovarSpedicije.cs" />
+    <Compile Include="NalogZaUtovar.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Notes.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ponuda.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PonudaUsloviPrevoza.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedoslijedUtovarIstovar.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\ILogRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\ISpedicija.cs" />
+    <Compile Include="Repository\IVozacRepository.cs" />
+    <Compile Include="Repository\LogRepository.cs" />
+    <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Repository\Spedicija.cs" />
+    <Compile Include="Repository\VozacRepository.cs" />
+    <Compile Include="Models\SpecijaRoleProvider.cs" />
+    <Compile Include="Models\SpedicijaAutorizacija.cs" />
+    <Compile Include="spVratiPodatkeZaNalog_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="StatusPrevoza.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StatusRobe.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subjekt.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipUsluge.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Troskovi.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsloviPrevoza.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Valuta.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VozacDnevnica.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vozaci.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VozacTroskovi.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VozacUser.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VozacVrstaTroskova.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vozilo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VratiDnevnikCarinaPoIdDnevnik_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VratiDnevnikIStovarPoIdDnevnik_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VratiDnevnikPoId_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VratiDnevnikUIPoIdDnevnik_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VratiDnevnikUtovarPoIdDnevnik_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VratiTroskovePoIdDnevnik_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\packages\Microsoft.SqlServer.Types.11.0.1\nativeBinaries\x64\msvcr100.dll">
+      <Link>SqlServerTypes\x64\msvcr100.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\packages\Microsoft.SqlServer.Types.11.0.1\nativeBinaries\x64\SqlServerSpatial110.dll">
+      <Link>SqlServerTypes\x64\SqlServerSpatial110.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\packages\Microsoft.SqlServer.Types.11.0.1\nativeBinaries\x86\msvcr100.dll">
+      <Link>SqlServerTypes\x86\msvcr100.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\packages\Microsoft.SqlServer.Types.11.0.1\nativeBinaries\x86\SqlServerSpatial110.dll">
+      <Link>SqlServerTypes\x86\SqlServerSpatial110.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\css\autocomplete-bootstrap.css" />
+    <Content Include="Content\css\bootstrap-timepicker.min.css" />
+    <Content Include="Content\css\bootstrap-toggle.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\colorpicker.css" />
+    <Content Include="Content\css\dataTables-colVis.css" />
+    <Content Include="Content\css\dataTables.responsive.css" />
+    <Content Include="Content\css\datepicker.css" />
+    <Content Include="Content\css\dropzone.css" />
+    <Content Include="Content\css\font-awesome-animation.min.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\fontcss.css" />
+    <Content Include="Content\css\invoice.css" />
+    <Content Include="Content\css\jquery-dataTables.css" />
+    <Content Include="Content\css\jquery-ui.css" />
+    <Content Include="Content\css\material-design-iconic-font.css" />
+    <Content Include="Content\css\materialadmin.css" />
+    <Content Include="Content\css\materialadmin_demo.css" />
+    <Content Include="Content\css\morris.css" />
+    <Content Include="Content\css\multiselect.css" />
+    <Content Include="Content\css\nestable.css" />
+    <Content Include="Content\css\prettify.css" />
+    <Content Include="Content\css\rickshaw.css" />
+    <Content Include="Content\css\selectlist.css" />
+    <Content Include="Content\css\summernote.css" />
+    <Content Include="Content\css\t1\bootstrap.css" />
+    <Content Include="Content\css\t1\materialadmin.css" />
+    <Content Include="Content\css\tableTools.css" />
+    <Content Include="Content\css\tagsinput.css" />
+    <Content Include="Content\css\toastr.css" />
+    <Content Include="Content\css\typehead.css" />
+    <Content Include="Content\css\wizard.css" />
+    <Content Include="Content\flag-icon-css-master\assets\docs.css" />
+    <Content Include="Content\flag-icon-css-master\assets\docs.js" />
+    <Content Include="Content\flag-icon-css-master\css\flag-icon.css" />
+    <Content Include="Content\flag-icon-css-master\css\flag-icon.min.css" />
+    <Content Include="Content\flag-icon-css-master\flags\1x1\gb.svg" />
+    <Content Include="Content\flag-icon-css-master\flags\1x1\rs.svg" />
+    <Content Include="Content\flag-icon-css-master\flags\4x3\gb.svg" />
+    <Content Include="Content\flag-icon-css-master\flags\4x3\rs.svg" />
+    <Content Include="Content\font-awesome-4.3.0\css\font-awesome.css" />
+    <Content Include="Content\font-awesome-4.3.0\css\font-awesome.min.css" />
+    <Content Include="Content\font-awesome-4.3.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\1494980970_Wood4.png" />
+    <Content Include="Content\images\1494981013_Shipping8.png" />
+    <Content Include="Content\images\1494981024_self1.png" />
+    <Content Include="Content\images\cancel.png" />
+    <Content Include="Content\images\company.png" />
+    <Content Include="Content\images\done_1.png" />
+    <Content Include="Content\images\Driver.png" />
+    <Content Include="Content\images\DrugiPrevoznik.png" />
+    <Content Include="Content\images\Exel.png" />
+    <Content Include="Content\images\gmtel-transparent.png" />
+    <Content Include="Content\images\gmtel_logistics.png" />
+    <Content Include="Content\images\kombi.PNG" />
+    <Content Include="Content\images\notes.png" />
+    <Content Include="Content\images\notpad.png" />
+    <Content Include="Content\images\palet0.png" />
+    <Content Include="Content\images\post-office-48.png" />
+    <Content Include="Content\images\post-office.png" />
+    <Content Include="Content\images\receipt.png" />
+    <Content Include="Content\images\receipt2.png" />
+    <Content Include="Content\images\Transport.png" />
+    <Content Include="Content\images\Transport1.png" />
+    <Content Include="Content\images\warehouse.png" />
+    <Content Include="Content\images\Word.png" />
+    <Content Include="Content\images\Pdf.png" />
+    <Content Include="Content\images\analysis.png" />
+    <Content Include="Content\images\Avatar-blank.jpg" />
+    <Content Include="Content\images\clcok-notofication.png" />
+    <Content Include="Content\images\folder-documents-icon.png" />
+    <Content Include="Content\images\folder.png" />
+    <Content Include="Content\images\intro.jpg" />
+    <Content Include="Content\images\justicia.jpg" />
+    <Content Include="Content\images\one.jpg" />
+    <Content Include="Content\images\papers.png" />
+    <Content Include="Content\images\two.jpg" />
+    <Content Include="Content\images\ws-1.jpg" />
+    <Content Include="Content\images\ws-2.jpg" />
+    <Content Include="Content\js\autosize.js" />
+    <Content Include="Content\js\bootcomplete.css" />
+    <Content Include="Content\js\bootstrap-datepicker.sr-latin.js" />
+    <Content Include="Content\js\bootstrap-timepicker.js" />
+    <Content Include="Content\js\bootstrap-toggle.min.js" />
+    <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\bootstrap3-typeahead.min.js" />
+    <Content Include="Content\js\clipboard.min.js" />
+    <Content Include="Content\js\colorpicker.js" />
+    <Content Include="Content\js\DataTables.js" />
+    <Content Include="Content\js\dataTables.responsive.js" />
+    <Content Include="Content\js\datepicker.js" />
+    <Content Include="Content\js\datetimepicker-bootstrap\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\js\datetimepicker-bootstrap\bootstrap-datetimepicker.min.js" />
+    <Content Include="Content\js\datetimepicker-bootstrap\locales\bootstrap-datetimepicker.rs-latin.js" />
+    <Content Include="Content\js\Demo-ui-messages.js" />
+    <Content Include="Content\js\Demo.js" />
+    <Content Include="Content\js\Demodashboard.js" />
+    <Content Include="Content\js\DemoFormComponents.js" />
+    <Content Include="Content\js\DemoFormWizard.js" />
+    <Content Include="Content\js\DemoTableDinamic.js" />
+    <Content Include="Content\js\DemoUIList.js" />
+    <Content Include="Content\js\dropzone.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\CHANGELOG.txt" />
+    <Content Include="Content\js\fullcalendar-3.1.0\CONTRIBUTING.txt" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\agenda-views.html" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\background-events.html" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\basic-views.html" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\default.html" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\external-dragging.html" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\gcal.html" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\json.html" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\list-views.html" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\locales.html" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\selectable.html" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\theme.html" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\timezones.html" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\week-numbers.html" />
+    <Content Include="Content\js\fullcalendar-3.1.0\fullcalendar.css" />
+    <Content Include="Content\js\fullcalendar-3.1.0\fullcalendar.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\fullcalendar.min.css" />
+    <Content Include="Content\js\fullcalendar-3.1.0\fullcalendar.min.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\fullcalendar.print.css" />
+    <Content Include="Content\js\fullcalendar-3.1.0\fullcalendar.print.min.css" />
+    <Content Include="Content\js\fullcalendar-3.1.0\gcal.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\gcal.min.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\cupertino\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\cupertino\images\ui-bg_glass_100_e4f1fb_1x400.png" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\cupertino\images\ui-bg_glass_50_3baae3_1x400.png" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\cupertino\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\cupertino\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\cupertino\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\cupertino\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\cupertino\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\cupertino\images\ui-icons_2694e8_256x240.png" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\cupertino\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\cupertino\images\ui-icons_3d80b3_256x240.png" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\cupertino\images\ui-icons_72a7cf_256x240.png" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\cupertino\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\cupertino\jquery-ui.min.css" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\jquery-ui.min.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\jquery.min.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\lib\moment.min.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\LICENSE.txt" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale-all.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\af.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\ar-dz.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\ar-ly.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\ar-ma.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\ar-sa.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\ar-tn.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\ar.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\bg.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\ca.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\cs.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\da.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\de-at.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\de.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\el.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\en-au.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\en-ca.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\en-gb.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\en-ie.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\en-nz.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\es-do.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\es.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\eu.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\fa.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\fi.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\fr-ca.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\fr-ch.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\fr.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\gl.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\he.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\hi.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\hr.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\hu.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\id.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\is.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\it.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\ja.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\kk.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\ko.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\lb.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\lt.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\lv.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\mk.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\ms-my.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\ms.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\nb.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\nl-be.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\nl.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\nn.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\pl.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\pt-br.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\pt.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\ro.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\ru.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\sk.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\sl.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\sr-cyrl.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\sr.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\sv.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\th.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\tr.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\uk.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\vi.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\zh-cn.js" />
+    <Content Include="Content\js\fullcalendar-3.1.0\locale\zh-tw.js" />
+    <Content Include="Content\js\input-mask.js" />
+    <Content Include="Content\js\jquery-migrate.js" />
+    <Content Include="Content\js\jquery-min.js" />
+    <Content Include="Content\js\jquery-multiselect.js" />
+    <Content Include="Content\js\jquery-ui.js" />
+    <Content Include="Content\js\jquery-validation\demo\ajaxSubmit-integration-demo.html" />
+    <Content Include="Content\js\jquery-validation\demo\captcha\captcha.js" />
+    <Content Include="Content\js\jquery-validation\demo\captcha\images\button.png" />
+    <Content Include="Content\js\jquery-validation\demo\captcha\style.css" />
+    <Content Include="Content\js\jquery-validation\demo\css\cmxform.css" />
+    <Content Include="Content\js\jquery-validation\demo\css\cmxformTemplate.css" />
+    <Content Include="Content\js\jquery-validation\demo\css\core.css" />
+    <Content Include="Content\js\jquery-validation\demo\css\reset.css" />
+    <Content Include="Content\js\jquery-validation\demo\css\screen.css" />
+    <Content Include="Content\js\jquery-validation\demo\custom-messages-data-demo.html" />
+    <Content Include="Content\js\jquery-validation\demo\custom-methods-demo.html" />
+    <Content Include="Content\js\jquery-validation\demo\dynamic-totals.html" />
+    <Content Include="Content\js\jquery-validation\demo\errorcontainer-demo.html" />
+    <Content Include="Content\js\jquery-validation\demo\errors-within-labels.html" />
+    <Content Include="Content\js\jquery-validation\demo\file_input.html" />
+    <Content Include="Content\js\jquery-validation\demo\images\bg.gif" />
+    <Content Include="Content\js\jquery-validation\demo\images\checked.gif" />
+    <Content Include="Content\js\jquery-validation\demo\images\cmxform-divider.gif" />
+    <Content Include="Content\js\jquery-validation\demo\images\cmxform-fieldset.gif" />
+    <Content Include="Content\js\jquery-validation\demo\images\loading.gif" />
+    <Content Include="Content\js\jquery-validation\demo\images\unchecked.gif" />
+    <Content Include="Content\js\jquery-validation\demo\index.html" />
+    <Content Include="Content\js\jquery-validation\demo\jquerymobile.html" />
+    <Content Include="Content\js\jquery-validation\demo\login\images\bg.gif" />
+    <Content Include="Content\js\jquery-validation\demo\login\images\header1.jpg" />
+    <Content Include="Content\js\jquery-validation\demo\login\images\page.gif" />
+    <Content Include="Content\js\jquery-validation\demo\login\images\required_star.gif" />
+    <Content Include="Content\js\jquery-validation\demo\login\index.html" />
+    <Content Include="Content\js\jquery-validation\demo\login\screen.css" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\backRequiredGray.gif" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\back_green-fade.gif" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\back_nav_blue.gif" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\blank.gif" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\button-submit.gif" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\favicon.ico" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\help.png" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\left-nav-callout-long.png" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\login-sprite.gif" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\logo_marketo.gif" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\sf.png" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\step1-24.gif" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\step2-24.gif" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\step3-24.gif" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\tab-sprite.gif" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\tab_green.gif" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\time.png" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\toggle.gif" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\images\warning.gif" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\index.html" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\jquery.maskedinput.js" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\mktSignup.js" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\step2.htm" />
+    <Content Include="Content\js\jquery-validation\demo\marketo\stylesheet.css" />
+    <Content Include="Content\js\jquery-validation\demo\milk\bg.gif" />
+    <Content Include="Content\js\jquery-validation\demo\milk\index.html" />
+    <Content Include="Content\js\jquery-validation\demo\milk\left_white.png" />
+    <Content Include="Content\js\jquery-validation\demo\milk\milk.css" />
+    <Content Include="Content\js\jquery-validation\demo\milk\milk.png" />
+    <Content Include="Content\js\jquery-validation\demo\milk\right_white.png" />
+    <Content Include="Content\js\jquery-validation\demo\multipart\index.html" />
+    <Content Include="Content\js\jquery-validation\demo\multipart\style.css" />
+    <Content Include="Content\js\jquery-validation\demo\radio-checkbox-select-demo.html" />
+    <Content Include="Content\js\jquery-validation\demo\requirejs\app.js" />
+    <Content Include="Content\js\jquery-validation\demo\requirejs\index.html" />
+    <Content Include="Content\js\jquery-validation\demo\site-demos.css" />
+    <Content Include="Content\js\jquery-validation\demo\themerollered.html" />
+    <Content Include="Content\js\jquery-validation\demo\tinymce\index.html" />
+    <Content Include="Content\js\jquery-validation\demo\tinymce\themes\simple\editor_template.js" />
+    <Content Include="Content\js\jquery-validation\demo\tinymce\themes\simple\img\icons.gif" />
+    <Content Include="Content\js\jquery-validation\demo\tinymce\themes\simple\langs\en.js" />
+    <Content Include="Content\js\jquery-validation\demo\tinymce\themes\simple\skins\default\ui.css" />
+    <Content Include="Content\js\jquery-validation\demo\tinymce\tiny_mce.js" />
+    <Content Include="Content\js\jquery-validation\dist\additional-methods.js" />
+    <Content Include="Content\js\jquery-validation\dist\additional-methods.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\jquery.validate.js" />
+    <Content Include="Content\js\jquery-validation\dist\jquery.validate.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_ar.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_ar.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_bg.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_bg.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_ca.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_ca.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_cs.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_cs.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_da.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_da.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_de.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_de.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_el.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_el.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_es.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_es.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_es_AR.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_es_AR.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_et.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_et.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_eu.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_eu.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_fa.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_fa.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_fi.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_fi.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_fr.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_fr.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_gl.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_gl.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_he.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_he.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_hr.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_hr.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_hu.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_hu.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_id.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_id.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_is.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_is.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_it.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_it.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_ja.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_ja.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_ka.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_ka.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_kk.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_kk.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_ko.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_ko.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_lt.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_lt.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_lv.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_lv.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_my.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_my.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_nl.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_nl.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_no.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_no.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_pl.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_pl.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_pt_BR.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_pt_BR.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_pt_PT.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_pt_PT.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_ro.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_ro.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_ru.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_ru.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_si.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_si.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_sk.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_sk.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_sl.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_sl.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_sr.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_sr.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_sr_lat.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_sr_lat.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_sv.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_sv.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_th.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_th.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_tj.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_tj.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_tr.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_tr.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_uk.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_uk.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_vi.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_vi.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_zh.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_zh.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_zh_TW.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\messages_zh_TW.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\methods_de.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\methods_de.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\methods_es_CL.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\methods_es_CL.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\methods_fi.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\methods_fi.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\methods_nl.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\methods_nl.min.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\methods_pt.js" />
+    <Content Include="Content\js\jquery-validation\dist\localization\methods_pt.min.js" />
+    <Content Include="Content\js\jquery-validation\Gruntfile.js" />
+    <Content Include="Content\js\jquery-validation\lib\jquery-1.11.1.js" />
+    <Content Include="Content\js\jquery-validation\lib\jquery-1.6.4.js" />
+    <Content Include="Content\js\jquery-validation\lib\jquery-1.7.2.js" />
+    <Content Include="Content\js\jquery-validation\lib\jquery-1.8.3.js" />
+    <Content Include="Content\js\jquery-validation\lib\jquery-1.9.1.js" />
+    <Content Include="Content\js\jquery-validation\lib\jquery.form.js" />
+    <Content Include="Content\js\jquery-validation\lib\jquery.js" />
+    <Content Include="Content\js\jquery-validation\lib\jquery.mockjax.js" />
+    <Content Include="Content\js\jquery-validation\lib\jquery.simulate.js" />
+    <Content Include="Content\js\jquery-validation\lib\require.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\accept.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\additional.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\alphanumeric.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\bankaccountNL.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\bankorgiroaccountNL.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\bic.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\cifES.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\creditcardtypes.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\currency.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\dateFA.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\dateITA.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\dateNL.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\extension.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\giroaccountNL.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\iban.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\integer.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\ipv4.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\ipv6.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\lettersonly.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\letterswithbasicpunc.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\mobileNL.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\mobileUK.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\nieES.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\nifES.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\nowhitespace.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\pattern.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\phoneNL.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\phonesUK.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\phoneUK.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\phoneUS.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\postalcodeBR.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\postalCodeCA.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\postalcodeIT.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\postalcodeNL.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\postcodeUK.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\require_from_group.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\skip_or_fill_minimum.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\statesUS.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\strippedminlength.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\time.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\time12h.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\url2.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\vinUS.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\zipcodeUS.js" />
+    <Content Include="Content\js\jquery-validation\src\additional\ziprange.js" />
+    <Content Include="Content\js\jquery-validation\src\ajax.js" />
+    <Content Include="Content\js\jquery-validation\src\core.js" />
+    <Content Include="Content\js\jquery-validation\src\delegate.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_ar.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_bg.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_ca.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_cs.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_da.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_de.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_el.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_es.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_es_AR.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_et.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_eu.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_fa.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_fi.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_fr.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_gl.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_he.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_hr.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_hu.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_id.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_is.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_it.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_ja.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_ka.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_kk.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_ko.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_lt.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_lv.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_my.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_nl.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_no.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_pl.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_pt_BR.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_pt_PT.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_ro.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_ru.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_si.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_sk.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_sl.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_sr.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_sr_lat.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_sv.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_th.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_tj.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_tr.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_uk.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_vi.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_zh.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\messages_zh_TW.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\methods_de.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\methods_es_CL.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\methods_fi.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\methods_nl.js" />
+    <Content Include="Content\js\jquery-validation\src\localization\methods_pt.js" />
+    <Content Include="Content\js\jquery-validation\test\aria.js" />
+    <Content Include="Content\js\jquery-validation\test\error-placement.js" />
+    <Content Include="Content\js\jquery-validation\test\index.html" />
+    <Content Include="Content\js\jquery-validation\test\messages.js" />
+    <Content Include="Content\js\jquery-validation\test\methods.js" />
+    <Content Include="Content\js\jquery-validation\test\qunit\qunit.css" />
+    <Content Include="Content\js\jquery-validation\test\qunit\qunit.js" />
+    <Content Include="Content\js\jquery-validation\test\rules.js" />
+    <Content Include="Content\js\jquery-validation\test\test.js" />
+    <Content Include="Content\js\jquery.bootcomplete.js" />
+    <Content Include="Content\js\jquery.bootstrap.wizard.min.js" />
+    <Content Include="Content\js\jquery.dataTables.columnFilter.js" />
+    <Content Include="Content\js\jquery.inputmask.bundle.min.js" />
+    <Content Include="Content\js\js1.js" />
+    <Content Include="Content\js\js2.js" />
+    <Content Include="Content\js\js3.js" />
+    <Content Include="Content\js\knob.js" />
+    <Content Include="Content\js\moment.js" />
+    <Content Include="Content\js\nanoScrollerJS.js" />
+    <Content Include="Content\js\nestable.js" />
+    <Content Include="Content\js\printThis.js" />
+    <Content Include="Content\js\richshaw.js" />
+    <Content Include="Content\js\select.js" />
+    <Content Include="Content\js\sparkline.js" />
+    <Content Include="Content\js\spin.js" />
+    <Content Include="Content\js\summernote-sr-RS-Latin.js" />
+    <Content Include="Content\js\summernote.min.js" />
+    <Content Include="Content\js\tagsinput.js" />
+    <Content Include="Content\js\template.js" />
+    <Content Include="Content\js\toastr.js" />
+    <Content Include="Content\js\typehead.js" />
+    <Content Include="Content\material-design-iconic-font\css\material-design-iconic-font.css" />
+    <Content Include="Content\material-design-iconic-font\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\material-design-iconic-font\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Content\nano-scroller\jquery.nanoscroller.min.js" />
+    <Content Include="Content\nano-scroller\nanoscroller.css" />
+    <Content Include="Content\sweetAlert\sweetalert.css" />
+    <Content Include="Content\sweetAlert\sweetalert.min.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\font-awesome-4.3.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\font-awesome-4.3.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\font-awesome-4.3.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\font-awesome-4.3.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\font-awesome-4.3.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\font-awesome-4.3.0\less\animated.less" />
+    <Content Include="Content\font-awesome-4.3.0\less\bordered-pulled.less" />
+    <Content Include="Content\font-awesome-4.3.0\less\core.less" />
+    <Content Include="Content\font-awesome-4.3.0\less\fixed-width.less" />
+    <Content Include="Content\font-awesome-4.3.0\less\font-awesome.less" />
+    <Content Include="Content\font-awesome-4.3.0\less\icons.less" />
+    <Content Include="Content\font-awesome-4.3.0\less\larger.less" />
+    <Content Include="Content\font-awesome-4.3.0\less\list.less" />
+    <Content Include="Content\font-awesome-4.3.0\less\mixins.less" />
+    <Content Include="Content\font-awesome-4.3.0\less\path.less" />
+    <Content Include="Content\font-awesome-4.3.0\less\rotated-flipped.less" />
+    <Content Include="Content\font-awesome-4.3.0\less\stacked.less" />
+    <Content Include="Content\font-awesome-4.3.0\less\variables.less" />
+    <Content Include="Content\font-awesome-4.3.0\scss\font-awesome.scss" />
+    <Content Include="Content\font-awesome-4.3.0\scss\_animated.scss" />
+    <Content Include="Content\font-awesome-4.3.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\font-awesome-4.3.0\scss\_core.scss" />
+    <Content Include="Content\font-awesome-4.3.0\scss\_fixed-width.scss" />
+    <Content Include="Content\font-awesome-4.3.0\scss\_icons.scss" />
+    <Content Include="Content\font-awesome-4.3.0\scss\_larger.scss" />
+    <Content Include="Content\font-awesome-4.3.0\scss\_list.scss" />
+    <Content Include="Content\font-awesome-4.3.0\scss\_mixins.scss" />
+    <Content Include="Content\font-awesome-4.3.0\scss\_path.scss" />
+    <Content Include="Content\font-awesome-4.3.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\font-awesome-4.3.0\scss\_stacked.scss" />
+    <Content Include="Content\font-awesome-4.3.0\scss\_variables.scss" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\json\countries.json" />
+    <Content Include="Content\json\SerbianDataTables.json" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\json\events.json" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\php\get-events.php" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\php\get-timezones.php" />
+    <Content Include="Content\js\fullcalendar-3.1.0\demos\php\utils.php" />
+    <Content Include="Content\js\jquery-validation\demo\captcha\fonts\Anorexia.ttf" />
+    <Content Include="Content\js\jquery-validation\demo\captcha\images\image.php" />
+    <Content Include="Content\js\jquery-validation\demo\captcha\image_req.php" />
+    <Content Include="Content\js\jquery-validation\demo\captcha\index.php" />
+    <Content Include="Content\js\jquery-validation\demo\captcha\newsession.php" />
+    <Content Include="Content\js\jquery-validation\demo\captcha\process.php" />
+    <Content Include="Content\js\jquery-validation\demo\captcha\rand.php" />
+    <Content Include="Content\js\jquery-validation\package.json" />
+    <Content Include="Content\js\jquery-validation\README.md" />
+    <Content Include="Content\js\jquery.nanoscroller.min.map" />
+    <Content Include="Content\material-design-iconic-font\.git\COMMIT_EDITMSG" />
+    <Content Include="Content\material-design-iconic-font\.git\config" />
+    <Content Include="Content\material-design-iconic-font\.git\description" />
+    <Content Include="Content\material-design-iconic-font\.git\FETCH_HEAD" />
+    <Content Include="Content\material-design-iconic-font\.git\HEAD" />
+    <Content Include="Content\material-design-iconic-font\.git\hooks\applypatch-msg.sample" />
+    <Content Include="Content\material-design-iconic-font\.git\hooks\commit-msg.sample" />
+    <Content Include="Content\material-design-iconic-font\.git\hooks\post-update.sample" />
+    <Content Include="Content\material-design-iconic-font\.git\hooks\pre-applypatch.sample" />
+    <Content Include="Content\material-design-iconic-font\.git\hooks\pre-commit.sample" />
+    <Content Include="Content\material-design-iconic-font\.git\hooks\pre-push.sample" />
+    <Content Include="Content\material-design-iconic-font\.git\hooks\pre-rebase.sample" />
+    <Content Include="Content\material-design-iconic-font\.git\hooks\prepare-commit-msg.sample" />
+    <Content Include="Content\material-design-iconic-font\.git\hooks\update.sample" />
+    <Content Include="Content\material-design-iconic-font\.git\index" />
+    <Content Include="Content\material-design-iconic-font\.git\info\exclude" />
+    <Content Include="Content\material-design-iconic-font\.git\line_info" />
+    <Content Include="Content\material-design-iconic-font\.git\logs\HEAD" />
+    <Content Include="Content\material-design-iconic-font\.git\logs\refs\heads\dev" />
+    <Content Include="Content\material-design-iconic-font\.git\logs\refs\heads\gh-pages" />
+    <Content Include="Content\material-design-iconic-font\.git\logs\refs\heads\issue-#2" />
+    <Content Include="Content\material-design-iconic-font\.git\logs\refs\heads\master" />
+    <Content Include="Content\material-design-iconic-font\.git\logs\refs\remotes\origin\dev" />
+    <Content Include="Content\material-design-iconic-font\.git\logs\refs\remotes\origin\gh-pages" />
+    <Content Include="Content\material-design-iconic-font\.git\logs\refs\remotes\origin\HEAD" />
+    <Content Include="Content\material-design-iconic-font\.git\logs\refs\remotes\origin\issue-#2" />
+    <Content Include="Content\material-design-iconic-font\.git\logs\refs\remotes\origin\master" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\01\ab97440ec14cb02a5880ef48f1aa5e27233866" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\02\82c003113f29ef8cb570d51ca037489d6023bc" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\09\9c675f2f0ed1b61e59752f87a37235930aa23f" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\09\d12c37864577a4ff99632f526ec36999d3301a" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\0b\89ac60bb036b8450aab065628c1068ec109a13" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\0d\122bf1bb7d66b96c90471e7b6b205fc119544f" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\0e\33a940a8b36f1ece5e4df685f8a738ac5eb65c" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\0e\48b42f2ea7b59e36db166deb79282deebd9cf7" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\0e\cad6430f6abb45b4170c87863050ffc987798b" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\10\073759af0c00d4f72fbd223b684f0a9b3a69bb" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\12\8a1d6fa6cc2a7e115ab8d5f6d88a1d1351b10a" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\13\2c7327a4838837c8e3d7265c929db857ee2488" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\14\61dbd9f73da845460ee5fb539c3488dbfed1a2" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\19\c56c8e6a34f21ddac72836bd894648b439b199" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\1a\850b6218b14cb269fe14ea7adfcadf360fce3b" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\1b\dd34e5582e65aec5102f94c8a05a6e43a4b8f4" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\1c\15c4a2ecbbced1fd3aa496d0b2b8862e79897a" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\1d\2ea61662243bb73f49305cf4f3d2cf4d246a81" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\20\9b661a512080837d34a8383a0423811c145e90" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\21\e131e4b202e682e10cacd035e59a612c1aa4ee" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\24\058132c17067a3c0757acb18729167e992c1e9" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\24\a756e6a45fa1262f8eac22b0681b42f856bc15" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\25\5621c18105dff5adaad4d557ff187abf794ded" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\26\ce6a7ed5640abb7ed506c286184e8124a66ca7" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\27\c1f7fe5ff05810869a963b409d4fd5eddf4e90" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\27\d922a0c8559ae4b9046fbab1b02f622e8e7db8" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\29\117d292543d376363e1104b01b2d35269edf85" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\2d\260d35b07ef253d383218a9ce5f13737b8f68b" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\2e\a1e911f8a9e26ea7540c04806724878318cb52" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\2e\cc9ac1414c23206f6bbe710a7cf5a16e4775f3" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\2e\f9b5e79e31e1230e70c6702232dd7f78d5498c" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\34\e92bc5ed03ff0b5509819b3afe519e80d75ba6" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\35\cf479d2acd75e7bd99ba04882e70398b8f597e" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\36\467406b3a08fd59edcfdbbaa91924f26cc1610" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\3b\c0cd24f18c58af0f52031a4556ca0f94c71e32" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\3f\93adbb31522411f1081b1e948e4c78e63cdb24" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\45\8d2bfd486dc7c361bbd236a8eb9f8dfc95217a" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\45\b0ae1a71545462e6120999a33c7b77a07e170e" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\47\47d6361e9ac3dfe60513c65a3657c2e9c4b7dc" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\48\4159edf3f393ee3cfe98a7a17db3fd2f973f7f" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\49\1ab2724747a7d582efa7346f667b780784e4c1" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\49\8679b152b207b95be72f72399422b06e3f2645" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\49\e7f1911c5754f50658ffd417c41a6731f55e4a" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\4a\af043ce4cc95745b202b1f690c70afd2203cd7" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\4c\4340eb15d26234b5cd88b1229c72d7bc4fb59c" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\4c\442d55cddd646e5ffedd3e151f6fa385a94f81" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\51\2acc6355dec473dd19eb84bc40265804517760" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\51\982ddd8e6c5a8b0e098cf69e42f77cb01ec787" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\51\d7ff8ef5820c6744d0e818eefcf8ef06b803fb" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\52\8acf9cf182385a412cb15dc282086c8a03559d" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\52\c4ff11087966cdf055417775af73bcaac20c2d" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\56\461f1ced1fec3448f7e490396630dca7b21906" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\58\4bfca94fe3539247a95393dc6bbf3a35e5fb48" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\5e\be27e439254245f70fbf674425fec68233a10e" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\60\4fcae99bdbbbb3d97e7b1797d1b8239526d630" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\64\c18e88755bbab9a15772a2f76917703ea0f1f9" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\65\3b661fcc105c2b290e3bbc50652cd914d5ce0b" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\67\81a44021f5897bd596bd719b986d74257b9050" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\69\cec0031f96c678eb1c3da32a62d4665846f263" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\6b\103ff72252e8893f584cf71fa55debb3f2477a" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\6b\7fd33b0a3987fabfa9924b99aef5dba39c72f1" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\6d\23797f4af0ce6872a9cd73f3f7d8a5b15c40e7" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\6e\76d71d4b47b81602c4ba4e991980c476f99a9e" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\72\25c423371ee4a45f16688d6269220d9317e19e" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\72\9b412f4559799a1676702830a1f1826525ceb9" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\75\63dcbce08abb3f1a208c80838a5b094507e203" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\77\5877cc937eb10f7a2dc8ed031572fa826dc2b5" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\78\592675f0c4b5c395631f9cc7b2a122727e91dd" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\79\a78acc27c0238a3313d14ff319eecf05e36f49" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\7b\5ca2be1a1c83ebf1801aa7f00f2dfa79ae1a13" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\7b\a3cbdcab3444e5061fa66be72d535f371ff9ae" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\7d\2c5c5042b67c5db7d3bd3c21dbaef4ee5793d9" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\7f\e9fc2e729e1372a2dfae8d91b07338366ca587" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\80\3e0b8672693d3a3f80df5e5e85277c46730744" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\83\9cd61f9c60e0aa89a406a946d4aa8bd7d0249e" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\84\6d0c214911eb021d8a9aac8af239c70d685819" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\84\ea8af60cccaa248e29f09739886df91529f273" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\85\9af4a50f26be816ba51e0435278df66bf3e53d" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\86\491ea98133777ad2cdf1aa25e56f716e15dc0c" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\89\c62d19fa1c632a42af5d3416beaafaf77e2282" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\8a\73bafd0605ec0a7594cd1a9fc3a3d08dfd0fbc" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\8b\1892a9f734ed9651e1456bb8263bb70dd3cebe" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\8c\e4a207bfa8d7e2d5d105bc36221b48db5fae11" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\8d\f2e9eac2639f9a5938e4c537eacc49e3ed3e4a" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\93\606a5c3a34d7188e81cb564c772766543040f3" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\94\218757f14c92ca5e5c291f3aa02234d50fd27f" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\95\d617d1f6f5eba5dcebc35d0799fe928f719385" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\95\f158a8b6596828b38dfa235930d281e12e9d20" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\96\be5328a5f1ecaa47fce9ee213d125dec9af8fa" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\97\352f952d3902df5f3cb297682555cdc3497517" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\97\6d99164c8fc41fa510110f00dce20cbfdd9a8f" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\98\23867cf99ad54dbb512f4b2d3fbaeb63ac4823" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\9b\db27270e7708f8ca35faf23d7628fb4a3ad728" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\9c\01bf26de12dbf3656c7450c1bd48d78253bec8" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\9c\3e22e057aebe3a74c7075ac546039bd959e3d9" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\a0\00ac43d128e946f040179c185449da731773aa" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\a0\0224a5a52f263251f288dfa66bba1e8cc65933" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\a0\38c94d425d4147a1f54c9afb60f30b821772be" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\a1\d7e3e3342091d29f997f6e41c686eaf25d64f5" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\a3\43250543add8e685b5c26164e309caa6785267" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\a3\9586f7bca883639e6b994dad66acc76eee2c91" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\a5\1e861deef547a41b5657d94411a3cabdbeffa3" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\a5\907e73d071474b812f4d6127e30da4ee5c5ab2" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\a5\dc5042bd73bab0dba53ab483ded7adf314b856" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\a6\93689ec12b992c6d9343a1382790fe5f9d3a3e" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\a8\6e37eb784964a53ced581758159a4fdae3c3bb" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\a8\9b8f25e6f0dce6c7b147fe6b13e3777047569c" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\a9\297a0aabd009c6f0244b23c029bdc065d2c335" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\ae\c574e0bc1c8d74ecdf63e264d4050d395cf1a8" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\b0\19f3af4e0e45bd57c73c2fef55f62435633626" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\b0\682554b69178cd36e852f377429bb7f279ded1" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\b0\fec56aceda5700e5933a644a0ca8fdcd04d651" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\b5\4b56a7a5c7d73e3e900da41c2fc1de11342922" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\b8\03094c6649bd618d6e8736e956283a67f08a86" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\bb\5b955041ce38ebf3d93c2077fa8f42a2640245" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\bc\16e1801d4fe689c2d79f5641a25a27ca3b950c" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\bc\531151b9733747d08b3e1d9d09b82781e6ae29" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\bf\cd1a05fa9e17f7c4afba6f6bf3304bad572597" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\c2\69cc47344345cea7921b883d931bda88aa6bdf" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\c2\d1b6b36878bd1e17d66112e90f1c3dc7c8287e" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\c3\b3001bdaecd4239a713d17e267e8328f5c314c" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\c7\70808f1235309eedc7dd434f2ba2a9975c2482" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\c8\33efa9a9acd22d00a069963e335420fa18f093" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\cf\a5a751b40a279606a3f10e56ab5fa8a36de718" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\d0\02e24175d8ed21fd811246a6257722e9dc6a77" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\d0\772fb761b2863bbb1df24f8f14eec506f4a7cf" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\d1\2d5a75750cf48b32f1be3a874bf2bff30d9faa" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\d1\f85cbb7b2bdf51917ba49b332c9f04bb3b95ab" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\d2\a48e15a1de5684e82d8948a4c6d28010a4630c" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\d3\b8a6238a4bf6e2cced6009b9fdfe8af1cdb083" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\d4\8ba8235be10223b0f4f3b1d4ec10dc0ae0e0c8" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\d4\a2aa9867dac69819becbef21307b284ed3d8be" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\d4\a495baf98c4150199b7faf79e8bb15e7274c94" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\d5\5fa10b4fe8971d7b1ac5b6238100b41d8b98f2" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\db\f3ecf3d0d191f2aaf117e5fa9465e2f5338a69" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\dd\86bca59d858f648e2f49e4f6328e1a857f47d7" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\dd\b6f12864b773fa23e7077d6b37cf99f2e30d65" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\dd\dbd8444aaff36dc644b21412540d91918a755b" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\de\891023d0ec7088ca2249a523e0d443720252f7" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\df\54bdd06d7e377bfbc0b00f20cf5d511b78255d" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\e0\9fd363c5b8ed17f32d10ba3bbebb570468dd4d" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\e1\4f1b22aac21161125f893c33f08cd1731edeef" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\e4\613f74b510f7fb2ce3b315ac858a8579ec59ad" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\e6\66a3ea7fcdddb71d0cd38dc5688457f1912ee1" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\e6\9de29bb2d1d6434b8b29ae775ad8c2e48c5391" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\e6\eb0f8da7ee153e7e0dfe4809fa0a70dcc33604" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\e7\7c229a738e78d6cb27cb022d47b7a836483eda" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\eb\fb98bd3dfe77511c92423b585ddbd3d7c7fc16" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\ed\0cd21d575404390e851c08f8497c4118e59e62" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\f1\6650d1c8352fec77da58e4599b365bea085400" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\f1\9b0b38995b9fdb74a8a905824351d5c5981a08" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\f2\2677b8ae8ae6122de3a6c75c165293ba99c21b" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\f2\6929488057db7890214fd46d5f5b25c7da45f2" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\f2\de06fd928f0498b7d554b4c3841036011d5f11" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\f3\263095f08013105eff3ff9579a985b8dcd1e46" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\f3\520ffb3b681117d347d1ef48532f90314ecd65" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\f8\4e73f5ae37a6442f093c2bfe85070ed37767b1" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\f8\d1d165bed964c078571394e4348881d76a1d67" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\f9\dc6dd8e7fcd18bfe03688aa6cd2b818b698ae9" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\fc\7b43c5337b08b6ce3770dd5058a42ebbb18f0d" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\pack\pack-440341cdc02cbca6dff39ddf5c16b80ffdebf55d.idx" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\pack\pack-440341cdc02cbca6dff39ddf5c16b80ffdebf55d.pack" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\pack\pack-88fbf7f7a7f541a74bf6da45b1b3288281e9f81b.idx" />
+    <Content Include="Content\material-design-iconic-font\.git\objects\pack\pack-88fbf7f7a7f541a74bf6da45b1b3288281e9f81b.pack" />
+    <Content Include="Content\material-design-iconic-font\.git\ORIG_HEAD" />
+    <Content Include="Content\material-design-iconic-font\.git\packed-refs" />
+    <Content Include="Content\material-design-iconic-font\.git\refs\heads\dev" />
+    <Content Include="Content\material-design-iconic-font\.git\refs\heads\gh-pages" />
+    <Content Include="Content\material-design-iconic-font\.git\refs\heads\issue-#2" />
+    <Content Include="Content\material-design-iconic-font\.git\refs\heads\master" />
+    <Content Include="Content\material-design-iconic-font\.git\refs\remotes\origin\dev" />
+    <Content Include="Content\material-design-iconic-font\.git\refs\remotes\origin\gh-pages" />
+    <Content Include="Content\material-design-iconic-font\.git\refs\remotes\origin\HEAD" />
+    <Content Include="Content\material-design-iconic-font\.git\refs\remotes\origin\issue-#2" />
+    <Content Include="Content\material-design-iconic-font\.git\refs\remotes\origin\master" />
+    <Content Include="Content\material-design-iconic-font\.git\refs\tags\v1.1.0" />
+    <Content Include="Content\material-design-iconic-font\bower.json" />
+    <Content Include="Content\material-design-iconic-font\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Content\material-design-iconic-font\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Content\material-design-iconic-font\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Content\material-design-iconic-font\less\border.less" />
+    <Content Include="Content\material-design-iconic-font\less\core.less" />
+    <Content Include="Content\material-design-iconic-font\less\icons.less" />
+    <Content Include="Content\material-design-iconic-font\less\icons\actions.less" />
+    <Content Include="Content\material-design-iconic-font\less\icons\alert.less" />
+    <Content Include="Content\material-design-iconic-font\less\icons\audio-video.less" />
+    <Content Include="Content\material-design-iconic-font\less\icons\communication.less" />
+    <Content Include="Content\material-design-iconic-font\less\icons\content.less" />
+    <Content Include="Content\material-design-iconic-font\less\icons\device.less" />
+    <Content Include="Content\material-design-iconic-font\less\icons\editor.less" />
+    <Content Include="Content\material-design-iconic-font\less\icons\file.less" />
+    <Content Include="Content\material-design-iconic-font\less\icons\hardware.less" />
+    <Content Include="Content\material-design-iconic-font\less\icons\image.less" />
+    <Content Include="Content\material-design-iconic-font\less\icons\maps.less" />
+    <Content Include="Content\material-design-iconic-font\less\icons\navigation.less" />
+    <Content Include="Content\material-design-iconic-font\less\icons\notification.less" />
+    <Content Include="Content\material-design-iconic-font\less\icons\social.less" />
+    <Content Include="Content\material-design-iconic-font\less\icons\toggle.less" />
+    <Content Include="Content\material-design-iconic-font\less\material-design-iconic-font.less" />
+    <Content Include="Content\material-design-iconic-font\less\mixins.less" />
+    <Content Include="Content\material-design-iconic-font\less\path.less" />
+    <Content Include="Content\material-design-iconic-font\less\pulled.less" />
+    <Content Include="Content\material-design-iconic-font\less\rotated.less" />
+    <Content Include="Content\material-design-iconic-font\less\sizes.less" />
+    <Content Include="Content\material-design-iconic-font\less\spinned.less" />
+    <Content Include="Content\material-design-iconic-font\less\variables.less" />
+    <Content Include="Content\material-design-iconic-font\License.md" />
+    <Content Include="Content\material-design-iconic-font\scss\icons\_actions.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\icons\_alert.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\icons\_audio-video.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\icons\_communication.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\icons\_content.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\icons\_device.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\icons\_editor.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\icons\_file.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\icons\_hardware.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\icons\_image.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\icons\_maps.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\icons\_navigation.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\icons\_notification.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\icons\_social.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\icons\_toggle.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\material-design-iconic-font.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\_border.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\_core.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\_icons.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\_mixins.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\_path.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\_pulled.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\_rotated.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\_sizes.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\_spinned.scss" />
+    <Content Include="Content\material-design-iconic-font\scss\_variables.scss" />
+    <Content Include="CodeTemplates\AddController\Controller.tt">
+      <LastGenOutput>Controller.cs</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\AddController\ControllerWithContext.tt">
+      <LastGenOutput>ControllerWithContext.cs</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\AddView\CSHTML\Create.tt" />
+    <Content Include="CodeTemplates\AddView\CSHTML\Delete.tt" />
+    <Content Include="CodeTemplates\AddView\CSHTML\Details.tt" />
+    <Content Include="CodeTemplates\AddView\CSHTML\Edit.tt" />
+    <Content Include="CodeTemplates\AddView\CSHTML\Empty.tt" />
+    <Content Include="CodeTemplates\AddView\CSHTML\List.tt" />
+    <Content Include="if_letter_G_blue_1553069.ico" />
+    <Content Include="Images\gmtel.png" />
+    <Content Include="Images\img16.jpg" />
+    <Content Include="Dataset\DSNalozi.xsc">
+      <DependentUpon>DSNalozi.xsd</DependentUpon>
+    </Content>
+    <Content Include="Content\flag-icon-css-master\.editorconfig" />
+    <Content Include="Content\flag-icon-css-master\.gitignore" />
+    <Content Include="Content\flag-icon-css-master\assets\docs.less" />
+    <Content Include="Content\flag-icon-css-master\bower.json" />
+    <Content Include="Content\flag-icon-css-master\composer.json" />
+    <Content Include="Content\flag-icon-css-master\Gruntfile.coffee" />
+    <Content Include="Content\flag-icon-css-master\less\flag-icon-base.less" />
+    <Content Include="Content\flag-icon-css-master\less\flag-icon-list.less" />
+    <Content Include="Content\flag-icon-css-master\less\flag-icon-more.less" />
+    <Content Include="Content\flag-icon-css-master\less\flag-icon.less" />
+    <Content Include="Content\flag-icon-css-master\less\variables.less" />
+    <Content Include="Content\flag-icon-css-master\LICENSE" />
+    <Content Include="Content\flag-icon-css-master\package.json" />
+    <Content Include="Content\flag-icon-css-master\sass\flag-icon.scss" />
+    <Content Include="Content\flag-icon-css-master\sass\_flag-icon-base.scss" />
+    <Content Include="Content\flag-icon-css-master\sass\_flag-icon-list.scss" />
+    <Content Include="Content\flag-icon-css-master\sass\_flag-icon-more.scss" />
+    <Content Include="Content\flag-icon-css-master\sass\_variables.scss" />
+    <None Include="Dataset\DSNalozi.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSNalozi.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Dataset\DSNalozi.xss">
+      <DependentUpon>DSNalozi.xsd</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Images\jbg.jpg" />
+    <Content Include="Images\jbg2.jpg" />
+    <Content Include="Images\jbg3.jpg" />
+    <Content Include="Images\Markers\Istovar.png" />
+    <Content Include="Images\Markers\Istovar1.png" />
+    <Content Include="Images\Markers\Utovar.png" />
+    <Content Include="Images\Markers\Utovar1.png" />
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <None Include="Properties\PublishProfiles\gmtel-office.com - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\test.gmtel-office.com - Web Deploy.pubxml" />
+    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\codeSample.txt" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-2.1.0.debug.js" />
+    <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="Views\Nalog\ReportPonuda.aspx" />
+    <Content Include="Views\Nalog\ReportDn_Novi.aspx" />
+    <Content Include="Views\Nalog\ReportDn.aspx" />
+    <Content Include="Views\Nalog\ReportNalog.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\DisplayTemplates\ShortDateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTimeReadOnly.cshtml" />
+    <Content Include="Views\Subjekt\Index.cshtml" />
+    <Content Include="Views\Subjekt\Details.cshtml" />
+    <Content Include="Views\Subjekt\Create.cshtml" />
+    <Content Include="Views\Subjekt\Edit.cshtml" />
+    <Content Include="Views\Subjekt\Delete.cshtml" />
+    <Content Include="Views\Vozaci\Index.cshtml" />
+    <Content Include="Views\Vozaci\Details.cshtml" />
+    <Content Include="Views\Vozaci\Create.cshtml" />
+    <Content Include="Views\Vozaci\Edit.cshtml" />
+    <Content Include="Views\Vozaci\Delete.cshtml" />
+    <Content Include="Views\Vozilo\Index.cshtml" />
+    <Content Include="Views\Vozilo\Details.cshtml" />
+    <Content Include="Views\Vozilo\Create.cshtml" />
+    <Content Include="Views\Vozilo\Edit.cshtml" />
+    <Content Include="Views\Vozilo\Delete.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\Index.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\Details.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\Create.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\Edit.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\Delete.cshtml" />
+    <Content Include="Views\Troskovi\Index.cshtml" />
+    <Content Include="Views\Troskovi\Details.cshtml" />
+    <Content Include="Views\Troskovi\Create.cshtml" />
+    <Content Include="Views\Troskovi\Edit.cshtml" />
+    <Content Include="Views\Troskovi\Delete.cshtml" />
+    <Content Include="Views\Subjekt\Card.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\Calendar.cshtml" />
+    <Content Include="Views\Nalog\Index.cshtml" />
+    <Content Include="Views\Nalog\Details.cshtml" />
+    <Content Include="Views\Nalog\Create.cshtml" />
+    <Content Include="Views\Nalog\Edit.cshtml" />
+    <Content Include="Views\Nalog\Delete.cshtml" />
+    <Content Include="Views\Nalog\Report.cshtml" />
+    <Content Include="Views\Korisnik\Index.cshtml" />
+    <Content Include="Views\Korisnik\Details.cshtml" />
+    <Content Include="Views\Korisnik\Create.cshtml" />
+    <Content Include="Views\Korisnik\Edit.cshtml" />
+    <Content Include="Views\Korisnik\Delete.cshtml" />
+    <Content Include="Views\VozacDnevnica\Index.cshtml" />
+    <Content Include="Views\VozacDnevnica\Details.cshtml" />
+    <Content Include="Views\VozacDnevnica\Create.cshtml" />
+    <Content Include="Views\VozacDnevnica\Edit.cshtml" />
+    <Content Include="Views\VozacDnevnica\Delete.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\NefakturisaniPrevozi.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\IzracunZarada.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\SacuvaniIzracuni.cshtml" />
+    <Content Include="Views\Korisnik\KorisnikNotesa.cshtml" />
+    <Content Include="Views\Home\AuthorizationFailed.cshtml" />
+    <Content Include="Views\Nalog\ReportDnevnik.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\DnevnikLog.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\GuestDetail.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\IstekleValute.cshtml" />
+    <Content Include="Views\DnevnikValute\Index.cshtml" />
+    <Content Include="Views\DnevnikValute\Details.cshtml" />
+    <Content Include="Views\DnevnikValute\Create.cshtml" />
+    <Content Include="Views\DnevnikValute\Edit.cshtml" />
+    <Content Include="Views\DnevnikValute\Delete.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\LongDateTime.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\Index2.cshtml" />
+    <Content Include="Views\Mail\Index.cshtml" />
+    <Content Include="Views\Vozilo\Roba.cshtml" />
+    <Content Include="Views\Vozilo\GoodsDetail.cshtml" />
+    <Content Include="Views\KorisnikUpit\Index.cshtml" />
+    <Content Include="Views\KorisnikUpit\Details.cshtml" />
+    <Content Include="Views\KorisnikUpit\Create.cshtml" />
+    <Content Include="Views\KorisnikUpit\Edit.cshtml" />
+    <Content Include="Views\KorisnikUpit\Delete.cshtml" />
+    <Content Include="Views\KorisnikNalog\Index.cshtml" />
+    <Content Include="Views\KorisnikNalog\Details.cshtml" />
+    <Content Include="Views\KorisnikNalog\Create.cshtml" />
+    <Content Include="Views\KorisnikNalog\Edit.cshtml" />
+    <Content Include="Views\KorisnikNalog\Delete.cshtml" />
+    <Content Include="Views\KorisnikNalog\CreateSubject.cshtml" />
+    <Content Include="Views\KorisnikNalog\CreateDnevnik.cshtml" />
+    <Content Include="Views\API\Index.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\DetailsTab.cshtml" />
+    <Content Include="Views\Nalog\ReportDnevnikNovi.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\CreateTab.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\EditTab.cshtml" />
+    <Content Include="Views\Usluga\Index.cshtml" />
+    <Content Include="Views\Usluga\Details.cshtml" />
+    <Content Include="Views\Usluga\Create.cshtml" />
+    <Content Include="Views\Usluga\Edit.cshtml" />
+    <Content Include="Views\Usluga\Delete.cshtml" />
+    <Content Include="Views\Ponuda\Index.cshtml" />
+    <Content Include="Views\Ponuda\Details.cshtml" />
+    <Content Include="Views\Ponuda\Create.cshtml" />
+    <Content Include="Views\Ponuda\Edit.cshtml" />
+    <Content Include="Views\Ponuda\Delete.cshtml" />
+    <Content Include="Views\Ponuda\ReportPonuda.cshtml" />
+    <Content Include="Views\UsloviPrevoza\Index.cshtml" />
+    <Content Include="Views\UsloviPrevoza\Details.cshtml" />
+    <Content Include="Views\UsloviPrevoza\Create.cshtml" />
+    <Content Include="Views\UsloviPrevoza\Edit.cshtml" />
+    <Content Include="Views\UsloviPrevoza\Delete.cshtml" />
+    <Content Include="Views\VozacVrstaTroskova\Index.cshtml" />
+    <Content Include="Views\VozacVrstaTroskova\Details.cshtml" />
+    <Content Include="Views\VozacVrstaTroskova\Create.cshtml" />
+    <Content Include="Views\VozacVrstaTroskova\Edit.cshtml" />
+    <Content Include="Views\VozacVrstaTroskova\Delete.cshtml" />
+    <Content Include="Views\VozacTroskovi\Index.cshtml" />
+    <Content Include="Views\VozacTroskovi\Details.cshtml" />
+    <Content Include="Views\VozacTroskovi\Create.cshtml" />
+    <Content Include="Views\VozacTroskovi\Edit.cshtml" />
+    <Content Include="Views\VozacTroskovi\Delete.cshtml" />
+    <Content Include="Views\VozacTroskovi\TroskoviVozaca.cshtml" />
+    <Content Include="Views\StatusRobe\Index.cshtml" />
+    <Content Include="Views\StatusRobe\Details.cshtml" />
+    <Content Include="Views\StatusRobe\Create.cshtml" />
+    <Content Include="Views\StatusRobe\Edit.cshtml" />
+    <Content Include="Views\StatusRobe\Delete.cshtml" />
+    <Content Include="Views\Vozilo\RasporedUtovarIstovar.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\Faktura.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="BARCODE\" />
+    <Folder Include="Content\material-design-iconic-font\.git\branches\" />
+    <Folder Include="Content\material-design-iconic-font\.git\logs\refs\heads\pr\" />
+    <Folder Include="Content\material-design-iconic-font\.git\objects\info\" />
+    <Folder Include="Content\material-design-iconic-font\.git\refs\heads\pr\" />
+    <Folder Include="Dokumenti\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\PonudaAll.rdlc" />
+    <EmbeddedResource Include="Reports\Ponuda.rdlc" />
+    <EmbeddedResource Include="Reports\DnevnikStampa_Novi.rdlc" />
+    <EmbeddedResource Include="Reports\NalogEN.rdlc" />
+    <EmbeddedResource Include="Reports\NalogSR.rdlc" />
+    <EmbeddedResource Include="Reports\DnevnikStampa.rdlc" />
+    <EmbeddedResource Include="Reports\Nalog.rdlc" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>if_letter_G_blue_1553069.ico</ApplicationIcon>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:56985/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

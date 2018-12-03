@@ -1,0 +1,793 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="uvhszjiy_spedicijaModelStoreContainer" CdmEntityContainer="uvhszjiy_spedicijaEntities">
+    <EntitySetMapping Name="DnevnicaDetail">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.DnevnicaDetail">
+        <MappingFragment StoreEntitySet="DnevnicaDetail">
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="IdDnevnicaDetail" ColumnName="IdDnevnicaDetail" />
+          <ScalarProperty Name="IdVozacDnevnica" ColumnName="IdVozacDnevnica" />
+          <ScalarProperty Name="Dnevnica" ColumnName="Dnevnica" />
+          <ScalarProperty Name="Nocenje" ColumnName="Nocenje" />
+          <ScalarProperty Name="OstaliTroskovi" ColumnName="OstaliTroskovi" />
+          <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+          <ScalarProperty Name="Ukupno" ColumnName="Ukupno" />
+          <ScalarProperty Name="Isplaceno" ColumnName="Isplaceno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DnevnikPrevoza">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.DnevnikPrevoza">
+        <MappingFragment StoreEntitySet="DnevnikPrevoza">
+          <ScalarProperty Name="StatusDetaljniOpis" ColumnName="StatusDetaljniOpis" />
+          <ScalarProperty Name="idStatusDetaljni" ColumnName="idStatusDetaljni" />
+          <ScalarProperty Name="IdPonuda" ColumnName="IdPonuda" />
+          <ScalarProperty Name="DrugiPrevoznikStatus" ColumnName="DrugiPrevoznikStatus" />
+          <ScalarProperty Name="LAT" ColumnName="LAT" />
+          <ScalarProperty Name="LONG" ColumnName="LONG" />
+          <ScalarProperty Name="IdDnevnikParent" ColumnName="IdDnevnikParent" />
+          <ScalarProperty Name="ReferentniBrojUtovara" ColumnName="ReferentniBrojUtovara" />
+          <ScalarProperty Name="IstovarKolicinaRobe" ColumnName="IstovarKolicinaRobe" />
+          <ScalarProperty Name="PrevoznikUtovarDrzava" ColumnName="PrevoznikUtovarDrzava" />
+          <ScalarProperty Name="PrevoznikUtovarPTT" ColumnName="PrevoznikUtovarPTT" />
+          <ScalarProperty Name="PrevoznikUtovarGrad" ColumnName="PrevoznikUtovarGrad" />
+          <ScalarProperty Name="PrevoznikUtovarAdresa" ColumnName="PrevoznikUtovarAdresa" />
+          <ScalarProperty Name="PrevoznikUtovarFirma" ColumnName="PrevoznikUtovarFirma" />
+          <ScalarProperty Name="DimenzijeRobe" ColumnName="DimenzijeRobe" />
+          <ScalarProperty Name="IstovarDrzava" ColumnName="IstovarDrzava" />
+          <ScalarProperty Name="IstovarPTT" ColumnName="IstovarPTT" />
+          <ScalarProperty Name="UtovarDrzava" ColumnName="UtovarDrzava" />
+          <ScalarProperty Name="UtovarPTT" ColumnName="UtovarPTT" />
+          <ScalarProperty Name="IznosPDV" ColumnName="IznosPDV" />
+          <ScalarProperty Name="PrevoznikIstovarDrzava" ColumnName="PrevoznikIstovarDrzava" />
+          <ScalarProperty Name="PrevoznikIstovarPTT" ColumnName="PrevoznikIstovarPTT" />
+          <ScalarProperty Name="PrevoznikIstovarGrad" ColumnName="PrevoznikIstovarGrad" />
+          <ScalarProperty Name="PrevoznikIstovarFirma" ColumnName="PrevoznikIstovarFirma" />
+          <ScalarProperty Name="PrevoznikIstovarAdresa" ColumnName="PrevoznikIstovarAdresa" />
+          <ScalarProperty Name="TezinaRobe" ColumnName="TezinaRobe" />
+          <ScalarProperty Name="InternaNapomena" ColumnName="InternaNapomena" />
+          <ScalarProperty Name="KompletanUtovar" ColumnName="KompletanUtovar" />
+          <ScalarProperty Name="Uplaceno" ColumnName="Uplaceno" />
+          <ScalarProperty Name="GostPristup" ColumnName="GostPristup" />
+          <ScalarProperty Name="IstovarKontakt" ColumnName="IstovarKontakt" />
+          <ScalarProperty Name="UtovarKontakt" ColumnName="UtovarKontakt" />
+          <ScalarProperty Name="SaPDV" ColumnName="SaPDV" />
+          <ScalarProperty Name="ValutaPlacanjaPrevoznika" ColumnName="ValutaPlacanjaPrevoznika" />
+          <ScalarProperty Name="Izvoznik" ColumnName="Izvoznik" />
+          <ScalarProperty Name="Uvoznik" ColumnName="Uvoznik" />
+          <ScalarProperty Name="IdPrikljucnoVozilo" ColumnName="IdPrikljucnoVozilo" />
+          <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
+          <ScalarProperty Name="DatumDnevnika" ColumnName="DatumDnevnika" />
+          <ScalarProperty Name="IdNarucioca" ColumnName="IdNarucioca" />
+          <ScalarProperty Name="BrojNaloga" ColumnName="BrojNaloga" />
+          <ScalarProperty Name="UtovarAdresa" ColumnName="UtovarAdresa" />
+          <ScalarProperty Name="UtovarFirma" ColumnName="UtovarFirma" />
+          <ScalarProperty Name="UtovarGrad" ColumnName="UtovarGrad" />
+          <ScalarProperty Name="DatumUtovara" ColumnName="DatumUtovara" />
+          <ScalarProperty Name="IstovarAdresa" ColumnName="IstovarAdresa" />
+          <ScalarProperty Name="IstovarFirma" ColumnName="IstovarFirma" />
+          <ScalarProperty Name="IstovarGrad" ColumnName="IstovarGrad" />
+          <ScalarProperty Name="DatumIstovara" ColumnName="DatumIstovara" />
+          <ScalarProperty Name="KolicinaRobe" ColumnName="KolicinaRobe" />
+          <ScalarProperty Name="CijenaPrevoza" ColumnName="CijenaPrevoza" />
+          <ScalarProperty Name="IdValuta" ColumnName="IdValuta" />
+          <ScalarProperty Name="ValutaPlacanja" ColumnName="ValutaPlacanja" />
+          <ScalarProperty Name="UvoznaSpedicija" ColumnName="UvoznaSpedicija" />
+          <ScalarProperty Name="IzvoznaSpedicija" ColumnName="IzvoznaSpedicija" />
+          <ScalarProperty Name="IdVozilo" ColumnName="IdVozilo" />
+          <ScalarProperty Name="IdVozac" ColumnName="IdVozac" />
+          <ScalarProperty Name="DrugiPrevoznik" ColumnName="DrugiPrevoznik" />
+          <ScalarProperty Name="IdSubjekt" ColumnName="IdSubjekt" />
+          <ScalarProperty Name="BrojNalogaPrevoznika" ColumnName="BrojNalogaPrevoznika" />
+          <ScalarProperty Name="CijenaPrevozaPrevoznika" ColumnName="CijenaPrevozaPrevoznika" />
+          <ScalarProperty Name="IdValutaPrevoznika" ColumnName="IdValutaPrevoznika" />
+          <ScalarProperty Name="BrojFakture" ColumnName="BrojFakture" />
+          <ScalarProperty Name="DatumSlanjaFakture" ColumnName="DatumSlanjaFakture" />
+          <ScalarProperty Name="DatumZapisa" ColumnName="DatumZapisa" />
+          <ScalarProperty Name="ZapisAktivan" ColumnName="ZapisAktivan" />
+          <ScalarProperty Name="SerijskiBroj" ColumnName="SerijskiBroj" />
+          <ScalarProperty Name="VrstaRobe" ColumnName="VrstaRobe" />
+          <ScalarProperty Name="RegistracijaVozilaPrevoznika" ColumnName="RegistracijaVozilaPrevoznika" />
+          <ScalarProperty Name="VozacPrevoznika" ColumnName="VozacPrevoznika" />
+          <ScalarProperty Name="KontaktOsobaPrevoznika" ColumnName="KontaktOsobaPrevoznika" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dokument">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.Dokument">
+        <MappingFragment StoreEntitySet="Dokument">
+          <ScalarProperty Name="IdVozilo" ColumnName="IdVozilo" />
+          <ScalarProperty Name="IdVozac" ColumnName="IdVozac" />
+          <ScalarProperty Name="IdDokument" ColumnName="IdDokument" />
+          <ScalarProperty Name="Tip" ColumnName="Tip" />
+          <ScalarProperty Name="Putanja" ColumnName="Putanja" />
+          <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
+          <ScalarProperty Name="Velicina" ColumnName="Velicina" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Drzava">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.Drzava">
+        <MappingFragment StoreEntitySet="Drzava">
+          <ScalarProperty Name="IdDrzava" ColumnName="IdDrzava" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="ISO" ColumnName="ISO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Grad">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.Grad">
+        <MappingFragment StoreEntitySet="Grad">
+          <ScalarProperty Name="IdGrad" ColumnName="IdGrad" />
+          <ScalarProperty Name="Drzava" ColumnName="Drzava" />
+          <ScalarProperty Name="ISO" ColumnName="ISO" />
+          <ScalarProperty Name="Grad1" ColumnName="Grad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Korisnik">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.Korisnik">
+        <MappingFragment StoreEntitySet="Korisnik">
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="IdKorisnik" ColumnName="IdKorisnik" />
+          <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+          <ScalarProperty Name="Lozinka" ColumnName="Lozinka" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="PoslednjaPrijava" ColumnName="PoslednjaPrijava" />
+          <ScalarProperty Name="IPAdresa" ColumnName="IPAdresa" />
+          <ScalarProperty Name="ZapisAktivan" ColumnName="ZapisAktivan" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Log">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.Log">
+        <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="Pregledano" ColumnName="Pregledano" />
+          <ScalarProperty Name="StatusPromjene" ColumnName="StatusPromjene" />
+          <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+          <ScalarProperty Name="NovaVrijednost" ColumnName="NovaVrijednost" />
+          <ScalarProperty Name="StaraVrijednost" ColumnName="StaraVrijednost" />
+          <ScalarProperty Name="IdLog" ColumnName="IdLog" />
+          <ScalarProperty Name="Tabela" ColumnName="Tabela" />
+          <ScalarProperty Name="PK" ColumnName="PK" />
+          <ScalarProperty Name="IdKorisnik" ColumnName="IdKorisnik" />
+          <ScalarProperty Name="Aktivnost" ColumnName="Aktivnost" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="IPAdresa" ColumnName="IPAdresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NalogZaUtovar">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.NalogZaUtovar">
+        <MappingFragment StoreEntitySet="NalogZaUtovar">
+          <ScalarProperty Name="IdNalog" ColumnName="IdNalog" />
+          <ScalarProperty Name="BrojNaloga" ColumnName="BrojNaloga" />
+          <ScalarProperty Name="IdSubjekt" ColumnName="IdSubjekt" />
+          <ScalarProperty Name="Izvoznik" ColumnName="Izvoznik" />
+          <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+          <ScalarProperty Name="VrstaRobe" ColumnName="VrstaRobe" />
+          <ScalarProperty Name="BrutoTezina" ColumnName="BrutoTezina" />
+          <ScalarProperty Name="IzvoznaCarina" ColumnName="IzvoznaCarina" />
+          <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjekt">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.Subjekt">
+        <MappingFragment StoreEntitySet="Subjekt">
+          <ScalarProperty Name="RedniBroj" ColumnName="RedniBroj" />
+          <ScalarProperty Name="Drzava" ColumnName="Drzava" />
+          <ScalarProperty Name="JIB" ColumnName="JIB" />
+          <ScalarProperty Name="PTT" ColumnName="PTT" />
+          <ScalarProperty Name="PIB" ColumnName="PIB" />
+          <ScalarProperty Name="Grad" ColumnName="Grad" />
+          <ScalarProperty Name="IdSubjekt" ColumnName="IdSubjekt" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="KontaktOsoba" ColumnName="KontaktOsoba" />
+          <ScalarProperty Name="Timocom" ColumnName="Timocom" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="DatumZapisa" ColumnName="DatumZapisa" />
+          <ScalarProperty Name="ZapisAktivan" ColumnName="ZapisAktivan" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Troskovi">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.Troskovi">
+        <MappingFragment StoreEntitySet="Troskovi">
+          <ScalarProperty Name="StvarniTrosak" ColumnName="StvarniTrosak" />
+          <ScalarProperty Name="IdTroskovi" ColumnName="IdTroskovi" />
+          <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
+          <ScalarProperty Name="Iznos" ColumnName="Iznos" />
+          <ScalarProperty Name="IdValuta" ColumnName="IdValuta" />
+          <ScalarProperty Name="Vrsta" ColumnName="Vrsta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Valuta">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.Valuta">
+        <MappingFragment StoreEntitySet="Valuta">
+          <ScalarProperty Name="IdValuta" ColumnName="IdValuta" />
+          <ScalarProperty Name="NazivValute" ColumnName="NazivValute" />
+          <ScalarProperty Name="OznakaValute" ColumnName="OznakaValute" />
+          <ScalarProperty Name="UKM" ColumnName="UKM" />
+          <ScalarProperty Name="DatumZapisa" ColumnName="DatumZapisa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VozacDnevnica">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.VozacDnevnica">
+        <MappingFragment StoreEntitySet="VozacDnevnica">
+          <ScalarProperty Name="IdVozacDnevnica" ColumnName="IdVozacDnevnica" />
+          <ScalarProperty Name="IdVozac" ColumnName="IdVozac" />
+          <ScalarProperty Name="Mjesec" ColumnName="Mjesec" />
+          <ScalarProperty Name="Godina" ColumnName="Godina" />
+          <ScalarProperty Name="Plata" ColumnName="Plata" />
+          <ScalarProperty Name="IdValuta" ColumnName="IdValuta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vozaci">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.Vozaci">
+        <MappingFragment StoreEntitySet="Vozaci">
+          <ScalarProperty Name="Napomene" ColumnName="Napomene" />
+          <ScalarProperty Name="ZiroRacun" ColumnName="ZiroRacun" />
+          <ScalarProperty Name="IdVozac" ColumnName="IdVozac" />
+          <ScalarProperty Name="ImeVozaca" ColumnName="ImeVozaca" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="BrojPasosa" ColumnName="BrojPasosa" />
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+          <ScalarProperty Name="BrojLK" ColumnName="BrojLK" />
+          <ScalarProperty Name="BrojVozackeDozvole" ColumnName="BrojVozackeDozvole" />
+          <ScalarProperty Name="IdSubjekt" ColumnName="IdSubjekt" />
+          <ScalarProperty Name="ZapisAktivan" ColumnName="ZapisAktivan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vozilo">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.Vozilo">
+        <MappingFragment StoreEntitySet="Vozilo">
+          <ScalarProperty Name="VrstaVozila" ColumnName="VrstaVozila" />
+          <ScalarProperty Name="IdVozilo" ColumnName="IdVozilo" />
+          <ScalarProperty Name="TipVozila" ColumnName="TipVozila" />
+          <ScalarProperty Name="RegistarskiBroj" ColumnName="RegistarskiBroj" />
+          <ScalarProperty Name="DodatniPodaci" ColumnName="DodatniPodaci" />
+          <ScalarProperty Name="DatumZapisa" ColumnName="DatumZapisa" />
+          <ScalarProperty Name="ZapisAktivan" ColumnName="ZapisAktivan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IzracunDnevnik">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.IzracunDnevnik">
+        <MappingFragment StoreEntitySet="IzracunDnevnik">
+          <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
+          <ScalarProperty Name="IdIzracunZarada" ColumnName="IdIzracunZarada" />
+          <ScalarProperty Name="IdIzracunDnevnik" ColumnName="IdIzracunDnevnik" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IzracunZarada">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.IzracunZarada">
+        <MappingFragment StoreEntitySet="IzracunZarada">
+          <ScalarProperty Name="ZapisAktivan" ColumnName="ZapisAktivan" />
+          <ScalarProperty Name="DatumZapisa" ColumnName="DatumZapisa" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="IdIzracunZarada" ColumnName="IdIzracunZarada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IzracunTrosak">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.IzracunTrosak">
+        <MappingFragment StoreEntitySet="IzracunTrosak">
+          <ScalarProperty Name="Postotak" ColumnName="Postotak" />
+          <ScalarProperty Name="IdIzracunZarada" ColumnName="IdIzracunZarada" />
+          <ScalarProperty Name="IznosTroskova" ColumnName="IznosTroskova" />
+          <ScalarProperty Name="DodatniTrosak" ColumnName="DodatniTrosak" />
+          <ScalarProperty Name="IdIzracunTrosak" ColumnName="IdIzracunTrosak" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notes">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.Notes">
+        <MappingFragment StoreEntitySet="Notes">
+          <ScalarProperty Name="Korisnik" ColumnName="Korisnik" />
+          <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="IdNotes" ColumnName="IdNotes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DnevnikCarina">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.DnevnikCarina">
+        <MappingFragment StoreEntitySet="DnevnikCarina">
+          <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
+          <ScalarProperty Name="IzvoznaCarina" ColumnName="IzvoznaCarina" />
+          <ScalarProperty Name="UvoznaCarina" ColumnName="UvoznaCarina" />
+          <ScalarProperty Name="IdCarina" ColumnName="IdCarina" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DnevnikIstovar">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.DnevnikIstovar">
+        <MappingFragment StoreEntitySet="DnevnikIstovar">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="KolicinaRobe" ColumnName="KolicinaRobe" />
+          <ScalarProperty Name="DatumIstovara" ColumnName="DatumIstovara" />
+          <ScalarProperty Name="Kontakt" ColumnName="Kontakt" />
+          <ScalarProperty Name="Drzava" ColumnName="Drzava" />
+          <ScalarProperty Name="PTT" ColumnName="PTT" />
+          <ScalarProperty Name="Mjesto" ColumnName="Mjesto" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Firma" ColumnName="Firma" />
+          <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
+          <ScalarProperty Name="IdIstovar" ColumnName="IdIstovar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DnevnikUtovar">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.DnevnikUtovar">
+        <MappingFragment StoreEntitySet="DnevnikUtovar">
+          <ScalarProperty Name="ReferentniBrojUtovara" ColumnName="ReferentniBrojUtovara" />
+          <ScalarProperty Name="DimenzijeRobe" ColumnName="DimenzijeRobe" />
+          <ScalarProperty Name="TezinaRobe" ColumnName="TezinaRobe" />
+          <ScalarProperty Name="VrstaRobe" ColumnName="VrstaRobe" />
+          <ScalarProperty Name="KolicinaRobe" ColumnName="KolicinaRobe" />
+          <ScalarProperty Name="DatmUtovara" ColumnName="DatmUtovara" />
+          <ScalarProperty Name="Kontakt" ColumnName="Kontakt" />
+          <ScalarProperty Name="Drzava" ColumnName="Drzava" />
+          <ScalarProperty Name="PTT" ColumnName="PTT" />
+          <ScalarProperty Name="Mjesto" ColumnName="Mjesto" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Firma" ColumnName="Firma" />
+          <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
+          <ScalarProperty Name="IdUtovar" ColumnName="IdUtovar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DnevnikUvoznikIzvoznik">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.DnevnikUvoznikIzvoznik">
+        <MappingFragment StoreEntitySet="DnevnikUvoznikIzvoznik">
+          <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
+          <ScalarProperty Name="Izvoznik" ColumnName="Izvoznik" />
+          <ScalarProperty Name="Uvoznik" ColumnName="Uvoznik" />
+          <ScalarProperty Name="IdUvoznikIzvoznik" ColumnName="IdUvoznikIzvoznik" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spVratiPodatkeZaNalog" FunctionName="uvhszjiy_spedicijaModel.Store.spVratiPodatkeZaNalog">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="uvhszjiy_spedicijaModel.spVratiPodatkeZaNalog_Result">
+          <ScalarProperty Name="BrojNaloga" ColumnName="BrojNaloga" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Timocom" ColumnName="Timocom" />
+          <ScalarProperty Name="Izvoznik" ColumnName="Izvoznik" />
+          <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+          <ScalarProperty Name="Utovar" ColumnName="Utovar" />
+          <ScalarProperty Name="DatumUtovara" ColumnName="DatumUtovara" />
+          <ScalarProperty Name="VrtsaRobe" ColumnName="VrtsaRobe" />
+          <ScalarProperty Name="Brutotezina" ColumnName="Brutotezina" />
+          <ScalarProperty Name="IzvoznaCarina" ColumnName="IzvoznaCarina" />
+          <ScalarProperty Name="Subjekt" ColumnName="Subjekt" />
+          <ScalarProperty Name="KontaktOsoba" ColumnName="KontaktOsoba" />
+          <ScalarProperty Name="IstovatAdresa" ColumnName="IstovatAdresa" />
+          <ScalarProperty Name="DatumIstovara" ColumnName="DatumIstovara" />
+          <ScalarProperty Name="UvoznaSpedicija" ColumnName="UvoznaSpedicija" />
+          <ScalarProperty Name="RegBroj" ColumnName="RegBroj" />
+          <ScalarProperty Name="ImeVozaca" ColumnName="ImeVozaca" />
+          <ScalarProperty Name="CijenaPrevoza" ColumnName="CijenaPrevoza" />
+          <ScalarProperty Name="Valuta" ColumnName="Valuta" />
+          <ScalarProperty Name="ValutaPlacanja" ColumnName="ValutaPlacanja" />
+          <ScalarProperty Name="Veza" ColumnName="Veza" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VratiDnevnikCarinaPoIdDnevnik" FunctionName="uvhszjiy_spedicijaModel.Store.VratiDnevnikCarinaPoIdDnevnik">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="uvhszjiy_spedicijaModel.VratiDnevnikCarinaPoIdDnevnik_Result">
+          <ScalarProperty Name="IdCarina" ColumnName="IdCarina" />
+          <ScalarProperty Name="UvoznaCarina" ColumnName="UvoznaCarina" />
+          <ScalarProperty Name="IzvoznaCarina" ColumnName="IzvoznaCarina" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VratiDnevnikIStovarPoIdDnevnik" FunctionName="uvhszjiy_spedicijaModel.Store.VratiDnevnikIStovarPoIdDnevnik">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="uvhszjiy_spedicijaModel.VratiDnevnikIStovarPoIdDnevnik_Result">
+          <ScalarProperty Name="IdIstovar" ColumnName="IdIstovar" />
+          <ScalarProperty Name="DodatniIstovar" ColumnName="DodatniIstovar" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VratiDnevnikPoId" FunctionName="uvhszjiy_spedicijaModel.Store.VratiDnevnikPoId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="uvhszjiy_spedicijaModel.VratiDnevnikPoId_Result">
+          <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SerijskiBroj" ColumnName="SerijskiBroj" />
+          <ScalarProperty Name="DatumDnevnika" ColumnName="DatumDnevnika" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="BrojNaloga" ColumnName="BrojNaloga" />
+          <ScalarProperty Name="Utovar" ColumnName="Utovar" />
+          <ScalarProperty Name="Istovar" ColumnName="Istovar" />
+          <ScalarProperty Name="DatumUtovara" ColumnName="DatumUtovara" />
+          <ScalarProperty Name="DatumIstovara" ColumnName="DatumIstovara" />
+          <ScalarProperty Name="KolicinaRobe" ColumnName="KolicinaRobe" />
+          <ScalarProperty Name="VrstaRobe" ColumnName="VrstaRobe" />
+          <ScalarProperty Name="CijenaPrevoza" ColumnName="CijenaPrevoza" />
+          <ScalarProperty Name="OznakaValute" ColumnName="OznakaValute" />
+          <ScalarProperty Name="PDV" ColumnName="PDV" />
+          <ScalarProperty Name="ValutaPlacanja" ColumnName="ValutaPlacanja" />
+          <ScalarProperty Name="Uvoznik" ColumnName="Uvoznik" />
+          <ScalarProperty Name="Izvoznik" ColumnName="Izvoznik" />
+          <ScalarProperty Name="UvoznaSpedicija" ColumnName="UvoznaSpedicija" />
+          <ScalarProperty Name="IzvoznaSpedicija" ColumnName="IzvoznaSpedicija" />
+          <ScalarProperty Name="ImeVozaca" ColumnName="ImeVozaca" />
+          <ScalarProperty Name="Vozilo" ColumnName="Vozilo" />
+          <ScalarProperty Name="Prikljucno" ColumnName="Prikljucno" />
+          <ScalarProperty Name="DrugiPrevoznik" ColumnName="DrugiPrevoznik" />
+          <ScalarProperty Name="Prevoznik" ColumnName="Prevoznik" />
+          <ScalarProperty Name="BrojNalogaPrevoznika" ColumnName="BrojNalogaPrevoznika" />
+          <ScalarProperty Name="CijenaPrevozaPrevoznika" ColumnName="CijenaPrevozaPrevoznika" />
+          <ScalarProperty Name="ValutaPrevoznika" ColumnName="ValutaPrevoznika" />
+          <ScalarProperty Name="ValutaPlacanjaPrevoznika" ColumnName="ValutaPlacanjaPrevoznika" />
+          <ScalarProperty Name="RegistracijaVozilaPrevoznika" ColumnName="RegistracijaVozilaPrevoznika" />
+          <ScalarProperty Name="VozacPrevoznika" ColumnName="VozacPrevoznika" />
+          <ScalarProperty Name="KontaktOsobaPrevoznika" ColumnName="KontaktOsobaPrevoznika" />
+          <ScalarProperty Name="BrojFakture" ColumnName="BrojFakture" />
+          <ScalarProperty Name="DatumSlanjaFakture" ColumnName="DatumSlanjaFakture" />
+          <ScalarProperty Name="DatumZapisa" ColumnName="DatumZapisa" />
+          <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VratiDnevnikUIPoIdDnevnik" FunctionName="uvhszjiy_spedicijaModel.Store.VratiDnevnikUIPoIdDnevnik">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="uvhszjiy_spedicijaModel.VratiDnevnikUIPoIdDnevnik_Result">
+          <ScalarProperty Name="IdUvoznikIzvoznik" ColumnName="IdUvoznikIzvoznik" />
+          <ScalarProperty Name="DodatniUvoznik" ColumnName="DodatniUvoznik" />
+          <ScalarProperty Name="DodatniIzvoznik" ColumnName="DodatniIzvoznik" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VratiDnevnikUtovarPoIdDnevnik" FunctionName="uvhszjiy_spedicijaModel.Store.VratiDnevnikUtovarPoIdDnevnik">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="uvhszjiy_spedicijaModel.VratiDnevnikUtovarPoIdDnevnik_Result">
+          <ScalarProperty Name="IdUtovar" ColumnName="IdUtovar" />
+          <ScalarProperty Name="DodatniUtovar" ColumnName="DodatniUtovar" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VratiTroskovePoIdDnevnik" FunctionName="uvhszjiy_spedicijaModel.Store.VratiTroskovePoIdDnevnik">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="uvhszjiy_spedicijaModel.VratiTroskovePoIdDnevnik_Result">
+          <ScalarProperty Name="IdTroskovi" ColumnName="IdTroskovi" />
+          <ScalarProperty Name="iznosTroska" ColumnName="iznosTroska" />
+          <ScalarProperty Name="ValutaTrosak" ColumnName="ValutaTrosak" />
+          <ScalarProperty Name="VrstaTrosak" ColumnName="VrstaTrosak" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="DnevnikValute">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.DnevnikValute">
+        <MappingFragment StoreEntitySet="DnevnikValute">
+          <ScalarProperty Name="Detalji" ColumnName="Detalji" />
+          <ScalarProperty Name="Aktivnost" ColumnName="Aktivnost" />
+          <ScalarProperty Name="DatumAktivnosti" ColumnName="DatumAktivnosti" />
+          <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
+          <ScalarProperty Name="IdDnevnikValute" ColumnName="IdDnevnikValute" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KorisnikUpit">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.KorisnikUpit">
+        <MappingFragment StoreEntitySet="KorisnikUpit">
+          <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ImeKorisnika" ColumnName="ImeKorisnika" />
+          <ScalarProperty Name="DatumIstovara" ColumnName="DatumIstovara" />
+          <ScalarProperty Name="DatumUtovara" ColumnName="DatumUtovara" />
+          <ScalarProperty Name="VrstaRobe" ColumnName="VrstaRobe" />
+          <ScalarProperty Name="VrijednostRobe" ColumnName="VrijednostRobe" />
+          <ScalarProperty Name="KolicinaRobe" ColumnName="KolicinaRobe" />
+          <ScalarProperty Name="Istovar" ColumnName="Istovar" />
+          <ScalarProperty Name="Utovar" ColumnName="Utovar" />
+          <ScalarProperty Name="IdKorisnikUpit" ColumnName="IdKorisnikUpit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KorisnikNalog">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.KorisnikNalog">
+        <MappingFragment StoreEntitySet="KorisnikNalog">
+          <ScalarProperty Name="Drzava2" ColumnName="Drzava2" />
+          <ScalarProperty Name="Grad2" ColumnName="Grad2" />
+          <ScalarProperty Name="PTT2" ColumnName="PTT2" />
+          <ScalarProperty Name="Dimenzije" ColumnName="Dimenzije" />
+          <ScalarProperty Name="Drzava1" ColumnName="Drzava1" />
+          <ScalarProperty Name="Grad1" ColumnName="Grad1" />
+          <ScalarProperty Name="PTT1" ColumnName="PTT1" />
+          <ScalarProperty Name="FirmaIStovar" ColumnName="FirmaIStovar" />
+          <ScalarProperty Name="FirmaUtovar" ColumnName="FirmaUtovar" />
+          <ScalarProperty Name="JIB" ColumnName="JIB" />
+          <ScalarProperty Name="Drzava" ColumnName="Drzava" />
+          <ScalarProperty Name="PTT" ColumnName="PTT" />
+          <ScalarProperty Name="IdSubjekt" ColumnName="IdSubjekt" />
+          <ScalarProperty Name="DatumZahtjeva" ColumnName="DatumZahtjeva" />
+          <ScalarProperty Name="UvoznaCarina" ColumnName="UvoznaCarina" />
+          <ScalarProperty Name="DatumIstovara" ColumnName="DatumIstovara" />
+          <ScalarProperty Name="MjestoIstovara" ColumnName="MjestoIstovara" />
+          <ScalarProperty Name="UvoznikKontaktOsoba" ColumnName="UvoznikKontaktOsoba" />
+          <ScalarProperty Name="Uvoznik" ColumnName="Uvoznik" />
+          <ScalarProperty Name="IzvoznaCarina" ColumnName="IzvoznaCarina" />
+          <ScalarProperty Name="BrutoTezina" ColumnName="BrutoTezina" />
+          <ScalarProperty Name="VrijednostRobe" ColumnName="VrijednostRobe" />
+          <ScalarProperty Name="VrstaRobe" ColumnName="VrstaRobe" />
+          <ScalarProperty Name="ReferentniBrojUtovara" ColumnName="ReferentniBrojUtovara" />
+          <ScalarProperty Name="DatumUtovara" ColumnName="DatumUtovara" />
+          <ScalarProperty Name="MjestoUtovara" ColumnName="MjestoUtovara" />
+          <ScalarProperty Name="IzvoznikKontaktOsoba" ColumnName="IzvoznikKontaktOsoba" />
+          <ScalarProperty Name="Izvoznik" ColumnName="Izvoznik" />
+          <ScalarProperty Name="PIB" ColumnName="PIB" />
+          <ScalarProperty Name="Timocom" ColumnName="Timocom" />
+          <ScalarProperty Name="KontaktOsoba" ColumnName="KontaktOsoba" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Grad" ColumnName="Grad" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="idKorisnikNalog" ColumnName="idKorisnikNalog" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VozacUser">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.VozacUser">
+        <MappingFragment StoreEntitySet="VozacUser">
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="IdVozac" ColumnName="IdVozac" />
+          <ScalarProperty Name="IdVozacUser" ColumnName="IdVozacUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipUsluge">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.TipUsluge">
+        <MappingFragment StoreEntitySet="TipUsluge">
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="IdTipUsluge" ColumnName="IdTipUsluge" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AndroidTask">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.AndroidTask">
+        <MappingFragment StoreEntitySet="AndroidTask">
+          <ScalarProperty Name="AdminPregled" ColumnName="AdminPregled" />
+          <ScalarProperty Name="VozacPregled" ColumnName="VozacPregled" />
+          <ScalarProperty Name="DatumZapisa" ColumnName="DatumZapisa" />
+          <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
+          <ScalarProperty Name="IdTask" ColumnName="IdTask" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KorisnikNalogIstovar">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.KorisnikNalogIstovar">
+        <MappingFragment StoreEntitySet="KorisnikNalogIstovar">
+          <ScalarProperty Name="UvoznaCarina" ColumnName="UvoznaCarina" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="KolicinaRobe" ColumnName="KolicinaRobe" />
+          <ScalarProperty Name="DatumIstovara" ColumnName="DatumIstovara" />
+          <ScalarProperty Name="Kontakt" ColumnName="Kontakt" />
+          <ScalarProperty Name="Drzava" ColumnName="Drzava" />
+          <ScalarProperty Name="PTT" ColumnName="PTT" />
+          <ScalarProperty Name="Mjesto" ColumnName="Mjesto" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Firma" ColumnName="Firma" />
+          <ScalarProperty Name="IdKorisnikNalog" ColumnName="IdKorisnikNalog" />
+          <ScalarProperty Name="IdIstovar" ColumnName="IdIstovar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KorisnikNalogUtovar">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.KorisnikNalogUtovar">
+        <MappingFragment StoreEntitySet="KorisnikNalogUtovar">
+          <ScalarProperty Name="IzvoznaCarina" ColumnName="IzvoznaCarina" />
+          <ScalarProperty Name="ReferentniBrojUtovara" ColumnName="ReferentniBrojUtovara" />
+          <ScalarProperty Name="DimenzijeRobe" ColumnName="DimenzijeRobe" />
+          <ScalarProperty Name="TezinaRobe" ColumnName="TezinaRobe" />
+          <ScalarProperty Name="VrstaRobe" ColumnName="VrstaRobe" />
+          <ScalarProperty Name="KolicinaRobe" ColumnName="KolicinaRobe" />
+          <ScalarProperty Name="DatmUtovara" ColumnName="DatmUtovara" />
+          <ScalarProperty Name="Kontakt" ColumnName="Kontakt" />
+          <ScalarProperty Name="Drzava" ColumnName="Drzava" />
+          <ScalarProperty Name="PTT" ColumnName="PTT" />
+          <ScalarProperty Name="Mjesto" ColumnName="Mjesto" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Firma" ColumnName="Firma" />
+          <ScalarProperty Name="IdKorisnikNalog" ColumnName="IdKorisnikNalog" />
+          <ScalarProperty Name="IdUtovar" ColumnName="IdUtovar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ponuda">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.Ponuda">
+        <MappingFragment StoreEntitySet="Ponuda">
+          <ScalarProperty Name="DrugiPrevoznikStatus" ColumnName="DrugiPrevoznikStatus" />
+          <ScalarProperty Name="LAT" ColumnName="LAT" />
+          <ScalarProperty Name="LONG" ColumnName="LONG" />
+          <ScalarProperty Name="IdDnevnikParent" ColumnName="IdDnevnikParent" />
+          <ScalarProperty Name="ReferentniBrojUtovara" ColumnName="ReferentniBrojUtovara" />
+          <ScalarProperty Name="IstovarKolicinaRobe" ColumnName="IstovarKolicinaRobe" />
+          <ScalarProperty Name="PrevoznikUtovarDrzava" ColumnName="PrevoznikUtovarDrzava" />
+          <ScalarProperty Name="PrevoznikUtovarPTT" ColumnName="PrevoznikUtovarPTT" />
+          <ScalarProperty Name="PrevoznikUtovarGrad" ColumnName="PrevoznikUtovarGrad" />
+          <ScalarProperty Name="PrevoznikUtovarAdresa" ColumnName="PrevoznikUtovarAdresa" />
+          <ScalarProperty Name="PrevoznikUtovarFirma" ColumnName="PrevoznikUtovarFirma" />
+          <ScalarProperty Name="DimenzijeRobe" ColumnName="DimenzijeRobe" />
+          <ScalarProperty Name="IstovarDrzava" ColumnName="IstovarDrzava" />
+          <ScalarProperty Name="IstovarPTT" ColumnName="IstovarPTT" />
+          <ScalarProperty Name="UtovarDrzava" ColumnName="UtovarDrzava" />
+          <ScalarProperty Name="UtovarPTT" ColumnName="UtovarPTT" />
+          <ScalarProperty Name="IznosPDV" ColumnName="IznosPDV" />
+          <ScalarProperty Name="PrevoznikIstovarDrzava" ColumnName="PrevoznikIstovarDrzava" />
+          <ScalarProperty Name="PrevoznikIstovarPTT" ColumnName="PrevoznikIstovarPTT" />
+          <ScalarProperty Name="PrevoznikIstovarGrad" ColumnName="PrevoznikIstovarGrad" />
+          <ScalarProperty Name="PrevoznikIstovarFirma" ColumnName="PrevoznikIstovarFirma" />
+          <ScalarProperty Name="PrevoznikIstovarAdresa" ColumnName="PrevoznikIstovarAdresa" />
+          <ScalarProperty Name="TezinaRobe" ColumnName="TezinaRobe" />
+          <ScalarProperty Name="InternaNapomena" ColumnName="InternaNapomena" />
+          <ScalarProperty Name="KompletanUtovar" ColumnName="KompletanUtovar" />
+          <ScalarProperty Name="Uplaceno" ColumnName="Uplaceno" />
+          <ScalarProperty Name="GostPristup" ColumnName="GostPristup" />
+          <ScalarProperty Name="IstovarKontakt" ColumnName="IstovarKontakt" />
+          <ScalarProperty Name="UtovarKontakt" ColumnName="UtovarKontakt" />
+          <ScalarProperty Name="SaPDV" ColumnName="SaPDV" />
+          <ScalarProperty Name="ValutaPlacanjaPrevoznika" ColumnName="ValutaPlacanjaPrevoznika" />
+          <ScalarProperty Name="Izvoznik" ColumnName="Izvoznik" />
+          <ScalarProperty Name="Uvoznik" ColumnName="Uvoznik" />
+          <ScalarProperty Name="IdPrikljucnoVozilo" ColumnName="IdPrikljucnoVozilo" />
+          <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="KontaktOsobaPrevoznika" ColumnName="KontaktOsobaPrevoznika" />
+          <ScalarProperty Name="VozacPrevoznika" ColumnName="VozacPrevoznika" />
+          <ScalarProperty Name="RegistracijaVozilaPrevoznika" ColumnName="RegistracijaVozilaPrevoznika" />
+          <ScalarProperty Name="VrstaRobe" ColumnName="VrstaRobe" />
+          <ScalarProperty Name="SerijskiBroj" ColumnName="SerijskiBroj" />
+          <ScalarProperty Name="ZapisAktivan" ColumnName="ZapisAktivan" />
+          <ScalarProperty Name="DatumZapisa" ColumnName="DatumZapisa" />
+          <ScalarProperty Name="DatumSlanjaFakture" ColumnName="DatumSlanjaFakture" />
+          <ScalarProperty Name="BrojFakture" ColumnName="BrojFakture" />
+          <ScalarProperty Name="IdValutaPrevoznika" ColumnName="IdValutaPrevoznika" />
+          <ScalarProperty Name="CijenaPrevozaPrevoznika" ColumnName="CijenaPrevozaPrevoznika" />
+          <ScalarProperty Name="BrojNalogaPrevoznika" ColumnName="BrojNalogaPrevoznika" />
+          <ScalarProperty Name="IdSubjekt" ColumnName="IdSubjekt" />
+          <ScalarProperty Name="DrugiPrevoznik" ColumnName="DrugiPrevoznik" />
+          <ScalarProperty Name="IdVozac" ColumnName="IdVozac" />
+          <ScalarProperty Name="IdVozilo" ColumnName="IdVozilo" />
+          <ScalarProperty Name="IzvoznaSpedicija" ColumnName="IzvoznaSpedicija" />
+          <ScalarProperty Name="UvoznaSpedicija" ColumnName="UvoznaSpedicija" />
+          <ScalarProperty Name="ValutaPlacanja" ColumnName="ValutaPlacanja" />
+          <ScalarProperty Name="IdValuta" ColumnName="IdValuta" />
+          <ScalarProperty Name="CijenaPrevoza" ColumnName="CijenaPrevoza" />
+          <ScalarProperty Name="KolicinaRobe" ColumnName="KolicinaRobe" />
+          <ScalarProperty Name="DatumIstovara" ColumnName="DatumIstovara" />
+          <ScalarProperty Name="IstovarGrad" ColumnName="IstovarGrad" />
+          <ScalarProperty Name="IstovarFirma" ColumnName="IstovarFirma" />
+          <ScalarProperty Name="IstovarAdresa" ColumnName="IstovarAdresa" />
+          <ScalarProperty Name="DatumUtovara" ColumnName="DatumUtovara" />
+          <ScalarProperty Name="UtovarGrad" ColumnName="UtovarGrad" />
+          <ScalarProperty Name="UtovarFirma" ColumnName="UtovarFirma" />
+          <ScalarProperty Name="UtovarAdresa" ColumnName="UtovarAdresa" />
+          <ScalarProperty Name="BrojNaloga" ColumnName="BrojNaloga" />
+          <ScalarProperty Name="IdNarucioca" ColumnName="IdNarucioca" />
+          <ScalarProperty Name="DatumDnevnika" ColumnName="DatumDnevnika" />
+          <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PonudaUsloviPrevoza">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.PonudaUsloviPrevoza">
+        <MappingFragment StoreEntitySet="PonudaUsloviPrevoza">
+          <ScalarProperty Name="IdUsloviPrevoza" ColumnName="IdUsloviPrevoza" />
+          <ScalarProperty Name="IdPonuda" ColumnName="IdPonuda" />
+          <ScalarProperty Name="IdPodudaUslovi" ColumnName="IdPodudaUslovi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsloviPrevoza">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.UsloviPrevoza">
+        <MappingFragment StoreEntitySet="UsloviPrevoza">
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+          <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+          <ScalarProperty Name="IdUslov" ColumnName="IdUslov" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppPodesavanja">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.AppPodesavanja">
+        <MappingFragment StoreEntitySet="AppPodesavanja">
+          <ScalarProperty Name="Vrijednost" ColumnName="Vrijednost" />
+          <ScalarProperty Name="Vrsta" ColumnName="Vrsta" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusPrevoza">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.StatusPrevoza">
+        <MappingFragment StoreEntitySet="StatusPrevoza">
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+          <ScalarProperty Name="NazivStatusa" ColumnName="NazivStatusa" />
+          <ScalarProperty Name="IdStatusPrevoza" ColumnName="IdStatusPrevoza" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VozacTroskovi">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.VozacTroskovi">
+        <MappingFragment StoreEntitySet="VozacTroskovi">
+          <ScalarProperty Name="Kartica" ColumnName="Kartica" />
+          <ScalarProperty Name="Zakljucano" ColumnName="Zakljucano" />
+          <ScalarProperty Name="IdVozac" ColumnName="IdVozac" />
+          <ScalarProperty Name="Aktivno" ColumnName="Aktivno" />
+          <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="RazmjenjenoMjenjacnica" ColumnName="RazmjenjenoMjenjacnica" />
+          <ScalarProperty Name="PrihvacenRashod" ColumnName="PrihvacenRashod" />
+          <ScalarProperty Name="OdobrenoZaduzenje" ColumnName="OdobrenoZaduzenje" />
+          <ScalarProperty Name="IdVrstaTroska" ColumnName="IdVrstaTroska" />
+          <ScalarProperty Name="Tip" ColumnName="Tip" />
+          <ScalarProperty Name="IdValuta" ColumnName="IdValuta" />
+          <ScalarProperty Name="Iznos" ColumnName="Iznos" />
+          <ScalarProperty Name="IdCozacTroskovi" ColumnName="IdCozacTroskovi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VozacVrstaTroskova">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.VozacVrstaTroskova">
+        <MappingFragment StoreEntitySet="VozacVrstaTroskova">
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="IdVrstaTroska" ColumnName="IdVrstaTroska" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusRobe">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.StatusRobe">
+        <MappingFragment StoreEntitySet="StatusRobe">
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="IdStatusRobe" ColumnName="IdStatusRobe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IDnevnikPrevozaVozac">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.IDnevnikPrevozaVozac">
+        <MappingFragment StoreEntitySet="IDnevnikPrevozaVozac">
+          <ScalarProperty Name="IdVozilo" ColumnName="IdVozilo" />
+          <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
+          <ScalarProperty Name="IdVozac" ColumnName="IdVozac" />
+          <ScalarProperty Name="DatumZapisa" ColumnName="DatumZapisa" />
+          <ScalarProperty Name="DatumDo" ColumnName="DatumDo" />
+          <ScalarProperty Name="DatumOd" ColumnName="DatumOd" />
+          <ScalarProperty Name="IdIDnevnikPrevozaVozac" ColumnName="IdIDnevnikPrevozaVozac" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RedoslijedUtovarIstovar">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.RedoslijedUtovarIstovar">
+        <MappingFragment StoreEntitySet="RedoslijedUtovarIstovar">
+          <ScalarProperty Name="RedniBroj" ColumnName="RedniBroj" />
+          <ScalarProperty Name="Aktivnost" ColumnName="Aktivnost" />
+          <ScalarProperty Name="IdDodatniIstovar" ColumnName="IdDodatniIstovar" />
+          <ScalarProperty Name="IdDodatniUtovar" ColumnName="IdDodatniUtovar" />
+          <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
+          <ScalarProperty Name="IdRedoslijed" ColumnName="IdRedoslijed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,204 @@
+﻿@model Spedicija.Models.FakturaMaster
+
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+<link href="~/Content/css/invoice.css" rel="stylesheet" />
+
+<script src="~/Content/js/printThis.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+
+        /*
+        $('#cmd').click(function () {
+            var doc = new jsPDF();
+            doc.addHTML($('#content1')[0], 15, 15, {
+                'background': '#fff',
+            }, function () {
+                doc.save('sample-file.pdf');
+            });
+        });
+
+        */
+
+        $('#cmd').click(function () {
+            var doc = new jsPDF(
+                {
+                    unit: 'pt',
+                    format: 'a4'
+                }
+                );
+
+            doc.internal.scaleFactor = 1;
+
+            doc.addHTML($('#content1')[0], 0, 0, {
+                'background': '#fff',
+            }, function () {
+                doc.save("Invoice_@Model.SerijskiBroj"+".pdf");
+            });
+        });
+       
+        $('#cmd1').click(function () {
+
+          
+            $('<div/>').append($("#content").clone()).html()
+
+            var mywindow = window.open('', 'my div', "width="+screen.availWidth+",height="+screen.availHeight);
+            mywindow.document.write('<html><head><title></title>');
+            mywindow.document.write('<link rel="stylesheet" href="/Content/css/invoice.css" type="text/css" /></head><body>');
+            mywindow.document.write($('<div/>').append($("#content1").clone()).html());
+            mywindow.document.write('</body></html>');
+            mywindow.document.close();
+
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            mywindow.print();
+
+
+            return true;
+        
+            /*
+            $("#content1").printThis({
+
+            });
+            */
+          
+        });
+
+
+
+        $('#cmd2').click(function () {
+            var popupWin = window.open('', 'Faktura', 'height=800,width=800');
+            popupWin.document.open();
+            popupWin.document.write('<html><head><title>Faktura</title><link rel="stylesheet" href="/Content/css/invoice.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"   crossorigin="anonymous"></head>');
+            popupWin.document.write('<body onload="window.print();window.close()">');
+            popupWin.document.write(($("#content1").clone()).html());
+            popupWin.document.write('</body></html>');
+            popupWin.document.close();
+     
+
+        });
+
+      
+    });
+
+</script>
+
+<section>
+
+    <div class="section-body contain-lg">
+        <!-- style="background-color:transparent" -->
+        <div class="card card-underline" >
+            <div class="card-head">
+                <header class="pull-left" style="margin-top: 10px;">Faktura</header>
+                <div class="tools">
+                    <button id="cmd" value="PRINT" class="btn btn-flat btn-primary ink-reaction" >  </button>
+                    <button id="cmd1" value="PRINT" class="btn btn-flat btn-primary ink-reaction"> PRINT </button>
+                    <button id="cmd2" value="PRINT" class="btn btn-flat btn-primary ink-reaction">  </button>
+                </div>
+            </div>
+            <div class="card-body" id="content">
+                <div id="content1" style="padding-top:20px">
+                <header class="clearfix invoice-header">
+                    <div class="container">
+                        <figure>
+                            <img class="logo" src="data:image/svg+xml;charset=utf-8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjQxcHgiIGhlaWdodD0iNDFweCIgdmlld0JveD0iMCAwIDQxIDQxIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy40LjEgKDE1NjgxKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5MT0dPPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9IlBhZ2UtMSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc2tldGNoOnR5cGU9Ik1TUGFnZSI+CiAgICAgICAgPGcgaWQ9IklOVk9JQ0UtMiIgc2tldGNoOnR5cGU9Ik1TQXJ0Ym9hcmRHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTMwLjAwMDAwMCwgLTMwLjAwMDAwMCkiIGZpbGw9IiMyQThFQUMiPgogICAgICAgICAgICA8ZyBpZD0iWkFHTEFWTEpFIiBza2V0Y2g6dHlwZT0iTVNMYXllckdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMC4wMDAwMDAsIDE1LjAwMDAwMCkiPgogICAgICAgICAgICAgICAgPGcgaWQ9IkxPR08iIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLCAxNS4wMDAwMDApIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMzkuOTI0NjM2MywxOC40NDg2MjEgTDMzLjc3MDczNTgsMTEuODQyMjkyMyBMMzMuNzcwNzM1OCw0LjIxMDUyNjgxIEMzMy43NzA3MzU4LDIuODMwOTIyMzYgMzIuNzI5MzQxMSwxLjcxMjU0NDE0IDMxLjQ0MTczNzIsMS43MTI1NDQxNCBDMzAuMTU3NDExOSwxLjcxMjU0NDE0IDI5LjExNjAxNzMsMi44MzA5MjIzNiAyOS4xMTYwMTczLDQuMjEwNTI2ODEgTDI5LjExNjAxNzMsNi44NDUxMTcwNCBMMjQuNTMzNzM3NCwxLjkyNjAzNDcxIEMyMi4yNjgwNTg1LC0wLjUwNDQxNDA5NCAxOC4zMjkwMTcxLC0wLjUwMDEyNDQ4NCAxNi4wNjg4NzEsMS45MzAzMjQzMiBMMC42ODExNDgzMjksMTguNDQ4NjIxIEMtMC4yMjY5NDY5ODQsMTkuNDI1NjYyMSAtMC4yMjY5NDY5ODQsMjEuMDA2NzY4MiAwLjY4MTE0ODMyOSwyMS45ODIwNDk0IEMxLjU5MDE2NTc3LDIyLjk1OTA5MDUgMy4wNjU3ODIyMywyMi45NTkwOTA1IDMuOTczODc3NTUsMjEuOTgyMDQ5NCBMMTkuMzU5OTYwOSw1LjQ2Mzc1Mjc1IEMxOS44NjE0OTg0LDQuOTI4NDMxNDcgMjAuNzQ0Nzk4Niw0LjkyODQzMTQ3IDIxLjI0MzQ2NzIsNS40NjIxMDI5IEwzNi42MzE5MDcxLDIxLjk4MjA0OTQgQzM3LjA4ODU2NzUsMjIuNDcwNTE1IDM3LjY4MzM0MjgsMjIuNzEzNzAyOSAzOC4yNzgxMTgsMjIuNzEzNzAyOSBDMzguODc0MDIwNCwyMi43MTM3MDI5IDM5LjQ3MDAyNTIsMjIuNDcwNTE1IDM5LjkyNTA0NjIsMjEuOTgyMDQ5NCBDNDAuODMzNTUxMywyMS4wMDY3NjgyIDQwLjgzMzU1MTMsMTkuNDI1NjYyMSAzOS45MjQ2MzYzLDE4LjQ0ODYyMSBMMzkuOTI0NjM2MywxOC40NDg2MjEgWiIgaWQ9IkZpbGwtMSI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0yMS4xMTEzOTc0LDEwLjIwNTg2MTIgQzIwLjY2NDM2ODIsOS43MjYzMDQ4MiAxOS45NDA2OTkzLDkuNzI2MzA0ODIgMTkuNDk0ODk5NiwxMC4yMDU4NjEyIEw1Ljk1OTg0Mjk2LDI0LjczMTM1OTIgQzUuNzQ2MTEzMiwyNC45NjAzNTg0IDUuNjI1MjExNDIsMjUuMjczNjA5OSA1LjYyNTIxMTQyLDI1LjYwMDA2MDIgTDUuNjI1MjExNDIsMzYuMTk0ODQ2IEM1LjYyNTIxMTQyLDM4LjY4MDcyOTcgNy41MDI3NzUwNyw0MC42OTYxODYzIDkuODE4NDUzOTgsNDAuNjk2MTg2MyBMMTYuNTE5NDg2Myw0MC42OTYxODYzIEwxNi41MTk0ODYzLDI5LjU1NTQxMDIgTDI0LjA4NTA2ODgsMjkuNTU1NDEwMiBMMjQuMDg1MDY4OCw0MC42OTYxODYzIEwzMC43ODY2MTM1LDQwLjY5NjE4NjMgQzMzLjEwMjI5MjQsNDAuNjk2MTg2MyAzNC45Nzk3NTM2LDM4LjY4MDcyOTcgMzQuOTc5NzUzNiwzNi4xOTQ4NDYgTDM0Ljk3OTc1MzYsMjUuNjAwMDYwMiBDMzQuOTc5NzUzNiwyNS4yNzM2MDk5IDM0Ljg1OTY3MTUsMjQuOTYwMzU4NCAzNC42NDUyMjQ1LDI0LjczMTM1OTIgTDIxLjExMTM5NzQsMTAuMjA1ODYxMiBaIiBpZD0iRmlsbC0zIj48L3BhdGg+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==" alt="">
+                        </figure>
+                        <div class="company-info">
+                            <h2 class="title"> GMTEL LOGISTICS </h2>
+                            <span>Bulevar vojvode Stepe Stepanovića 177, Banja Luka 78000, BIH</span>
+                            <span class="line"></span>
+                            <a class="phone" href="tel:051-924-340">051 924-340</a>
+                            <span class="line"></span>
+                            <a class="email" href="mailto:info@http://gmtellogistics.com">info@http://gmtellogistics.com</a>
+                        </div>
+                    </div>
+                </header>
+                <section>
+                    <div class="details clearfix">
+                        <div class="client left">
+                            <p>INVOICE TO:</p>
+                            <p class="name">@Model.Narucioc.Naziv</p>
+                            <p>
+                                @Model.Narucioc.Adresa,<br>
+                                @Model.Narucioc.PTT @Model.Narucioc.Grad @Model.Narucioc.Drzava
+                            </p>
+                            <a href="mailto:@Model.Narucioc.Email">@Model.Narucioc.Email</a>
+                        </div>
+                        <div class="data right">
+                            <div class="title">Invoice No @Model.SerijskiBroj</div>
+                            <div class="date">
+                                Date of Invoice: @Model.DatumFakture<br>
+                                Due Date: @Model.ValutaPlacanja
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="table-wrapper">
+                            <table>
+                                <tbody class="head">
+                                    <tr>
+                                        <th class="no"></th>
+                                        <th class="desc"><div>Description</div></th>
+                                        <th class="qty"><div>Unit Price</div></th>
+                                        <th class="unit"><div>VAT</div></th>
+                                        <th class="total"><div>Total</div></th>
+                                    </tr>
+                                </tbody>
+                                <tbody class="body">
+
+                                    @foreach (var item in Model.Finansije)
+                        {
+                                        <tr>
+                                            <td class="no"> #@item.Rb</td>
+                                            <td class="desc"> <span style="font-weight:bold; font-size:14px">@item.SerijskiBroj</span><br> @item.Opis</td>
+                                            <td class="qty">@item.CijenaBezPdvBAM.ToString("0.00") BAM</td>
+                                            <td class="unit">@item.PdvBAM.ToString("0.00") </td>
+                                            <td class="total">@((item.CijenaBezPdvBAM + item.PdvBAM).ToString("0.00")) BAM</td>
+                                        </tr>
+                        }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="no-break">
+                            <table class="grand-total">
+                                <tbody>
+                                    <tr>
+                                        <td class="no"></td>
+                                        <td class="desc"></td>
+                                        <td class="qty"></td>
+                                        <td class="unit">SUBTOTAL:</td>
+                                        <td class="total"> @ViewBag.BEZPDV BAM </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="no"></td>
+                                        <td class="desc"></td>
+                                        <td class="qty"></td>
+                                        <td class="unit">VAT:</td>
+                                        <td class="total"> @ViewBag.PDV BAM </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="grand-total" colspan="5"><div><span>GRAND TOTAL:</span>@ViewBag.SUMA BAM</div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <footer>
+                    <div class="container">
+                        <div class="thanks">Thank you!</div>
+                        <div class="notice">
+                            <div>TRANSPORT NOTICE:</div>
+                            <div>Driver: @Model.Vozac </div>
+                            <div>Vehicle: @Model.Vozilo </div>
+                        </div>
+                        <div class="end">Invoice was created on a computer and is valid without the signature and seal.</div>
+                    </div>
+                </footer>
+            </div>
+            </div>
+        </div>
+    </div>
+    </section>

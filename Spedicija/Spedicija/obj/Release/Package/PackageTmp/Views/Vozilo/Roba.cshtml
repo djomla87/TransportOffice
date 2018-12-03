@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Roba";
+}
+
+
+
+<style>
+.div1 {
+    width: 148px;
+	height: 148px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+}
+</style>
+<script type="text/javascript">
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev, el) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+   // el.appendChild(document.getElementById(data));
+   el.prepend(document.getElementById(data)); 
+}
+</script>
+
+<section>       
+<div class="container"> 
+    <div class="section-body ">
+
+         <div class="card card-bordered style-primary">
+            <div class="card-body style-default-bright">
+
+<h2>Raspored robe u prevozu</h2>
+
+<div class="row">
+
+    <div class="col-sm-6">
+         <div class="card card-bordered style-default-dark">
+            <div class="card-body style-default-bright" style='background-image: url("/Content/images/kombi.PNG"); padding-top: 460px; '>
+
+<div class="row" style="display:table; margin: 0 auto">
+    <div id="div1" class="div1 col-sm-4" ondrop="drop(event, this)" ondragover="allowDrop(event)"  ></div>
+    <div id="div2" class="div1 col-sm-4" ondrop="drop(event, this)" ondragover="allowDrop(event)"  ></div>
+</div>
+<div class="row" style="display:table; margin: 0 auto">
+    <div id="div3" class="div1 col-sm-4" ondrop="drop(event, this)" ondragover="allowDrop(event)" ></div>
+</div>
+<div class="row" style="display:table; margin: 0 auto">
+    <div id="div4" class="div1 col-sm-4" ondrop="drop(event, this)" ondragover="allowDrop(event)" ></div>
+</div>
+<div class="row" style="display:table; margin: 0 auto">
+    <div id="div5" class="div1 col-sm-4" ondrop="drop(event, this)" ondragover="allowDrop(event)"></div>
+</div>
+
+                </div>
+             </div>
+    </div>
+
+ <div class="col-sm-6">
+
+
+     <div class="card card-underline card-bordered" style="position: fixed;">
+		<div class="card-head">
+							<ul class="nav nav-tabs pull-right" data-toggle="tabs">
+								<li class=""><a href="#first2">Kutije</a></li>
+								<li class=""><a href="#second2">Palete</a></li>
+								<li class="active"><a href="#third2">Palete 2</a></li>
+							</ul>
+		<header>Roba za utovar</header>
+		</div>
+		
+			<div class="card-body tab-content style-default-bright">
+							<div class="tab-pane" id="first2">	
+								 <div id="divback1a" ondrop="drop(event, this)" ondragover="allowDrop(event)"  style="width: 100%; height: 100%; min-height:220px; min-width:200px; max-width: 400px;">
+								 <img id="drag1" src="~/Content/images/1494980970_Wood4.png" draggable="true" ondragstart="drag(event)">
+								 <img id="drag2" src="~/Content/images/1494980970_Wood4.png" draggable="true" ondragstart="drag(event)">
+								 <img id="drag3" src="~/Content/images/1494980970_Wood4.png" draggable="true" ondragstart="drag(event)">
+								 <img id="drag4" src="~/Content/images/1494980970_Wood4.png" draggable="true" ondragstart="drag(event)">
+								 <img id="drag5" src="~/Content/images/1494980970_Wood4.png" draggable="true" ondragstart="drag(event)">
+								 </div>
+							</div>
+								 
+							<div class="tab-pane" id="second2">	
+							<div id="divback1b" ondrop="drop(event, this)" ondragover="allowDrop(event)"  style="width: 100%; height: 100%; min-height:220px; min-width:200px; max-width: 400px;">
+								 <img id="drag11" src="~/Content/images/1494981013_Shipping8.png" draggable="true" ondragstart="drag(event)">
+								 <img id="drag21" src="~/Content/images/1494981013_Shipping8.png" draggable="true" ondragstart="drag(event)">
+								 <img id="drag31" src="~/Content/images/1494981013_Shipping8.png" draggable="true" ondragstart="drag(event)">
+								 <img id="drag41" src="~/Content/images/1494981013_Shipping8.png" draggable="true" ondragstart="drag(event)">
+								 <img id="drag51" src="~/Content/images/1494981013_Shipping8.png" draggable="true" ondragstart="drag(event)">
+							</div>
+							</div>
+							
+							
+							<div class="tab-pane active" id="third2">		
+							<div id="divback1c" ondrop="drop(event, this)" ondragover="allowDrop(event)"  style="width: 100%; height: 100%; min-height:220px; min-width:200px; max-width: 400px;">
+								<img id="drag12" src="~/Content/images/1494981024_self1.png" draggable="true" ondragstart="drag(event)">
+								<img id="drag22" src="~/Content/images/1494981024_self1.png" draggable="true" ondragstart="drag(event)">
+								<img id="drag32" src="~/Content/images/1494981024_self1.png" draggable="true" ondragstart="drag(event)">
+								<img id="drag42" src="~/Content/images/1494981024_self1.png" draggable="true" ondragstart="drag(event)">
+								<img id="drag52" src="~/Content/images/1494981024_self1.png" draggable="true" ondragstart="drag(event)">
+							</div>
+							</div>
+			</div>
+</div>
+
+
+ </div>
+
+
+</div>
+
+            </div>
+             </div>
+</div>
+        </div>
+    </section>
