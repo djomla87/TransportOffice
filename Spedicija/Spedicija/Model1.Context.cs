@@ -71,6 +71,7 @@ namespace Spedicija
         public DbSet<StatusRobe> StatusRobe { get; set; }
         public DbSet<IDnevnikPrevozaVozac> IDnevnikPrevozaVozac { get; set; }
         public DbSet<RedoslijedUtovarIstovar> RedoslijedUtovarIstovar { get; set; }
+        public DbSet<VoziloPodsjetnik> VoziloPodsjetnik { get; set; }
     
         public virtual ObjectResult<spVratiPodatkeZaNalog_Result> spVratiPodatkeZaNalog(Nullable<int> idNalog)
         {

@@ -606,6 +606,7 @@
     <Property Name="IdVozac" Type="int" Nullable="false" />
     <Property Name="Zakljucano" Type="bit" />
     <Property Name="Kartica" Type="bit" />
+    <Property Name="IdDnevnik" Type="int" />
   </EntityType>
   <EntityType Name="VozacUser">
     <Key>
@@ -633,6 +634,16 @@
     <Property Name="DatumZapisa" Type="datetime" />
     <Property Name="ZapisAktivan" Type="bit" Nullable="false" />
     <Property Name="VrstaVozila" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="VoziloPodsjetnik">
+    <Key>
+      <PropertyRef Name="IdVoziloPodsjetnik" />
+    </Key>
+    <Property Name="IdVoziloPodsjetnik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdVozilo" Type="int" Nullable="false" />
+    <Property Name="Vrsta" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DatumIzrade" Type="datetime" Nullable="false" />
+    <Property Name="DatumPodsjetnika" Type="datetime" Nullable="false" />
   </EntityType>
   <Association Name="FK_Dnebvni_StatusRobe">
     <End Role="StatusRobe" Type="Self.StatusRobe" Multiplicity="0..1" />
@@ -922,6 +933,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Podsjetnik_Vozilo">
+    <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="1" />
+    <End Role="VoziloPodsjetnik" Type="Self.VoziloPodsjetnik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozilo">
+        <PropertyRef Name="IdVozilo" />
+      </Principal>
+      <Dependent Role="VoziloPodsjetnik">
+        <PropertyRef Name="IdVozilo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ponuda_subjekt">
     <End Role="Subjekt" Type="Self.Subjekt" Multiplicity="0..1" />
     <End Role="Ponuda" Type="Self.Ponuda" Multiplicity="*" />
@@ -1014,6 +1037,18 @@
         <PropertyRef Name="IdDnevnik" />
       </Principal>
       <Dependent Role="AndroidTask">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Troskovi_Dnevnik">
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="0..1" />
+    <End Role="VozacTroskovi" Type="Self.VozacTroskovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="VozacTroskovi">
         <PropertyRef Name="IdDnevnik" />
       </Dependent>
     </ReferentialConstraint>
@@ -1200,6 +1235,7 @@
     <EntitySet Name="VozacUser" EntityType="Self.VozacUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VozacVrstaTroskova" EntityType="Self.VozacVrstaTroskova" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Vozilo" EntityType="Self.Vozilo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VoziloPodsjetnik" EntityType="Self.VoziloPodsjetnik" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Dnebvni_StatusRobe" Association="Self.FK_Dnebvni_StatusRobe">
       <End Role="StatusRobe" EntitySet="StatusRobe" />
       <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
@@ -1296,6 +1332,10 @@
       <End Role="Subjekt" EntitySet="Subjekt" />
       <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
     </AssociationSet>
+    <AssociationSet Name="FK_Podsjetnik_Vozilo" Association="Self.FK_Podsjetnik_Vozilo">
+      <End Role="Vozilo" EntitySet="Vozilo" />
+      <End Role="VoziloPodsjetnik" EntitySet="VoziloPodsjetnik" />
+    </AssociationSet>
     <AssociationSet Name="FK_ponuda_subjekt" Association="Self.FK_ponuda_subjekt">
       <End Role="Subjekt" EntitySet="Subjekt" />
       <End Role="Ponuda" EntitySet="Ponuda" />
@@ -1327,6 +1367,10 @@
     <AssociationSet Name="FK_TaskDnevnik" Association="Self.FK_TaskDnevnik">
       <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
       <End Role="AndroidTask" EntitySet="AndroidTask" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Troskovi_Dnevnik" Association="Self.FK_Troskovi_Dnevnik">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="VozacTroskovi" EntitySet="VozacTroskovi" />
     </AssociationSet>
     <AssociationSet Name="FK_Valuta" Association="Self.FK_Valuta">
       <End Role="Valuta" EntitySet="Valuta" />

@@ -28,6 +28,7 @@ namespace Spedicija
             this.AndroidTask = new HashSet<AndroidTask>();
             this.IDnevnikPrevozaVozac = new HashSet<IDnevnikPrevozaVozac>();
             this.RedoslijedUtovarIstovar = new HashSet<RedoslijedUtovarIstovar>();
+            this.VozacTroskovi = new HashSet<VozacTroskovi>();
         }
     
         public int IdDnevnik { get; set; }
@@ -125,5 +126,6 @@ namespace Spedicija
         public virtual StatusRobe StatusRobe { get; set; }
         public virtual ICollection<IDnevnikPrevozaVozac> IDnevnikPrevozaVozac { get; set; }
         public virtual ICollection<RedoslijedUtovarIstovar> RedoslijedUtovarIstovar { get; set; }
+        public virtual ICollection<VozacTroskovi> VozacTroskovi { get; set; }
     }
 }

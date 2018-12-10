@@ -87,6 +87,9 @@
         <AssociationConnector Association="uvhszjiy_spedicijaModel.FK_Dnevnik_Redoslijed" />
         <AssociationConnector Association="uvhszjiy_spedicijaModel.FK_DnevnikUtovarRedosled" />
         <AssociationConnector Association="uvhszjiy_spedicijaModel.FK_IDnevnik_Vozilo" />
+        <EntityTypeShape EntityType="uvhszjiy_spedicijaModel.VoziloPodsjetnik" Width="1.5" PointX="5" PointY="29.5" />
+        <AssociationConnector Association="uvhszjiy_spedicijaModel.FK_Troskovi_Dnevnik" />
+        <AssociationConnector Association="uvhszjiy_spedicijaModel.FK_Podsjetnik_Vozilo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

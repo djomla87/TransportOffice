@@ -202,6 +202,7 @@
     <Compile Include="AppPodesavanja.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="AppSettings.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -229,6 +230,7 @@
     <Compile Include="Controllers\VozacTroskoviController.cs" />
     <Compile Include="Controllers\VozacVrstaTroskovaController.cs" />
     <Compile Include="Controllers\VoziloController.cs" />
+    <Compile Include="Controllers\VoziloPodsjetnikController.cs" />
     <Compile Include="Dataset\DSNalozi.cs">
       <DependentUpon>DSNalozi.xsd</DependentUpon>
     </Compile>
@@ -405,6 +407,9 @@
     <Compile Include="Vozilo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="VoziloPodsjetnik.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="VratiDnevnikCarinaPoIdDnevnik_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -495,9 +500,10 @@
     <Content Include="Content\images\Driver.png" />
     <Content Include="Content\images\DrugiPrevoznik.png" />
     <Content Include="Content\images\Exel.png" />
-    <Content Include="Content\images\gmtel-transparent.png" />
-    <Content Include="Content\images\gmtel_logistics.png" />
     <Content Include="Content\images\kombi.PNG" />
+    <Content Include="Content\images\logistics-wp.jpg" />
+    <Content Include="Content\images\logistics-wp.png" />
+    <Content Include="Content\images\Logo.png" />
     <Content Include="Content\images\notes.png" />
     <Content Include="Content\images\notpad.png" />
     <Content Include="Content\images\palet0.png" />
@@ -1553,10 +1559,20 @@
     <Content Include="Views\StatusRobe\Delete.cshtml" />
     <Content Include="Views\Vozilo\RasporedUtovarIstovar.cshtml" />
     <Content Include="Views\DnevnikPrevoza\Faktura.cshtml" />
+    <Content Include="Views\VoziloPodsjetnik\Index.cshtml" />
+    <Content Include="Views\VoziloPodsjetnik\Details.cshtml" />
+    <Content Include="Views\VoziloPodsjetnik\Create.cshtml" />
+    <Content Include="Views\VoziloPodsjetnik\Edit.cshtml" />
+    <Content Include="Views\VoziloPodsjetnik\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="BARCODE\" />
+    <Folder Include="Content\Login\css\" />
+    <Folder Include="Content\Login\fonts\" />
+    <Folder Include="Content\Login\images\" />
+    <Folder Include="Content\Login\js\" />
+    <Folder Include="Content\Login\vendor\" />
     <Folder Include="Content\material-design-iconic-font\.git\branches\" />
     <Folder Include="Content\material-design-iconic-font\.git\logs\refs\heads\pr\" />
     <Folder Include="Content\material-design-iconic-font\.git\objects\info\" />

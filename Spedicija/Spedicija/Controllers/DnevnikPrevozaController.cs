@@ -2432,7 +2432,7 @@ namespace Spedicija.Controllers
                     _mail.IsBodyHtml = true;
 
                     String text = "<div>";
-                    text += "<img src='http://gmtel-office.com/Content/images/gmtel-transparent.png'>";
+                    text += "<img src='http://gmtel-office.com/Content/images/Logo.png'>";
                     text += "<h2>" + (status.Contains("transportu") ? "Vaša roba je utovarena i nalazi se u transportu! " : "Vaša roba je istovarena na destinaciji!") + "</h2>";
                     text += "<h4>Detalji transporta :</h4>";
                     text += "</div>";
@@ -2565,7 +2565,7 @@ namespace Spedicija.Controllers
 
                             _mail.Subject = Naslov;
                             text = "<div>";
-                            text += "<img src='http://gmtel-office.com/Content/images/gmtel-transparent.png'>";
+                            text += "<img src='http://gmtel-office.com/Content/images/Logo.png'>";
                             text += "</div>";
                             text += "<div>";
 

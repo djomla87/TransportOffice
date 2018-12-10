@@ -214,7 +214,7 @@ namespace Spedicija.Controllers
                     mail.IsBodyHtml = true;
 
                     String text = "<div>";
-                    text += "<img src='http://gmtel-office.com/Content/images/gmtel-transparent.png'>";
+                    text += "<img src='http://gmtel-office.com/Content/images/Logo.png'>";
 
                     text += "<h2>Upit za cijenu prevoza poslat je preko sajta</h2>";
                     text += "</div>";

@@ -17,7 +17,5 @@ namespace Spedicija
         public Nullable<decimal> iznosTroska { get; set; }
         public string ValutaTrosak { get; set; }
         public string VrstaTrosak { get; set; }
-
-        public Nullable<decimal> StvarniTrosak { get; set; }
     }
 }

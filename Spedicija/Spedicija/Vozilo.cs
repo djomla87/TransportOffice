@@ -19,6 +19,7 @@ namespace Spedicija
             this.DnevnikPrevoza = new HashSet<DnevnikPrevoza>();
             this.DnevnikPrevoza1 = new HashSet<DnevnikPrevoza>();
             this.IDnevnikPrevozaVozac = new HashSet<IDnevnikPrevozaVozac>();
+            this.VoziloPodsjetnik = new HashSet<VoziloPodsjetnik>();
         }
     
         public int IdVozilo { get; set; }
@@ -32,5 +33,6 @@ namespace Spedicija
         public virtual ICollection<DnevnikPrevoza> DnevnikPrevoza { get; set; }
         public virtual ICollection<DnevnikPrevoza> DnevnikPrevoza1 { get; set; }
         public virtual ICollection<IDnevnikPrevozaVozac> IDnevnikPrevozaVozac { get; set; }
+        public virtual ICollection<VoziloPodsjetnik> VoziloPodsjetnik { get; set; }
     }
 }

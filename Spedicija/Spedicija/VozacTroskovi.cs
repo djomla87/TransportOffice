@@ -28,8 +28,10 @@ namespace Spedicija
         public int IdVozac { get; set; }
         public Nullable<bool> Zakljucano { get; set; }
         public Nullable<bool> Kartica { get; set; }
+        public Nullable<int> IdDnevnik { get; set; }
     
         public virtual Valuta Valuta { get; set; }
         public virtual VozacVrstaTroskova VozacVrstaTroskova { get; set; }
+        public virtual DnevnikPrevoza DnevnikPrevoza { get; set; }
     }
 }

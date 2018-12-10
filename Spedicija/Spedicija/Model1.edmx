@@ -611,6 +611,7 @@
           <Property Name="IdVozac" Type="int" Nullable="false" />
           <Property Name="Zakljucano" Type="bit" />
           <Property Name="Kartica" Type="bit" />
+          <Property Name="IdDnevnik" Type="int" />
         </EntityType>
         <EntityType Name="VozacUser">
           <Key>
@@ -638,6 +639,16 @@
           <Property Name="DatumZapisa" Type="datetime" />
           <Property Name="ZapisAktivan" Type="bit" Nullable="false" />
           <Property Name="VrstaVozila" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="VoziloPodsjetnik">
+          <Key>
+            <PropertyRef Name="IdVoziloPodsjetnik" />
+          </Key>
+          <Property Name="IdVoziloPodsjetnik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdVozilo" Type="int" Nullable="false" />
+          <Property Name="Vrsta" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DatumIzrade" Type="datetime" Nullable="false" />
+          <Property Name="DatumPodsjetnika" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_Dnebvni_StatusRobe">
           <End Role="StatusRobe" Type="Self.StatusRobe" Multiplicity="0..1" />
@@ -927,6 +938,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Podsjetnik_Vozilo">
+          <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="1" />
+          <End Role="VoziloPodsjetnik" Type="Self.VoziloPodsjetnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vozilo">
+              <PropertyRef Name="IdVozilo" />
+            </Principal>
+            <Dependent Role="VoziloPodsjetnik">
+              <PropertyRef Name="IdVozilo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ponuda_subjekt">
           <End Role="Subjekt" Type="Self.Subjekt" Multiplicity="0..1" />
           <End Role="Ponuda" Type="Self.Ponuda" Multiplicity="*" />
@@ -1019,6 +1042,18 @@
               <PropertyRef Name="IdDnevnik" />
             </Principal>
             <Dependent Role="AndroidTask">
+              <PropertyRef Name="IdDnevnik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Troskovi_Dnevnik">
+          <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="0..1" />
+          <End Role="VozacTroskovi" Type="Self.VozacTroskovi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DnevnikPrevoza">
+              <PropertyRef Name="IdDnevnik" />
+            </Principal>
+            <Dependent Role="VozacTroskovi">
               <PropertyRef Name="IdDnevnik" />
             </Dependent>
           </ReferentialConstraint>
@@ -1205,6 +1240,7 @@
           <EntitySet Name="VozacUser" EntityType="Self.VozacUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VozacVrstaTroskova" EntityType="Self.VozacVrstaTroskova" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vozilo" EntityType="Self.Vozilo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VoziloPodsjetnik" EntityType="Self.VoziloPodsjetnik" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Dnebvni_StatusRobe" Association="Self.FK_Dnebvni_StatusRobe">
             <End Role="StatusRobe" EntitySet="StatusRobe" />
             <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
@@ -1301,6 +1337,10 @@
             <End Role="Subjekt" EntitySet="Subjekt" />
             <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
           </AssociationSet>
+          <AssociationSet Name="FK_Podsjetnik_Vozilo" Association="Self.FK_Podsjetnik_Vozilo">
+            <End Role="Vozilo" EntitySet="Vozilo" />
+            <End Role="VoziloPodsjetnik" EntitySet="VoziloPodsjetnik" />
+          </AssociationSet>
           <AssociationSet Name="FK_ponuda_subjekt" Association="Self.FK_ponuda_subjekt">
             <End Role="Subjekt" EntitySet="Subjekt" />
             <End Role="Ponuda" EntitySet="Ponuda" />
@@ -1332,6 +1372,10 @@
           <AssociationSet Name="FK_TaskDnevnik" Association="Self.FK_TaskDnevnik">
             <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
             <End Role="AndroidTask" EntitySet="AndroidTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Troskovi_Dnevnik" Association="Self.FK_Troskovi_Dnevnik">
+            <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+            <End Role="VozacTroskovi" EntitySet="VozacTroskovi" />
           </AssociationSet>
           <AssociationSet Name="FK_Valuta" Association="Self.FK_Valuta">
             <End Role="Valuta" EntitySet="Valuta" />
@@ -1608,6 +1652,15 @@
             <End Role="Vozilo" EntitySet="Vozilo" />
             <End Role="IDnevnikPrevozaVozac" EntitySet="IDnevnikPrevozaVozac" />
           </AssociationSet>
+          <EntitySet Name="VoziloPodsjetnik" EntityType="uvhszjiy_spedicijaModel.VoziloPodsjetnik" />
+          <AssociationSet Name="FK_Troskovi_Dnevnik" Association="uvhszjiy_spedicijaModel.FK_Troskovi_Dnevnik">
+            <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+            <End Role="VozacTroskovi" EntitySet="VozacTroskovi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Podsjetnik_Vozilo" Association="uvhszjiy_spedicijaModel.FK_Podsjetnik_Vozilo">
+            <End Role="Vozilo" EntitySet="Vozilo" />
+            <End Role="VoziloPodsjetnik" EntitySet="VoziloPodsjetnik" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="DnevnicaDetail">
           <Key>
@@ -1722,6 +1775,7 @@
           <Property Name="StatusDetaljniOpis" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="IDnevnikPrevozaVozac" Relationship="uvhszjiy_spedicijaModel.FK_IDnevnik_Dnevnik" FromRole="DnevnikPrevoza" ToRole="IDnevnikPrevozaVozac" />
           <NavigationProperty Name="RedoslijedUtovarIstovar" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik_Redoslijed" FromRole="DnevnikPrevoza" ToRole="RedoslijedUtovarIstovar" />
+          <NavigationProperty Name="VozacTroskovi" Relationship="uvhszjiy_spedicijaModel.FK_Troskovi_Dnevnik" FromRole="DnevnikPrevoza" ToRole="VozacTroskovi" />
         </EntityType>
         <EntityType Name="Dokument">
           <Key>
@@ -1909,6 +1963,7 @@
           <Property Type="String" Name="VrstaVozila" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DnevnikPrevoza1" Relationship="uvhszjiy_spedicijaModel.FK_PrikljucnoVozilo" FromRole="Vozilo" ToRole="DnevnikPrevoza" />
           <NavigationProperty Name="IDnevnikPrevozaVozac" Relationship="uvhszjiy_spedicijaModel.FK_IDnevnik_Vozilo" FromRole="Vozilo" ToRole="IDnevnikPrevozaVozac" />
+          <NavigationProperty Name="VoziloPodsjetnik" Relationship="uvhszjiy_spedicijaModel.FK_Podsjetnik_Vozilo" FromRole="Vozilo" ToRole="VoziloPodsjetnik" />
         </EntityType>
         <Association Name="FK_Dnevnica_Detail">
           <End Role="VozacDnevnica" Type="uvhszjiy_spedicijaModel.VozacDnevnica" Multiplicity="1" />
@@ -2763,6 +2818,8 @@
           <Property Name="IdVozac" Type="Int32" Nullable="false" />
           <Property Name="Zakljucano" Type="Boolean" />
           <Property Name="Kartica" Type="Boolean" />
+          <Property Name="IdDnevnik" Type="Int32" />
+          <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Troskovi_Dnevnik" FromRole="VozacTroskovi" ToRole="DnevnikPrevoza" />
         </EntityType>
         <EntityType Name="VozacVrstaTroskova">
           <Key>
@@ -2913,6 +2970,41 @@
               <PropertyRef Name="IdVozilo" />
             </Principal>
             <Dependent Role="IDnevnikPrevozaVozac">
+              <PropertyRef Name="IdVozilo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="VoziloPodsjetnik">
+          <Key>
+            <PropertyRef Name="IdVoziloPodsjetnik" />
+          </Key>
+          <Property Name="IdVoziloPodsjetnik" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdVozilo" Type="Int32" Nullable="false" />
+          <Property Name="Vrsta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DatumIzrade" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DatumPodsjetnika" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Vozilo" Relationship="uvhszjiy_spedicijaModel.FK_Podsjetnik_Vozilo" FromRole="VoziloPodsjetnik" ToRole="Vozilo" />
+        </EntityType>
+        <Association Name="FK_Troskovi_Dnevnik">
+          <End Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Role="DnevnikPrevoza" Multiplicity="0..1" />
+          <End Type="uvhszjiy_spedicijaModel.VozacTroskovi" Role="VozacTroskovi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DnevnikPrevoza">
+              <PropertyRef Name="IdDnevnik" />
+            </Principal>
+            <Dependent Role="VozacTroskovi">
+              <PropertyRef Name="IdDnevnik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Podsjetnik_Vozilo">
+          <End Type="uvhszjiy_spedicijaModel.Vozilo" Role="Vozilo" Multiplicity="1" />
+          <End Type="uvhszjiy_spedicijaModel.VoziloPodsjetnik" Role="VoziloPodsjetnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vozilo">
+              <PropertyRef Name="IdVozilo" />
+            </Principal>
+            <Dependent Role="VoziloPodsjetnik">
               <PropertyRef Name="IdVozilo" />
             </Dependent>
           </ReferentialConstraint>
@@ -3653,6 +3745,7 @@
           <EntitySetMapping Name="VozacTroskovi">
             <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.VozacTroskovi">
               <MappingFragment StoreEntitySet="VozacTroskovi">
+                <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
                 <ScalarProperty Name="Kartica" ColumnName="Kartica" />
                 <ScalarProperty Name="Zakljucano" ColumnName="Zakljucano" />
                 <ScalarProperty Name="IdVozac" ColumnName="IdVozac" />
@@ -3708,6 +3801,17 @@
                 <ScalarProperty Name="IdDodatniUtovar" ColumnName="IdDodatniUtovar" />
                 <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
                 <ScalarProperty Name="IdRedoslijed" ColumnName="IdRedoslijed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VoziloPodsjetnik">
+            <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.VoziloPodsjetnik">
+              <MappingFragment StoreEntitySet="VoziloPodsjetnik">
+                <ScalarProperty Name="DatumPodsjetnika" ColumnName="DatumPodsjetnika" />
+                <ScalarProperty Name="DatumIzrade" ColumnName="DatumIzrade" />
+                <ScalarProperty Name="Vrsta" ColumnName="Vrsta" />
+                <ScalarProperty Name="IdVozilo" ColumnName="IdVozilo" />
+                <ScalarProperty Name="IdVoziloPodsjetnik" ColumnName="IdVoziloPodsjetnik" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

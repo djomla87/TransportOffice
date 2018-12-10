@@ -1,12 +1,15 @@
 ﻿@model Spedicija.Korisnik
 
-<style>
-.boxhead a {
-    text-decoration: none;
-}
-</style>
-<link href="~/Content/sweetAlert/sweetalert.css" rel="stylesheet" />
-<script src="~/Content/sweetAlert/sweetalert.min.js"></script>
+@{Layout = null;}
+
+
+<link id="bootstrap-css" rel="stylesheet" href="~/Content/css/bootstrap.css">
+
+<link rel="stylesheet" href="~/Content/css/fontcss.css">
+<link id="materialadmin-css" rel="stylesheet" href="~/Content/css/materialadmin.css"> 
+<script src="~/Content/js/jquery-min.js" type="text/javascript"></script>
+<script src="~/Content/js/jquery-migrate.js" type="text/javascript"></script>
+<script src="~/Content/js/bootstrap.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 
@@ -21,67 +24,116 @@
 
 </script>
 
-<link href="~/Content/css/font-awesome-animation.min.css" rel="stylesheet" />
-<section class="section-account">
-		<div class="img-backdrop" style="background-image: url('../Images/jbg3.jpg');     height: 400px">
-		</div>
-		<div class="spacer" style="height:332px">
-          </div>
-		<div class="card contain-sm style-transparent">
-			<div class="card-body">
-                <div class="row">
-                    <div class="boxhead" style="width:700px; margin:0 auto;">
-                      <a href="/KorisnikUpit/Create" ><i class="text-warning fa fa-4x fa-envelope faa-shake animated"></i><span class="text-lg text-bold text-primary"> &nbsp &nbsp Pošaljite nam upit o cijeni prevoza</span></a>
-                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                      <a href="/KorisnikNalog/Create" ><i class="text-info fa fa-4x fa-files-o faa-tada animated"></i><span class="text-lg text-bold text-primary"> &nbsp &nbsp Popunite nalog za utovar robe</span></a>
-		            </div>
+<style>
+    .form-control {
+        font-size: 1rem;
+    }
+
+</style>
+
+<html lang="en">
+<head>
+    <title>Login V15</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/Content/Login/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/Content/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/Content/Login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/Content/Login/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/Content/Login/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/Content/Login/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/Content/Login/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/Content/Login/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/Content/Login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Login/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-form-title" style="background-image: url('/Content/images/logistics-wp.png');">
+                    <span class="login100-form-title-1">
+                        Sign In
+                    </span>
                 </div>
-				<div class="row">
-					<div class="col-sm-12">
-						<br>
-						<span class="text-lg text-bold text-primary">GMTEL LOGISTICS</span>
-						<br><br>
-						@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form", role = "form" })) {
-                            @Html.ValidationSummary(true)
-
-          
-                            @Html.Hidden("URL", ViewBag.ReturnUrl as object)   
-          
-							<div class="form-group floating-label">
-								 @Html.TextBoxFor(model => model.KorisnickoIme , new { @class = "form-control"  })
-                                 @Html.ValidationMessageFor(model => model.KorisnickoIme, "", new { @class="text-danger" })
-								<label for="username">Korisničko Ime</label>
-
-							</div>
-							<div class="form-group floating-label">
-								 @Html.PasswordFor(model => model.Lozinka, new { @class = "form-control"  })
-                                 @Html.ValidationMessageFor(model => model.Lozinka)
-								<label for="password">Lozinka</label>
-								<p class="help-block"><a href="#">Zaboravljena lozinka?</a></p>
-							</div>
-							<br>
-							<div class="row">
-								<div class="col-xs-6 text-left">
-									<div class="checkbox checkbox-inline checkbox-styled">
-                                        
-										<label>
-											<input type="checkbox" name="Zapamti"/>
-                                            <span>Zapamti me</span>
-										</label>
-									</div>
-								</div><!--end .col -->
-								<div class="col-xs-6 text-right">
-									<button class="btn btn-primary btn-raised" type="submit">Login</button>
 
 
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "login100-form validate-form", role = "form" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.Hidden("URL", ViewBag.ReturnUrl as object)
 
-								</div><!--end .col -->
-							</div><!--end .row -->
-          
-                                 @Html.AntiForgeryToken()
-                            }
-					</div><!--end .col -->
-				</div><!--end .row -->
-			</div><!--end .card-body -->
-		</div><!--end .card -->
-	</section>
+
+                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                        <span class="label-input100">Username</span>
+                        @Html.TextBoxFor(model => model.KorisnickoIme, new { @class = "form-control", @style = "font-size: 1.5rem;" })
+                        @Html.ValidationMessageFor(model => model.KorisnickoIme, "", new { @class = "text-danger", @style = "font-size: 1.5rem;" })
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                        <span class="label-input100">Password</span>
+                        @Html.PasswordFor(model => model.Lozinka, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Lozinka)
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="flex-sb-m w-full p-b-30">
+                        <div class="contact100-form-checkbox">
+                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                            <label class="label-checkbox100" for="ckb1">
+                                Remember me
+                            </label>
+                        </div>
+
+                        <div>
+                            <a href="#" class="txt1">
+                                Forgot Password?
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">
+                            Login
+                        </button>
+                    </div>
+
+                    @Html.AntiForgeryToken()
+}
+            </div>
+        </div>
+    </div>
+
+    <!--===============================================================================================-->
+    <script src="/Content/Login/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/Content/Login/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/Content/Login/vendor/bootstrap/js/popper.js"></script>
+    <script src="/Content/Login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/Content/Login/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/Content/Login/vendor/daterangepicker/moment.min.js"></script>
+    <script src="/Content/Login/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="/Content/Login/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="/Content/Login/js/main.js"></script>
+
+</body>
+</html>

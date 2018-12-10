@@ -731,6 +731,7 @@
     <EntitySetMapping Name="VozacTroskovi">
       <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.VozacTroskovi">
         <MappingFragment StoreEntitySet="VozacTroskovi">
+          <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
           <ScalarProperty Name="Kartica" ColumnName="Kartica" />
           <ScalarProperty Name="Zakljucano" ColumnName="Zakljucano" />
           <ScalarProperty Name="IdVozac" ColumnName="IdVozac" />
@@ -786,6 +787,17 @@
           <ScalarProperty Name="IdDodatniUtovar" ColumnName="IdDodatniUtovar" />
           <ScalarProperty Name="IdDnevnik" ColumnName="IdDnevnik" />
           <ScalarProperty Name="IdRedoslijed" ColumnName="IdRedoslijed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoziloPodsjetnik">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.VoziloPodsjetnik">
+        <MappingFragment StoreEntitySet="VoziloPodsjetnik">
+          <ScalarProperty Name="DatumPodsjetnika" ColumnName="DatumPodsjetnika" />
+          <ScalarProperty Name="DatumIzrade" ColumnName="DatumIzrade" />
+          <ScalarProperty Name="Vrsta" ColumnName="Vrsta" />
+          <ScalarProperty Name="IdVozilo" ColumnName="IdVozilo" />
+          <ScalarProperty Name="IdVoziloPodsjetnik" ColumnName="IdVoziloPodsjetnik" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

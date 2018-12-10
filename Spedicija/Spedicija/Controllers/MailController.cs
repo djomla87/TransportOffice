@@ -55,7 +55,7 @@ namespace Spedicija.Controllers
             mail.IsBodyHtml = true;
 
             String text = "<div>";
-            text += "<img src='http://gmtel-office.com/Content/images/gmtel-transparent.png'>";
+            text += "<img src='http://gmtel-office.com/Content/images/Logo.png'>";
             text += "<h2>Pregled današnjih i sutrašnjih obaveza</h2>";
             text += "<h4>Dobro jutro Miha, <br>Ispod se nalazi pregled obaveza za danas</h4>";
             text += "</div>";

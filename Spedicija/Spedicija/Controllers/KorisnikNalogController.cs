@@ -243,7 +243,7 @@ namespace Spedicija.Controllers
                     mail.IsBodyHtml = true;
 
                     String text = "<div>";
-                    text += "<img src='http://gmtel-office.com/Content/images/gmtel-transparent.png'>";
+                    text += "<img src='http://gmtel-office.com/Content/images/Logo.png'>";
 
                     text += "<h2>" + Posiljaoc + " je poslao Nalog za Utovar.</h2>";
                     text += "</div>";
