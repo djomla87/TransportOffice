@@ -535,6 +535,7 @@
           </Key>
           <Property Name="IdTipUsluge" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Naziv" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SaldoVozaca" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Troskovi">
           <Key>
@@ -2537,6 +2538,7 @@
           </Key>
           <Property Name="IdTipUsluge" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Naziv" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SaldoVozaca" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="AndroidTask">
           <Key>
@@ -3575,6 +3577,7 @@
           <EntitySetMapping Name="TipUsluge">
             <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.TipUsluge">
               <MappingFragment StoreEntitySet="TipUsluge">
+                <ScalarProperty Name="SaldoVozaca" ColumnName="SaldoVozaca" />
                 <ScalarProperty Name="Naziv" ColumnName="Naziv" />
                 <ScalarProperty Name="IdTipUsluge" ColumnName="IdTipUsluge" />
               </MappingFragment>

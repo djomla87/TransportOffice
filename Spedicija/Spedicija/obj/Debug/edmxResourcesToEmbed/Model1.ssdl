@@ -530,6 +530,7 @@
     </Key>
     <Property Name="IdTipUsluge" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Naziv" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SaldoVozaca" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Troskovi">
     <Key>

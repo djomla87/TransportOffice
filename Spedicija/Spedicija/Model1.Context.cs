@@ -18,7 +18,6 @@ namespace Spedicija
     using System.Linq;
     using System.Web;
     using System.Web.Script.Serialization;
-
     public partial class uvhszjiy_spedicijaEntities : DbContext
     {
         public uvhszjiy_spedicijaEntities()

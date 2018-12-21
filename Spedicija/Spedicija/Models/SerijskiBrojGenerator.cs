@@ -24,16 +24,22 @@ namespace Spedicija.Models
             String godina = DateTime.Today.Year.ToString() + "-";
             var max = db.DnevnikPrevoza.Where(c => (c.ZapisAktivan ?? false) && c.IdDnevnikParent == null).OrderByDescending(c => c.IdDnevnik).FirstOrDefault();
 
-            if (max.SerijskiBroj.StartsWith(godina))
-            {
-                int br = Convert.ToInt32(max.SerijskiBroj.Split('-')[1]) + 1;
-                String str = ("0000" + br);
-                str = str.Substring(str.Length - 5, 5);
-
-                return godina + str;
-            }
-            else
+            if (max == null)
                 return godina + "00001";
+            else
+            {
+
+                if (max.SerijskiBroj.StartsWith(godina))
+                {
+                    int br = Convert.ToInt32(max.SerijskiBroj.Split('-')[1]) + 1;
+                    String str = ("0000" + br);
+                    str = str.Substring(str.Length - 5, 5);
+
+                    return godina + str;
+                }
+                else
+                    return godina + "00001";
+            }
 
         }
 

@@ -150,8 +150,15 @@ namespace Spedicija.Controllers
             int dupli = db.Subjekt.Where(c => c.PIB.Equals(subjekt.PIB)).Count();
             if (dupli > 0) ModelState.AddModelError("PIB", "Ovaj PIB već postoji u sistemu");
 
-            int RB = db.Subjekt.Max(c => c.RedniBroj ?? 0);
-            subjekt.RedniBroj = RB + 1;
+            try
+            {
+                int RB = db.Subjekt.Max(c => c.RedniBroj ?? 0);
+                subjekt.RedniBroj = RB + 1;
+            }
+            catch (Exception ex)
+            {
+                subjekt.RedniBroj = 1;
+            }
 
             if (ModelState.IsValid)
             {

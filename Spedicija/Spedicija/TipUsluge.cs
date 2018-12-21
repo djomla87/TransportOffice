@@ -16,5 +16,6 @@ namespace Spedicija
     {
         public int IdTipUsluge { get; set; }
         public string Naziv { get; set; }
+        public bool SaldoVozaca { get; set; }
     }
 }

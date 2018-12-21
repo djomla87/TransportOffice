@@ -561,6 +561,7 @@
     <EntitySetMapping Name="TipUsluge">
       <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.TipUsluge">
         <MappingFragment StoreEntitySet="TipUsluge">
+          <ScalarProperty Name="SaldoVozaca" ColumnName="SaldoVozaca" />
           <ScalarProperty Name="Naziv" ColumnName="Naziv" />
           <ScalarProperty Name="IdTipUsluge" ColumnName="IdTipUsluge" />
         </MappingFragment>

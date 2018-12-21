@@ -1115,6 +1115,7 @@
     </Key>
     <Property Name="IdTipUsluge" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Naziv" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SaldoVozaca" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="AndroidTask">
     <Key>

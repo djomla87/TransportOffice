@@ -455,6 +455,7 @@
     <Content Include="Content\css\dataTables.responsive.css" />
     <Content Include="Content\css\datepicker.css" />
     <Content Include="Content\css\dropzone.css" />
+    <Content Include="Content\css\print\finasije.css" />
     <Content Include="Content\css\font-awesome-animation.min.css" />
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\fontcss.css" />
@@ -468,6 +469,9 @@
     <Content Include="Content\css\multiselect.css" />
     <Content Include="Content\css\nestable.css" />
     <Content Include="Content\css\prettify.css" />
+    <Content Include="Content\css\print\bootstrap.css" />
+    <Content Include="Content\css\print\material-design-iconic-font.css" />
+    <Content Include="Content\css\print\materialadmin.css" />
     <Content Include="Content\css\rickshaw.css" />
     <Content Include="Content\css\selectlist.css" />
     <Content Include="Content\css\summernote.css" />

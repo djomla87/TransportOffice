@@ -112,6 +112,8 @@ namespace Spedicija.Controllers
         [HttpPost]
         public ActionResult Create(TipUsluge tipusluge)
         {
+            tipusluge.SaldoVozaca = false;
+
             if (ModelState.IsValid)
             {
                 db.TipUsluge.Add(tipusluge);
@@ -141,6 +143,9 @@ namespace Spedicija.Controllers
         [HttpPost]
         public ActionResult Edit(TipUsluge tipusluge)
         {
+
+
+
             if (ModelState.IsValid)
             {
                 db.Entry(tipusluge).State = EntityState.Modified;
