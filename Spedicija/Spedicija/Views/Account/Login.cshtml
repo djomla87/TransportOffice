@@ -2,16 +2,15 @@
 
 @{Layout = null;}
 
+<html>
+<head>
+    <title>Sign In</title>
 
-<link id="bootstrap-css" rel="stylesheet" href="~/Content/css/bootstrap.css">
+    <link href="~/Content/Login/style1.css" rel="stylesheet">
+    <link href="~/Content/Login/style.css" rel="stylesheet">
+    <link href="~/Content/Login/loginBootstrap.css" rel="stylesheet">
 
-<link rel="stylesheet" href="~/Content/css/fontcss.css">
-<link id="materialadmin-css" rel="stylesheet" href="~/Content/css/materialadmin.css"> 
-<script src="~/Content/js/jquery-min.js" type="text/javascript"></script>
-<script src="~/Content/js/jquery-migrate.js" type="text/javascript"></script>
-<script src="~/Content/js/bootstrap.js" type="text/javascript"></script>
-
-<script type="text/javascript">
+    <script type="text/javascript">
 
     $(document).ready(function () {
 
@@ -22,118 +21,81 @@
 
     });
 
-</script>
+    </script>
 
-<style>
-    .form-control {
-        font-size: 1rem;
-    }
-
-</style>
-
-<html lang="en">
-<head>
-    <title>Login V15</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Content/Login/vendor/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Content/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Content/Login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Content/Login/vendor/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Content/Login/vendor/css-hamburgers/hamburgers.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Content/Login/vendor/animsition/css/animsition.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Content/Login/vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Content/Login/vendor/daterangepicker/daterangepicker.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Content/Login/css/util.css">
-    <link rel="stylesheet" type="text/css" href="/Content/Login/css/main.css">
-    <!--===============================================================================================-->
 </head>
-<body>
 
-    <div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100">
-                <div class="login100-form-title" style="background-image: url('/Content/images/logistics-wp.png');">
-                    <span class="login100-form-title-1">
-                        Sign In
-                    </span>
-                </div>
+<body class="app">
+    <div id="loader" class="fadeOut">
+        <div class="spinner"></div>
+    </div>
+
+    <script type="text/javascript">
+window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        setTimeout(() => {
+          loader.classList.add('fadeOut');
+        }, 300);
+      });</script>
+
+    <div class="peers ai-s fxw-nw h-100vh">
+        <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style="background-image:url(/Content/Login/landing1.jpg)">
+
+            <!--
+            <div class="pos-a centerXY">
+            <div class="bgc-white bdrs-50p pos-r" style="width:120px;height:120px">
+            <img class="pos-a centerXY" src="" alt="">
+            </div></div>
+            -->
+
+        </div><div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r ps" style="min-width:320px">
+            <h4 class="fw-300 c-grey-900 mB-40">Transport Office</h4>
 
 
-@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "login100-form validate-form", role = "form" }))
-{
-    @Html.ValidationSummary(true)
-    @Html.Hidden("URL", ViewBag.ReturnUrl as object)
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "login100-form validate-form", role = "form" }))
+            {
+                @Html.ValidationSummary(true)
+                @Html.Hidden("URL", ViewBag.ReturnUrl as object)
 
 
-                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                        <span class="label-input100">Username</span>
-                        @Html.TextBoxFor(model => model.KorisnickoIme, new { @class = "form-control", @style = "font-size: 1.5rem;" })
+                    <div class="form-group">
+                        <label class="text-normal text-dark">Korisničko ime</label>
+                        @Html.TextBoxFor(model => model.KorisnickoIme, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.KorisnickoIme, "", new { @class = "text-danger", @style = "font-size: 1.5rem;" })
-                        <span class="focus-input100"></span>
                     </div>
 
-                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
-                        <span class="label-input100">Password</span>
+                    <div class="form-group">
+                        <label class="text-normal text-dark">Lozinka</label>
                         @Html.PasswordFor(model => model.Lozinka, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Lozinka)
-                        <span class="focus-input100"></span>
                     </div>
 
-                    <div class="flex-sb-m w-full p-b-30">
-                        <div class="contact100-form-checkbox">
-                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                            <label class="label-checkbox100" for="ckb1">
-                                Remember me
-                            </label>
+                    <div class="form-group">
+                        <div class="peers ai-c jc-sb fxw-nw">
+                            <div class="peer">
+                                <div class="checkbox checkbox-circle checkbox-info peers ai-c">
+                                    <input type="checkbox" id="inputCall1" name="inputCheckboxesCall" class="peer">
+                                    <label for="inputCall1" class="peers peer-greed js-sb ai-c">
+                                        <span class="peer peer-greed">Zapamti Me</span>
+                                    </label>
+                                </div>
+                            </div><div class="peer">
+                                <input type="submit" value="Prijava" title="Prijava" class="btn btn-primary">
+                            </div>
                         </div>
-
-                        <div>
-                            <a href="#" class="txt1">
-                                Forgot Password?
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
-                            Login
-                        </button>
                     </div>
 
                     @Html.AntiForgeryToken()
-}
-            </div>
-        </div>
+                    }
+                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div><div class="ps__rail-y" style="top: 0px; right: 0px;">
+                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                    </div>
+</div>
     </div>
 
-    <!--===============================================================================================-->
-    <script src="/Content/Login/vendor/jquery/jquery-3.2.1.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="/Content/Login/vendor/animsition/js/animsition.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="/Content/Login/vendor/bootstrap/js/popper.js"></script>
-    <script src="/Content/Login/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="/Content/Login/vendor/select2/select2.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="/Content/Login/vendor/daterangepicker/moment.min.js"></script>
-    <script src="/Content/Login/vendor/daterangepicker/daterangepicker.js"></script>
-    <!--===============================================================================================-->
-    <script src="/Content/Login/vendor/countdowntime/countdowntime.js"></script>
-    <!--===============================================================================================-->
-    <script src="/Content/Login/js/main.js"></script>
-
+    <script type="text/javascript" src="~/Content/Login/vendor.js"></script>
+    <script type="text/javascript" src="~/Content/Login/bundle.js"></script>
 </body>
 </html>

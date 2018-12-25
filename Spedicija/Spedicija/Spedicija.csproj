@@ -1568,15 +1568,12 @@
     <Content Include="Views\VoziloPodsjetnik\Create.cshtml" />
     <Content Include="Views\VoziloPodsjetnik\Edit.cshtml" />
     <Content Include="Views\VoziloPodsjetnik\Delete.cshtml" />
+    <Content Include="Views\Troskovi\IzvjestajFinansije.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="BARCODE\" />
-    <Folder Include="Content\Login\css\" />
-    <Folder Include="Content\Login\fonts\" />
-    <Folder Include="Content\Login\images\" />
-    <Folder Include="Content\Login\js\" />
-    <Folder Include="Content\Login\vendor\" />
+    <Folder Include="Content\Login\" />
     <Folder Include="Content\material-design-iconic-font\.git\branches\" />
     <Folder Include="Content\material-design-iconic-font\.git\logs\refs\heads\pr\" />
     <Folder Include="Content\material-design-iconic-font\.git\objects\info\" />

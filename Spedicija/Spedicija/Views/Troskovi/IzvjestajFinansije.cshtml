@@ -1,0 +1,135 @@
+﻿@{
+    ViewBag.Title = "IzvjestajFinansije";
+}
+
+
+<link href="~/Content/css/datepicker.css" rel="stylesheet" />
+<script src="~/Content/js/datepicker.js"></script>
+<script src="~/Content/js/bootstrap-datepicker.sr-latin.js"></script>
+
+<script src="~/Content/js/select.js"></script>
+<link href="~/Content/css/selectlist.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(function () {
+
+        $('.datum').datepicker({
+            language: 'sr-latin',
+        format: "dd.mm.yyyy",
+        todayBtn: "linked",
+        autoclose: true,
+        todayHighlight: true,
+        toggleActive: true
+    });
+
+        $('.select').select2({
+            allowClear: true
+        });
+
+        $('.multi-select').select2({
+            allowClear: true
+        });
+    });
+
+
+</script>
+<style>
+        .style-djomla {
+        background-color: #f5f5f5;
+        border: 1px solid #e3e3e3;
+    }
+
+</style>
+
+<section>
+    <div class="container">
+        <div class="section-body ">
+@using (Html.BeginForm("IzvjestajFinansije", "Troskovi", FormMethod.Post, new { @class = "form", role = "form" }))
+{
+            <div class="card card-underline style-djomla">
+                <div class="card-head">
+                    <header class="pull-left" style="margin-top: 10px;">Finansijski Izvještaj - podaševanje parametara</header>
+                    <div class="tools">
+                        <input type="submit" value="POTVRDI" class="btn btn-flat btn-primary ink-reaction" />
+                    </div>
+                </div>
+
+               
+                    @Html.ValidationSummary(true)
+
+                    <div class="card-body style-default-bright">
+
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group floating-label">
+                                            @Html.DropDownList("IdVozac", ViewBag.Vozaci as SelectList, String.Empty, new { @class = "form-control select" })
+                                            @Html.Label("Vozač")
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group floating-label">
+                                            @Html.DropDownList("IdVozilo", ViewBag.Vozila as SelectList, String.Empty, new { @class = "form-control select" })
+                                            @Html.Label("Vozilo")
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group floating-label">
+                                            <input type="text" name="DatumOd" class="form-control datum" value="@ViewBag.DatumOd" />
+                                            <label>Od Datuma </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group floating-label">
+                                            <input type="text" name="DatumDo" class="form-control datum" value="@ViewBag.DatumDo" />
+                                            <label>Do Datuma </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group floating-label">
+                                        @Html.DropDownList("Ture", ViewBag.Ture as MultiSelectList, new { @class = "form-control select", @name="IdDnevnik", @multiple = "multiple" })
+                                        @Html.Label("Ture")
+                                    </div>
+                                </div>
+                        </div>
+
+                       
+
+
+                    </div>
+
+             
+            </div>
+
+}
+
+            <div class="card card-underline style-djomla">
+                <div class="card-head">
+                    <header class="pull-left" style="margin-top: 10px;">Finansijski Izvještaji</header>
+
+                    <ul class="nav nav-tabs pull-left" data-toggle="tabs">
+                        <li class="active"><a href="#T1">Zarada od prevoza</a></li>
+                        <li class=""><a       href="#T2">Zarada Vozača</a></li>
+                    </ul>
+
+                </div>
+
+                    <div class="card-body style-default-bright">
+
+
+
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+

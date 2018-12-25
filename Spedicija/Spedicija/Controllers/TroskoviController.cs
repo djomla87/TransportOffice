@@ -234,10 +234,59 @@ namespace Spedicija.Controllers
             return RedirectToAction("Details", "DnevnikPrevoza", new { id = ret });
         }
 
+        [Authorize]
+        [SpedicijaAutorizacija(Roles = "admin")]
+        public ActionResult IzvjestajFinansije()
+        {
+            ViewBag.Vozaci = new SelectList(db.Vozaci, "IdVozac", "ImeVozaca");
+            ViewBag.Vozila = new SelectList(db.Vozilo.Select(c => new { IdVozilo = c.IdVozilo, Oznaka = c.TipVozila + " " + c.RegistarskiBroj }), "IdVozilo", "Oznaka");
+            ViewBag.DatumOd = DateTime.Today.AddDays(-30).ToShortDateString();
+            ViewBag.DatumDo = DateTime.Today.ToShortDateString();
 
+            var selected = new[] { 0 };
+            var ture = db.DnevnikPrevoza.Where(c => (c.ZapisAktivan ?? false))
+                .ToList()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.IdDnevnik.ToString(),
+                    Text = c.SerijskiBroj + " [" + c.UtovarGrad + " - " + c.IstovarGrad + "]",
+                    Selected = selected.Contains(c.IdDnevnik)
+                }).ToList();
 
+            ViewBag.Ture = ture;
 
+            return View();
+        }
 
+        [Authorize]
+        [HttpPost]
+        [SpedicijaAutorizacija(Roles = "admin")]
+        public ActionResult IzvjestajFinansije( int ? IdVozac, int ? IdVozilo, DateTime ? DatumOd, DateTime ? DatumDo)
+        {
+
+            var a = Request.Params;
+            ViewBag.DatumOd = DatumOd.HasValue ? DatumOd.Value.ToShortDateString() : "";
+            ViewBag.DatumDo = DatumDo.HasValue ? DatumDo.Value.ToShortDateString() : "";
+            ViewBag.Vozaci = new SelectList(db.Vozaci, "IdVozac", "ImeVozaca", IdVozac);
+            ViewBag.Vozila = new SelectList(db.Vozilo.Select(c => new { IdVozilo = c.IdVozilo, Oznaka = c.TipVozila + " " + c.RegistarskiBroj }), "IdVozilo", "Oznaka", IdVozilo);
+
+            var selected = new[] { "0" };
+            if (Request["Ture"] != null)
+                selected = Request["Ture"].ToString().Split(',');
+
+            var ture = db.DnevnikPrevoza.Where(c => (c.ZapisAktivan ?? false))
+                .ToList()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.IdDnevnik.ToString(),
+                    Text = c.SerijskiBroj + " [" + c.UtovarGrad + " - " + c.IstovarGrad + "]",
+                    Selected = selected.Contains(c.IdDnevnik.ToString())
+                }).ToList();
+
+            ViewBag.Ture = ture;
+
+            return View();
+        }
 
 
         protected override void Dispose(bool disposing)
