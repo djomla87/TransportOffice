@@ -77,6 +77,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -219,6 +221,7 @@
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\NalogController.cs" />
     <Compile Include="Controllers\PonudaController.cs" />
+    <Compile Include="Models\ShareDoc.cs" />
     <Compile Include="Controllers\StatusRobeController.cs" />
     <Compile Include="Controllers\SubjektController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
@@ -261,6 +264,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Dokument.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DokumentShare.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Drzava.cs">
@@ -328,6 +334,9 @@
     <Compile Include="Models\DodatniTroskoviIzracun.cs" />
     <Compile Include="Models\FakturaMaster.cs" />
     <Compile Include="Models\FakturaView.cs" />
+    <Compile Include="Models\Finansije\FBody.cs" />
+    <Compile Include="Models\Finansije\FHeader.cs" />
+    <Compile Include="Models\Finansije\Finansija.cs" />
     <Compile Include="Models\jQueryDataTableParamModel.cs" />
     <Compile Include="Models\MapaPrevozaModel.cs" />
     <Compile Include="Models\Mobile\Task.cs" />
@@ -1569,6 +1578,7 @@
     <Content Include="Views\VoziloPodsjetnik\Edit.cshtml" />
     <Content Include="Views\VoziloPodsjetnik\Delete.cshtml" />
     <Content Include="Views\Troskovi\IzvjestajFinansije.cshtml" />
+    <Content Include="Views\DnevnikPrevoza\ShareDokument.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

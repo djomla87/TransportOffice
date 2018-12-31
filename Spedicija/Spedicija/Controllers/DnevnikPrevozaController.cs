@@ -14,6 +14,8 @@ using System.Net.Mail;
 using System.Text.RegularExpressions;
 using Spedicija.Models.Mobile;
 using System.Runtime.Caching;
+using System.IO;
+using System.IO.Compression;
 
 namespace Spedicija.Controllers
 {
@@ -2350,6 +2352,114 @@ namespace Spedicija.Controllers
             }
         }
 
+        [Authorize]
+        public ActionResult ShareDokument() {
+
+
+            var vozila = (from a in db.Vozilo
+                          join b in db.Dokument on a.IdVozilo equals b.IdVozilo
+                          where a.ZapisAktivan
+                          select new ShareDoc {
+                              IdDokument = b.IdDokument,
+                              Ko = a.TipVozila + " " + a.RegistarskiBroj,
+                              Putanja = b.Putanja,
+                              Naziv = b.Naziv
+                          }).ToList();
+
+            var vozaci = (from a in db.Vozaci
+                          join b in db.Dokument on a.IdVozac equals b.IdVozac
+                          where (a.ZapisAktivan ?? false)
+                          select new ShareDoc
+                          {
+                              IdDokument = b.IdDokument,
+                              Ko = a.ImeVozaca,
+                              Putanja = b.Putanja,
+                              Naziv = b.Naziv
+                          }).ToList();
+
+            var dnevnici = db.Dokument.Include(k => k.DnevnikPrevoza).Where(c => (c.DnevnikPrevoza.ZapisAktivan ?? false)).Select(c => new {
+                IdDnevnik = c.IdDnevnik,
+                Relacija = c.DnevnikPrevoza.SerijskiBroj + " ["+ c.DnevnikPrevoza.UtovarGrad + " - " + c.DnevnikPrevoza.IstovarGrad + "]"
+            }).ToList();
+
+
+
+            ViewBag.Vozila = vozila;
+            ViewBag.Vozaci = vozaci;
+            ViewBag.Dnevnici = new SelectList(dnevnici,"IdDnevnik", "Relacija");
+
+            return View();
+        }
+
+        public JsonResult GetDocumentsOfDnevnici()
+        {
+
+            var a = Request["Lista[]"];
+            List<int> Dnevnici = new List<int>();
+
+            if (a != null)
+                Dnevnici = a.Split(',').Select(c => Convert.ToInt32(c)).ToList();
+
+
+            var dokumenti = db.Dokument.Include(k=>k.DnevnikPrevoza).Where(c => Dnevnici.Contains(c.IdDnevnik ?? 0)).Select(c =>  new {
+                IdDkoument = c.IdDokument,
+                Ko = c.DnevnikPrevoza.SerijskiBroj,
+                Naziv = c.Naziv,
+                Putanja = c.Putanja
+            }).OrderByDescending(c => c.Ko).ToList();
+
+            return Json(dokumenti, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetShareLink()
+        {
+
+            var a = Request.Params["dok[]"];
+            
+            if (a != null)
+            {
+                var dok = a.Split(',').Select(c => Convert.ToInt32(c)).ToList();
+
+                Random random = new Random();
+                const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                String r = new string(Enumerable.Repeat(chars, 10)
+                  .Select(s => s[random.Next(10)]).ToArray());
+
+                foreach (int i in dok)
+                {
+                    DokumentShare ds = new DokumentShare { IdDokument = i, Kod = r };
+                    db.DokumentShare.Add(ds);
+                }
+
+                db.SaveChanges();
+
+                return Json(AppSettings.GetSettings()["domain_name"] + "/DnevnikPrevoza/DijeljeniDokumenti?key=" + r, JsonRequestBehavior.AllowGet);
+            }
+
+           return Json("#ERROR", JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DijeljeniDokumenti(String key)
+        {
+            List<DokumentShare> lst = db.DokumentShare.Where(c => c.Kod.Equals(key)).ToList();
+
+            if (lst.Count == 0)
+                return HttpNotFound();
+
+            //////int CurrentFileID = Convert.ToInt32(FileID);  
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var ziparchive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
+                {
+                    for (int i = 0; i < lst.Count; i++)
+                    {
+                        ziparchive.CreateEntryFromFile(lst[i].Dokument.Putanja, lst[i].Dokument.Naziv);
+                    }
+                }
+                return File(memoryStream.ToArray(), "application/zip", "Attachments.zip");
+            }
+
+        }
 
         public JsonResult GetUpdateStatus(int id, String status, String token, int mail, int ? mail2, int ? PodStatus, String LONG, String LAT)
         {

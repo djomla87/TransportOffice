@@ -802,5 +802,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="DokumentShare">
+      <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.DokumentShare">
+        <MappingFragment StoreEntitySet="DokumentShare">
+          <ScalarProperty Name="Kod" ColumnName="Kod" />
+          <ScalarProperty Name="IdDokument" ColumnName="IdDokument" />
+          <ScalarProperty Name="IdDokumentShare" ColumnName="IdDokumentShare" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

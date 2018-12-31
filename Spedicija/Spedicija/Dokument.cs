@@ -14,6 +14,11 @@ namespace Spedicija
     
     public partial class Dokument
     {
+        public Dokument()
+        {
+            this.DokumentShare = new HashSet<DokumentShare>();
+        }
+    
         public int IdDokument { get; set; }
         public string Tip { get; set; }
         public string Putanja { get; set; }
@@ -24,5 +29,6 @@ namespace Spedicija
         public Nullable<int> IdVozilo { get; set; }
     
         public virtual DnevnikPrevoza DnevnikPrevoza { get; set; }
+        public virtual ICollection<DokumentShare> DokumentShare { get; set; }
     }
 }

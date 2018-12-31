@@ -2,6 +2,7 @@
     ViewBag.Title = "IzvjestajFinansije";
 }
 
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 <link href="~/Content/css/datepicker.css" rel="stylesheet" />
 <script src="~/Content/js/datepicker.js"></script>
@@ -9,6 +10,35 @@
 
 <script src="~/Content/js/select.js"></script>
 <link href="~/Content/css/selectlist.css" rel="stylesheet" />
+
+<script src="~/Content/js/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/Content/js/jquery-validation/dist/localization/messages_sr_lat.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var validator = $(".form").validate({
+            rules: {
+
+                DatumOd: { "required": true },
+                DatumDo: { "required": true }
+            }
+        });
+
+        $('submit').on('click', function (e) {
+            e.preventDefault();
+
+            if (!($(".form").valid())) {
+                validator.focusInvalid();
+            }
+            else $(".form").submit();
+
+
+        });
+
+    });
+
+
+</script>
 
 <script type="text/javascript">
     $(function () {
@@ -40,6 +70,65 @@
     }
 
 </style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#cmd1').click(function () {
+
+
+            var mywindow = window.open('', 'my div', "width="+screen.availWidth+",height="+screen.availHeight);
+            mywindow.document.write('<html><head><title>@("IzvjestajOZaradi")</title>');
+            mywindow.document.write('<link rel="stylesheet" type="text/css" href="/Content/css/print/material-design-iconic-font.min.css"/>');
+       //     mywindow.document.write('<link rel="stylesheet" id="materialadmin-css" type="text/css" rel="stylesheet" href="/Content/css/print/finasije.css" rel="stylesheet"/>');
+            mywindow.document.write('<link rel="stylesheet" id="materialadmin-css" type="text/css" rel="stylesheet" href="/Content/css/print/bootstrap.css"/>');
+            mywindow.document.write('<link rel="stylesheet" id="bootstrap-css" type="text/css" rel="stylesheet" href="/Content/css/print/materialadmin.css" /></head><body style="background: white;">');
+
+
+            mywindow.document.write($('<div/>').append($("#content1").clone()).html());
+            mywindow.document.write('</body></html>');
+            mywindow.document.close();
+
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            mywindow.print();
+
+
+            return true;
+
+
+        });
+
+
+        $('#cmd2').click(function () {
+
+
+            var mywindow = window.open('', 'my div', "width=" + screen.availWidth + ",height=" + screen.availHeight);
+            mywindow.document.write('<html><head><title>@("IzvjestajV")</title>');
+            mywindow.document.write('<link rel="stylesheet" type="text/css" href="/Content/css/print/material-design-iconic-font.min.css"/>');
+            //     mywindow.document.write('<link rel="stylesheet" id="materialadmin-css" type="text/css" rel="stylesheet" href="/Content/css/print/finasije.css" rel="stylesheet"/>');
+            mywindow.document.write('<link rel="stylesheet" id="materialadmin-css" type="text/css" rel="stylesheet" href="/Content/css/print/bootstrap.css"/>');
+            mywindow.document.write('<link rel="stylesheet" id="bootstrap-css" type="text/css" rel="stylesheet" href="/Content/css/print/materialadmin.css" /></head><body style="background: white;">');
+
+
+            mywindow.document.write($('<div/>').append($("#content2").clone()).html());
+            mywindow.document.write('</body></html>');
+            mywindow.document.close();
+
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            mywindow.print();
+
+
+            return true;
+
+
+        });
+
+    });
+
+</script>
 
 <section>
     <div class="container">
@@ -122,9 +211,249 @@
 
                 </div>
 
-                    <div class="card-body style-default-bright">
+                    <div class="card-body tab-content style-default-bright">
+
+                        <div id="T1" class="tab-pane active">
 
 
+                            <div id="content1">
+                                <a href="#" class="btn btn-icon-toggle" id="cmd1"><i class="md md-print"></i></a>
+
+                                <h4>Finansijski izvještaj o zaradi po turama</h4>
+
+                                <table class="table table-hover">
+
+
+                                    <tr style="color: #0aa89e;font-weight: 500;">
+                                        <td>Serijski Broj Ture</td>
+                                        <td>Vozač</td>
+                                        <td>Vozilo</td>
+                                        <td>Opis</td>
+                                        <td>Prihod</td>
+                                        <td>Rashod</td>
+                                        <td>Dobit</td>
+                                        <td>Plaćeno Karticom</td>
+                                    </tr>
+
+                                    <tbody>
+
+                                        @if (ViewBag.FinansijeTura != null)
+                                    {
+                                        String heder = "";
+                                        Decimal prihod = 0;
+                                        Decimal rashod = 0;
+                                        Decimal dobit = 0;
+                                        Decimal kartica = 0;
+
+                                        foreach (var item in (List<Spedicija.Models.Finansije.Finansija>)ViewBag.FinansijeTura)
+                                        {
+
+                                                <tr style="font-size:14px">
+                                                    @if (heder.Equals(item.SerijskiBroj))
+                                                {
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                }
+                                                else
+                                                {
+                                                        <td>@item.SerijskiBroj</td>
+                                                        <td>@item.Vozac</td>
+                                                        <td>@item.Vozilo</td>
+                                                }
+                                                    <td>@item.Opis</td>
+                                                    <td>@item.Prihod.ToString("0.00")</td>
+                                                    <td>@item.Rashod.ToString("0.00")</td>
+                                                    <td>@item.Dobit.ToString("0.00")</td>
+                                                    <td>@item.Kartica.ToString("0.00")</td>
+
+                                                    @{
+                                                    heder = @item.SerijskiBroj;
+                                                    prihod += @item.Prihod;
+                                                    rashod += @item.Rashod;
+                                                    dobit += @item.Dobit;
+                                                    kartica += @item.Kartica;
+
+                                                    }
+                                                </tr>
+
+                                           }
+
+                                                        <tr style="color: #0aa89e;font-weight: 500;">
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>@prihod.ToString("0.00")</td>
+                                            <td>@rashod.ToString("0.00")</td>
+                                            <td>@dobit.ToString("0.00")</td>
+                                            <td>@kartica.ToString("0.00")</td>
+                                        </tr>
+                                      }
+
+
+                                    </tbody>
+                                </table>
+
+                                <br>
+                                <h4>@Html.Raw(ViewBag.Poruka)</h4>
+
+                            </div>
+
+                         </div>
+
+                        <div id="T2" class="tab-pane">
+
+                            <div id="content2">
+                                <a href="#" class="btn btn-icon-toggle" id="cmd2"><i class="md md-print"></i></a>
+
+                                <h4>Finansijski izvještaj o zaradi vozača i vozila</h4>
+                                <table class="table table-hover">
+
+
+                                    <tr style="color: #0aa89e;font-weight: 500;">
+                                        <td>Serijski Broj Ture</td>
+                                        <td>Vozač</td>
+                                        <td>Vozilo</td>
+                                        <td>Opis</td>
+                                        <td>Prihod</td>
+                                        <td>Rashod</td>
+                                        <td>Dobit</td>
+                                        <td>Plaćeno Karticom</td>
+                                    </tr>
+
+                                    <tbody>
+
+                                        @if (ViewBag.FinansijeTura != null)
+                                        {
+                                            String heder = "";
+                                            Decimal prihod = 0;
+                                            Decimal rashod = 0;
+                                            Decimal dobit = 0;
+                                            Decimal kartica = 0;
+
+                                            Decimal avans = 0;
+                                            Decimal troskovi = 0;
+                                            int start = 0;
+                                            foreach (var item in (List<Spedicija.Models.Finansije.Finansija>)ViewBag.FinansijeVozac)
+                                            {
+
+                                                if (start > 0 && !heder.Equals(item.SerijskiBroj))
+                                                {
+                                                   <tr style="font-size:14px">
+                                                       <td></td>
+                                                       <td></td>
+                                                       <td></td>
+                                                       <td>Ostatak Avansa</td>
+                                                       <td>0,00</td>
+                                                       <td>@((avans - troskovi).ToString("0.00"))</td>
+                                                       <td>@(((-1)*(avans - troskovi)).ToString("0.00"))</td>
+                                                       <td>0,00</td>
+
+
+                                                       </tr>  
+
+
+                                                    rashod  += (avans - troskovi);
+                                                    dobit += ((-1) * (avans - troskovi));
+
+                                                    avans = 0;
+                                                    troskovi = 0;
+                                                }
+
+                                                start++;
+
+                                                <tr style="font-size:14px">
+                                                    @if (heder.Equals(item.SerijskiBroj))
+                                                    {
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+
+                                                        if (item.Opis.Equals("Avans"))
+                                                        {
+                                                            avans = avans + item.Prihod;
+                                                        }
+                                                        troskovi = troskovi + item.Rashod;
+                                                        
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@item.SerijskiBroj</td>
+                                                        <td>@item.Vozac</td>
+                                                        <td>@item.Vozilo</td>
+
+                                                        if (item.Opis.Equals("Avans"))
+                                                        {
+                                                            avans = item.Prihod;
+                                                        }
+                                                        troskovi = item.Rashod;
+                                                    }
+                                                    <td>@item.Opis</td>
+                                                    <td>@item.Prihod.ToString("0.00")</td>
+                                                    <td>@item.Rashod.ToString("0.00")</td>
+                                                    <td>@item.Dobit.ToString("0.00")</td>
+                                                    <td>@item.Kartica.ToString("0.00")</td>
+
+                                                    @{
+                                                        heder = @item.SerijskiBroj;
+                                                        prihod += @item.Prihod;
+                                                        rashod += @item.Rashod;
+                                                        dobit += @item.Dobit;
+                                                        kartica += @item.Kartica;
+
+                                                    }
+                                                </tr>
+
+
+
+
+                                                        }
+
+
+                                                        <tr style="font-size:14px">
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>Ostatak Avansa</td>
+                                                            <td>0,00</td>
+                                                            <td>@((avans - troskovi).ToString("0.00"))</td>
+                                                            <td>@(((-1) * (avans - troskovi)).ToString("0.00"))</td>
+                                                            <td>0,00</td>
+
+
+                                                        </tr>
+
+
+                                                        rashod += (avans - troskovi);
+                                                        dobit += ((-1) * (avans - troskovi));
+                                                        start++;
+
+
+
+                                                        <tr style="color: #0aa89e;font-weight: 500;">
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>@prihod.ToString("0.00")</td>
+                                                            <td>@rashod.ToString("0.00")</td>
+                                                            <td>@dobit.ToString("0.00")</td>
+                                                            <td>@kartica.ToString("0.00")</td>
+                                                        </tr>
+                                                        }
+
+
+                                    </tbody>
+                                </table>
+
+                                <br>
+                                <h4>@Html.Raw(ViewBag.Poruka)</h4>
+
+                            </div>
+
+                        </div>
 
                     </div>
 

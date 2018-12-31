@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Spedicija.Models;
+using Spedicija.Models.Finansije;
 
 
 namespace Spedicija.Controllers
@@ -251,22 +252,23 @@ namespace Spedicija.Controllers
                     Value = c.IdDnevnik.ToString(),
                     Text = c.SerijskiBroj + " [" + c.UtovarGrad + " - " + c.IstovarGrad + "]",
                     Selected = selected.Contains(c.IdDnevnik)
-                }).ToList();
+                }).ToList().OrderByDescending(c => c.Value);
 
             ViewBag.Ture = ture;
-
+            ViewBag.FinansijeTura = null;
+            ViewBag.Poruka = "";
             return View();
         }
 
         [Authorize]
         [HttpPost]
         [SpedicijaAutorizacija(Roles = "admin")]
-        public ActionResult IzvjestajFinansije( int ? IdVozac, int ? IdVozilo, DateTime ? DatumOd, DateTime ? DatumDo)
+        public ActionResult IzvjestajFinansije( int ? IdVozac, int ? IdVozilo, DateTime DatumOd, DateTime DatumDo)
         {
 
             var a = Request.Params;
-            ViewBag.DatumOd = DatumOd.HasValue ? DatumOd.Value.ToShortDateString() : "";
-            ViewBag.DatumDo = DatumDo.HasValue ? DatumDo.Value.ToShortDateString() : "";
+            ViewBag.DatumOd = DatumOd.ToShortDateString();
+            ViewBag.DatumDo = DatumDo.ToShortDateString();
             ViewBag.Vozaci = new SelectList(db.Vozaci, "IdVozac", "ImeVozaca", IdVozac);
             ViewBag.Vozila = new SelectList(db.Vozilo.Select(c => new { IdVozilo = c.IdVozilo, Oznaka = c.TipVozila + " " + c.RegistarskiBroj }), "IdVozilo", "Oznaka", IdVozilo);
 
@@ -281,9 +283,104 @@ namespace Spedicija.Controllers
                     Value = c.IdDnevnik.ToString(),
                     Text = c.SerijskiBroj + " [" + c.UtovarGrad + " - " + c.IstovarGrad + "]",
                     Selected = selected.Contains(c.IdDnevnik.ToString())
-                }).ToList();
+                }).ToList().OrderByDescending(c => c.Value);
 
             ViewBag.Ture = ture;
+
+
+            var dnevnici = selected.Select(c => Convert.ToInt32(c)).ToList();
+
+            var Podaci = db.DnevnikPrevoza.Include(k=> k.Vozaci).Include(k => k.Vozilo)
+                .Where(c => (c.ZapisAktivan ?? false) && c.DatumDnevnika <= DatumDo && c.DatumDnevnika >= DatumOd).ToList();
+
+            if (IdVozac.HasValue)
+                Podaci = Podaci.Where(c => c.IdVozac == IdVozac).ToList();
+            if (IdVozilo.HasValue)
+                Podaci = Podaci.Where(c => c.IdVozilo == IdVozilo).ToList();
+            if (Request["Ture"] != null)
+            Podaci = Podaci.Where(c => dnevnici.Contains(c.IdDnevnik)).ToList();
+
+            List<Finansija> Lst = new List<Finansija>();
+            List<Finansija> LstVozac = new List<Finansija>();
+
+            Lst = Podaci.Select(c => new Finansija {
+                RB = 1,
+                SerijskiBroj = c.SerijskiBroj + " [" + c.UtovarGrad + " - " + c.IstovarGrad + "]",
+                Vozilo = (c.IdVozilo == null) ? "" : c.Vozilo.TipVozila + " " + c.Vozilo.RegistarskiBroj,
+                Vozac = (c.IdVozac == null) ? "" : c.Vozaci.ImeVozaca,
+                Opis = "Cijena Prevoza",
+                Prihod = (( c.CijenaPrevoza * c.Valuta.UKM ) ?? 0 ),
+                Rashod = 0,
+                Dobit = ((c.CijenaPrevoza * c.Valuta.UKM) ?? 0)
+            }).ToList();
+
+            Lst.AddRange(
+                Podaci.SelectMany(p => p.Troskovi).Select(c => new Finansija
+                {
+                    RB = 2,
+                    SerijskiBroj = c.DnevnikPrevoza.SerijskiBroj + " [" + c.DnevnikPrevoza.UtovarGrad + " - " + c.DnevnikPrevoza.IstovarGrad + "]",
+                    Vozilo = (c.DnevnikPrevoza.IdVozilo == null) ? "" : c.DnevnikPrevoza.Vozilo.TipVozila + " " + c.DnevnikPrevoza.Vozilo.RegistarskiBroj,
+                    Vozac = (c.DnevnikPrevoza.IdVozac == null) ? "" : c.DnevnikPrevoza.Vozaci.ImeVozaca,
+                    Opis = c.Vrsta,
+                    Prihod = ((c.Iznos * c.Valuta.UKM) ?? 0),
+                    Rashod = ((c.StvarniTrosak * c.Valuta.UKM) ?? 0),
+                    Kartica = 0,
+                    Dobit = ((c.Iznos * c.Valuta.UKM) ?? 0) - ((c.StvarniTrosak * c.Valuta.UKM) ?? 0)
+                }).ToList()
+                );
+
+            LstVozac = Podaci.SelectMany(p => p.Troskovi).Where(c => (c.Vrsta.Equals("Plata vozača") || c.Vrsta.Equals("Dnevnice Vozača") || c.Vrsta.Equals("Vozač zadržao ostatak od avansa"))).Select(c => new Finansija
+            {
+                RB = 1,
+                SerijskiBroj = c.DnevnikPrevoza.SerijskiBroj + " [" + c.DnevnikPrevoza.UtovarGrad + " - " + c.DnevnikPrevoza.IstovarGrad + "]",
+                Vozilo = (c.DnevnikPrevoza.IdVozilo == null) ? "" : c.DnevnikPrevoza.Vozilo.TipVozila + " " + c.DnevnikPrevoza.Vozilo.RegistarskiBroj,
+                Vozac = (c.DnevnikPrevoza.IdVozac == null) ? "" : c.DnevnikPrevoza.Vozaci.ImeVozaca,
+                Opis = c.Vrsta,
+                Prihod = ((c.StvarniTrosak * c.Valuta.UKM) ?? 0),
+                Rashod = 0,
+                Kartica = 0,
+                Dobit = ((c.StvarniTrosak * c.Valuta.UKM) ?? 0)
+            }).ToList();
+
+
+
+            Lst.AddRange(
+                Podaci.SelectMany(p => p.VozacTroskovi).Where(c => c.Tip.Equals("RASHOD")).Select(c => new Finansija
+                {
+                    RB =            3,
+                    SerijskiBroj =  c.DnevnikPrevoza.SerijskiBroj + " [" + c.DnevnikPrevoza.UtovarGrad + " - " + c.DnevnikPrevoza.IstovarGrad + "]",
+                    Vozilo =        (c.DnevnikPrevoza.IdVozilo == null) ? "" : c.DnevnikPrevoza.Vozilo.TipVozila + " " + c.DnevnikPrevoza.Vozilo.RegistarskiBroj,
+                    Vozac =         (c.DnevnikPrevoza.IdVozac == null) ? "" : c.DnevnikPrevoza.Vozaci.ImeVozaca,
+                    Opis =          c.VozacVrstaTroskova.Naziv,
+                    Prihod =        0,
+                    Rashod =        (c.Kartica ?? false) ? 0 : ((c.Iznos * c.Valuta.UKM) ?? 0),
+                    Kartica =       (c.Kartica ?? false) ? ((c.Iznos * c.Valuta.UKM) ?? 0) : 0,
+                    Dobit =         (c.Kartica ?? false) ? 0 : -1 * ((c.Iznos * c.Valuta.UKM) ?? 0)
+                }).ToList()
+                );
+
+            LstVozac.AddRange(
+               Podaci.SelectMany(p => p.VozacTroskovi).Select(c => new Finansija
+               {
+                   RB = c.Tip.Equals("ZADUŽENJE") ? 2 : 3,
+                   SerijskiBroj = c.DnevnikPrevoza.SerijskiBroj + " [" + c.DnevnikPrevoza.UtovarGrad + " - " + c.DnevnikPrevoza.IstovarGrad + "]",
+                   Vozilo = (c.DnevnikPrevoza.IdVozilo == null) ? "" : c.DnevnikPrevoza.Vozilo.TipVozila + " " + c.DnevnikPrevoza.Vozilo.RegistarskiBroj,
+                   Vozac = (c.DnevnikPrevoza.IdVozac == null) ? "" : c.DnevnikPrevoza.Vozaci.ImeVozaca,
+                   Opis = c.Tip.Equals("ZADUŽENJE") ? "Avans" : c.VozacVrstaTroskova.Naziv,
+                   Prihod   = c.Tip.Equals("ZADUŽENJE") ? ((c.Iznos * c.Valuta.UKM) ?? 0) : 0 ,
+                   Rashod   = c.Tip.Equals("RASHOD") ? ((c.Kartica ?? false) ? 0 : ((c.Iznos * c.Valuta.UKM) ?? 0)) : 0,
+                   Kartica  = c.Tip.Equals("RASHOD") ? ((c.Kartica ?? false) ? ((c.Iznos * c.Valuta.UKM) ?? 0) : 0) : 0,
+                   Dobit    = c.Tip.Equals("RASHOD") ? ((c.Kartica ?? false) ? 0 : -1 * ((c.Iznos * c.Valuta.UKM) ?? 0)) : ((c.Iznos * c.Valuta.UKM) ?? 0)
+               }).ToList()
+               );
+
+
+            ViewBag.FinansijeTura = Lst.OrderBy(c => c.SerijskiBroj).ThenBy(c => c.RB).ToList();
+            ViewBag.FinansijeVozac = LstVozac.OrderBy(c => c.SerijskiBroj).ThenBy(c => c.RB).ToList();
+
+            ViewBag.Poruka = "Izvještaj o zaradi za period: " + DatumOd.ToShortDateString() + " - " + DatumDo.ToShortDateString() + "<br> Parametri izvještaja: <br>" +
+                "Vozač: "  + (IdVozac.HasValue ? db.Vozaci.Find(IdVozac).ImeVozaca : "SVI VOZAČI") + ", <br>" +
+                "Vozilo: " + (IdVozilo.HasValue ? db.Vozilo.Find(IdVozilo).RegistarskiBroj : "SVA VOZILA");
 
             return View();
         }

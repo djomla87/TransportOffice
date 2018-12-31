@@ -186,6 +186,14 @@
     <Property Name="IdVozac" Type="int" />
     <Property Name="IdVozilo" Type="int" />
   </EntityType>
+  <EntityType Name="DokumentShare">
+    <Key>
+      <PropertyRef Name="IdDokumentShare" />
+    </Key>
+    <Property Name="IdDokumentShare" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdDokument" Type="int" Nullable="false" />
+    <Property Name="Kod" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="Drzava">
     <Key>
       <PropertyRef Name="IdDrzava" />
@@ -1174,6 +1182,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="KF_Dokument_Share">
+    <End Role="Dokument" Type="Self.Dokument" Multiplicity="1" />
+    <End Role="DokumentShare" Type="Self.DokumentShare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dokument">
+        <PropertyRef Name="IdDokument" />
+      </Principal>
+      <Dependent Role="DokumentShare">
+        <PropertyRef Name="IdDokument" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Function Name="spVratiPodatkeZaNalog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdNalog" Type="int" Mode="In" />
   </Function>
@@ -1206,6 +1226,7 @@
     <EntitySet Name="DnevnikUvoznikIzvoznik" EntityType="Self.DnevnikUvoznikIzvoznik" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DnevnikValute" EntityType="Self.DnevnikValute" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Dokument" EntityType="Self.Dokument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DokumentShare" EntityType="Self.DokumentShare" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Drzava" EntityType="Self.Drzava" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Grad" EntityType="Self.Grad" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="IDnevnikPrevozaVozac" EntityType="Self.IDnevnikPrevozaVozac" Schema="dbo" store:Type="Tables" />
@@ -1412,6 +1433,10 @@
     <AssociationSet Name="FK_ZaradaDnevnik" Association="Self.FK_ZaradaDnevnik">
       <End Role="IzracunZarada" EntitySet="IzracunZarada" />
       <End Role="IzracunDnevnik" EntitySet="IzracunDnevnik" />
+    </AssociationSet>
+    <AssociationSet Name="KF_Dokument_Share" Association="Self.KF_Dokument_Share">
+      <End Role="Dokument" EntitySet="Dokument" />
+      <End Role="DokumentShare" EntitySet="DokumentShare" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

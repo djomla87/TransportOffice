@@ -191,6 +191,14 @@
           <Property Name="IdVozac" Type="int" />
           <Property Name="IdVozilo" Type="int" />
         </EntityType>
+        <EntityType Name="DokumentShare">
+          <Key>
+            <PropertyRef Name="IdDokumentShare" />
+          </Key>
+          <Property Name="IdDokumentShare" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDokument" Type="int" Nullable="false" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Drzava">
           <Key>
             <PropertyRef Name="IdDrzava" />
@@ -1179,6 +1187,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="KF_Dokument_Share">
+          <End Role="Dokument" Type="Self.Dokument" Multiplicity="1" />
+          <End Role="DokumentShare" Type="Self.DokumentShare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dokument">
+              <PropertyRef Name="IdDokument" />
+            </Principal>
+            <Dependent Role="DokumentShare">
+              <PropertyRef Name="IdDokument" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="spVratiPodatkeZaNalog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdNalog" Type="int" Mode="In" />
         </Function>
@@ -1211,6 +1231,7 @@
           <EntitySet Name="DnevnikUvoznikIzvoznik" EntityType="Self.DnevnikUvoznikIzvoznik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DnevnikValute" EntityType="Self.DnevnikValute" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dokument" EntityType="Self.Dokument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DokumentShare" EntityType="Self.DokumentShare" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Drzava" EntityType="Self.Drzava" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Grad" EntityType="Self.Grad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IDnevnikPrevozaVozac" EntityType="Self.IDnevnikPrevozaVozac" Schema="dbo" store:Type="Tables" />
@@ -1417,6 +1438,10 @@
           <AssociationSet Name="FK_ZaradaDnevnik" Association="Self.FK_ZaradaDnevnik">
             <End Role="IzracunZarada" EntitySet="IzracunZarada" />
             <End Role="IzracunDnevnik" EntitySet="IzracunDnevnik" />
+          </AssociationSet>
+          <AssociationSet Name="KF_Dokument_Share" Association="Self.KF_Dokument_Share">
+            <End Role="Dokument" EntitySet="Dokument" />
+            <End Role="DokumentShare" EntitySet="DokumentShare" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -1662,6 +1687,11 @@
             <End Role="Vozilo" EntitySet="Vozilo" />
             <End Role="VoziloPodsjetnik" EntitySet="VoziloPodsjetnik" />
           </AssociationSet>
+          <EntitySet Name="DokumentShare" EntityType="uvhszjiy_spedicijaModel.DokumentShare" />
+          <AssociationSet Name="KF_Dokument_Share" Association="uvhszjiy_spedicijaModel.KF_Dokument_Share">
+            <End Role="Dokument" EntitySet="Dokument" />
+            <End Role="DokumentShare" EntitySet="DokumentShare" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="DnevnicaDetail">
           <Key>
@@ -1791,6 +1821,7 @@
           <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik1" FromRole="Dokument" ToRole="DnevnikPrevoza" />
           <Property Type="Int32" Name="IdVozac" />
           <Property Type="Int32" Name="IdVozilo" />
+          <NavigationProperty Name="DokumentShare" Relationship="uvhszjiy_spedicijaModel.KF_Dokument_Share" FromRole="Dokument" ToRole="DokumentShare" />
         </EntityType>
         <EntityType Name="Drzava">
           <Key>
@@ -3011,6 +3042,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DokumentShare">
+          <Key>
+            <PropertyRef Name="IdDokumentShare" />
+          </Key>
+          <Property Name="IdDokumentShare" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDokument" Type="Int32" Nullable="false" />
+          <Property Name="Kod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Dokument" Relationship="uvhszjiy_spedicijaModel.KF_Dokument_Share" FromRole="DokumentShare" ToRole="Dokument" />
+        </EntityType>
+        <Association Name="KF_Dokument_Share">
+          <End Type="uvhszjiy_spedicijaModel.Dokument" Role="Dokument" Multiplicity="1" />
+          <End Type="uvhszjiy_spedicijaModel.DokumentShare" Role="DokumentShare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dokument">
+              <PropertyRef Name="IdDokument" />
+            </Principal>
+            <Dependent Role="DokumentShare">
+              <PropertyRef Name="IdDokument" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3815,6 +3867,15 @@
                 <ScalarProperty Name="Vrsta" ColumnName="Vrsta" />
                 <ScalarProperty Name="IdVozilo" ColumnName="IdVozilo" />
                 <ScalarProperty Name="IdVoziloPodsjetnik" ColumnName="IdVoziloPodsjetnik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DokumentShare">
+            <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.DokumentShare">
+              <MappingFragment StoreEntitySet="DokumentShare">
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="IdDokument" ColumnName="IdDokument" />
+                <ScalarProperty Name="IdDokumentShare" ColumnName="IdDokumentShare" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

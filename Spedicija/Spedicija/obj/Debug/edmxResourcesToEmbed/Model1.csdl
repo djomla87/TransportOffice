@@ -239,6 +239,11 @@
       <End Role="Vozilo" EntitySet="Vozilo" />
       <End Role="VoziloPodsjetnik" EntitySet="VoziloPodsjetnik" />
     </AssociationSet>
+    <EntitySet Name="DokumentShare" EntityType="uvhszjiy_spedicijaModel.DokumentShare" />
+    <AssociationSet Name="KF_Dokument_Share" Association="uvhszjiy_spedicijaModel.KF_Dokument_Share">
+      <End Role="Dokument" EntitySet="Dokument" />
+      <End Role="DokumentShare" EntitySet="DokumentShare" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="DnevnicaDetail">
     <Key>
@@ -368,6 +373,7 @@
     <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik1" FromRole="Dokument" ToRole="DnevnikPrevoza" />
     <Property Type="Int32" Name="IdVozac" />
     <Property Type="Int32" Name="IdVozilo" />
+    <NavigationProperty Name="DokumentShare" Relationship="uvhszjiy_spedicijaModel.KF_Dokument_Share" FromRole="Dokument" ToRole="DokumentShare" />
   </EntityType>
   <EntityType Name="Drzava">
     <Key>
@@ -1585,6 +1591,27 @@
       </Principal>
       <Dependent Role="VoziloPodsjetnik">
         <PropertyRef Name="IdVozilo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DokumentShare">
+    <Key>
+      <PropertyRef Name="IdDokumentShare" />
+    </Key>
+    <Property Name="IdDokumentShare" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdDokument" Type="Int32" Nullable="false" />
+    <Property Name="Kod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Dokument" Relationship="uvhszjiy_spedicijaModel.KF_Dokument_Share" FromRole="DokumentShare" ToRole="Dokument" />
+  </EntityType>
+  <Association Name="KF_Dokument_Share">
+    <End Type="uvhszjiy_spedicijaModel.Dokument" Role="Dokument" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.DokumentShare" Role="DokumentShare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dokument">
+        <PropertyRef Name="IdDokument" />
+      </Principal>
+      <Dependent Role="DokumentShare">
+        <PropertyRef Name="IdDokument" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

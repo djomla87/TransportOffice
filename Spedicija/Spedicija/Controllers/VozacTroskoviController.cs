@@ -146,7 +146,7 @@ namespace Spedicija.Controllers
 		}
 
         [Authorize]
-        public ActionResult TroskoviVozaca(int id, int ? IdDnevnik)
+        public ActionResult TroskoviVozaca(int id, int IdDnevnik = 0)
         {
             DateTime OD = Session["TroskoviOd"] != null ? (DateTime)Session["TroskoviOd"] : DateTime.Now.AddHours(8).AddDays(-30);
             DateTime DO = Session["TroskoviDo"] != null ? (DateTime)Session["TroskoviDo"] : DateTime.Now.AddHours(8);
@@ -155,12 +155,12 @@ namespace Spedicija.Controllers
             bool daliPrikazatiZakljucane = (Zakljucano.Equals("") ? false : true);
 
             var vozactroskovi =
-                IdDnevnik == null ?
+                IdDnevnik == 0 ?
                 db.VozacTroskovi.Include(v => v.Valuta).Include(v => v.VozacVrstaTroskova).
                 Where(c => c.IdVozac == id && c.Datum >= OD && c.Datum <= DO).ToList()
                 :
                 db.VozacTroskovi.Include(v => v.Valuta).Include(v => v.VozacVrstaTroskova).
-                Where(c => c.IdVozac == id && c.IdDnevnik == IdDnevnik.Value).ToList();
+                Where(c => c.IdVozac == id && c.IdDnevnik == IdDnevnik).ToList();
 
             if (!daliPrikazatiZakljucane)
                 vozactroskovi = vozactroskovi.Where(c => !(c.Zakljucano ?? false)).ToList();
@@ -172,7 +172,7 @@ namespace Spedicija.Controllers
             ViewBag.Zakljucano = Zakljucano;
 
             List<DnevnikPrevoza> listDnevnika =
-            IdDnevnik == null ?
+            IdDnevnik == 0 ?
             db.DnevnikPrevoza.Where(c => c.IdVozac == id && (c.ZapisAktivan ?? false) &&
             (
             (c.DatumUtovara >= OD && c.DatumIstovara <= DO) ||
@@ -182,22 +182,24 @@ namespace Spedicija.Controllers
             )
             ).ToList()
             :
-             db.DnevnikPrevoza.Where(c => c.IdVozac == id && c.IdDnevnik == IdDnevnik.Value).ToList();
+             db.DnevnikPrevoza.Where(c => c.IdVozac == id && c.IdDnevnik == IdDnevnik).ToList();
 
             ViewBag.listDnevnika = listDnevnika;
 
             String Napomene = db.Vozaci.Find(id).Napomene;
             ViewBag.Napomene = String.IsNullOrEmpty(Napomene) ? "" : Napomene;
             ViewBag.IdDnevnik = new SelectList(db.DnevnikPrevoza.Where(c => (c.ZapisAktivan ?? false)).
-               Select(c => new { IdDnevnik = c.IdDnevnik, Text = c.SerijskiBroj + " [" + c.UtovarGrad + " - " + c.IstovarGrad + "]" }), "IdDnevnik", "Text", IdDnevnik);
+               Select(c => new { IdDnevnik = c.IdDnevnik, Value = c.SerijskiBroj + " [" + c.UtovarGrad + " - " + c.IstovarGrad + "]" }), "IdDnevnik", "Value", IdDnevnik);
 
 
             return View(vozactroskovi.OrderBy(c => c.IdCozacTroskovi).ToList());
         }
 
         [HttpPost]
-        public ActionResult TroskoviVozaca(int IdVozac, DateTime DatumOd, DateTime DatumDo, int ? IdDnevnik)
+        public ActionResult TroskoviVozaca(int IdVozac, DateTime DatumOd, DateTime DatumDo, int IdDnevnik = 0)
         {
+            var a = Request.Params;
+
             DateTime OD = DatumOd;
             DateTime DO = DatumDo.AddHours(23).AddMinutes(59).AddSeconds(59);
 
@@ -211,12 +213,12 @@ namespace Spedicija.Controllers
            
 
             var vozactroskovi =
-             IdDnevnik == null ?
+             IdDnevnik == 0 ?
              db.VozacTroskovi.Include(v => v.Valuta).Include(v => v.VozacVrstaTroskova).
              Where(c => c.IdVozac == IdVozac && c.Datum >= OD && c.Datum <= DO).ToList()
              :
              db.VozacTroskovi.Include(v => v.Valuta).Include(v => v.VozacVrstaTroskova).
-             Where(c => c.IdVozac == IdVozac && c.IdDnevnik == IdDnevnik.Value).ToList();
+             Where(c => c.IdVozac == IdVozac && c.IdDnevnik == IdDnevnik).ToList();
 
             if (!daliPrikazatiZakljucane)
                 vozactroskovi = vozactroskovi.Where(c => !(c.Zakljucano ?? false)).ToList();
@@ -232,7 +234,7 @@ namespace Spedicija.Controllers
                Select(c => new { IdDnevnik = c.IdDnevnik, Text = c.SerijskiBroj + " [" + c.UtovarGrad + " - " + c.IstovarGrad + "]" }), "IdDnevnik", "Text", IdDnevnik);
 
             List<DnevnikPrevoza> listDnevnika =
-           IdDnevnik == null ?
+           IdDnevnik == 0 ?
            db.DnevnikPrevoza.Where(c => c.IdVozac == IdVozac && (c.ZapisAktivan ?? false) &&
            (
            (c.DatumUtovara >= OD && c.DatumIstovara <= DO) ||
@@ -242,7 +244,7 @@ namespace Spedicija.Controllers
            )
            ).ToList()
            :
-            db.DnevnikPrevoza.Where(c => c.IdVozac == IdVozac && c.IdDnevnik == IdDnevnik.Value).ToList();
+            db.DnevnikPrevoza.Where(c => c.IdVozac == IdVozac && c.IdDnevnik == IdDnevnik).ToList();
 
             ViewBag.listDnevnika = listDnevnika;
             String Napomene = db.Vozaci.Find(IdVozac).Napomene;

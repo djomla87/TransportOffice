@@ -18,6 +18,7 @@ namespace Spedicija
     using System.Linq;
     using System.Web;
     using System.Web.Script.Serialization;
+
     public partial class uvhszjiy_spedicijaEntities : DbContext
     {
         public uvhszjiy_spedicijaEntities()
@@ -71,6 +72,7 @@ namespace Spedicija
         public DbSet<IDnevnikPrevozaVozac> IDnevnikPrevozaVozac { get; set; }
         public DbSet<RedoslijedUtovarIstovar> RedoslijedUtovarIstovar { get; set; }
         public DbSet<VoziloPodsjetnik> VoziloPodsjetnik { get; set; }
+        public DbSet<DokumentShare> DokumentShare { get; set; }
     
         public virtual ObjectResult<spVratiPodatkeZaNalog_Result> spVratiPodatkeZaNalog(Nullable<int> idNalog)
         {
