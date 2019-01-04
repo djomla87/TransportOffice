@@ -276,8 +276,8 @@ namespace Spedicija.Controllers
 
             String kobasica = dnevnik.GostPristup;
 
-            using (System.Drawing.Image imagen = BarcodeDrawFactory.GetSymbology(BarcodeSymbology.CodeQr).Draw("www.gmtel-office.com/DnevnikPrevoza/GuestDetail?s=" + kobasica, 50, 2))
-            //using (System.Drawing.Image imagen = BarcodeDrawFactory.GetSymbology(BarcodeSymbology.Code128).Draw("www.gmtel-office.com/DnevnikPrevoza/GuestDetail?s=" + kobasica, 50, 2))
+            using (System.Drawing.Image imagen = BarcodeDrawFactory.GetSymbology(BarcodeSymbology.CodeQr).Draw(AppSettings.GetSettings()["domain_name"]+"/DnevnikPrevoza/GuestDetail?s=" + kobasica, 50, 2))
+         
             {
                 String path = Server.MapPath("~/BARCODE/" + SerijskiBroj + ".png");
                 if (System.IO.File.Exists(path))
@@ -306,7 +306,7 @@ namespace Spedicija.Controllers
             String kobasica = dnevnik.GostPristup;
 
 
-            using (System.Drawing.Image imagen = BarcodeDrawFactory.GetSymbology(BarcodeSymbology.CodeQr).Draw("www.gmtel-office.com/DnevnikPrevoza/GuestDetail?s=" + kobasica, 50, 2))
+            using (System.Drawing.Image imagen = BarcodeDrawFactory.GetSymbology(BarcodeSymbology.CodeQr).Draw(AppSettings.GetSettings()["domain_name"]+"/DnevnikPrevoza/GuestDetail?s=" + kobasica, 50, 2))
             {
                 String path = Server.MapPath("~/BARCODE/" + SerijskiBroj + ".png");
                 if (System.IO.File.Exists(path))
@@ -332,7 +332,7 @@ namespace Spedicija.Controllers
             String kobasica = dnevnik.GostPristup;
 
 
-            using (System.Drawing.Image imagen = BarcodeDrawFactory.GetSymbology(BarcodeSymbology.CodeQr).Draw("www.gmtel-office.com/DnevnikPrevoza/GuestDetail?s=" + kobasica, 50, 2))
+            using (System.Drawing.Image imagen = BarcodeDrawFactory.GetSymbology(BarcodeSymbology.CodeQr).Draw(AppSettings.GetSettings()["domain_name"]+"/DnevnikPrevoza/GuestDetail?s=" + kobasica, 50, 2))
             {
                 String path = Server.MapPath("~/BARCODE/" + SerijskiBroj + ".png");
                 if (System.IO.File.Exists(path))

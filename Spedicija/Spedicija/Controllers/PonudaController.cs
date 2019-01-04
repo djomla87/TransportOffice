@@ -165,7 +165,7 @@ namespace Spedicija.Controllers
                 db.Ponuda.Add(ponuda);
                 db.SaveChanges();
 
-                using (System.Drawing.Image imagen = BarcodeDrawFactory.GetSymbology(BarcodeSymbology.CodeQr).Draw("www.gmtel-office.com/Ponuda/ReportPonuda2/"+ponuda.IdDnevnik, 50, 2))
+                using (System.Drawing.Image imagen = BarcodeDrawFactory.GetSymbology(BarcodeSymbology.CodeQr).Draw(AppSettings.GetSettings()["domain_name"]+"/Ponuda/ReportPonuda2/" +ponuda.IdDnevnik, 50, 2))
                 {
                     String path = Server.MapPath("~/BARCODE/" + ponuda.SerijskiBroj + ".png");
                     if (System.IO.File.Exists(path))
@@ -329,7 +329,7 @@ namespace Spedicija.Controllers
                                         PDV = c.IznosPDV == null ? 0 : c.IznosPDV.Value,
                                         ValutaPlacanja = c.ValutaPlacanja,
                                         Tezina = c.TezinaRobe,
-                                        BarCode = "http://gmtel-office.com/BARCODE/" + c.SerijskiBroj + ".png",
+                                        BarCode = "http://"+ AppSettings.GetSettings()["domain"] + "/BARCODE/" + c.SerijskiBroj + ".png",
                                         SerijskiBroj = c.SerijskiBroj,
                                         Napomena = c.Napomena
                                     }
@@ -413,7 +413,7 @@ namespace Spedicija.Controllers
                                                     (c.DnevnikPrevoza.FirstOrDefault().Valuta1 == null ? 0 : c.DnevnikPrevoza.FirstOrDefault().Valuta1.UKM ?? 0)
                                                     )
                                                     : 0)).ToString("0.00"),
-                                       Link = "http://gmtel-office.com/Ponuda/ReportPonuda2/" + c.IdDnevnik
+                                       Link = "http://" + AppSettings.GetSettings()["domain"] + "/Ponuda/ReportPonuda2/" + c.IdDnevnik
                                     }
                     ).ToList());
 

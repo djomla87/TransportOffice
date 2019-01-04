@@ -108,7 +108,7 @@
 
                          Veza = param1,
 
-                         BarKod = "http://gmtel-office.com/BARCODE/" + c.SerijskiBroj + ".png" ,  //  http://gmtel-office.com
+                         BarKod = "http://"+ Spedicija.AppSettings.GetSettings()["domain"] +"/BARCODE/" + c.SerijskiBroj + ".png" , 
 
 
                          DimenzijaRobe = c.DimenzijeRobe
@@ -139,7 +139,7 @@
                 ReportViewer1.LocalReport.DataSources.Clear();
                 ReportViewer1.ShowExportControls = true;
                 ReportViewer1.ShowDocumentMapButton = true;
-                ReportViewer1.LocalReport.DisplayName = NalogZaUtovar.FirstOrDefault().BrojNaloga + "-GMTEL-" + (jezik.Equals("SR") ? "NalogZaUtovar" : "Оrder-for-loading");
+                ReportViewer1.LocalReport.DisplayName = NalogZaUtovar.FirstOrDefault().BrojNaloga + "-OFFICE-" + (jezik.Equals("SR") ? "NalogZaUtovar" : "Оrder-for-loading");
                 ReportDataSource rdc = new ReportDataSource("NalogZaUtovar", NalogZaUtovar);
 
                 ReportViewer1.LocalReport.DataSources.Add(rdc);

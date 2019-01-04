@@ -202,19 +202,19 @@ namespace Spedicija.Controllers
               
                     MailMessage mail = new MailMessage();
                     SmtpClient SmtpServer = new SmtpClient("ml01.anaxanet.com");
-                    // GMtel2017.
-                    mail.From = new MailAddress("info@gmtel-office.com", "GMTEL OFFICE");
+  
+                    mail.From = new MailAddress(AppSettings.GetSettings()["mail_from"], AppSettings.GetSettings()["company_name"]);
                     mail.Subject = "Upit za cijenu prevoza";
                     //mail.To.Add("m.todorovic87@gmail.com");
 
-                    mail.To.Add("info@gmtellogistics.com");
+                    mail.To.Add(AppSettings.GetSettings()["mail_to"]);
                     mail.Bcc.Add("m.todorovic87@gmail.com");
 
 
                     mail.IsBodyHtml = true;
 
                     String text = "<div>";
-                    text += "<img src='http://gmtel-office.com/Content/images/Logo.png'>";
+                    text += "<img src='http://"+ AppSettings.GetSettings()["domain"] + "/Content/images/Logo.png'>";
 
                     text += "<h2>Upit za cijenu prevoza poslat je preko sajta</h2>";
                     text += "</div>";

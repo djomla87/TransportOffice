@@ -137,7 +137,7 @@
                 });
 
                 
-                var loc = Naslov + SubjectSr + UtovarSR+  istovariSR + DATDOSTAVESR + UISR + "%0D%0D%0D%0D" + SubjectEN + UtovarEN + istovariEN + DATDOSTAVEEN +  UIEN + "%0D%0D%0D%0D" + "Status pošiljke možete pratiti na linku / Shipment status can be folowed on this link:%0Dwww.gmtel-office.com/DnevnikPrevoza/GuestDetail?s=" + gostiKod + "%0D%0D";
+                var loc = Naslov + SubjectSr + UtovarSR + istovariSR + DATDOSTAVESR + UISR + "%0D%0D%0D%0D" + SubjectEN + UtovarEN + istovariEN + DATDOSTAVEEN + UIEN + "%0D%0D%0D%0D" + "Status pošiljke možete pratiti na linku / Shipment status can be folowed on this link:%0D" + AppSettings.GetSettings()["domain_name"] + "/DnevnikPrevoza/GuestDetail?s=" + gostiKod + "%0D%0D";
                 
                 var rep = 'null';
                 var regex = new RegExp(rep, 'g');
@@ -1520,6 +1520,31 @@
                                                     </div>
                                                 </a>
                                             </li>
+
+                                            <li class="tile">
+                                                <a class="tile-content ink-reaction">
+                                                    <div class="tile-text">
+                                                        <small>Predjena Kilometraža</small>
+                                                      
+                                                           @{ 
+                                                               int km = (Model.KrajnjaKilometraza ?? 0 ) - (Model.PocetnaKilometraza ?? 0 );  
+                                                               }
+                                                         @km Km
+                                                   
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="tile">
+                                                <a class="tile-content ink-reaction">
+                                                    <div class="tile-text">
+                                                        <small>Potrešeno Goriva</small>
+
+                                                        @Model.PotrosnjaGoriva l
+
+                                                    </div>
+                                                </a>
+                                            </li>
+
                                             <li class="tile">
                                                 <a class="tile-content ink-reaction">
                                                     <div class="tile-text">

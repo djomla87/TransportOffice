@@ -23,6 +23,9 @@
 "digits": true ,
 	*/
 
+        $.validator.setDefaults({
+            ignore: []
+        });
 
         var validator = $(".form").validate({
             rules: {
@@ -32,6 +35,14 @@
 				"pattern": /^(\d+|\d+,\d{1,2})$/
 					}
  ,
+
+ IdDnevnik: {
+     "required": true
+
+ }
+
+ ,
+
  IdValuta : {
 				"required" : true
 
@@ -53,7 +64,13 @@
             messages: {
                 Iznos: {
                     pattern: 'Unesite ispravan iznos (za decimale koristite , )'
-                }
+                },
+                IdDnevnik: {
+                    required: 'Odaberite Prevoz'
+                },
+                Tip: {
+            required: 'Odaberite Tip'
+        }
             }
 						 });
 
@@ -87,6 +104,9 @@
             allowClear: true
         });
 
+
+        $("#IdDnevnik").select2("val", @ViewBag.IdDnevnik);
+        $('#IdDnevnik').addClass("dirty");
 
     });
 
@@ -137,8 +157,16 @@
 
 	 <div class="card-body style-default-bright">
 
-        <div class="form-group floating-label">
 
+        <div class="form-group floating-label">
+            @Html.DropDownList("IdDnevnik", ViewBag.IdDnevnik as SelectList, String.Empty, new { @class = "form-control select" })
+            @Html.ValidationMessageFor(model => model.IdDnevnik)
+            @Html.LabelFor(model => model.IdDnevnik)
+
+        </div>
+
+
+        <div class="form-group floating-label">
 
             @Html.DropDownList("Tip", String.Empty)
             @Html.ValidationMessageFor(model => model.Tip)
@@ -189,8 +217,7 @@
 </div>
 
 			@Html.HiddenFor(model => model.IdVozac, new { @class = "form-control", @Value=ViewBag.IdVozac })
-
-
+          
      
 
 

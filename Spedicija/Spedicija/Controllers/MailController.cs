@@ -21,11 +21,11 @@ namespace Spedicija.Controllers
 
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient("ml01.anaxanet.com");
-            // GMtel2017.
-            mail.From = new MailAddress("info@gmtel-office.com","GMTEL OFFICE");
+
+            mail.From = new MailAddress(AppSettings.GetSettings()["mail_from"], AppSettings.GetSettings()["company_name"]);
            // mail.To.Add("m.todorovic87@gmail.com");
 
-            mail.To.Add("info@gmtellogistics.com");
+            mail.To.Add(AppSettings.GetSettings()["mail_to"]);
             mail.Bcc.Add("m.todorovic87@gmail.com");
 
 
@@ -34,7 +34,7 @@ namespace Spedicija.Controllers
             var obaveze = db.DnevnikPrevoza.Where(c => (c.ZapisAktivan ?? false) && ((c.DatumUtovara.HasValue && c.DatumUtovara == DateTime.Today) || (c.DatumIstovara.HasValue && c.DatumIstovara == DateTime.Today) )).ToList().Select
             (c => new
             {
-                Link = "http://gmtel-office.com/DnevnikPrevoza/Details/" + c.IdDnevnik ,
+                Link = "http://"+ AppSettings.GetSettings()["domain"] + "/DnevnikPrevoza/Details/" + c.IdDnevnik ,
                 Datum = c.DatumUtovara == DateTime.Today ? c.DatumUtovara.Value.ToShortDateString() : c.DatumIstovara.Value.ToShortDateString(),
                 Tip = c.DatumUtovara == DateTime.Today ? "Utovar: " + c.UtovarFirma + ", " + c.UtovarGrad : "Istovar: " + c.IstovarFirma + ", " + c.IstovarGrad
             }).ToList();
@@ -44,7 +44,7 @@ namespace Spedicija.Controllers
                 db.DnevnikPrevoza.Where(c => (c.ZapisAktivan ?? false) && ((c.DatumUtovara.HasValue && c.DatumUtovara == sutra) || (c.DatumIstovara.HasValue && c.DatumIstovara == sutra))).ToList().Select
             (c => new
             {
-                Link = "http://gmtel-office.com/DnevnikPrevoza/Details/" + c.IdDnevnik,
+                Link = "http://" + AppSettings.GetSettings()["domain"] + "/DnevnikPrevoza/Details/" + c.IdDnevnik,
                 Datum = c.DatumUtovara == sutra ? c.DatumUtovara.Value.ToShortDateString() : c.DatumIstovara.Value.ToShortDateString(),
                 Tip = c.DatumUtovara == sutra ? "Utovar: " + c.UtovarFirma + ", " + c.UtovarGrad : "Istovar: " + c.IstovarFirma + ", " + c.IstovarGrad
             }).ToList();
@@ -55,9 +55,9 @@ namespace Spedicija.Controllers
             mail.IsBodyHtml = true;
 
             String text = "<div>";
-            text += "<img src='http://gmtel-office.com/Content/images/Logo.png'>";
+            text += "<img src='http://" + AppSettings.GetSettings()["domain"] + "/Content/images/Logo.png'>";
             text += "<h2>Pregled današnjih i sutrašnjih obaveza</h2>";
-            text += "<h4>Dobro jutro Miha, <br>Ispod se nalazi pregled obaveza za danas</h4>";
+            text += "<h4>Dobro jutro Šefe, <br>Ispod se nalazi pregled obaveza za danas</h4>";
             text += "</div>";
             text += "<div>";
             text += "<p></p>";
@@ -93,7 +93,7 @@ namespace Spedicija.Controllers
 
 
             text += "<div>";
-            text += "<i>Ova poruka vam je poslat automatski sa gmtel-office.com. Nemojte odgovarati na ovaj mail!</i>";
+            text += "<i>Ova poruka vam je poslat automatski sa " + AppSettings.GetSettings()["domain_name"] + ". Nemojte odgovarati na ovaj mail!</i>";
             text += "</div>";
 
             mail.Subject = "Pregled dnevnih obaveza - " + DateTime.Today.AddHours(7).ToShortDateString();
@@ -111,8 +111,8 @@ namespace Spedicija.Controllers
         {
             var message = new MailMessage();
 
-            message.From = new MailAddress("info@gmtel-office.com");
-            message.To.Add("info@gmtellogistics.com");
+            message.From = new MailAddress(AppSettings.GetSettings()["mail_from"]);
+            message.To.Add(AppSettings.GetSettings()["mail_to"]);
             message.Subject = "Invoice and documents";
             message.Body = "Molimo Vas pogledajte prilog" + System.Environment.NewLine + "Please see the attachment";
 

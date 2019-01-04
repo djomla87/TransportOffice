@@ -234,21 +234,21 @@ namespace Spedicija.Controllers
                     MailMessage mail = new MailMessage();
                     SmtpClient SmtpServer = new SmtpClient("ml01.anaxanet.com");
 
-                    mail.From = new MailAddress("info@gmtel-office.com", "GMTEL OFFICE");
+                    mail.From = new MailAddress(AppSettings.GetSettings()["mail_from"], AppSettings.GetSettings()["company_name"]);
                     mail.Subject = "Dobili ste nalog za utovar!";
 
-                    mail.To.Add("info@gmtellogistics.com");
+                    mail.To.Add(AppSettings.GetSettings()["mail_to"]);
                     mail.Bcc.Add("m.todorovic87@gmail.com");
 
                     mail.IsBodyHtml = true;
 
                     String text = "<div>";
-                    text += "<img src='http://gmtel-office.com/Content/images/Logo.png'>";
+                    text += "<img src='http://"+ AppSettings.GetSettings()["domain"] + "/Content/images/Logo.png'>";
 
                     text += "<h2>" + Posiljaoc + " je poslao Nalog za Utovar.</h2>";
                     text += "</div>";
                     text += "<div>";
-                    text += "<p>Otvorite nalog u aplikaciji na ovom linku: <a href='www.gmtel-office.com/KorisnikNalog/Details/" + korisniknalog.idKorisnikNalog + "'> www.gmtel-office.com/KorisnikNalog/Details/" + korisniknalog.idKorisnikNalog +"</a></p>";
+                    text += "<p>Otvorite nalog u aplikaciji na ovom linku: <a href='"+ AppSettings.GetSettings()["domain_name"] + "/KorisnikNalog/Details/" + korisniknalog.idKorisnikNalog + "'> " + AppSettings.GetSettings()["domain_name"] + "/KorisnikNalog/Details/" + korisniknalog.idKorisnikNalog +"</a></p>";
                     text += "</div>";
 
                     mail.Body = text;

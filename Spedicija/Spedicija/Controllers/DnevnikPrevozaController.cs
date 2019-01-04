@@ -1724,9 +1724,25 @@ namespace Spedicija.Controllers
         [Authorize]
         public JsonResult ObavezeDanas()
         {
-            var obaveze = db.DnevnikPrevoza.Where(c => (c.ZapisAktivan ?? false) && ((c.DatumUtovara.HasValue && c.DatumUtovara == DateTime.Today) && (c.DatumIstovara.HasValue && c.DatumIstovara == DateTime.Today))).ToList().Select
-                (c => new { IdDnevnik = c.IdDnevnik, Datum = c.DatumUtovara == DateTime.Today.AddHours(7) ? c.DatumUtovara.Value.ToShortDateString() : c.DatumIstovara.Value.ToShortDateString(), 
-                    Tip = c.DatumUtovara == DateTime.Today.AddHours(7) ? "Utovar: "+c.UtovarFirma+", "+c.UtovarGrad : "Istovar: "+c.IstovarFirma+", "+c.IstovarGrad }).ToList();
+            var obaveze = db.DnevnikPrevoza.Where(c => (c.ZapisAktivan ?? false) && ((c.DatumUtovara.HasValue && c.DatumUtovara == DateTime.Today) || (c.DatumIstovara.HasValue && c.DatumIstovara == DateTime.Today))).ToList().Select
+                (c => new {
+                    IdDnevnik = c.IdDnevnik,
+                    Datum = c.DatumUtovara == DateTime.Today.AddHours(7) ? c.DatumUtovara.Value.ToShortDateString() : c.DatumIstovara.Value.ToShortDateString(), 
+                    Tip = c.DatumUtovara == DateTime.Today.AddHours(7) ? "Utovar: "+c.UtovarFirma+", "+c.UtovarGrad : "Istovar: "+c.IstovarFirma+", "+c.IstovarGrad,
+                    Vrsta = "DnevnikPrevoza"
+                }).ToList();
+
+
+            var podsjetnik = db.VoziloPodsjetnik.Include(k => k.Vozilo).ToList().Where(c => c.DatumPodsjetnika <= DateTime.Today.AddDays(15)).Select(
+                c => new {
+                    IdDnevnik = c.IdVozilo,
+                    Datum = c.DatumPodsjetnika.ToShortDateString(),
+                    Tip = c.Vrsta,
+                    Vrsta = "Podsjetnik"
+                }).ToList();
+
+            obaveze.AddRange(podsjetnik);
+
             return Json(obaveze, JsonRequestBehavior.AllowGet);
         }
 
@@ -1736,13 +1752,21 @@ namespace Spedicija.Controllers
         {
 
             Dokument dokument = db.Dokument.Find(id);
+            var sherovani = dokument.DokumentShare.ToList();
+
             int back = dokument.IdDnevnik ?? 0;
             string path = Server.MapPath("~/Dokumenti/" + dokument.Naziv);
             if (System.IO.File.Exists(path))
             {
+                foreach (var item in sherovani)
+                    db.DokumentShare.Remove(item);
+
+                db.SaveChanges();
+
                 System.IO.File.Delete(path);
                 Dokument dok = db.Dokument.Where(c => c.Putanja.Equals(path)).FirstOrDefault();
                 db.Dokument.Remove(dok);
+
                 db.SaveChanges();
             }
 
@@ -2531,18 +2555,14 @@ namespace Spedicija.Controllers
 
                     MailMessage _mail = new MailMessage();
                     SmtpClient SmtpServer = new SmtpClient("ml01.anaxanet.com");
-                    // GMtel2017.
-                    _mail.From = new MailAddress("info@gmtel-office.com", "GMTEL OFFICE");
-
-                    //_mail.To.Add("info@gmtellogistics.com");
-                    //_mail.Bcc.Add("m.todorovic87@gmail.com");
-
-
-
+                    //MTodoR181505.
+                    
+                    _mail.From = new MailAddress(AppSettings.GetSettings()["mail_from"], AppSettings.GetSettings()["company_name"]);
+             
                     _mail.IsBodyHtml = true;
 
                     String text = "<div>";
-                    text += "<img src='http://gmtel-office.com/Content/images/Logo.png'>";
+                    text += "<img src='http://"+ AppSettings.GetSettings()["domain"] + "/Content/images/Logo.png'>";
                     text += "<h2>" + (status.Contains("transportu") ? "Vaša roba je utovarena i nalazi se u transportu! " : "Vaša roba je istovarena na destinaciji!") + "</h2>";
                     text += "<h4>Detalji transporta :</h4>";
                     text += "</div>";
@@ -2566,7 +2586,7 @@ namespace Spedicija.Controllers
                             if (dnevnik.Subjekt1 != null)
                                 subjectEmail = "" + dnevnik.Subjekt1.Email;
 
-                        _mail.To.Add("info@gmtellogistics.com");                          // _mail.To.Add("info@gmtellogistics.com");
+                        _mail.To.Add(AppSettings.GetSettings()["mail_to"]);    
 
                         // ako nije u pitanju drugi prev onda saljem mail
                         if ((!(dnevnik.DrugiPrevoznik ?? false))  && (PodStatus ?? 0) == 0  )
@@ -2675,7 +2695,7 @@ namespace Spedicija.Controllers
 
                             _mail.Subject = Naslov;
                             text = "<div>";
-                            text += "<img src='http://gmtel-office.com/Content/images/Logo.png'>";
+                            text += "<img src='http://" + AppSettings.GetSettings()["domain"] + "/Content/images/Logo.png'>";
                             text += "</div>";
                             text += "<div>";
 
@@ -2686,19 +2706,11 @@ namespace Spedicija.Controllers
                             text += SubjectEN + UtovarEN + istovariEN + DATDOSTAVEEN + UIEN;
                             text += "</div>";
                             text += "</div>";
-                            text += "<br/><br/><br/><br/>Status pošiljke možete pratiti na linku / Shipment status can be folowed on this link:" + "<br/>" + "www.gmtel-office.com/DnevnikPrevoza/GuestDetail?s=" + gostiKod + "<br/><br/>";
+                            text += "<br/><br/><br/><br/>Status pošiljke možete pratiti na linku / Shipment status can be folowed on this link:" + "<br/>" + AppSettings.GetSettings()["domain_name"] + "/DnevnikPrevoza/GuestDetail?s=" + gostiKod + "<br/><br/>";
                             text += "</div>";
                             _mail.Body = text;
 
 
-                     //   }
-                     //   else
-                     //   {
-                     //       _mail.To.Add("info@gmtellogistics.com");
-                     //       _mail.Bcc.Add("m.todorovic87@gmail.com");
-
-                          
-                    //    }
 
                         SmtpServer.Send(_mail);
                      }
@@ -2852,7 +2864,7 @@ namespace Spedicija.Controllers
 
         public JsonResult FindByGuestCode(String code)
         {
-            code = code.Replace("www.gmtel-office.com/DnevnikPrevoza/GuestDetail?s=", "");
+            code = code.Replace(AppSettings.GetSettings()["domain_name"]+"/DnevnikPrevoza/GuestDetail?s=", "");
 
             List<Task> Tasks = db.DnevnikPrevoza.Include(d => d.AndroidTask).Where(c => (c.ZapisAktivan ?? false) && c.GostPristup.Equals(code)).ToList().
             Select(c =>

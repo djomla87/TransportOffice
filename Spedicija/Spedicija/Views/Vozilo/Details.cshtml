@@ -226,7 +226,17 @@
 
                             @foreach (var item in Model.VoziloPodsjetnik.ToList())
                             {
-                                <tr>
+
+                                String klasa = "";
+
+                                if (item.DatumPodsjetnika <= DateTime.Today.AddDays(15))
+                                {
+                                    klasa = "text-danger text-bold";
+                                }
+
+
+
+                                <tr class="@klasa" >
                                     <td>@item.Vrsta</td>
                                     <td>@item.DatumIzrade</td>
                                     <td>@item.DatumPodsjetnika</td>

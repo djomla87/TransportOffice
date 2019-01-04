@@ -56,7 +56,7 @@
         <EntityTypeShape EntityType="uvhszjiy_spedicijaModel.KorisnikUpit" Width="1.5" PointX="1.125" PointY="26.75" />
         <EntityTypeShape EntityType="uvhszjiy_spedicijaModel.KorisnikNalog" Width="1.5" PointX="11.26341436396512" PointY="28.797113968430605" />
         <EntityTypeShape EntityType="uvhszjiy_spedicijaModel.VozacUser" Width="1.5" PointX="1.3224532368231812" PointY="20.342735255296684" />
-        <EntityTypeShape EntityType="uvhszjiy_spedicijaModel.TipUsluge" Width="1.5" PointX="5.625" PointY="3.75" />
+        <EntityTypeShape EntityType="uvhszjiy_spedicijaModel.TipUsluge" Width="1.5" PointX="6.375" PointY="4.125" />
         <EntityTypeShape EntityType="uvhszjiy_spedicijaModel.AndroidTask" Width="1.5" PointX="7.5" PointY="16" />
         <AssociationConnector Association="uvhszjiy_spedicijaModel.FK_TaskDnevnik" />
         <EntityTypeShape EntityType="uvhszjiy_spedicijaModel.KorisnikNalogIstovar" Width="3" PointX="13.5" PointY="29" />
@@ -87,6 +87,11 @@
         <AssociationConnector Association="uvhszjiy_spedicijaModel.FK_Dnevnik_Redoslijed" />
         <AssociationConnector Association="uvhszjiy_spedicijaModel.FK_DnevnikUtovarRedosled" />
         <AssociationConnector Association="uvhszjiy_spedicijaModel.FK_IDnevnik_Vozilo" />
+        <EntityTypeShape EntityType="uvhszjiy_spedicijaModel.VoziloPodsjetnik" Width="1.5" PointX="5" PointY="29.5" />
+        <AssociationConnector Association="uvhszjiy_spedicijaModel.FK_Troskovi_Dnevnik" />
+        <AssociationConnector Association="uvhszjiy_spedicijaModel.FK_Podsjetnik_Vozilo" />
+        <EntityTypeShape EntityType="uvhszjiy_spedicijaModel.DokumentShare" Width="1.5" PointX="9.75" PointY="39" />
+        <AssociationConnector Association="uvhszjiy_spedicijaModel.KF_Dokument_Share" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

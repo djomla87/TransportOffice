@@ -7,9 +7,9 @@
     <meta charset="utf-8">
 
     <title>@ViewBag.Title</title>
-    <meta name="description" content="GMTEL OFFICE - aplikacija za praćenje transporta robe, dnevnika prevoza, statusa transporta i registra vozača, vozila i sl.">
-    <meta name="keywords" content="GMTEL, GMTEL-OFFICE, GMTEL APLIKACIJA, GMTEL PREVOZI, GMTEL LOGISTICS">
-    <link rel="canonical" href="http://gmtel-office.com" />
+    <meta name="description" content="TRANSPORT OFFICE - aplikacija za praćenje transporta robe, dnevnika prevoza, statusa transporta i registra vozača, vozila i sl.">
+    <meta name="keywords" content="TRANSPORT, TRANSPORT-OFFICE, TRANSPORT APLIKACIJA, TRANSPORT PREVOZI, OFFICE LOGISTICS">
+    <link rel="canonical" href="http://transport-office.com" />
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,24 +73,22 @@
         {
         "context": "http://schema.org",
         "type": "Organization",
-        "url": "http://gmtel-office.com",
-        "name": "GMTEL OFFICE",
-        "author": "Mihael Zajac",
-        "image": "http://gmtel-office.com/Content/images/gmtel-transparent.png",
-        "logo": "http://gmtel-office.com/Content/images/gmtel-transparent.png",
-        "description": "GMTEL OFFICE - aplikacija za praćenje transporta robe, dnevnika prevoza, statusa transporta i registra vozača, vozila i sl.",
+        "url": "http://www.transport-office.com/",
+        "name": "Transport Company",
+        "author": "Transport Company",
+        "image": "http://www.transport-office.com/Content/images/Logo.png",
+        "logo": "http://www.transport-office.com/Content/images/Logo.png",
+        "description": "Aplikacija za praćenje transporta robe, dnevnika prevoza, statusa transporta i registra vozača, vozila i sl.",
 
         "contactPoint": {
         "type": "ContactPoint",
-        "telephone": "051 924 340",
+        "telephone": "",
         "contactType": "Customer service"
         }
         }
     </script>
 
-    <script>
 
-    </script>
     <script type="text/javascript">
         
 
@@ -131,10 +129,20 @@
                           $.each(data, function (i, obaveze) {
                               count++;
 
-                              items += "<li><a class='alert alert-callout alert-warning' href='/DnevnikPrevoza/Details/" + obaveze.IdDnevnik + "'>";
-                              items += "<img class='pull-right img-circle dropdown-avatar' src='/Content/images/clcok-notofication.png' alt=''>";
-                              items += "<strong style='font-size: x-large;'>" + obaveze.Datum + " </strong><br>";
-                              items += "<small class='pull-left' style='max-width: 300px; overflow:hidden;'>" + obaveze.Tip + "</small></a></li>";
+                              if(obaveze.Vrsta == "DnevnikPrevoza")
+                              {
+                                  items += "<li><a class='alert alert-callout alert-warning' href='/DnevnikPrevoza/Details/" + obaveze.IdDnevnik + "'>";
+                                  items += "<img class='pull-right img-circle dropdown-avatar' src='/Content/images/clcok-notofication.png' alt=''>";
+                                  items += "<strong style='font-size: x-large;'>" + obaveze.Datum + " </strong><br>";
+                                  items += "<small class='pull-left' style='max-width: 300px; overflow:hidden;'>" + obaveze.Tip + "</small></a></li>";
+                              }
+                              else
+                              {
+                                  items += "<li><a class='alert alert-callout alert-warning' href='/Vozilo/Details/" + obaveze.IdDnevnik + "'>";
+                                  items += "<img class='pull-right img-circle dropdown-avatar' src='/Content/images/clcok-notofication.png' alt=''>";
+                                  items += "<strong style='font-size: x-large;'>" + obaveze.Datum + " </strong><br>";
+                                  items += "<small class='pull-left' style='max-width: 300px; overflow:hidden;'>" + obaveze.Tip + "</small></a></li>";  
+                              }
 
                           });
                       
@@ -411,7 +419,7 @@
                     <li class="header-nav-brand">
                         <div class="brand-holder">
                             <a href="#">
-                                <span class="text-lg text-bold text-primary">GMTEL LOGISTICS</span>
+                                <span class="text-lg text-bold text-primary">TRANSPORT OFFICE</span>
                             </a>
                         </div>
                     </li>
@@ -611,7 +619,7 @@
                 </div>
                 <div class="expanded">
                     <a href="#">
-                        <span class="text-lg text-bold text-primary ">GMTEL LOGISTICS </span>
+                        <span class="text-lg text-bold text-primary ">TRANSPORT OFFICE </span>
                     </a>
                 </div>
             </div>
@@ -662,6 +670,7 @@
                                      <li><a href="@Url.Action("Create","DnevnikPrevoza")"><span class="title">Kreiraj Dnevnik</span></a></li>
                                      <li><a href="@Url.Action("NefakturisaniPrevozi","DnevnikPrevoza")"><span class="title">Nefakturisani Prevozi</span></a></li>
                                     <li><a href="@Url.Action("Index","Ponuda")"><span class="title">Ponude za prevoz</span></a></li>
+                                    <li><a href="@Url.Action("ShareDokument", "DnevnikPrevoza")"><span class="title">Dijeljenje Dokumenata</span></a></li>
                                      <li><a href="@Url.Action("IstekleValute","DnevnikPrevoza")">
                                          <span class="title pull-left"> Istekle Valute </span>
                                          <span id="badge-valute" class="badge pull-left style-danger" style="width: 30px; border-radius: 4px; font-size: 12px; top: 5px;">5</span>
@@ -712,8 +721,10 @@
                                     <span class="title">Izračun Zarade</span>
                                 </a>
                                 <ul style="display: none;">
-                                     <li><a href="@Url.Action("IzracunZarada","DnevnikPrevoza")"><span class="title">Kreiraj Izvještaj</span></a></li>
-                                     <li><a href="@Url.Action("SacuvaniIzracuni","DnevnikPrevoza")"><span class="title">Pregled Izvještaja</span></a></li>
+                                     <li><a href="@Url.Action("IzvjestajFinansije","Troskovi")"><span class="title">Finansijski Izvještaj</span></a></li>
+                               <!--      <li><a href="Url.Action("IzracunZarada","DnevnikPrevoza")"><span class="title">Kreiraj Izvještaj</span></a></li>
+                                     <li><a href="Url.Action("SacuvaniIzracuni","DnevnikPrevoza")"><span class="title">Pregled Izvještaja</span></a></li>
+                                   -->
                                 </ul>
                                 <!--start submenu -->
 
@@ -761,7 +772,7 @@
 
                         <div class="menubar-foot-panel">
                             <small class="no-linebreak hidden-folded">
-                                <span class="opacity-75">Copyright © 2017</span><br/><strong>GMTEL LOGISTICS</strong>
+                                <span class="opacity-75">Copyright © 2017</span><br/><strong>TRANSPORT OFFICE</strong>
                             </small>
                         </div>
                     </div>

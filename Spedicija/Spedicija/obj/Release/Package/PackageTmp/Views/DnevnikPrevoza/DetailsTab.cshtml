@@ -137,7 +137,7 @@
                 });
 
                 
-                var loc = Naslov + SubjectSr + UtovarSR+  istovariSR + DATDOSTAVESR + UISR + "%0D%0D%0D%0D" + SubjectEN + UtovarEN + istovariEN + DATDOSTAVEEN +  UIEN + "%0D%0D%0D%0D" + "Status pošiljke možete pratiti na linku / Shipment status can be folowed on this link:%0Dwww.gmtel-office.com/DnevnikPrevoza/GuestDetail?s=" + gostiKod + "%0D%0D";
+                var loc = Naslov + SubjectSr + UtovarSR + istovariSR + DATDOSTAVESR + UISR + "%0D%0D%0D%0D" + SubjectEN + UtovarEN + istovariEN + DATDOSTAVEEN + UIEN + "%0D%0D%0D%0D" + "Status pošiljke možete pratiti na linku / Shipment status can be folowed on this link:%0D" + AppSettings.GetSettings()["domain_name"] + "/DnevnikPrevoza/GuestDetail?s=" + gostiKod + "%0D%0D";
                 
                 var rep = 'null';
                 var regex = new RegExp(rep, 'g');
@@ -247,6 +247,39 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCQBrlBT4GBGTFQsC4Ud5KeHOKCEa2o2ZY"></script>
 
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+  $('#cmd1').click(function () {
+
+
+            var mywindow = window.open('', 'my div', "width="+screen.availWidth+",height="+screen.availHeight);
+            mywindow.document.write('<html><head><title>@(Model.SerijskiBroj+"_Finansije")</title>');
+            mywindow.document.write('<link rel="stylesheet" type="text/css" href="/Content/css/print/material-design-iconic-font.min.css"/>');
+            mywindow.document.write('<link rel="stylesheet" id="materialadmin-css" type="text/css" rel="stylesheet" href="/Content/css/print/finasije.css" rel="stylesheet"/>');
+            mywindow.document.write('<link rel="stylesheet" id="materialadmin-css" type="text/css" rel="stylesheet" href="/Content/css/print/bootstrap.css"/>');
+            mywindow.document.write('<link rel="stylesheet" id="bootstrap-css" type="text/css" rel="stylesheet" href="/Content/css/print/materialadmin.css" /></head><body>');
+
+
+            mywindow.document.write($('<div/>').append($("#content1").clone()).html());
+            mywindow.document.write('</body></html>');
+            mywindow.document.close();
+
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            mywindow.print();
+
+
+            return true;
+
+
+        });
+
+    });
+
+</script>
+
 
 <style>
     .sortable-placeholder {
@@ -330,7 +363,12 @@
                             <li>
                                 <a title="Štampaj Nalog" href="/DnevnikPrevoza/Faktura/@Model.IdDnevnik"><i class="md md-print"></i>&nbsp; Faktura - demo </a>
                             </li>
-
+                            <li>
+                                <a title="Dodaj Troškove vozača" href="/VozacTroskovi/Create/@Model.IdVozac?idDnevnik=@Model.IdDnevnik"><i class="md md-attach-money"></i>&nbsp; Dodaj troškove vozača </a>
+                            </li>
+                            <li>
+                                <a title="Pregled Troškova vozača" href="/VozacTroskovi/TroskoviVozaca/@Model.IdVozac?idDnevnik=@Model.IdDnevnik"><i class="md md-attach-money"></i>&nbsp; Pregled Troškova vozača </a>
+                            </li>
                             @if (Model.Uplaceno ?? false)
                             {
                             <li>
@@ -364,8 +402,7 @@
                     <li class=""><a href="#TVozaci">Vozač</a></li>
                     <li class=""><a href="#TDrugiP">Drugi Prevoznik</a></li>
                     <li class=""><a href="#TDokumenti">Dokumenti</a></li>
-                    <li class=""><a href="#TDodatno">Dodatno</a></li>
-
+                    <li class=""><a href="#TDodatno">Finansije</a></li>
                 </ul>
 
 
@@ -385,7 +422,7 @@
                                         </strong>
                                     </header>
                                     <div class="tools" style="line-height: 25px">
-                                        
+
                                         <strong>Status: @Model.Status</strong>
 
                                         @if (Model.Uplaceno ?? false)
@@ -399,7 +436,7 @@
                                         <br>
                                         <strong> @(Model.idStatusDetaljni == null ? "" : Model.StatusRobe.Naziv + " ( " + Model.StatusDetaljniOpis + " )"  )      </strong>
                                     </div>
-  
+
                                 </div><!--end .card-head -->
                                 <div class="card-body no-padding">
 
@@ -530,7 +567,7 @@
                                         <div class="card-head">
                                             <header class=""><strong>Dodatne usluge </strong></header><!--end .tools -->
                                             <div class="tools">
-                                                 
+
                                                 @if (Model.DatumSlanjaFakture.HasValue && Model.ValutaPlacanja != null)
                                                 {
                                                     DateTime dat = Model.DatumSlanjaFakture.Value.AddDays(Model.ValutaPlacanja.Value);
@@ -608,7 +645,7 @@
                                                 @foreach (var item in Model.Troskovi)
                                                 {
                                                     qsumapozitivna += (item.Iznos ?? 0)  * ( item.Valuta.UKM ?? 0 );
-           
+
                                         <tr>
                                             <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
                                             <td>@item.Iznos @item.Valuta.OznakaValute</td>
@@ -957,7 +994,7 @@
                         </div>
 
                         </div>
-                  
+
                 </div>
 
 
@@ -1483,6 +1520,31 @@
                                                     </div>
                                                 </a>
                                             </li>
+
+                                            <li class="tile">
+                                                <a class="tile-content ink-reaction">
+                                                    <div class="tile-text">
+                                                        <small>Predjena Kilometraža</small>
+                                                      
+                                                           @{ 
+                                                               int km = (Model.KrajnjaKilometraza ?? 0 ) - (Model.PocetnaKilometraza ?? 0 );  
+                                                               }
+                                                         @km Km
+                                                   
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="tile">
+                                                <a class="tile-content ink-reaction">
+                                                    <div class="tile-text">
+                                                        <small>Potrešeno Goriva</small>
+
+                                                        @Model.PotrosnjaGoriva l
+
+                                                    </div>
+                                                </a>
+                                            </li>
+
                                             <li class="tile">
                                                 <a class="tile-content ink-reaction">
                                                     <div class="tile-text">
@@ -1584,7 +1646,7 @@
                     </div>
                 </div>
 
-              
+
 
                 <div class="tab-pane" id="TDrugiP">
 
@@ -1791,97 +1853,146 @@
 
                 <div  class="tab-pane" id="TDodatno">
 
-                    <div class="card card-underline style-djomla">
-                        <div class="card-head">
-                            <header class=""><strong>Dodatne usluge</strong></header>
-                        </div>
-                        <div class="card-body no-padding">
-                            <table class="table table-hover">
-                                <tr>
-                                    <th></th>
-                                    <th>Iznos</th>
-                                    <th>Valuta</th>
-                                    <th>Vrsta</th>
-                                    <th></th>
-                                </tr>
+                    @{
+                        decimal SumaFinansijeP = ((Model.CijenaPrevoza * Model.Valuta.UKM) ?? 0) ;
+                        decimal SumaFinansijeR = 0;
+                    }
 
-                                @{
-                                    decimal suma = Convert.ToDecimal(@ViewBag.Suma);
+                    @{
+                        Decimal SumaAvans = 0;
+                        Decimal SumaTrosak = 0;
+                        Decimal SumaKartica = 0;
+                    }
 
-                                }
-                                <tr>
-                                    <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
-                                    <td> @Model.CijenaPrevoza</td>
-                                    <td> @Model.Valuta.OznakaValute</td>
-                                    <td> Moja Cijena Prevoza</td>
-                                    <td></td>
-                                </tr>
-                                @if ((Model.CijenaPrevozaPrevoznika ?? 0) > 0)
-                                {
-                                    <tr>
-                                        <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
-                                        <td> @Model.CijenaPrevozaPrevoznika</td>
-                                        <td> @Model.Valuta1.OznakaValute</td>
-                                        <td> Cijena Prevoza Drugog Prevoznika</td>
-                                        <td></td>
-                                    </tr>
-                                }
-                                @foreach (var item in Model.Troskovi)
-                                {
+                    <div id="content1" >
+                        <div  class="card card-underline style-djomla">
+                            <div class="card-head">
+                                <header class=""><strong>Finansije</strong></header>
+                                <div class="tools">
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-icon-toggle" id="cmd1"><i class="md md-print"></i></a>
+                                    </div>
+                                </div>
+                            </div>   
+                            
+                                    <div class="card-body no-padding">
 
-                                    <tr>
-                                        <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
-                                        <td>@item.Iznos</td>
-                                        <td>@item.Valuta.OznakaValute</td>
-                                        <td>@item.Vrsta</td>
-                                        <td><a href="/Troskovi/Delete/@item.IdTroskovi" title='Izbriši' class='btn btn-flat ink-reaction btn-default'><i class='md md-delete'></i></a></td>
-                                    </tr>
-                                }
+                                        <h2 style="padding-left: 10px;">Prevoz / Tura</h2>
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Opis</th>
+                                                    <th><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong> &nbsp Prihodi</th>
+                                                    <th><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong> &nbsp Rashodi</th>
+                                                    <th>Dobit</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Cijena Prevoza sa PDV</td>
+                                                    <td>@(((Model.CijenaPrevoza * Model.Valuta.UKM) ?? 0).ToString("0.00")) BAM </td>
+                                                    <td></td>
+                                                    <td>@(((Model.CijenaPrevoza * Model.Valuta.UKM) ?? 0).ToString("0.00")) BAM </td>
+                                                </tr>
 
-                                <tr class="danger">
-                                    <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
-                                    <td> @ViewBag.Trosak </td>
-                                    <td> BAM </td>
-                                    <td> Dodatni troškovi</td>
-                                    <td></td>
-                                </tr>
+                                                @foreach (var item in Model.Troskovi)
+                                                {
+
+                                                    SumaFinansijeP += ((item.Iznos * item.Valuta.UKM) ?? 0);
+                                                    SumaFinansijeR += ((item.StvarniTrosak * item.Valuta.UKM) ?? 0);
+
+                                                    <tr>
+                                                        <td>@item.Vrsta</td>
+                                                        <td>@(((item.Iznos * item.Valuta.UKM) ?? 0).ToString("0.00")) BAM</td>
+                                                        <td>@(((item.StvarniTrosak * item.Valuta.UKM) ?? 0).ToString("0.00")) BAM</td>
+                                                        <td>@((((item.Iznos * item.Valuta.UKM) - (item.StvarniTrosak * item.Valuta.UKM)) ?? 0).ToString("0.00")) BAM</td>
+                                                    </tr>
+                                                }
+
+                                                <tr class="success">
+                                                    <td class="text-bold">Ukupno</td>
+                                                    <td class="text-bold">@SumaFinansijeP.ToString("0.00")   BAM</tdclass="text-bold">
+                                                    <td class="text-bold">@SumaFinansijeR.ToString("0.00")   BAM</td>
+                                                    <td class="text-bold">@((SumaFinansijeP - SumaFinansijeR).ToString("0.00")) BAM</td>
+                                                </tr>
+
+                                            </tbody>
+
+                                        </table>
+
+                                        <br>
+
+                                        <h2 style="padding-left: 10px;">Troškovi Vozača</h2>
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Opis</th>
+                                                    <th>Datum</th>
+                                                    <th>Avans</th>
+                                                    <th>Iznos troškova (keš)</th>
+                                                    <th>Iznos troškova (kartica)</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.VozacTroskovi.Where(c => c.Aktivno))
+                                                {
+                                                    if (@item.Tip.Equals("ZADUŽENJE"))
+                                                    {
+                                                        SumaAvans += ((item.Iznos * item.Valuta.UKM) ?? 0);
+                                                        <tr>
+                                                            <td>@(item.Tip + " " + item.Napomena)</td>
+                                                            <td>@(item.Datum.ToShortDateString() + " " + item.Datum.ToShortTimeString()) </td>
+                                                            <td>@(((item.Iznos * item.Valuta.UKM) ?? 0).ToString("0.00")) BAM </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <tr>
+                                                            <td>@(item.Tip + ": " + item.VozacVrstaTroskova.Naziv)</td>
+                                                            <td>@(item.Datum.ToShortDateString() + " " + item.Datum.ToShortTimeString()) </td>
+                                                            <td></td>
+                                                            @if (item.Kartica ?? false)
+                                                            {
+                                                                SumaKartica += ((item.Iznos * item.Valuta.UKM) ?? 0);
+                                                                <td></td>
+                                                                <td>@(((item.Iznos * item.Valuta.UKM) ?? 0).ToString("0.00")) BAM </td>
+                                                            }
+                                                            else
+                                                            {
+                                                                SumaTrosak += ((item.Iznos * item.Valuta.UKM) ?? 0);
+                                                                <td>@(((item.Iznos * item.Valuta.UKM) ?? 0).ToString("0.00")) BAM </td>
+                                                                <td></td>
+                                                            }
+                                                            <td></td>
+
+                                                        </tr>
+                                                    }
+
+                                                }
+
+                                                <tr class="success">
+                                                    <td class="text-bold">Ukupno</td>
+                                                    <td class="text-bold"></td>
+                                                    <td class="text-bold">@SumaAvans.ToString("0.00") BAM</td>
+                                                    <td class="text-bold">@SumaTrosak.ToString("0.00") BAM</td>
+                                                    <td class="text-bold">@SumaKartica.ToString("0.00") BAM</td>
+                                                    <td class="text-bold">Povrat: @((SumaAvans - SumaTrosak).ToString("0.00")) BAM</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                        <h4 style="padding-left: 10px;">Procjena zarade: *(Zarada od prevoza umanjena za sumu troškova vozača ) <span class="text-bold">@((SumaFinansijeP - SumaFinansijeR - SumaTrosak - SumaKartica).ToString("0.00")) BAM</span></h4>
 
 
-                                @if (suma > 0)
-                                {
-                                    <tr class="success">
-                                        <td><strong class="text-success text-lg"><i class="md md-trending-up"></i></strong></td>
-                                        <td> <b> @ViewBag.Suma </b> </td>
-                                        <td> <b> BAM  </b> </td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                }
-                                else if (suma < 0)
-                                {
-                                    <tr class="danger">
-                                        <td><strong class="text-danger text-lg"><i class="md md-trending-down"></i></strong></td>
-
-                                        <td> <b> @ViewBag.Suma </b> </td>
-                                        <td> <b> BAM  </b> </td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                }
-                                else
-                                {
-                                    <tr>
-                                        <td><strong class="text-lg"><i class="md md-trending-neutral"></i></strong></td>
-                                        <td> <b> @ViewBag.Suma </b> </td>
-                                        <td> <b> BAM  </b> </td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                }
-                            </table>
-                        </div>
+                                    </div>
+                                </div>
                     </div>
-
                         </div>
 
 

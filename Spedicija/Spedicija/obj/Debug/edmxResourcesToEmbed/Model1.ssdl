@@ -134,6 +134,9 @@
     <Property Name="IdPonuda" Type="int" />
     <Property Name="idStatusDetaljni" Type="int" />
     <Property Name="StatusDetaljniOpis" Type="nvarchar" MaxLength="500" />
+    <Property Name="PotrosnjaGoriva" Type="int" />
+    <Property Name="PocetnaKilometraza" Type="int" />
+    <Property Name="KrajnjaKilometraza" Type="int" />
   </EntityType>
   <EntityType Name="DnevnikUtovar">
     <Key>

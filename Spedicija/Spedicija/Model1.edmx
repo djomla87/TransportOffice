@@ -139,6 +139,9 @@
           <Property Name="IdPonuda" Type="int" />
           <Property Name="idStatusDetaljni" Type="int" />
           <Property Name="StatusDetaljniOpis" Type="nvarchar" MaxLength="500" />
+          <Property Name="PotrosnjaGoriva" Type="int" />
+          <Property Name="PocetnaKilometraza" Type="int" />
+          <Property Name="KrajnjaKilometraza" Type="int" />
         </EntityType>
         <EntityType Name="DnevnikUtovar">
           <Key>
@@ -1807,6 +1810,9 @@
           <NavigationProperty Name="IDnevnikPrevozaVozac" Relationship="uvhszjiy_spedicijaModel.FK_IDnevnik_Dnevnik" FromRole="DnevnikPrevoza" ToRole="IDnevnikPrevozaVozac" />
           <NavigationProperty Name="RedoslijedUtovarIstovar" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik_Redoslijed" FromRole="DnevnikPrevoza" ToRole="RedoslijedUtovarIstovar" />
           <NavigationProperty Name="VozacTroskovi" Relationship="uvhszjiy_spedicijaModel.FK_Troskovi_Dnevnik" FromRole="DnevnikPrevoza" ToRole="VozacTroskovi" />
+          <Property Name="PotrosnjaGoriva" Type="Int32" />
+          <Property Name="PocetnaKilometraza" Type="Int32" />
+          <Property Name="KrajnjaKilometraza" Type="Int32" />
         </EntityType>
         <EntityType Name="Dokument">
           <Key>
@@ -3087,6 +3093,9 @@
           <EntitySetMapping Name="DnevnikPrevoza">
             <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.DnevnikPrevoza">
               <MappingFragment StoreEntitySet="DnevnikPrevoza">
+                <ScalarProperty Name="KrajnjaKilometraza" ColumnName="KrajnjaKilometraza" />
+                <ScalarProperty Name="PocetnaKilometraza" ColumnName="PocetnaKilometraza" />
+                <ScalarProperty Name="PotrosnjaGoriva" ColumnName="PotrosnjaGoriva" />
                 <ScalarProperty Name="StatusDetaljniOpis" ColumnName="StatusDetaljniOpis" />
                 <ScalarProperty Name="idStatusDetaljni" ColumnName="idStatusDetaljni" />
                 <ScalarProperty Name="IdPonuda" ColumnName="IdPonuda" />

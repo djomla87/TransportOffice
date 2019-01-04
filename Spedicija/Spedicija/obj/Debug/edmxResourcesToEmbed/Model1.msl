@@ -19,6 +19,9 @@
     <EntitySetMapping Name="DnevnikPrevoza">
       <EntityTypeMapping TypeName="uvhszjiy_spedicijaModel.DnevnikPrevoza">
         <MappingFragment StoreEntitySet="DnevnikPrevoza">
+          <ScalarProperty Name="KrajnjaKilometraza" ColumnName="KrajnjaKilometraza" />
+          <ScalarProperty Name="PocetnaKilometraza" ColumnName="PocetnaKilometraza" />
+          <ScalarProperty Name="PotrosnjaGoriva" ColumnName="PotrosnjaGoriva" />
           <ScalarProperty Name="StatusDetaljniOpis" ColumnName="StatusDetaljniOpis" />
           <ScalarProperty Name="idStatusDetaljni" ColumnName="idStatusDetaljni" />
           <ScalarProperty Name="IdPonuda" ColumnName="IdPonuda" />

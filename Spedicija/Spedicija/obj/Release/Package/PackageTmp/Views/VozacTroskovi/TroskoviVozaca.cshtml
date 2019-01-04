@@ -27,6 +27,23 @@
 
 </script> 
 
+<script src="~/Content/js/select.js"></script>
+<link href="~/Content/css/selectlist.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('select').addClass('select form-control dirty');
+
+        $('.select').select2({
+            allowClear: true
+        });
+
+
+    });
+
+</script>
+
 <style>
 
         .style-ponisteno {
@@ -186,7 +203,7 @@
                     location.reload();
                 },
                 error: function (response) {
-                    alert("Do[lo je do greške");
+                    alert("Došlo je do greške");
                 }
 
             });
@@ -250,6 +267,7 @@
 {
 
     <input type="hidden" name="IdVozac" value="@ViewBag.IdVozac" />
+    <!--   <input type="hidden" name="IdDnevnik" value="@ViewBag.IdDnevnik" /> -->
 
                     <div class="row">
                         <div class="col-md-2">
@@ -265,6 +283,13 @@
                             </div>
                         </div>
 
+                        <div class="col-md-2">
+                            <div class="form-group floating-label">
+                                @Html.DropDownList("IdDnevnik", ViewBag.IdDnevnik as SelectList, String.Empty, new { @class = "form-control select" })
+                                @Html.Label("Dnevnik / Tura")
+
+                            </div>
+                        </div>
 
                         <div class="col-md-2">
                             <div class="form-group floating-label">
@@ -276,14 +301,17 @@
                             </div>
                         </div>
 
-                        <div class="col-md-2">
-                            <div class="form-group floating-label">
-                                <input id="potvrdi-datume" type="submit" class="btn" name="Potvrdi" value="Potvrdi" />
+
+
+
+                            <div class="col-md-2">
+                                <div class="form-group floating-label">
+                                    <input id="potvrdi-datume" type="submit" class="btn" name="Potvrdi" value="Potvrdi" />
+                                </div>
                             </div>
+
+
                         </div>
-
-
-                    </div>
 
                     if (!("" + ViewBag.Napomene).Equals(""))
                     {
@@ -311,7 +339,9 @@
                                   <table class="table" >
                                       <thead>
                                           <tr style="text-align: center">
+                                              
                                               <th>Zaključano ?</th>
+                                              <th>Tura / Dnevnik</th>
                                               <th>Tip</th>
                                               <th>Iznos</th>
                                               <th>Valuta</th>
@@ -372,7 +402,7 @@
                                                           </label>
                                                       </div>
                                                   </td>
-
+                                                  <td> @(item.DnevnikPrevoza == null ? "" : item.DnevnikPrevoza.SerijskiBroj)</td>
                                                   <td>  @item.Tip    </td>
                                                   <td>  @item.Iznos  </td>
                                                   <td>  @item.Valuta.OznakaValute    </td>
@@ -436,14 +466,14 @@
 
                                           }
                                           <tr>
-                                              <td colspan="11">
+                                              <td colspan="12">
                                                   <a href="#" id="btn-select-all" class="btn btn-success"><i class="fa fa-2x fa-check-square-o"></i> Označi sve</a> <a href="#" id="btn-zakljucaj" class="btn btn-success"><i class="fa fa-2x fa-lock"></i> Zaključaj odabrane troškove</a>
                                               </td>
                                           </tr>
                                       
 
                                           <tr>
-                                              <td colspan="11" class="text-xl" id="SumaAll">
+                                              <td colspan="12" class="text-xl" id="SumaAll">
                                                 Preostali iznos: @suma.ToString("0.00") BAM
                                                   &nbsp;  &nbsp;
                                                 Plaćeno karticom: @sumKartica.ToString("0.00") BAM

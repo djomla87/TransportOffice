@@ -104,6 +104,9 @@ namespace Spedicija
         public Nullable<int> IdPonuda { get; set; }
         public Nullable<int> idStatusDetaljni { get; set; }
         public string StatusDetaljniOpis { get; set; }
+        public Nullable<int> PotrosnjaGoriva { get; set; }
+        public Nullable<int> PocetnaKilometraza { get; set; }
+        public Nullable<int> KrajnjaKilometraza { get; set; }
     
         public virtual ICollection<Troskovi> Troskovi { get; set; }
         public virtual ICollection<NalogZaUtovar> NalogZaUtovar { get; set; }

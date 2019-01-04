@@ -230,6 +230,20 @@
       <End Role="Vozilo" EntitySet="Vozilo" />
       <End Role="IDnevnikPrevozaVozac" EntitySet="IDnevnikPrevozaVozac" />
     </AssociationSet>
+    <EntitySet Name="VoziloPodsjetnik" EntityType="uvhszjiy_spedicijaModel.VoziloPodsjetnik" />
+    <AssociationSet Name="FK_Troskovi_Dnevnik" Association="uvhszjiy_spedicijaModel.FK_Troskovi_Dnevnik">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="VozacTroskovi" EntitySet="VozacTroskovi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Podsjetnik_Vozilo" Association="uvhszjiy_spedicijaModel.FK_Podsjetnik_Vozilo">
+      <End Role="Vozilo" EntitySet="Vozilo" />
+      <End Role="VoziloPodsjetnik" EntitySet="VoziloPodsjetnik" />
+    </AssociationSet>
+    <EntitySet Name="DokumentShare" EntityType="uvhszjiy_spedicijaModel.DokumentShare" />
+    <AssociationSet Name="KF_Dokument_Share" Association="uvhszjiy_spedicijaModel.KF_Dokument_Share">
+      <End Role="Dokument" EntitySet="Dokument" />
+      <End Role="DokumentShare" EntitySet="DokumentShare" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="DnevnicaDetail">
     <Key>
@@ -344,6 +358,10 @@
     <Property Name="StatusDetaljniOpis" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="IDnevnikPrevozaVozac" Relationship="uvhszjiy_spedicijaModel.FK_IDnevnik_Dnevnik" FromRole="DnevnikPrevoza" ToRole="IDnevnikPrevozaVozac" />
     <NavigationProperty Name="RedoslijedUtovarIstovar" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik_Redoslijed" FromRole="DnevnikPrevoza" ToRole="RedoslijedUtovarIstovar" />
+    <NavigationProperty Name="VozacTroskovi" Relationship="uvhszjiy_spedicijaModel.FK_Troskovi_Dnevnik" FromRole="DnevnikPrevoza" ToRole="VozacTroskovi" />
+    <Property Name="PotrosnjaGoriva" Type="Int32" />
+    <Property Name="PocetnaKilometraza" Type="Int32" />
+    <Property Name="KrajnjaKilometraza" Type="Int32" />
   </EntityType>
   <EntityType Name="Dokument">
     <Key>
@@ -358,6 +376,7 @@
     <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Dnevnik1" FromRole="Dokument" ToRole="DnevnikPrevoza" />
     <Property Type="Int32" Name="IdVozac" />
     <Property Type="Int32" Name="IdVozilo" />
+    <NavigationProperty Name="DokumentShare" Relationship="uvhszjiy_spedicijaModel.KF_Dokument_Share" FromRole="Dokument" ToRole="DokumentShare" />
   </EntityType>
   <EntityType Name="Drzava">
     <Key>
@@ -531,6 +550,7 @@
     <Property Type="String" Name="VrstaVozila" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DnevnikPrevoza1" Relationship="uvhszjiy_spedicijaModel.FK_PrikljucnoVozilo" FromRole="Vozilo" ToRole="DnevnikPrevoza" />
     <NavigationProperty Name="IDnevnikPrevozaVozac" Relationship="uvhszjiy_spedicijaModel.FK_IDnevnik_Vozilo" FromRole="Vozilo" ToRole="IDnevnikPrevozaVozac" />
+    <NavigationProperty Name="VoziloPodsjetnik" Relationship="uvhszjiy_spedicijaModel.FK_Podsjetnik_Vozilo" FromRole="Vozilo" ToRole="VoziloPodsjetnik" />
   </EntityType>
   <Association Name="FK_Dnevnica_Detail">
     <End Role="VozacDnevnica" Type="uvhszjiy_spedicijaModel.VozacDnevnica" Multiplicity="1" />
@@ -1104,6 +1124,7 @@
     </Key>
     <Property Name="IdTipUsluge" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Naziv" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SaldoVozaca" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="AndroidTask">
     <Key>
@@ -1385,6 +1406,8 @@
     <Property Name="IdVozac" Type="Int32" Nullable="false" />
     <Property Name="Zakljucano" Type="Boolean" />
     <Property Name="Kartica" Type="Boolean" />
+    <Property Name="IdDnevnik" Type="Int32" />
+    <NavigationProperty Name="DnevnikPrevoza" Relationship="uvhszjiy_spedicijaModel.FK_Troskovi_Dnevnik" FromRole="VozacTroskovi" ToRole="DnevnikPrevoza" />
   </EntityType>
   <EntityType Name="VozacVrstaTroskova">
     <Key>
@@ -1536,6 +1559,62 @@
       </Principal>
       <Dependent Role="IDnevnikPrevozaVozac">
         <PropertyRef Name="IdVozilo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="VoziloPodsjetnik">
+    <Key>
+      <PropertyRef Name="IdVoziloPodsjetnik" />
+    </Key>
+    <Property Name="IdVoziloPodsjetnik" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdVozilo" Type="Int32" Nullable="false" />
+    <Property Name="Vrsta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DatumIzrade" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DatumPodsjetnika" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Vozilo" Relationship="uvhszjiy_spedicijaModel.FK_Podsjetnik_Vozilo" FromRole="VoziloPodsjetnik" ToRole="Vozilo" />
+  </EntityType>
+  <Association Name="FK_Troskovi_Dnevnik">
+    <End Type="uvhszjiy_spedicijaModel.DnevnikPrevoza" Role="DnevnikPrevoza" Multiplicity="0..1" />
+    <End Type="uvhszjiy_spedicijaModel.VozacTroskovi" Role="VozacTroskovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="VozacTroskovi">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Podsjetnik_Vozilo">
+    <End Type="uvhszjiy_spedicijaModel.Vozilo" Role="Vozilo" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.VoziloPodsjetnik" Role="VoziloPodsjetnik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozilo">
+        <PropertyRef Name="IdVozilo" />
+      </Principal>
+      <Dependent Role="VoziloPodsjetnik">
+        <PropertyRef Name="IdVozilo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DokumentShare">
+    <Key>
+      <PropertyRef Name="IdDokumentShare" />
+    </Key>
+    <Property Name="IdDokumentShare" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdDokument" Type="Int32" Nullable="false" />
+    <Property Name="Kod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Dokument" Relationship="uvhszjiy_spedicijaModel.KF_Dokument_Share" FromRole="DokumentShare" ToRole="Dokument" />
+  </EntityType>
+  <Association Name="KF_Dokument_Share">
+    <End Type="uvhszjiy_spedicijaModel.Dokument" Role="Dokument" Multiplicity="1" />
+    <End Type="uvhszjiy_spedicijaModel.DokumentShare" Role="DokumentShare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dokument">
+        <PropertyRef Name="IdDokument" />
+      </Principal>
+      <Dependent Role="DokumentShare">
+        <PropertyRef Name="IdDokument" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

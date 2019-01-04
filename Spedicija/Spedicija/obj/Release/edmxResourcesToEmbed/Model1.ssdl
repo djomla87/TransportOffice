@@ -134,6 +134,9 @@
     <Property Name="IdPonuda" Type="int" />
     <Property Name="idStatusDetaljni" Type="int" />
     <Property Name="StatusDetaljniOpis" Type="nvarchar" MaxLength="500" />
+    <Property Name="PotrosnjaGoriva" Type="int" />
+    <Property Name="PocetnaKilometraza" Type="int" />
+    <Property Name="KrajnjaKilometraza" Type="int" />
   </EntityType>
   <EntityType Name="DnevnikUtovar">
     <Key>
@@ -185,6 +188,14 @@
     <Property Name="Naziv" Type="nvarchar" MaxLength="500" />
     <Property Name="IdVozac" Type="int" />
     <Property Name="IdVozilo" Type="int" />
+  </EntityType>
+  <EntityType Name="DokumentShare">
+    <Key>
+      <PropertyRef Name="IdDokumentShare" />
+    </Key>
+    <Property Name="IdDokumentShare" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdDokument" Type="int" Nullable="false" />
+    <Property Name="Kod" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Drzava">
     <Key>
@@ -530,6 +541,7 @@
     </Key>
     <Property Name="IdTipUsluge" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Naziv" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SaldoVozaca" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Troskovi">
     <Key>
@@ -606,6 +618,7 @@
     <Property Name="IdVozac" Type="int" Nullable="false" />
     <Property Name="Zakljucano" Type="bit" />
     <Property Name="Kartica" Type="bit" />
+    <Property Name="IdDnevnik" Type="int" />
   </EntityType>
   <EntityType Name="VozacUser">
     <Key>
@@ -633,6 +646,16 @@
     <Property Name="DatumZapisa" Type="datetime" />
     <Property Name="ZapisAktivan" Type="bit" Nullable="false" />
     <Property Name="VrstaVozila" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="VoziloPodsjetnik">
+    <Key>
+      <PropertyRef Name="IdVoziloPodsjetnik" />
+    </Key>
+    <Property Name="IdVoziloPodsjetnik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdVozilo" Type="int" Nullable="false" />
+    <Property Name="Vrsta" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DatumIzrade" Type="datetime" Nullable="false" />
+    <Property Name="DatumPodsjetnika" Type="datetime" Nullable="false" />
   </EntityType>
   <Association Name="FK_Dnebvni_StatusRobe">
     <End Role="StatusRobe" Type="Self.StatusRobe" Multiplicity="0..1" />
@@ -922,6 +945,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Podsjetnik_Vozilo">
+    <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="1" />
+    <End Role="VoziloPodsjetnik" Type="Self.VoziloPodsjetnik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozilo">
+        <PropertyRef Name="IdVozilo" />
+      </Principal>
+      <Dependent Role="VoziloPodsjetnik">
+        <PropertyRef Name="IdVozilo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ponuda_subjekt">
     <End Role="Subjekt" Type="Self.Subjekt" Multiplicity="0..1" />
     <End Role="Ponuda" Type="Self.Ponuda" Multiplicity="*" />
@@ -1014,6 +1049,18 @@
         <PropertyRef Name="IdDnevnik" />
       </Principal>
       <Dependent Role="AndroidTask">
+        <PropertyRef Name="IdDnevnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Troskovi_Dnevnik">
+    <End Role="DnevnikPrevoza" Type="Self.DnevnikPrevoza" Multiplicity="0..1" />
+    <End Role="VozacTroskovi" Type="Self.VozacTroskovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DnevnikPrevoza">
+        <PropertyRef Name="IdDnevnik" />
+      </Principal>
+      <Dependent Role="VozacTroskovi">
         <PropertyRef Name="IdDnevnik" />
       </Dependent>
     </ReferentialConstraint>
@@ -1138,6 +1185,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="KF_Dokument_Share">
+    <End Role="Dokument" Type="Self.Dokument" Multiplicity="1" />
+    <End Role="DokumentShare" Type="Self.DokumentShare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dokument">
+        <PropertyRef Name="IdDokument" />
+      </Principal>
+      <Dependent Role="DokumentShare">
+        <PropertyRef Name="IdDokument" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Function Name="spVratiPodatkeZaNalog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdNalog" Type="int" Mode="In" />
   </Function>
@@ -1170,6 +1229,7 @@
     <EntitySet Name="DnevnikUvoznikIzvoznik" EntityType="Self.DnevnikUvoznikIzvoznik" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DnevnikValute" EntityType="Self.DnevnikValute" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Dokument" EntityType="Self.Dokument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DokumentShare" EntityType="Self.DokumentShare" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Drzava" EntityType="Self.Drzava" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Grad" EntityType="Self.Grad" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="IDnevnikPrevozaVozac" EntityType="Self.IDnevnikPrevozaVozac" Schema="dbo" store:Type="Tables" />
@@ -1200,6 +1260,7 @@
     <EntitySet Name="VozacUser" EntityType="Self.VozacUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VozacVrstaTroskova" EntityType="Self.VozacVrstaTroskova" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Vozilo" EntityType="Self.Vozilo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VoziloPodsjetnik" EntityType="Self.VoziloPodsjetnik" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Dnebvni_StatusRobe" Association="Self.FK_Dnebvni_StatusRobe">
       <End Role="StatusRobe" EntitySet="StatusRobe" />
       <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
@@ -1296,6 +1357,10 @@
       <End Role="Subjekt" EntitySet="Subjekt" />
       <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
     </AssociationSet>
+    <AssociationSet Name="FK_Podsjetnik_Vozilo" Association="Self.FK_Podsjetnik_Vozilo">
+      <End Role="Vozilo" EntitySet="Vozilo" />
+      <End Role="VoziloPodsjetnik" EntitySet="VoziloPodsjetnik" />
+    </AssociationSet>
     <AssociationSet Name="FK_ponuda_subjekt" Association="Self.FK_ponuda_subjekt">
       <End Role="Subjekt" EntitySet="Subjekt" />
       <End Role="Ponuda" EntitySet="Ponuda" />
@@ -1327,6 +1392,10 @@
     <AssociationSet Name="FK_TaskDnevnik" Association="Self.FK_TaskDnevnik">
       <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
       <End Role="AndroidTask" EntitySet="AndroidTask" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Troskovi_Dnevnik" Association="Self.FK_Troskovi_Dnevnik">
+      <End Role="DnevnikPrevoza" EntitySet="DnevnikPrevoza" />
+      <End Role="VozacTroskovi" EntitySet="VozacTroskovi" />
     </AssociationSet>
     <AssociationSet Name="FK_Valuta" Association="Self.FK_Valuta">
       <End Role="Valuta" EntitySet="Valuta" />
@@ -1367,6 +1436,10 @@
     <AssociationSet Name="FK_ZaradaDnevnik" Association="Self.FK_ZaradaDnevnik">
       <End Role="IzracunZarada" EntitySet="IzracunZarada" />
       <End Role="IzracunDnevnik" EntitySet="IzracunDnevnik" />
+    </AssociationSet>
+    <AssociationSet Name="KF_Dokument_Share" Association="Self.KF_Dokument_Share">
+      <End Role="Dokument" EntitySet="Dokument" />
+      <End Role="DokumentShare" EntitySet="DokumentShare" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

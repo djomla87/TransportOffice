@@ -23,7 +23,9 @@
 "number": true ,
 "digits": true ,
 	*/
-
+        $.validator.setDefaults({
+            ignore: []
+        });
 
         var validator = $(".form").validate({
             rules: {
@@ -52,13 +54,24 @@
 		 Datum : {
 				"required" : true
 
-					}
+		 },
+
+		 IdDnevnik: {
+		     "required": true
+
+		 }
  
             }
             ,
             messages: {
                 Iznos: {
                     pattern: 'Unesite ispravan iznos (za decimale koristite , )'
+                },
+                IdDnevnik: {
+                    required: 'Odaberite Prevoz'
+                },
+                Tip: {
+                    required: 'Odaberite Tip'
                 }
             }
 						 });
@@ -110,6 +123,8 @@
             allowClear: true
         });
 
+        $("#IdDnevnik").select2("val", @ViewBag.IdDnevnik);
+        $('#IdDnevnik').addClass("dirty");
 
     });
 
@@ -140,6 +155,13 @@
 
             @Html.HiddenFor(model => model.IdCozacTroskovi, new { @class = "form-control"  })
 
+
+        <div class="form-group floating-label">
+            @Html.DropDownList("IdDnevnik", ViewBag.IdDnevnikSL as SelectList, String.Empty, new { @class = "form-control select" })
+            @Html.ValidationMessageFor(model => model.IdDnevnik)
+            @Html.LabelFor(model => model.IdDnevnik)
+        </div>
+
         <div class="form-group floating-label">
             @Html.DropDownList("Tip", String.Empty)
             @Html.LabelFor(model => model.Tip, "Tip")
@@ -159,7 +181,6 @@
             @Html.ValidationMessageFor(model => model.IdValuta)
         </div>
         
-
 
          <div class="form-group floating-label">
             @Html.DropDownList("IdVrstaTroska", String.Empty)

@@ -31,7 +31,9 @@
                 IstovarAdresa:  { "required": true },
                 IstovarFirma:   { "required": true },
                 IstovarGrad:    { "required": true },
-
+                PocetnaKilometraza: { "number": true },
+                KrajnjaKilometraza: { "number": true },
+                PotrosnjaGoriva: { "number": true },
 
                 CijenaPrevoza: {
                     "required": true,
@@ -2128,6 +2130,41 @@
                                             @Html.DropDownList("IdVozac", ViewBag.IdVozac as SelectList, String.Empty, new { @class = "form-control select" })
                                             @Html.ValidationMessageFor(model => model.IdVozac)
                                             @Html.LabelFor(model => model.IdVozac, "Vozač")
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card card-underline">
+                            <div class="card-head style-djomla">
+                                <header class=""><strong>Kilometraža / potrošnja goriva </strong></header>
+                                <div class="tools">
+
+                                </div><!--end .tools -->
+                            </div><!--end .card-head -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group floating-label">
+                                            @Html.TextBoxFor(model => model.PocetnaKilometraza, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.PocetnaKilometraza)
+                                            @Html.LabelFor(model => model.PocetnaKilometraza, "Početna Kilometraža")
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group floating-label">
+                                            @Html.TextBoxFor(model => model.KrajnjaKilometraza, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.KrajnjaKilometraza)
+                                            @Html.LabelFor(model => model.KrajnjaKilometraza, "Krajnja Kilometraža")
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group floating-label">
+                                            @Html.TextBoxFor(model => model.PotrosnjaGoriva, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.PotrosnjaGoriva)
+                                            @Html.LabelFor(model => model.PotrosnjaGoriva, "Potrošeno gorivo (u litrama)")
                                         </div>
                                     </div>
                                 </div>

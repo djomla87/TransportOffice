@@ -1393,8 +1393,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <None Include="Properties\PublishProfiles\gmtel-office.com - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\test.gmtel-office.com - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\transport-office.com - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\codeSample.txt" />
     <Content Include="Scripts\jquery-1.7.1.js" />
