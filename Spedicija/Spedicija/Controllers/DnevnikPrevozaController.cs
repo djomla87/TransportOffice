@@ -2891,7 +2891,7 @@ namespace Spedicija.Controllers
             return Json(Tasks, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult NapraviVozacevTrosak(String token, int IdTrosak, Decimal iznos, String valuta, String tip, String vrstatroska, String napomena, String date, int ? Kartica)
+        public JsonResult NapraviVozacevTrosak(String token, int IdTrosak, Decimal iznos, String valuta, String tip, String vrstatroska, String napomena, String date, int ? Kartica, int IdDnevnik)
         {
 
             try
@@ -2924,6 +2924,7 @@ namespace Spedicija.Controllers
                     vozacTroskovi.Aktivno = true;
                     vozacTroskovi.Datum = oDate;
                     vozacTroskovi.Kartica = Kartica == 1;
+                    vozacTroskovi.IdDnevnik = IdDnevnik;
 
                     db.VozacTroskovi.Add(vozacTroskovi);
                     db.SaveChanges();
@@ -2976,7 +2977,8 @@ namespace Spedicija.Controllers
                     Datum = k.Datum.ToShortDateString() + " " + k.Datum.ToShortTimeString(),
                     Tip = k.Tip,
                     Vrsta = k.IdVrstaTroska == null ? "" : k.VozacVrstaTroskova.Naziv,
-                    Kartica = (k.Kartica ?? false) ? 1 : 0
+                    Kartica = (k.Kartica ?? false) ? 1 : 0,
+                    Dnevnik = k.IdDnevnik
                 }
                 ).ToList();
 
@@ -3021,6 +3023,7 @@ namespace Spedicija.Controllers
                 vozacTroskovi.Tip = vt.Tip;
                 vozacTroskovi.Aktivno = true;
                 vozacTroskovi.Datum = oDate;
+                vozacTroskovi.IdDnevnik = vt.IdDnevnik;
 
 
                 if (iznos1 > 0)
@@ -3044,6 +3047,7 @@ namespace Spedicija.Controllers
                     vozacTroskovi1.Tip = vt.Tip;
                     vozacTroskovi1.Aktivno = true;
                     vozacTroskovi1.Datum = oDate;
+                    vozacTroskovi1.IdDnevnik = vt.IdDnevnik;
 
                     db.VozacTroskovi.Add(vozacTroskovi1);
                     db.SaveChanges();
