@@ -345,7 +345,7 @@ namespace Spedicija.Controllers
 
 
             Lst.AddRange(
-                Podaci.SelectMany(p => p.VozacTroskovi).Where(c => c.Tip.Equals("RASHOD")).Select(c => new Finansija
+                Podaci.SelectMany(p => p.VozacTroskovi).Where(c => c.Tip.Equals("RASHOD") && c.Aktivno).Select(c => new Finansija
                 {
                     RB =            3,
                     SerijskiBroj =  c.DnevnikPrevoza.SerijskiBroj + " [" + c.DnevnikPrevoza.UtovarGrad + " - " + c.DnevnikPrevoza.IstovarGrad + "]",
@@ -360,7 +360,7 @@ namespace Spedicija.Controllers
                 );
 
             LstVozac.AddRange(
-               Podaci.SelectMany(p => p.VozacTroskovi).Select(c => new Finansija
+               Podaci.SelectMany(p => p.VozacTroskovi).Where(c => c.Aktivno).Select(c => new Finansija
                {
                    RB = c.Tip.Equals("ZADUŽENJE") ? 2 : 3,
                    SerijskiBroj = c.DnevnikPrevoza.SerijskiBroj + " [" + c.DnevnikPrevoza.UtovarGrad + " - " + c.DnevnikPrevoza.IstovarGrad + "]",
